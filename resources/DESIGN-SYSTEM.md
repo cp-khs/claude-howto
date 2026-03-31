@@ -1,224 +1,224 @@
-# Claude How To - Design System
+# Claude How To - 디자인 시스템
 
-## Visual Identity
+## 시각적 아이덴티티
 
-### Icon Design Concept: Compass with Code Bracket
+### 아이콘 디자인 컨셉: 코드 브래킷이 있는 나침반
 
-The Claude How To icon uses a **compass with a `>` code bracket** to represent guided navigation through code:
+Claude How To 아이콘은 코드 탐색 가이드를 표현하기 위해 **`>` 코드 브래킷이 있는 나침반**을 사용합니다:
 
 ```
-     N (green)
+     N (초록)
      ▲
      │
-W ───>─── E     Compass = Guidance/Direction
-     │          > Bracket = Code/Terminal/CLI
+W ───>─── E     나침반 = 안내/방향
+     │          > 브래킷 = 코드/터미널/CLI
      ▼
-     S (black)
+     S (검정)
 ```
 
-This creates:
-- **Visual Clarity**: Immediately communicates "code navigation guide"
-- **Symbolic Meaning**: Compass = finding your way; `>` = code/terminal
-- **Scalability**: Works at any size from 16px to 512px
-- **Brand Alignment**: Matches the developer tool aesthetic with minimal palette
+이를 통해:
+- **시각적 명확성**: "코드 탐색 가이드"를 즉각적으로 전달
+- **상징적 의미**: 나침반 = 길을 찾는 것; `>` = 코드/터미널
+- **확장성**: 16px에서 512px까지 모든 크기에서 작동
+- **브랜드 일치**: 미니멀한 팔레트로 개발자 도구 미학과 일치
 
 ---
 
-## Color System
+## 색상 시스템
 
-### Palette
+### 팔레트
 
-| Color | Hex | RGB | Usage |
+| 색상 | Hex | RGB | 사용 용도 |
 |-------|-----|-----|-------|
-| Black (Primary) | `#000000` | 0, 0, 0 | Main strokes, text, south needle |
-| White (Background) | `#FFFFFF` | 255, 255, 255 | Light backgrounds |
-| Gray (Secondary) | `#6B7280` | 107, 114, 128 | Minor tick marks, secondary text |
-| Bright Green (Accent) | `#22C55E` | 34, 197, 94 | North needle, center dot, accent lines |
-| Near Black (Dark BG) | `#0A0A0A` | 10, 10, 10 | Dark mode backgrounds |
+| 검정 (주색) | `#000000` | 0, 0, 0 | 주요 선, 텍스트, 남쪽 바늘 |
+| 흰색 (배경) | `#FFFFFF` | 255, 255, 255 | 밝은 배경 |
+| 회색 (보조색) | `#6B7280` | 107, 114, 128 | 작은 눈금, 보조 텍스트 |
+| 밝은 초록 (강조색) | `#22C55E` | 34, 197, 94 | 북쪽 바늘, 중심 점, 강조 선 |
+| 거의 검정 (어두운 배경) | `#0A0A0A` | 10, 10, 10 | 다크 모드 배경 |
 
-### Contrast Ratios (WCAG)
+### 대비 비율 (WCAG)
 
-- Black on White: **21:1** AAA
-- Gray on White: **4.6:1** AA
-- Green on White: **3.2:1** (decorative only, not for text)
-- White on Dark: **19.5:1** AAA
+- 흰색 위 검정: **21:1** AAA
+- 흰색 위 회색: **4.6:1** AA
+- 흰색 위 초록: **3.2:1** (장식용만, 텍스트 사용 불가)
+- 어두운 배경 위 흰색: **19.5:1** AAA
 
-### Accent Color Rule
+### 강조색 규칙
 
-**Bright Green (#22C55E) is reserved for highlights only:**
-- Compass north needle
-- Center dot
-- Accent underlines/borders
-- Never as a background color
-- Never for body text
-
----
-
-## Typography
-
-### Logo Font
-- **Family**: Inter, SF Pro Display, -apple-system, Segoe UI, sans-serif
-- **"Claude"**: 42px, weight 700 (bold), Black
-- **"How-To"**: 32px, weight 500 (medium), Gray (#6B7280)
-- **Subtitle**: 10px, weight 500, Gray, letter-spacing 1.5px, uppercase
-
-### Interface Font
-- **Family**: Inter, SF Pro, system fonts (sans-serif)
-- **Weight**: 400-600
-- **Style**: Clean, readable
+**밝은 초록 (#22C55E)은 하이라이트 전용:**
+- 나침반 북쪽 바늘
+- 중심 점
+- 강조 밑줄/테두리
+- 배경색으로 절대 사용 금지
+- 본문 텍스트로 절대 사용 금지
 
 ---
 
-## Icon Details
+## 타이포그래피
 
-### Compass Specifications
+### 로고 폰트
+- **패밀리**: Inter, SF Pro Display, -apple-system, Segoe UI, sans-serif
+- **"Claude"**: 42px, weight 700 (굵게), 검정
+- **"How-To"**: 32px, weight 500 (중간), 회색 (#6B7280)
+- **부제목**: 10px, weight 500, 회색, letter-spacing 1.5px, 대문자
 
-The compass mark is built from these geometric elements:
+### 인터페이스 폰트
+- **패밀리**: Inter, SF Pro, 시스템 폰트 (sans-serif)
+- **Weight**: 400~600
+- **스타일**: 깔끔하고 읽기 쉬운
+
+---
+
+## 아이콘 세부 사항
+
+### 나침반 사양
+
+나침반 마크는 다음의 기하학적 요소로 구성됩니다:
 
 ```
-Element             | Stroke/Fill    | Color
+요소                 | 선/채우기      | 색상
 --------------------|----------------|------------------
-Outer ring          | 3px stroke     | Black / White (dark mode)
-North tick          | 2.5px stroke   | Black / White (dark mode)
-Other cardinal ticks| 2px stroke     | Gray / White 50% (dark mode)
-Intercardinal ticks | 1.5px stroke   | Gray / White 40% (dark mode)
-North needle        | filled polygon | #22C55E (always green)
-South needle        | filled polygon | Black / White (dark mode)
-> bracket           | 3px stroke     | Black / White (dark mode)
-Center dot          | filled circle  | #22C55E (always green)
+바깥 링             | 3px 선         | 검정 / 흰색 (다크 모드)
+북쪽 눈금           | 2.5px 선       | 검정 / 흰색 (다크 모드)
+기타 주요 눈금      | 2px 선         | 회색 / 흰색 50% (다크 모드)
+중간 눈금           | 1.5px 선       | 회색 / 흰색 40% (다크 모드)
+북쪽 바늘           | 채운 다각형    | #22C55E (항상 초록)
+남쪽 바늘           | 채운 다각형    | 검정 / 흰색 (다크 모드)
+> 브래킷            | 3px 선         | 검정 / 흰색 (다크 모드)
+중심 점             | 채운 원        | #22C55E (항상 초록)
 ```
 
-### Size Progression
+### 크기별 점진적 세부 묘사
 
 ```
-16px  → Ring + needles + chevron only (minimal)
-32px  → Adds cardinal tick marks
-64px  → Adds intercardinal tick marks
-128px → Full detail, all elements crisp
-256px → Maximum detail, thick strokes
+16px  → 링 + 바늘 + 쉐브론만 (최소한)
+32px  → 주요 눈금 추가
+64px  → 중간 눈금 추가
+128px → 완전한 세부 묘사, 모든 요소 선명
+256px → 최대 세부 묘사, 두꺼운 선
 ```
 
 ---
 
-## Sizing Guidelines
+## 크기 가이드라인
 
-### Logo Sizing
+### 로고 크기
 
-- **Minimum**: 200px width (for web)
-- **Recommended**: 520px (native size)
-- **Maximum**: Unlimited (vector format)
-- **Aspect Ratio**: ~4.3:1 (width:height)
+- **최소**: 200px 너비 (웹용)
+- **권장**: 520px (기본 크기)
+- **최대**: 무제한 (벡터 형식)
+- **비율**: ~4.3:1 (너비:높이)
 
-### Icon Sizing
+### 아이콘 크기
 
-- **Minimum**: 16px (favicon)
-- **Recommended**: 64-256px (apps, avatars)
-- **Maximum**: Unlimited (vector format)
-- **Aspect Ratio**: 1:1 (square)
+- **최소**: 16px (파비콘)
+- **권장**: 64~256px (앱, 아바타)
+- **최대**: 무제한 (벡터 형식)
+- **비율**: 1:1 (정사각형)
 
 ---
 
-## Spacing & Alignment
+## 간격 및 정렬
 
-### Logo Spacing
+### 로고 간격
 
 ```
 ┌─────────────────────────────────────┐
 │                                     │
-│        Clear Space Minimum          │
-│         (logo height / 2)           │
+│        최소 여백                    │
+│         (로고 높이 / 2)             │
 │                                     │
-│    [COMPASS]  Claude                │
+│    [나침반]  Claude                 │
 │               How-To                │
 │                                     │
 └─────────────────────────────────────┘
 ```
 
-### Icon Center Point
+### 아이콘 중심점
 
-All icons center at the midpoint of their canvas:
-- 128×128 for 256px canvas
-- 64×64 for 128px canvas
-- Maintains alignment with other UI elements
-
----
-
-## Accessibility
-
-### Color Contrast
-- All text meets WCAG AA (4.5:1 minimum)
-- Green accent is decorative, not informational
-- No red-green color dependency
-
-### Scalability
-- Vector format ensures clarity at any size
-- Geometric shapes remain recognizable at 16px
-- Progressive detail based on available size
+모든 아이콘은 캔버스의 중심점에 맞춥니다:
+- 256px 캔버스에서 128×128
+- 128px 캔버스에서 64×64
+- 다른 UI 요소와의 정렬 유지
 
 ---
 
-## Application Examples
+## 접근성
 
-### Web Header
-- Size: 520×120px logo
-- File: `logos/claude-howto-logo.svg`
-- Background: White or dark (#0A0A0A)
-- Padding: 20px minimum
+### 색상 대비
+- 모든 텍스트는 WCAG AA (최소 4.5:1) 충족
+- 초록 강조색은 장식용이며 정보 전달용 아님
+- 빨강-초록 색상 의존성 없음
 
-### App Icon
-- Size: 256×256px
-- File: `icons/claude-howto-icon.svg`
-- Background: White or dark
-- Use: App shortcuts, avatars
-
-### Browser Favicon
-- Size: 32px (primary), 16px (fallback)
-- File: `favicons/favicon-32.svg`
-- Format: SVG for crisp display
-
-### Social Media
-- Profile: 256×256px icon
-- Banner: 520×120px logo (centered)
-
-### Documentation
-- Chapter Headers: Logo scaled to fit
-- Section Icons: 64×64px favicon
-- Inline: 32×32px favicon
+### 확장성
+- 벡터 형식으로 모든 크기에서 선명함 보장
+- 기하학적 형태는 16px에서도 인식 가능
+- 가용 크기에 따른 점진적 세부 묘사
 
 ---
 
-## File Format Details
+## 적용 예시
 
-### SVG Structure
+### 웹 헤더
+- 크기: 520×120px 로고
+- 파일: `logos/claude-howto-logo.svg`
+- 배경: 흰색 또는 어두운 (#0A0A0A)
+- 패딩: 최소 20px
 
-All SVG files are flat design:
-- No gradients (solid colors only)
-- No filter effects (no blur, glow, or shadow)
-- Clean stroke and fill geometry
-- ViewBox for responsive scaling
-- Readable, commented code
+### 앱 아이콘
+- 크기: 256×256px
+- 파일: `icons/claude-howto-icon.svg`
+- 배경: 흰색 또는 어두운
+- 사용처: 앱 바로가기, 아바타
 
-### Cross-Browser Compatibility
+### 브라우저 파비콘
+- 크기: 32px (기본), 16px (대체)
+- 파일: `favicons/favicon-32.svg`
+- 형식: 선명한 표시를 위한 SVG
 
-- Chrome/Edge: Full support
-- Firefox: Full support
-- Safari: Full support
-- iOS Safari: Full support
-- All modern browsers: Full support
+### 소셜 미디어
+- 프로필: 256×256px 아이콘
+- 배너: 520×120px 로고 (가운데 정렬)
+
+### 문서
+- 챕터 헤더: 크기에 맞게 조정된 로고
+- 섹션 아이콘: 64×64px 파비콘
+- 인라인: 32×32px 파비콘
 
 ---
 
-## Customization
+## 파일 형식 세부 사항
 
-### Changing the Accent Color
+### SVG 구조
 
-To create variants with a different accent:
+모든 SVG 파일은 플랫 디자인:
+- 그라디언트 없음 (단색만)
+- 필터 효과 없음 (블러, 글로우, 그림자 없음)
+- 깔끔한 선과 채우기 기하학
+- 반응형 확장을 위한 ViewBox
+- 읽기 쉽고 주석이 달린 코드
 
-1. Replace all instances of `#22C55E` with your accent color
-2. Ensure contrast ratio stays above 3:1 for decorative elements
-3. Keep black/white/gray structure unchanged
+### 크로스 브라우저 호환성
 
-### Scaling
+- Chrome/Edge: 완전 지원
+- Firefox: 완전 지원
+- Safari: 완전 지원
+- iOS Safari: 완전 지원
+- 모든 최신 브라우저: 완전 지원
+
+---
+
+## 커스터마이징
+
+### 강조색 변경
+
+다른 강조색으로 변형을 만들려면:
+
+1. `#22C55E`의 모든 인스턴스를 원하는 강조색으로 교체
+2. 장식 요소의 대비 비율이 3:1 이상 유지되는지 확인
+3. 검정/흰색/회색 구조는 변경하지 않음
+
+### 크기 조정
 
 ```css
 svg {
@@ -227,18 +227,18 @@ svg {
 }
 ```
 
-SVGs scale automatically via viewBox — no transforms needed.
+SVG는 viewBox를 통해 자동으로 확장됩니다 — 변환 불필요.
 
 ---
 
-## Version Control
+## 버전 관리
 
-Track design changes in git:
-- Version SVG files normally (they're text)
-- Tag releases with design changes
-- Include DESIGN-SYSTEM.md in commits
+git에서 디자인 변경사항 추적:
+- SVG 파일을 일반적으로 버전 관리 (텍스트 형식)
+- 디자인 변경이 있는 릴리스에 태그 지정
+- 커밋에 DESIGN-SYSTEM.md 포함
 
 ---
 
-**Last Updated**: February 2026
-**Design System Version**: 3.0
+**마지막 업데이트**: 2026년 2월
+**디자인 시스템 버전**: 3.0

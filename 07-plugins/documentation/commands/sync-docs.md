@@ -5,10 +5,10 @@ description: Sync documentation with code changes
 
 # Documentation Sync
 
-Synchronize documentation with codebase:
+코드베이스와 문서를 동기화합니다:
 
-1. Detect code changes
-2. Identify outdated documentation
-3. Update affected docs
-4. Verify examples still work
-5. Update version numbers
+1. 코드 변경사항 감지
+2. 오래된 문서 식별
+3. 영향받은 문서 업데이트
+4. 예제가 여전히 작동하는지 검증
+5. 버전 번호 업데이트

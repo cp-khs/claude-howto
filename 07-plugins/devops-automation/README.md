@@ -3,105 +3,105 @@
   <img alt="Claude How To" src="../../resources/logos/claude-howto-logo.svg">
 </picture>
 
-# DevOps Automation Plugin
+# DevOps Automation 플러그인
 
-Complete DevOps automation for deployment, monitoring, and incident response.
+배포, 모니터링, 장애 대응을 위한 완전한 DevOps 자동화입니다.
 
-## Features
+## 기능
 
-✅ Automated deployments
-✅ Rollback procedures
-✅ System health monitoring
-✅ Incident response workflows
-✅ Kubernetes integration
+✅ 자동화 배포
+✅ 롤백 절차
+✅ 시스템 상태 모니터링
+✅ 장애 대응 워크플로우
+✅ Kubernetes 통합
 
-## Installation
+## 설치
 
 ```bash
 /plugin install devops-automation
 ```
 
-## What's Included
+## 포함 항목
 
 ### Slash Commands
-- `/deploy` - Deploy to production or staging
-- `/rollback` - Rollback to previous version
-- `/status` - Check system health
-- `/incident` - Handle production incidents
+- `/deploy` - 프로덕션 또는 스테이징에 배포
+- `/rollback` - 이전 버전으로 롤백
+- `/status` - 시스템 상태 확인
+- `/incident` - 프로덕션 장애 처리
 
 ### Subagents
-- `deployment-specialist` - Deployment operations
-- `incident-commander` - Incident coordination
-- `alert-analyzer` - System health analysis
+- `deployment-specialist` - 배포 운영
+- `incident-commander` - 장애 대응 조율
+- `alert-analyzer` - 시스템 상태 분석
 
 ### MCP Servers
-- Kubernetes integration
+- Kubernetes 통합
 
 ### Scripts
-- `deploy.sh` - Deployment automation
-- `rollback.sh` - Rollback automation
-- `health-check.sh` - Health check utilities
+- `deploy.sh` - 배포 자동화
+- `rollback.sh` - 롤백 자동화
+- `health-check.sh` - 상태 확인 유틸리티
 
 ### Hooks
-- `pre-deploy.js` - Pre-deployment validation
-- `post-deploy.js` - Post-deployment tasks
+- `pre-deploy.js` - 배포 전 검증
+- `post-deploy.js` - 배포 후 작업
 
-## Usage
+## 사용법
 
-### Deploy to Staging
+### 스테이징 배포
 ```
 /deploy staging
 ```
 
-### Deploy to Production
+### 프로덕션 배포
 ```
 /deploy production
 ```
 
-### Rollback
+### 롤백
 ```
 /rollback production
 ```
 
-### Check Status
+### 상태 확인
 ```
 /status
 ```
 
-### Handle Incident
+### 장애 처리
 ```
 /incident
 ```
 
-## Requirements
+## 요구 사항
 
 - Claude Code 1.0+
 - Kubernetes CLI (kubectl)
-- Cluster access configured
+- 클러스터 접근 설정 완료
 
-## Configuration
+## 설정
 
-Set up your Kubernetes config:
+Kubernetes 설정을 구성하세요:
 ```bash
 export KUBECONFIG=~/.kube/config
 ```
 
-## Example Workflow
+## 예제 워크플로우
 
 ```
 User: /deploy production
 
 Claude:
-1. Runs pre-deploy hook (validates kubectl, cluster connection)
-2. Delegates to deployment-specialist subagent
-3. Runs deploy.sh script
-4. Monitors deployment progress via Kubernetes MCP
-5. Runs post-deploy hook (waits for pods, smoke tests)
-6. Provides deployment summary
+1. pre-deploy hook 실행 (kubectl, 클러스터 연결 검증)
+2. deployment-specialist subagent에 위임
+3. deploy.sh 스크립트 실행
+4. Kubernetes MCP를 통해 배포 진행 상황 모니터링
+5. post-deploy hook 실행 (파드 대기, 스모크 테스트)
+6. 배포 요약 제공
 
-Result:
-✅ Deployment complete
-📦 Version: v2.1.0
+결과:
+✅ 배포 완료
+📦 버전: v2.1.0
 🚀 Pods: 3/3 ready
-⏱️  Time: 2m 34s
+⏱️  소요 시간: 2분 34초
 ```

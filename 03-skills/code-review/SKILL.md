@@ -3,68 +3,68 @@ name: code-review-specialist
 description: Comprehensive code review with security, performance, and quality analysis. Use when users ask to review code, analyze code quality, evaluate pull requests, or mention code review, security analysis, or performance optimization.
 ---
 
-# Code Review Skill
+# 코드 리뷰 스킬
 
-This skill provides comprehensive code review capabilities focusing on:
+이 스킬은 다음에 집중하는 포괄적인 코드 리뷰 기능을 제공합니다:
 
-1. **Security Analysis**
-   - Authentication/authorization issues
-   - Data exposure risks
-   - Injection vulnerabilities
-   - Cryptographic weaknesses
-   - Sensitive data logging
+1. **보안 분석**
+   - 인증/인가 문제
+   - 데이터 노출 위험
+   - 인젝션 취약점
+   - 암호화 약점
+   - 민감한 데이터 로깅
 
-2. **Performance Review**
-   - Algorithm efficiency (Big O analysis)
-   - Memory optimization
-   - Database query optimization
-   - Caching opportunities
-   - Concurrency issues
+2. **성능 검토**
+   - 알고리즘 효율성 (Big O 분석)
+   - 메모리 최적화
+   - 데이터베이스 쿼리 최적화
+   - 캐싱 기회
+   - 동시성 문제
 
-3. **Code Quality**
-   - SOLID principles
-   - Design patterns
-   - Naming conventions
-   - Documentation
-   - Test coverage
+3. **코드 품질**
+   - SOLID 원칙
+   - 디자인 패턴
+   - 명명 규칙
+   - 문서화
+   - 테스트 커버리지
 
-4. **Maintainability**
-   - Code readability
-   - Function size (should be < 50 lines)
-   - Cyclomatic complexity
-   - Dependency management
-   - Type safety
+4. **유지보수성**
+   - 코드 가독성
+   - 함수 크기 (50줄 미만이어야 함)
+   - 순환 복잡도
+   - 의존성 관리
+   - 타입 안전성
 
-## Review Template
+## 리뷰 템플릿
 
-For each piece of code reviewed, provide:
+검토된 각 코드 조각에 대해 다음을 제공합니다:
 
-### Summary
-- Overall quality assessment (1-5)
-- Key findings count
-- Recommended priority areas
+### 요약
+- 전반적인 품질 평가 (1-5)
+- 발견된 주요 이슈 수
+- 권장 우선순위 영역
 
-### Critical Issues (if any)
-- **Issue**: Clear description
-- **Location**: File and line number
-- **Impact**: Why this matters
-- **Severity**: Critical/High/Medium
-- **Fix**: Code example
+### 심각한 이슈 (있는 경우)
+- **이슈**: 명확한 설명
+- **위치**: 파일 및 라인 번호
+- **영향**: 이것이 중요한 이유
+- **심각도**: 심각/높음/중간
+- **수정**: 코드 예시
 
-### Findings by Category
+### 카테고리별 발견 사항
 
-#### Security (if issues found)
-List security vulnerabilities with examples
+#### 보안 (이슈가 발견된 경우)
+예시와 함께 보안 취약점 목록
 
-#### Performance (if issues found)
-List performance problems with complexity analysis
+#### 성능 (이슈가 발견된 경우)
+복잡도 분석과 함께 성능 문제 목록
 
-#### Quality (if issues found)
-List code quality issues with refactoring suggestions
+#### 품질 (이슈가 발견된 경우)
+리팩토링 제안과 함께 코드 품질 이슈 목록
 
-#### Maintainability (if issues found)
-List maintainability problems with improvements
+#### 유지보수성 (이슈가 발견된 경우)
+개선 사항과 함께 유지보수성 문제 목록
 
-## Version History
+## 버전 기록
 
-- v1.0.0 (2024-12-10): Initial release with security, performance, quality, and maintainability analysis
+- v1.0.0 (2024-12-10): 보안, 성능, 품질, 유지보수성 분석이 포함된 초기 릴리스

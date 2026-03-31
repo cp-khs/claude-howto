@@ -1,45 +1,45 @@
-# My Development Preferences
+# 나의 개발 설정
 
-## About Me
-- **Experience Level**: 8 years full-stack development
-- **Preferred Languages**: TypeScript, Python
-- **Communication Style**: Direct, with examples
-- **Learning Style**: Visual diagrams with code
+## 나에 대해
+- **경험 수준**: 풀스택 개발 8년
+- **선호 언어**: TypeScript, Python
+- **소통 방식**: 직접적이고 예시 중심
+- **학습 방식**: 코드와 함께하는 시각적 다이어그램
 
-## Code Preferences
+## 코드 작성 방식
 
-### Error Handling
-I prefer explicit error handling with try-catch blocks and meaningful error messages.
-Avoid generic errors. Always log errors for debugging.
+### 오류 처리
+try-catch 블록과 의미 있는 오류 메시지를 사용한 명시적 오류 처리를 선호합니다.
+일반적인 오류 사용 금지. 디버깅을 위해 항상 오류를 로그로 남깁니다.
 
-### Comments
-Use comments for WHY, not WHAT. Code should be self-documenting.
-Comments should explain business logic or non-obvious decisions.
+### 주석
+WHY에 대해 주석을 달고, WHAT에는 달지 않습니다. 코드는 자체적으로 문서화되어야 합니다.
+비즈니스 로직이나 명확하지 않은 결정에 대해서만 주석을 답니다.
 
-### Testing
-I prefer TDD (test-driven development).
-Write tests first, then implementation.
-Focus on behavior, not implementation details.
+### 테스트
+TDD(테스트 주도 개발)를 선호합니다.
+구현 전에 테스트를 먼저 작성합니다.
+구현 세부 사항이 아닌 동작에 초점을 맞춥니다.
 
-### Architecture
-I prefer modular, loosely-coupled design.
-Use dependency injection for testability.
-Separate concerns (Controllers, Services, Repositories).
+### 아키텍처
+모듈식, 느슨하게 결합된 설계를 선호합니다.
+테스트 용이성을 위해 의존성 주입을 사용합니다.
+관심사 분리(컨트롤러, 서비스, 리포지토리).
 
-## Debugging Preferences
-- Use console.log with prefix: `[DEBUG]`
-- Include context: function name, relevant variables
-- Use stack traces when available
-- Always include timestamps in logs
+## 디버깅 설정
+- `[DEBUG]` 접두사와 함께 console.log 사용
+- 컨텍스트 포함: 함수명, 관련 변수
+- 가능한 경우 스택 트레이스 사용
+- 로그에 항상 타임스탬프 포함
 
-## Communication
-- Explain complex concepts with diagrams
-- Show concrete examples before explaining theory
-- Include before/after code snippets
-- Summarize key points at the end
+## 소통 방식
+- 다이어그램으로 복잡한 개념 설명
+- 이론 설명 전에 구체적인 예시 제시
+- 변경 전/후 코드 스니펫 포함
+- 마지막에 핵심 사항 요약
 
-## Project Organization
-I organize my projects as:
+## 프로젝트 구성
+프로젝트를 다음과 같이 구성합니다:
 ```
 project/
   ├── src/
@@ -52,9 +52,9 @@ project/
   └── docker/
 ```
 
-## Tooling
-- **IDE**: VS Code with vim keybindings
-- **Terminal**: Zsh with Oh-My-Zsh
-- **Format**: Prettier (100 char line length)
-- **Linter**: ESLint with airbnb config
-- **Test Framework**: Jest with React Testing Library
+## 도구
+- **IDE**: vim 키바인딩을 사용하는 VS Code
+- **터미널**: Oh-My-Zsh를 사용하는 Zsh
+- **포맷**: Prettier (100자 줄 길이)
+- **린터**: airbnb 설정의 ESLint
+- **테스트 프레임워크**: React Testing Library를 사용하는 Jest

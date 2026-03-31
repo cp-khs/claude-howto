@@ -5,10 +5,10 @@ description: Start comprehensive PR review with security and testing checks
 
 # PR Review
 
-This command initiates a complete pull request review including:
+이 명령은 다음을 포함한 완전한 풀 리퀘스트 리뷰를 시작합니다:
 
-1. Security analysis
-2. Test coverage verification
-3. Documentation updates
-4. Code quality checks
-5. Performance impact assessment
+1. 보안 분석
+2. 테스트 커버리지 검증
+3. 문서화 업데이트
+4. 코드 품질 검사
+5. 성능 영향 평가

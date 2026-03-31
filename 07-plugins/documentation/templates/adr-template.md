@@ -1,39 +1,39 @@
-# ADR [Number]: [Title]
+# ADR [번호]: [제목]
 
-## Status
-[Proposed | Accepted | Deprecated | Superseded]
+## 상태
+[제안됨 | 승인됨 | 폐기됨 | 대체됨]
 
-## Context
-What is the issue that we're seeing that is motivating this decision or change?
+## 배경
+이 결정 또는 변경을 유발한 문제는 무엇인가요?
 
-## Decision
-What is the change that we're proposing and/or doing?
+## 결정
+제안하고/또는 시행하는 변경 사항은 무엇인가요?
 
-## Consequences
-What becomes easier or more difficult to do because of this change?
+## 결과
+이 변경으로 인해 더 쉬워지거나 어려워지는 것은 무엇인가요?
 
-### Positive
-- Benefit 1
-- Benefit 2
+### 긍정적
+- 이점 1
+- 이점 2
 
-### Negative
-- Drawback 1
-- Drawback 2
+### 부정적
+- 단점 1
+- 단점 2
 
-### Neutral
-- Consideration 1
-- Consideration 2
+### 중립적
+- 고려사항 1
+- 고려사항 2
 
-## Alternatives Considered
-What other options were considered and why were they not chosen?
+## 검토한 대안
+어떤 다른 옵션들을 검토했으며 왜 선택하지 않았나요?
 
-### Alternative 1
-Description and reason for not choosing.
+### 대안 1
+설명 및 선택하지 않은 이유.
 
-### Alternative 2
-Description and reason for not choosing.
+### 대안 2
+설명 및 선택하지 않은 이유.
 
-## References
-- Related ADRs
-- External documentation
-- Discussion links
+## 참고 자료
+- 관련 ADR
+- 외부 문서
+- 논의 링크

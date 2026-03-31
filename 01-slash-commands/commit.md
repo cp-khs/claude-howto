@@ -4,23 +4,23 @@ argument-hint: [message]
 description: Create a git commit with context
 ---
 
-## Context
+## 컨텍스트
 
-- Current git status: !`git status`
-- Current git diff: !`git diff HEAD`
-- Current branch: !`git branch --show-current`
-- Recent commits: !`git log --oneline -10`
+- 현재 git 상태: !`git status`
+- 현재 git diff: !`git diff HEAD`
+- 현재 브랜치: !`git branch --show-current`
+- 최근 커밋: !`git log --oneline -10`
 
-## Your task
+## 작업 내용
 
-Based on the above changes, create a single git commit.
+위 변경 사항을 바탕으로 git 커밋을 하나 생성합니다.
 
-If a message was provided via arguments, use it: $ARGUMENTS
+인수로 메시지가 제공된 경우 해당 메시지를 사용합니다: $ARGUMENTS
 
-Otherwise, analyze the changes and create an appropriate commit message following conventional commits format:
-- `feat:` for new features
-- `fix:` for bug fixes
-- `docs:` for documentation changes
-- `refactor:` for code refactoring
-- `test:` for adding tests
-- `chore:` for maintenance tasks
+그렇지 않으면 변경 사항을 분석하여 conventional commits 형식에 따라 적절한 커밋 메시지를 작성합니다:
+- `feat:` 새로운 기능
+- `fix:` 버그 수정
+- `docs:` 문서 변경
+- `refactor:` 코드 리팩토링
+- `test:` 테스트 추가
+- `chore:` 유지 보수 작업

@@ -1,57 +1,57 @@
-# Code Smells Catalog
+# 코드 스멜 카탈로그
 
-A comprehensive reference of code smells based on Martin Fowler's *Refactoring* (2nd Edition). Code smells are symptoms of deeper problems—they indicate that something might be wrong with your code's design.
+Martin Fowler의 *리팩토링* (2판)을 기반으로 한 포괄적인 코드 스멜 참조입니다. 코드 스멜은 더 깊은 문제의 증상으로, 코드 설계에 문제가 있을 수 있음을 나타냅니다.
 
-> "A code smell is a surface indication that usually corresponds to a deeper problem in the system." — Martin Fowler
+> "코드 스멜은 시스템의 더 깊은 문제에 일반적으로 해당하는 표면적 징후입니다." — Martin Fowler
 
 ---
 
-## Bloaters
+## 비대화
 
-Code smells representing something that has grown too large to be handled effectively.
+효과적으로 처리하기에 너무 커진 코드 스멜입니다.
 
-### Long Method
+### 긴 메서드
 
-**Signs:**
-- Method exceeds 30-50 lines
-- Need to scroll to see the whole method
-- Multiple levels of nesting
-- Comments explaining what sections do
+**징후:**
+- 메서드가 30-50줄을 초과
+- 전체 메서드를 보려면 스크롤 필요
+- 여러 수준의 중첩
+- 섹션이 무엇을 하는지 설명하는 주석
 
-**Why it's bad:**
-- Hard to understand
-- Difficult to test in isolation
-- Changes have unintended consequences
-- Duplicate logic hides inside
+**왜 나쁜가:**
+- 이해하기 어려움
+- 독립적으로 테스트하기 어려움
+- 변경이 의도치 않은 결과를 초래
+- 중복 로직이 내부에 숨어 있음
 
-**Refactorings:**
-- Extract Method
-- Replace Temp with Query
-- Introduce Parameter Object
-- Replace Method with Method Object
-- Decompose Conditional
+**리팩토링:**
+- 메서드 추출
+- 임시값을 쿼리로 교체
+- 파라미터 객체 도입
+- 메서드를 메서드 객체로 교체
+- 조건문 분해
 
-**Example (Before):**
+**예시 (이전):**
 ```javascript
 function processOrder(order) {
-  // Validate order (20 lines)
+  // 주문 유효성 검사 (20줄)
   if (!order.items) throw new Error('No items');
   if (order.items.length === 0) throw new Error('Empty order');
-  // ... more validation
+  // ... 더 많은 유효성 검사
 
-  // Calculate totals (30 lines)
+  // 합계 계산 (30줄)
   let subtotal = 0;
   for (const item of order.items) {
     subtotal += item.price * item.quantity;
   }
-  // ... tax, shipping, discounts
+  // ... 세금, 배송, 할인
 
-  // Send notifications (20 lines)
-  // ... email logic
+  // 알림 발송 (20줄)
+  // ... 이메일 로직
 }
 ```
 
-**Example (After):**
+**예시 (이후):**
 ```javascript
 function processOrder(order) {
   validateOrder(order);
@@ -63,65 +63,65 @@ function processOrder(order) {
 
 ---
 
-### Large Class
+### 거대한 클래스
 
-**Signs:**
-- Class has many instance variables (>7-10)
-- Class has many methods (>15-20)
-- Class name is vague (Manager, Handler, Processor)
-- Methods don't use all instance variables
+**징후:**
+- 클래스에 많은 인스턴스 변수 (>7-10개)
+- 클래스에 많은 메서드 (>15-20개)
+- 클래스 이름이 모호함 (Manager, Handler, Processor)
+- 메서드가 모든 인스턴스 변수를 사용하지 않음
 
-**Why it's bad:**
-- Violates Single Responsibility Principle
-- Hard to test
-- Changes ripple through unrelated features
-- Difficult to reuse parts
+**왜 나쁜가:**
+- 단일 책임 원칙 위반
+- 테스트하기 어려움
+- 관련 없는 기능에 변경이 파급
+- 부분을 재사용하기 어려움
 
-**Refactorings:**
-- Extract Class
-- Extract Subclass
-- Extract Interface
+**리팩토링:**
+- 클래스 추출
+- 서브클래스 추출
+- 인터페이스 추출
 
-**Detection:**
+**감지:**
 ```
-Lines of code > 300
-Number of methods > 15
-Number of fields > 10
+코드 줄 수 > 300
+메서드 수 > 15
+필드 수 > 10
 ```
 
 ---
 
-### Primitive Obsession
+### 기본 타입 집착
 
-**Signs:**
-- Using primitives for domain concepts (string for email, int for money)
-- Arrays of primitives instead of objects
-- String constants for type codes
-- Magic numbers/strings
+**징후:**
+- 도메인 개념에 기본 타입 사용 (이메일에 string, 금액에 int)
+- 객체 대신 기본 타입의 배열
+- 타입 코드에 문자열 상수
+- 매직 숫자/문자열
 
-**Why it's bad:**
-- No validation at type level
-- Logic scattered across codebase
-- Easy to pass wrong values
-- Missing domain concepts
+**왜 나쁜가:**
+- 타입 수준에서 유효성 검사 없음
+- 코드베이스 전체에 로직이 분산
+- 잘못된 값 전달이 쉬움
+- 도메인 개념 누락
 
-**Refactorings:**
-- Replace Primitive with Object
-- Replace Type Code with Class
-- Replace Type Code with Subclasses
-- Replace Type Code with State/Strategy
+**리팩토링:**
+- 기본 타입을 객체로 교체
+- 타입 코드를 클래스로 교체
+- 타입 코드를 서브클래스로 교체
+- 타입 코드를 상태/전략으로 교체
 
-**Example (Before):**
+**예시 (이전):**
 ```javascript
 const user = {
-  email: 'john@example.com',     // Just a string
-  phone: '1234567890',           // Just a string
-  status: 'active',              // Magic string
-  balance: 10050                 // Cents as integer
+  email: 'john@example.com',     // 단순 문자열
+  phone: '1234567890',           // 단순 문자열
+  status: 'active',              // 매직 문자열
+  balance: 10050                 // 센트 단위 정수
 };
 ```
 
-**Example (After):**
+**예시 (이후):**
 ```javascript
 const user = {
   email: new Email('john@example.com'),
@@ -133,27 +133,27 @@ const user = {
 
 ---
 
-### Long Parameter List
+### 긴 파라미터 목록
 
-**Signs:**
-- Methods with 4+ parameters
-- Parameters that always appear together
-- Boolean flags changing method behavior
-- Null/undefined passed frequently
+**징후:**
+- 4개 이상의 파라미터를 가진 메서드
+- 항상 함께 나타나는 파라미터
+- 메서드 동작을 변경하는 불리언 플래그
+- null/undefined가 자주 전달됨
 
-**Why it's bad:**
-- Hard to call correctly
-- Parameter order confusion
-- Indicates method doing too much
-- Hard to add new parameters
+**왜 나쁜가:**
+- 올바르게 호출하기 어려움
+- 파라미터 순서 혼란
+- 메서드가 너무 많은 일을 한다는 표시
+- 새 파라미터 추가가 어려움
 
-**Refactorings:**
-- Introduce Parameter Object
-- Preserve Whole Object
-- Replace Parameter with Method Call
-- Remove Flag Argument
+**리팩토링:**
+- 파라미터 객체 도입
+- 전체 객체 보존
+- 파라미터를 메서드 호출로 교체
+- 플래그 인수 제거
 
-**Example (Before):**
+**예시 (이전):**
 ```javascript
 function createUser(firstName, lastName, email, phone,
                     street, city, state, zip,
@@ -162,7 +162,7 @@ function createUser(firstName, lastName, email, phone,
 }
 ```
 
-**Example (After):**
+**예시 (이후):**
 ```javascript
 function createUser(personalInfo, address, options) {
   // personalInfo: { firstName, lastName, email, phone }
@@ -173,32 +173,32 @@ function createUser(personalInfo, address, options) {
 
 ---
 
-### Data Clumps
+### 데이터 덩어리
 
-**Signs:**
-- Same 3+ fields appear together repeatedly
-- Parameters that always travel together
-- Classes with field subsets belonging together
+**징후:**
+- 같은 3개 이상의 필드가 반복적으로 함께 나타남
+- 항상 함께 이동하는 파라미터
+- 함께 속하는 필드 하위 집합을 가진 클래스
 
-**Why it's bad:**
-- Duplicate handling logic
-- Missing abstraction
-- Harder to extend
-- Indicates hidden class
+**왜 나쁜가:**
+- 처리 로직 중복
+- 누락된 추상화
+- 확장하기 어려움
+- 숨겨진 클래스를 나타냄
 
-**Refactorings:**
-- Extract Class
-- Introduce Parameter Object
-- Preserve Whole Object
+**리팩토링:**
+- 클래스 추출
+- 파라미터 객체 도입
+- 전체 객체 보존
 
-**Example:**
+**예시:**
 ```javascript
-// Data clump: (x, y, z) coordinates
+// 데이터 덩어리: (x, y, z) 좌표
 function movePoint(x, y, z, dx, dy, dz) { }
 function scalePoint(x, y, z, factor) { }
 function distanceBetween(x1, y1, z1, x2, y2, z2) { }
 
-// Extract Point3D class
+// Point3D 클래스 추출
 class Point3D {
   constructor(x, y, z) { }
   move(delta) { }
@@ -209,30 +209,30 @@ class Point3D {
 
 ---
 
-## Object-Orientation Abusers
+## 객체 지향 남용
 
-Smells indicating incomplete or incorrect use of OOP principles.
+OOP 원칙의 불완전하거나 잘못된 사용을 나타내는 스멜입니다.
 
-### Switch Statements
+### Switch 문
 
-**Signs:**
-- Long switch/case or if/else chains
-- Same switch in multiple places
-- Switch on type codes
-- Adding new cases requires changes everywhere
+**징후:**
+- 길고 복잡한 switch/case 또는 if/else 체인
+- 여러 곳에 같은 switch 존재
+- 타입 코드에 대한 switch
+- 새 case 추가 시 모든 곳에서 변경 필요
 
-**Why it's bad:**
-- Violates Open/Closed Principle
-- Changes ripple to all switch locations
-- Hard to extend
-- Often indicates missing polymorphism
+**왜 나쁜가:**
+- 개방/폐쇄 원칙 위반
+- 모든 switch 위치에 변경이 파급
+- 확장하기 어려움
+- 종종 누락된 다형성을 나타냄
 
-**Refactorings:**
-- Replace Conditional with Polymorphism
-- Replace Type Code with Subclasses
-- Replace Type Code with State/Strategy
+**리팩토링:**
+- 조건문을 다형성으로 교체
+- 타입 코드를 서브클래스로 교체
+- 타입 코드를 상태/전략으로 교체
 
-**Example (Before):**
+**예시 (이전):**
 ```javascript
 function calculatePay(employee) {
   switch (employee.type) {
@@ -246,7 +246,7 @@ function calculatePay(employee) {
 }
 ```
 
-**Example (After):**
+**예시 (이후):**
 ```javascript
 class HourlyEmployee {
   calculatePay() {
@@ -263,288 +263,288 @@ class SalariedEmployee {
 
 ---
 
-### Temporary Field
+### 임시 필드
 
-**Signs:**
-- Instance variables only used in some methods
-- Fields set conditionally
-- Complex initialization for certain cases
+**징후:**
+- 일부 메서드에서만 사용되는 인스턴스 변수
+- 조건부로 설정되는 필드
+- 특정 경우를 위한 복잡한 초기화
 
-**Why it's bad:**
-- Confusing—field exists but might be null
-- Hard to understand object state
-- Indicates conditional logic hiding
+**왜 나쁜가:**
+- 혼란스러움 — 필드가 존재하지만 null일 수 있음
+- 객체 상태를 이해하기 어려움
+- 숨겨진 조건 로직을 나타냄
 
-**Refactorings:**
-- Extract Class
-- Introduce Null Object
-- Replace Temp Field with Local
-
----
-
-### Refused Bequest
-
-**Signs:**
-- Subclass doesn't use inherited methods/data
-- Subclass overrides to do nothing
-- Inheritance used for code reuse, not IS-A relationship
-
-**Why it's bad:**
-- Wrong abstraction
-- Violates Liskov Substitution Principle
-- Misleading hierarchy
-
-**Refactorings:**
-- Push Down Method/Field
-- Replace Subclass with Delegate
-- Replace Inheritance with Delegation
+**리팩토링:**
+- 클래스 추출
+- Null 객체 도입
+- 임시 필드를 로컬로 교체
 
 ---
 
-### Alternative Classes with Different Interfaces
+### 거부된 유산
 
-**Signs:**
-- Two classes that do similar things
-- Different method names for same concept
-- Could be used interchangeably
+**징후:**
+- 서브클래스가 상속된 메서드/데이터를 사용하지 않음
+- 서브클래스가 아무것도 하지 않도록 오버라이드
+- IS-A 관계가 아닌 코드 재사용을 위해 상속 사용
 
-**Why it's bad:**
-- Duplicate implementations
-- No common interface
-- Hard to switch between
+**왜 나쁜가:**
+- 잘못된 추상화
+- 리스코프 치환 원칙 위반
+- 오해를 불러일으키는 계층 구조
 
-**Refactorings:**
-- Rename Method
-- Move Method
-- Extract Superclass
-- Extract Interface
-
----
-
-## Change Preventers
-
-Smells that make changes difficult—changing one thing requires changing many others.
-
-### Divergent Change
-
-**Signs:**
-- One class changed for multiple different reasons
-- Changes in different areas trigger same class edits
-- Class is a "God class"
-
-**Why it's bad:**
-- Violates Single Responsibility
-- High change frequency
-- Merge conflicts
-
-**Refactorings:**
-- Extract Class
-- Extract Superclass
-- Extract Subclass
-
-**Example:**
-A `User` class changes for:
-- Authentication changes
-- Profile changes
-- Billing changes
-- Notification changes
-
-→ Extract: `AuthService`, `ProfileService`, `BillingService`, `NotificationService`
+**리팩토링:**
+- 메서드/필드 아래로 이동
+- 서브클래스를 위임으로 교체
+- 상속을 위임으로 교체
 
 ---
 
-### Shotgun Surgery
+### 다른 인터페이스를 가진 대안 클래스
 
-**Signs:**
-- One change requires edits in many classes
-- Small feature needs touching 10+ files
-- Changes are scattered, hard to find all
+**징후:**
+- 비슷한 일을 하는 두 클래스
+- 같은 개념에 대해 다른 메서드 이름
+- 서로 교체하여 사용할 수 있음
 
-**Why it's bad:**
-- Easy to miss a spot
-- High coupling
-- Changes are error-prone
+**왜 나쁜가:**
+- 중복 구현
+- 공통 인터페이스 없음
+- 전환하기 어려움
 
-**Refactorings:**
-- Move Method
-- Move Field
-- Inline Class
-
-**Detection:**
-Look for: adding one field requires changes in >5 files.
+**리팩토링:**
+- 메서드 이름 변경
+- 메서드 이동
+- 수퍼클래스 추출
+- 인터페이스 추출
 
 ---
 
-### Parallel Inheritance Hierarchies
+## 변경 방해자
 
-**Signs:**
-- Creating subclass in one hierarchy requires subclass in another
-- Class prefixes match (e.g., `DatabaseOrder`, `DatabaseProduct`)
+변경을 어렵게 만드는 스멜 — 하나를 변경하면 많은 다른 것들도 변경해야 합니다.
 
-**Why it's bad:**
-- Double the maintenance
-- Coupling between hierarchies
-- Easy to forget one side
+### 발산적 변경
 
-**Refactorings:**
-- Move Method
-- Move Field
-- Eliminate one hierarchy
+**징후:**
+- 서로 다른 여러 이유로 하나의 클래스가 변경됨
+- 다른 영역의 변경이 같은 클래스 편집을 트리거
+- 클래스가 "God 클래스"임
+
+**왜 나쁜가:**
+- 단일 책임 위반
+- 높은 변경 빈도
+- 병합 충돌
+
+**리팩토링:**
+- 클래스 추출
+- 수퍼클래스 추출
+- 서브클래스 추출
+
+**예시:**
+`User` 클래스가 다음으로 인해 변경됨:
+- 인증 변경
+- 프로필 변경
+- 청구 변경
+- 알림 변경
+
+→ 추출: `AuthService`, `ProfileService`, `BillingService`, `NotificationService`
 
 ---
 
-## Dispensables
+### 산탄총 수술
 
-Something unnecessary that should be removed.
+**징후:**
+- 하나의 변경이 많은 클래스 편집을 필요로 함
+- 작은 기능이 10개 이상의 파일 수정을 필요로 함
+- 변경이 분산되어 찾기 어려움
 
-### Comments (Excessive)
+**왜 나쁜가:**
+- 한 곳을 빠뜨리기 쉬움
+- 높은 결합도
+- 변경이 오류 발생하기 쉬움
 
-**Signs:**
-- Comments explaining what code does
-- Commented-out code
-- TODO/FIXME that linger forever
-- Apologies in comments
+**리팩토링:**
+- 메서드 이동
+- 필드 이동
+- 클래스 인라인
 
-**Why it's bad:**
-- Comments lie (get out of sync)
-- Code should be self-documenting
-- Dead code causes confusion
+**감지:**
+하나의 필드를 추가하면 5개 이상의 파일에서 변경이 필요한 경우를 찾으세요.
 
-**Refactorings:**
-- Extract Method (name explains what)
-- Rename (clarity without comments)
-- Remove commented code
-- Introduce Assertion
+---
 
-**Good vs Bad Comments:**
+### 병렬 상속 계층 구조
+
+**징후:**
+- 하나의 계층 구조에서 서브클래스를 생성하면 다른 계층에서도 서브클래스가 필요
+- 클래스 접두사가 일치함 (예: `DatabaseOrder`, `DatabaseProduct`)
+
+**왜 나쁜가:**
+- 유지보수가 두 배
+- 계층 간 결합
+- 한 쪽을 잊어버리기 쉬움
+
+**리팩토링:**
+- 메서드 이동
+- 필드 이동
+- 하나의 계층 구조 제거
+
+---
+
+## 불필요한 것들
+
+제거해야 할 불필요한 것들입니다.
+
+### 주석 (과도한)
+
+**징후:**
+- 코드가 무엇을 하는지 설명하는 주석
+- 주석 처리된 코드
+- 영원히 남아있는 TODO/FIXME
+- 주석 내 사과
+
+**왜 나쁜가:**
+- 주석은 거짓말을 함 (동기화가 깨짐)
+- 코드는 자기 문서화 되어야 함
+- 죽은 코드가 혼란을 야기
+
+**리팩토링:**
+- 메서드 추출 (이름이 무엇인지 설명)
+- 이름 변경 (주석 없이 명확성)
+- 주석 처리된 코드 제거
+- 단언문 도입
+
+**좋은 vs 나쁜 주석:**
 ```javascript
-// BAD: Explaining what
-// Loop through users and check if active
+// 나쁨: 무엇을 설명
+// 사용자를 반복하면서 활성화 여부 확인
 for (const user of users) {
   if (user.status === 'active') { }
 }
 
-// GOOD: Explaining why
-// Active users only - inactive are handled by cleanup job
+// 좋음: 왜를 설명
+// 활성 사용자만 - 비활성은 정리 작업으로 처리됨
 const activeUsers = users.filter(u => u.isActive);
 ```
 
 ---
 
-### Duplicate Code
+### 중복 코드
 
-**Signs:**
-- Same code in multiple places
-- Similar code with small variations
-- Copy-paste patterns
+**징후:**
+- 여러 곳에 같은 코드
+- 작은 변형이 있는 유사한 코드
+- 복사-붙여넣기 패턴
 
-**Why it's bad:**
-- Bug fixes needed in multiple places
-- Inconsistency risk
-- Bloated codebase
+**왜 나쁜가:**
+- 여러 곳에서 버그 수정 필요
+- 불일치 위험
+- 코드베이스 비대화
 
-**Refactorings:**
-- Extract Method
-- Extract Class
-- Pull Up Method (in hierarchies)
-- Form Template Method
+**리팩토링:**
+- 메서드 추출
+- 클래스 추출
+- 상위 메서드 끌어올리기 (계층 구조에서)
+- 템플릿 메서드 형성
 
-**Detection Rule:**
-Any code duplicated 3+ times should be extracted.
-
----
-
-### Lazy Class
-
-**Signs:**
-- Class doesn't do enough to justify existence
-- Wrapper with no added value
-- Result of over-engineering
-
-**Why it's bad:**
-- Maintenance overhead
-- Unnecessary indirection
-- Complexity without benefit
-
-**Refactorings:**
-- Inline Class
-- Collapse Hierarchy
+**감지 규칙:**
+3번 이상 중복된 코드는 추출해야 합니다.
 
 ---
 
-### Dead Code
+### 게으른 클래스
 
-**Signs:**
-- Unreachable code
-- Unused variables/methods/classes
-- Commented-out code
-- Code behind impossible conditions
+**징후:**
+- 클래스가 존재를 정당화할 만큼 충분한 일을 하지 않음
+- 추가된 가치 없는 래퍼
+- 과도한 엔지니어링의 결과
 
-**Why it's bad:**
-- Confusion
-- Maintenance burden
-- Slows down understanding
+**왜 나쁜가:**
+- 유지보수 오버헤드
+- 불필요한 간접 참조
+- 이점 없는 복잡성
 
-**Refactorings:**
-- Remove Dead Code
-- Safe Delete
+**리팩토링:**
+- 클래스 인라인
+- 계층 구조 축소
 
-**Detection:**
+---
+
+### 죽은 코드
+
+**징후:**
+- 도달할 수 없는 코드
+- 사용되지 않는 변수/메서드/클래스
+- 주석 처리된 코드
+- 불가능한 조건 뒤의 코드
+
+**왜 나쁜가:**
+- 혼란
+- 유지보수 부담
+- 이해를 느리게 함
+
+**리팩토링:**
+- 죽은 코드 제거
+- 안전 삭제
+
+**감지:**
 ```bash
-# Look for unused exports
-# Look for unreferenced functions
-# IDE "unused" warnings
+# 사용되지 않는 exports 찾기
+# 참조되지 않는 함수 찾기
+# IDE "unused" 경고 확인
 ```
 
 ---
 
-### Speculative Generality
+### 추측적 일반화
 
-**Signs:**
-- Abstract classes with one subclass
-- Unused parameters "for future use"
-- Methods that only delegate
-- "Framework" for one use case
+**징후:**
+- 서브클래스가 하나인 추상 클래스
+- "미래를 위한" 사용되지 않는 파라미터
+- 단순히 위임만 하는 메서드
+- 하나의 사용 사례를 위한 "프레임워크"
 
-**Why it's bad:**
-- Complexity without benefit
+**왜 나쁜가:**
+- 이점 없는 복잡성
 - YAGNI (You Ain't Gonna Need It)
-- Harder to understand
+- 이해하기 어려움
 
-**Refactorings:**
-- Collapse Hierarchy
-- Inline Class
-- Remove Parameter
-- Rename Method
+**리팩토링:**
+- 계층 구조 축소
+- 클래스 인라인
+- 파라미터 제거
+- 메서드 이름 변경
 
 ---
 
-## Couplers
+## 커플러
 
-Smells that represent excessive coupling between classes.
+클래스 간 과도한 결합을 나타내는 스멜입니다.
 
-### Feature Envy
+### 기능 욕심
 
-**Signs:**
-- Method uses more data from another class than its own
-- Many getter calls to another object
-- Data and behavior are separated
+**징후:**
+- 메서드가 자신의 클래스보다 다른 클래스에서 더 많은 데이터를 사용
+- 다른 객체에 대한 많은 getter 호출
+- 데이터와 동작이 분리됨
 
-**Why it's bad:**
-- Wrong location for behavior
-- Poor encapsulation
-- Hard to maintain
+**왜 나쁜가:**
+- 동작의 잘못된 위치
+- 나쁜 캡슐화
+- 유지보수하기 어려움
 
-**Refactorings:**
-- Move Method
-- Move Field
-- Extract Method (then move)
+**리팩토링:**
+- 메서드 이동
+- 필드 이동
+- 메서드 추출 (그 후 이동)
 
-**Example (Before):**
+**예시 (이전):**
 ```javascript
 class Order {
   getDiscountedPrice(customer) {
-    // Uses customer data heavily
+    // 고객 데이터를 많이 사용
     if (customer.loyaltyYears > 5) {
       return this.price * customer.discountRate;
     }
@@ -553,7 +553,7 @@ class Order {
 }
 ```
 
-**Example (After):**
+**예시 (이후):**
 ```javascript
 class Customer {
   getDiscountedPriceFor(price) {
@@ -567,102 +567,102 @@ class Customer {
 
 ---
 
-### Inappropriate Intimacy
+### 부적절한 친밀함
 
-**Signs:**
-- Classes access each other's private parts
-- Bidirectional references
-- Subclasses know too much about parents
+**징후:**
+- 클래스들이 서로의 private 부분에 접근
+- 양방향 참조
+- 서브클래스가 부모에 대해 너무 많이 알고 있음
 
-**Why it's bad:**
-- High coupling
-- Changes cascade
-- Hard to modify one without other
+**왜 나쁜가:**
+- 높은 결합도
+- 변경이 연쇄적으로 발생
+- 하나를 다른 것 없이 수정하기 어려움
 
-**Refactorings:**
-- Move Method
-- Move Field
-- Change Bidirectional to Unidirectional
-- Extract Class
-- Hide Delegate
+**리팩토링:**
+- 메서드 이동
+- 필드 이동
+- 양방향을 단방향으로 변경
+- 클래스 추출
+- 위임 숨기기
 
 ---
 
-### Message Chains
+### 메시지 체인
 
-**Signs:**
-- Long chains of method calls: `a.getB().getC().getD().getValue()`
-- Client depends on navigation structure
-- "Train wreck" code
+**징후:**
+- 긴 메서드 호출 체인: `a.getB().getC().getD().getValue()`
+- 클라이언트가 탐색 구조에 의존
+- "열차 충돌" 코드
 
-**Why it's bad:**
-- Fragile—any change breaks chain
-- Violates Law of Demeter
-- Coupling to structure
+**왜 나쁜가:**
+- 취약함 — 어떤 변경도 체인을 깨뜨림
+- 데메테르의 법칙 위반
+- 구조에 결합
 
-**Refactorings:**
-- Hide Delegate
-- Extract Method
-- Move Method
+**리팩토링:**
+- 위임 숨기기
+- 메서드 추출
+- 메서드 이동
 
-**Example:**
+**예시:**
 ```javascript
-// Bad: Message chain
+// 나쁨: 메시지 체인
 const managerName = employee.getDepartment().getManager().getName();
 
-// Better: Hide delegation
+// 더 좋음: 위임 숨기기
 const managerName = employee.getManagerName();
 ```
 
 ---
 
-### Middle Man
+### 중간 매개자
 
-**Signs:**
-- Class that only delegates to another
-- Half the methods are delegations
-- No added value
+**징후:**
+- 다른 클래스에만 위임하는 클래스
+- 절반의 메서드가 위임
+- 추가된 가치 없음
 
-**Why it's bad:**
-- Unnecessary indirection
-- Maintenance overhead
-- Confusing architecture
+**왜 나쁜가:**
+- 불필요한 간접 참조
+- 유지보수 오버헤드
+- 혼란스러운 아키텍처
 
-**Refactorings:**
-- Remove Middle Man
-- Inline Method
+**리팩토링:**
+- 중간 매개자 제거
+- 메서드 인라인
 
 ---
 
-## Smell Severity Guide
+## 스멜 심각도 가이드
 
-| Severity | Description | Action |
+| 심각도 | 설명 | 조치 |
 |----------|-------------|--------|
-| **Critical** | Blocks development, causes bugs | Fix immediately |
-| **High** | Significant maintenance burden | Fix in current sprint |
-| **Medium** | Noticeable but manageable | Plan for near future |
-| **Low** | Minor inconvenience | Fix opportunistically |
+| **심각** | 개발을 막고 버그를 야기 | 즉시 수정 |
+| **높음** | 상당한 유지보수 부담 | 현재 스프린트에서 수정 |
+| **중간** | 눈에 띄지만 관리 가능 | 가까운 미래에 계획 |
+| **낮음** | 사소한 불편 | 기회가 될 때 수정 |
 
 ---
 
-## Quick Detection Checklist
+## 빠른 감지 체크리스트
 
-Use this checklist when scanning code:
+코드를 스캔할 때 이 체크리스트를 사용하세요:
 
-- [ ] Any method > 30 lines?
-- [ ] Any class > 300 lines?
-- [ ] Any method with > 4 parameters?
-- [ ] Any duplicated code blocks?
-- [ ] Any switch/case on type codes?
-- [ ] Any unused code?
-- [ ] Any methods using another class's data heavily?
-- [ ] Any long chains of method calls?
-- [ ] Any comments explaining "what" not "why"?
-- [ ] Any primitives that should be objects?
+- [ ] 30줄 이상인 메서드가 있나요?
+- [ ] 300줄 이상인 클래스가 있나요?
+- [ ] 4개 이상의 파라미터를 가진 메서드가 있나요?
+- [ ] 중복된 코드 블록이 있나요?
+- [ ] 타입 코드에 대한 switch/case가 있나요?
+- [ ] 사용되지 않는 코드가 있나요?
+- [ ] 다른 클래스의 데이터를 많이 사용하는 메서드가 있나요?
+- [ ] 긴 메서드 호출 체인이 있나요?
+- [ ] "why"가 아닌 "what"을 설명하는 주석이 있나요?
+- [ ] 객체여야 하는 기본 타입이 있나요?
 
 ---
 
-## Further Reading
+## 추가 읽기
 
 - Fowler, M. (2018). *Refactoring: Improving the Design of Existing Code* (2nd ed.)
 - Kerievsky, J. (2004). *Refactoring to Patterns*

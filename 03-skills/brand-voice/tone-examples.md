@@ -1,13 +1,13 @@
-# Brand Voice Tone Examples
+# 브랜드 보이스 어조 예시
 
-## Exciting Announcement
-"Save 8 hours per week on code reviews. Claude reviews your PRs automatically."
+## 흥미로운 공지
+"코드 리뷰에서 주당 8시간을 절약하세요. Claude가 자동으로 PR을 검토합니다."
 
-## Empathetic Support
-"We know deployments can be stressful. Claude handles testing so you don't have to worry."
+## 공감적 지원
+"배포가 스트레스될 수 있다는 것을 압니다. Claude가 테스트를 처리하므로 걱정할 필요가 없습니다."
 
-## Confident Product Feature
-"Claude doesn't just suggest code. It understands your architecture and maintains consistency."
+## 자신감 있는 제품 기능
+"Claude는 단순히 코드를 제안하는 것에 그치지 않습니다. 아키텍처를 이해하고 일관성을 유지합니다."
 
-## Educational Blog Post
-"Let's explore how agents improve code review workflows. Here's what we learned..."
+## 교육적 블로그 포스트
+"에이전트가 코드 리뷰 워크플로우를 어떻게 개선하는지 살펴봅시다. 우리가 배운 것을 공유합니다..."

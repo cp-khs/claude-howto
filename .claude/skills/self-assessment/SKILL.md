@@ -4,434 +4,434 @@ version: 2.2.0
 description: Comprehensive Claude Code self-assessment and learning path advisor. Runs a multi-category quiz covering 10 feature areas, produces a detailed skill profile with per-topic scores, identifies specific gaps, and generates a personalized learning path with prioritized next steps. Use when asked to "assess my level", "take the quiz", "find my level", "where should I start", "what should I learn next", "check my skills", "skill check", or "level up".
 ---
 
-# Self-Assessment & Learning Path Advisor
+# 자가 평가 및 학습 경로 어드바이저
 
-Comprehensive interactive assessment that evaluates Claude Code proficiency across 10 feature areas, identifies specific skill gaps, and generates a personalized learning path to level up.
+10개 기능 영역에서 Claude Code 숙련도를 평가하고, 구체적인 기술 격차를 식별하며, 레벨업을 위한 맞춤형 학습 경로를 생성하는 종합 인터랙티브 평가입니다.
 
-## Instructions
+## 지침
 
-### Step 1: Welcome & Choose Assessment Mode
+### Step 1: 환영 및 평가 모드 선택
 
-Present the user with a choice of assessment depth:
+사용자에게 평가 깊이를 선택할 수 있도록 제시합니다:
 
-Use AskUserQuestion with these options:
-- **Quick Assessment** — "8 questions, ~2 minutes. Determines your overall level (Beginner/Intermediate/Advanced) and gives a learning path."
-- **Deep Assessment** — "5 categories with detailed questions, ~5 minutes. Gives per-topic skill scores, identifies specific gaps, and builds a prioritized learning path."
+AskUserQuestion을 사용하여 다음 선택지 제시:
+- **빠른 평가** — "8개 문항, 약 2분. 전반적인 수준(초급/중급/고급)을 결정하고 학습 경로를 제공합니다."
+- **심층 평가** — "5개 카테고리의 상세 문항, 약 5분. 주제별 기술 점수를 제공하고, 구체적인 격차를 파악하며, 우선순위가 있는 학습 경로를 구성합니다."
 
-If user chooses **Quick Assessment**, go to Step 2A.
-If user chooses **Deep Assessment**, go to Step 2B.
+**빠른 평가** 선택 시 Step 2A로 이동합니다.
+**심층 평가** 선택 시 Step 2B로 이동합니다.
 
 ---
 
-### Step 2A: Quick Assessment
+### Step 2A: 빠른 평가
 
-Present TWO multi-select questions (AskUserQuestion supports max 4 options each):
+두 개의 다중 선택 문항을 제시합니다 (AskUserQuestion은 각 최대 4개 선택지 지원):
 
 **Question 1** (header: "Basics"):
-"Part 1/2: Which of these Claude Code skills do you already have?"
+"1/2: 이미 갖추고 있는 Claude Code 기술을 선택하세요."
 Options:
-1. "Start Claude Code and chat" — I can run `claude` and interact with it
-2. "Created/edited CLAUDE.md" — I have set up project or user memory
-3. "Used 3+ slash commands" — e.g., /help, /compact, /model, /clear
-4. "Created custom command/skill" — Written a SKILL.md or custom command file
+1. "Claude Code 시작 및 대화" — `claude`를 실행하고 상호작용할 수 있습니다
+2. "CLAUDE.md 생성/편집" — 프로젝트 또는 개인 메모리를 설정했습니다
+3. "3개 이상의 slash 명령어 사용" — 예: /help, /compact, /model, /clear
+4. "커스텀 명령어/스킬 생성" — SKILL.md 또는 커스텀 명령어 파일을 작성했습니다
 
 **Question 2** (header: "Advanced"):
-"Part 2/2: Which of these advanced skills do you have?"
+"2/2: 보유한 고급 기술을 선택하세요."
 Options:
-1. "Configured an MCP server" — e.g., GitHub, database, or other external data source
-2. "Set up hooks" — Configured hooks in ~/.claude/settings.json
-3. "Created/used subagents" — Used .claude/agents/ for task delegation
-4. "Used print mode (claude -p)" — Used `claude -p` for non-interactive or CI/CD use
+1. "MCP 서버 설정" — 예: GitHub, 데이터베이스 또는 기타 외부 데이터 소스
+2. "Hooks 설정" — ~/.claude/settings.json에 hooks를 설정했습니다
+3. "Subagents 생성/사용" — 작업 위임을 위해 .claude/agents/를 사용했습니다
+4. "출력 전용 모드 사용 (claude -p)" — 비인터랙티브 또는 CI/CD 용도로 `claude -p`를 사용했습니다
 
-**Scoring:**
-- 0-2 total = Level 1: Beginner
-- 3-5 total = Level 2: Intermediate
-- 6-8 total = Level 3: Advanced
+**채점:**
+- 합계 0~2개 = 레벨 1: 초급
+- 합계 3~5개 = 레벨 2: 중급
+- 합계 6~8개 = 레벨 3: 고급
 
-Go to Step 3 with the level result, listing which specific items were NOT checked as gaps.
+체크되지 않은 항목들을 격차로 나열하며 레벨 결과와 함께 Step 3으로 이동합니다.
 
 ---
 
-### Step 2B: Deep Assessment
+### Step 2B: 심층 평가
 
-Present 5 rounds of questions, one AskUserQuestion call per round. Each round covers 2 related feature areas. Use multi-select for all rounds.
+5라운드의 문항을 제시하며, 라운드당 AskUserQuestion 1회 호출합니다. 각 라운드는 2개의 관련 기능 영역을 다룹니다. 모든 라운드에 다중 선택 사용.
 
-**IMPORTANT**: AskUserQuestion supports max 4 options per question. Each round has exactly 1 question with 4 options covering 2 topics (2 options per topic).
+**중요**: AskUserQuestion은 문항당 최대 4개의 선택지를 지원합니다. 각 라운드는 2개의 주제를 다루는 4개의 선택지로 구성된 문항 1개입니다(주제당 선택지 2개).
 
 ---
 
 **Round 1 — Slash Commands & Memory** (header: "Commands")
 
-"Which of these have you done? Select all that apply."
+"다음 중 해당하는 것을 모두 선택하세요."
 Options:
-1. "Created a custom slash command or skill" — Written a SKILL.md file with frontmatter, or created .claude/commands/ files
-2. "Used dynamic context in commands" — Used `$ARGUMENTS`, `$0`/`$1`, backtick `!command` syntax, or `@file` references in skill/command files
-3. "Set up project + personal memory" — Created both a project CLAUDE.md and personal ~/.claude/CLAUDE.md (or CLAUDE.local.md)
-4. "Used memory hierarchy features" — Understand the 7-level priority order, used .claude/rules/ directory, path-specific rules, or @import syntax
+1. "커스텀 slash 명령어 또는 스킬 생성" — frontmatter가 있는 SKILL.md 파일 작성 또는 .claude/commands/ 파일 생성
+2. "명령어에서 동적 컨텍스트 사용" — `$ARGUMENTS`, `$0`/`$1`, 백틱 `!command` 구문 또는 스킬/명령어 파일에서 `@file` 참조 사용
+3. "프로젝트 + 개인 메모리 설정" — 프로젝트 CLAUDE.md와 개인 ~/.claude/CLAUDE.md (또는 CLAUDE.local.md) 모두 생성
+4. "메모리 계층 기능 사용" — 7단계 우선순위 순서 이해, .claude/rules/ 디렉토리 사용, 경로 특정 규칙 또는 @import 구문 사용
 
-**Scoring for Round 1:**
-- Options 1-2 map to **Slash Commands** (0-2 points)
-- Options 3-4 map to **Memory** (0-2 points)
+**Round 1 채점:**
+- 선택지 1~2 → **Slash Commands** (0~2점)
+- 선택지 3~4 → **Memory** (0~2점)
 
 ---
 
 **Round 2 — Skills & Hooks** (header: "Automation")
 
-"Which of these have you done? Select all that apply."
+"다음 중 해당하는 것을 모두 선택하세요."
 Options:
-1. "Installed and used an auto-invoked skill" — A skill that triggers automatically based on its description, without manual /command invocation
-2. "Controlled skill invocation behavior" — Used `disable-model-invocation`, `user-invocable`, or `context: fork` with agent field in SKILL.md frontmatter
-3. "Set up a PreToolUse or PostToolUse hook" — Configured a hook that runs before/after tool execution (e.g., command validator, auto-formatter)
-4. "Used advanced hook features" — Configured prompt-type hooks, component-scoped hooks in SKILL.md, HTTP hooks, or hooks with custom JSON output (updatedInput, systemMessage)
+1. "자동 호출 스킬 설치 및 사용" — 수동 /command 호출 없이 description 기반으로 자동 트리거되는 스킬
+2. "스킬 호출 동작 제어" — SKILL.md frontmatter에서 `disable-model-invocation`, `user-invocable` 또는 agent 필드와 함께 `context: fork` 사용
+3. "PreToolUse 또는 PostToolUse hook 설정" — 도구 실행 전/후에 실행되는 hook 설정 (예: 명령어 유효성 검사기, 자동 포매터)
+4. "고급 hook 기능 사용" — 프롬프트 타입 hooks, SKILL.md의 컴포넌트 범위 hooks, HTTP hooks 또는 커스텀 JSON 출력이 있는 hooks (updatedInput, systemMessage) 설정
 
-**Scoring for Round 2:**
-- Options 1-2 map to **Skills** (0-2 points)
-- Options 3-4 map to **Hooks** (0-2 points)
+**Round 2 채점:**
+- 선택지 1~2 → **Skills** (0~2점)
+- 선택지 3~4 → **Hooks** (0~2점)
 
 ---
 
 **Round 3 — MCP & Subagents** (header: "Integration")
 
-"Which of these have you done? Select all that apply."
+"다음 중 해당하는 것을 모두 선택하세요."
 Options:
-1. "Connected an MCP server and used its tools" — e.g., GitHub MCP for PRs/issues, database MCP for queries, or any external data source
-2. "Used advanced MCP features" — Project-scope .mcp.json, OAuth authentication, MCP resources with @mentions, Tool Search, or `claude mcp serve`
-3. "Created or configured custom subagents" — Defined agents in .claude/agents/ with custom tools, model, or permissions
-4. "Used advanced subagent features" — Worktree isolation, persistent agent memory, background tasks with Ctrl+B, agent allowlists with `Task(agent_name)`, or agent teams
+1. "MCP 서버 연결 및 도구 사용" — 예: PR/이슈용 GitHub MCP, 쿼리용 데이터베이스 MCP 또는 기타 외부 데이터 소스
+2. "고급 MCP 기능 사용" — 프로젝트 범위 .mcp.json, OAuth 인증, @mentions을 사용한 MCP 리소스, Tool Search 또는 `claude mcp serve`
+3. "커스텀 subagents 생성 또는 설정" — 커스텀 도구, 모델 또는 권한으로 .claude/agents/에 에이전트 정의
+4. "고급 subagent 기능 사용" — 워크트리 격리, 지속적 에이전트 메모리, Ctrl+B를 사용한 백그라운드 작업, `Task(agent_name)` 에이전트 허용 목록 또는 에이전트 팀
 
-**Scoring for Round 3:**
-- Options 1-2 map to **MCP** (0-2 points)
-- Options 3-4 map to **Subagents** (0-2 points)
+**Round 3 채점:**
+- 선택지 1~2 → **MCP** (0~2점)
+- 선택지 3~4 → **Subagents** (0~2점)
 
 ---
 
 **Round 4 — Checkpoints & Advanced Features** (header: "Power User")
 
-"Which of these have you done? Select all that apply."
+"다음 중 해당하는 것을 모두 선택하세요."
 Options:
-1. "Used checkpoints for safe experimentation" — Created checkpoints, used Esc+Esc or /rewind, restored code and/or conversation, or used Summarize option
-2. "Used planning mode or extended thinking" — Activated planning via /plan, Shift+Tab, or --permission-mode plan; toggled extended thinking with Alt+T/Option+T
-3. "Configured permission modes" — Used acceptEdits, plan, dontAsk, or bypassPermissions mode via CLI flags, keyboard shortcuts, or settings
-4. "Used remote/desktop/web features" — Used `claude remote-control`, `claude --remote`, `/teleport`, `/desktop`, or worktrees with `claude -w`
+1. "안전한 실험을 위해 checkpoints 사용" — checkpoints 생성, Esc+Esc 또는 /rewind 사용, 코드 및/또는 대화 복원 또는 요약 옵션 사용
+2. "계획 모드 또는 확장 사고 사용" — /plan, Shift+Tab 또는 --permission-mode plan으로 계획 활성화; Alt+T/Option+T로 확장 사고 전환
+3. "권한 모드 설정" — CLI 플래그, 키보드 단축키 또는 설정을 통해 acceptEdits, plan, dontAsk 또는 bypassPermissions 모드 사용
+4. "원격/데스크톱/웹 기능 사용" — `claude remote-control`, `claude --remote`, `/teleport`, `/desktop` 또는 `claude -w`를 사용한 워크트리 사용
 
-**Scoring for Round 4:**
-- Option 1 maps to **Checkpoints** (0-1 point)
-- Options 2-4 map to **Advanced Features** (0-3 points, cap at 2)
+**Round 4 채점:**
+- 선택지 1 → **Checkpoints** (0~1점)
+- 선택지 2~4 → **Advanced Features** (0~3점, 최대 2점)
 
 ---
 
 **Round 5 — Plugins & CLI** (header: "Mastery")
 
-"Which of these have you done? Select all that apply."
+"다음 중 해당하는 것을 모두 선택하세요."
 Options:
-1. "Installed or created a plugin" — Used a bundled plugin from marketplace, or created a .claude-plugin/ directory with plugin.json manifest
-2. "Used plugin advanced features" — Plugin hooks, plugin MCP servers, LSP configuration, plugin namespaced commands, or --plugin-dir flag for testing
-3. "Used print mode in scripts or CI/CD" — Used `claude -p` with --output-format json, --max-turns, piped input, or integrated into GitHub Actions / CI pipelines
-4. "Used advanced CLI features" — Session resumption (-c/-r), --agents flag, --json-schema for structured output, --fallback-model, --from-pr, or batch processing loops
+1. "플러그인 설치 또는 생성" — 마켓플레이스에서 번들 플러그인 사용 또는 plugin.json 매니페스트가 있는 .claude-plugin/ 디렉토리 생성
+2. "플러그인 고급 기능 사용" — 플러그인 hooks, 플러그인 MCP 서버, LSP 설정, 플러그인 네임스페이스 명령어 또는 테스트용 --plugin-dir 플래그
+3. "스크립트 또는 CI/CD에서 출력 전용 모드 사용" — --output-format json, --max-turns, 파이프 입력과 함께 `claude -p` 사용 또는 GitHub Actions / CI 파이프라인에 통합
+4. "고급 CLI 기능 사용" — 세션 재개 (-c/-r), --agents 플래그, 구조화된 출력용 --json-schema, --fallback-model, --from-pr 또는 배치 처리 루프
 
-**Scoring for Round 5:**
-- Options 1-2 map to **Plugins** (0-2 points)
-- Options 3-4 map to **CLI** (0-2 points)
+**Round 5 채점:**
+- 선택지 1~2 → **Plugins** (0~2점)
+- 선택지 3~4 → **CLI** (0~2점)
 
 ---
 
-### Step 3: Calculate & Present Results
+### Step 3: 결과 계산 및 제시
 
-#### 3A: For Quick Assessment
+#### 3A: 빠른 평가
 
-Count total selections and determine level. Then present:
+총 선택 수를 계산하고 레벨을 결정합니다. 그런 다음 제시:
 
 ```markdown
-## Claude Code Skill Assessment Results
+## Claude Code 기술 평가 결과
 
-### Your Level: [Level 1: Beginner / Level 2: Intermediate / Level 3: Advanced]
+### 현재 레벨: [레벨 1: 초급 / 레벨 2: 중급 / 레벨 3: 고급]
 
-You checked **N/8** items.
+총 **N/8**개 항목을 선택하셨습니다.
 
-[One-line motivational summary based on level]
+[레벨별 한 줄 동기 부여 요약]
 
-### Your Skill Profile
+### 기술 프로필
 
-| Area | Status |
+| 영역 | 상태 |
 |------|--------|
-| Basic CLI & Conversations | [Checked/Gap] |
-| CLAUDE.md & Memory | [Checked/Gap] |
-| Slash Commands (built-in) | [Checked/Gap] |
-| Custom Commands & Skills | [Checked/Gap] |
-| MCP Servers | [Checked/Gap] |
-| Hooks | [Checked/Gap] |
-| Subagents | [Checked/Gap] |
-| Print Mode & CI/CD | [Checked/Gap] |
+| 기본 CLI 및 대화 | [완료/부족] |
+| CLAUDE.md 및 메모리 | [완료/부족] |
+| Slash Commands (내장) | [완료/부족] |
+| 커스텀 명령어 및 Skills | [완료/부족] |
+| MCP 서버 | [완료/부족] |
+| Hooks | [완료/부족] |
+| Subagents | [완료/부족] |
+| 출력 전용 모드 및 CI/CD | [완료/부족] |
 
-### Identified Gaps
+### 파악된 격차
 
-[For each unchecked item, provide a 1-line description of what to learn and a link to the tutorial]
+[체크되지 않은 각 항목에 대해 배워야 할 내용과 튜토리얼 링크를 한 줄로 제공]
 
-### Your Personalized Learning Path
+### 맞춤형 학습 경로
 
-[Output the level-specific learning path — see Step 4]
+[레벨별 학습 경로 출력 — Step 4 참조]
 ```
 
-#### 3B: For Deep Assessment
+#### 3B: 심층 평가
 
-Calculate per-topic scores from the 5 rounds. Each topic gets 0-2 points. Then present:
+5라운드에서 주제별 점수를 계산합니다. 각 주제는 0~2점을 받습니다. 그런 다음 제시:
 
 ```markdown
-## Claude Code Skill Assessment Results
+## Claude Code 기술 평가 결과
 
-### Overall Level: [Level 1 / Level 2 / Level 3]
+### 전반적 레벨: [레벨 1 / 레벨 2 / 레벨 3]
 
-**Total Score: N/20 points**
+**총점: N/20점**
 
-[One-line motivational summary]
+[한 줄 동기 부여 요약]
 
-### Your Skill Profile
+### 기술 프로필
 
-| Feature Area | Score | Mastery | Status |
+| 기능 영역 | 점수 | 숙련도 | 상태 |
 |-------------|-------|---------|--------|
-| Slash Commands | N/2 | [None/Basic/Proficient] | [Learn/Review/Mastered] |
-| Memory | N/2 | [None/Basic/Proficient] | [Learn/Review/Mastered] |
-| Skills | N/2 | [None/Basic/Proficient] | [Learn/Review/Mastered] |
-| Hooks | N/2 | [None/Basic/Proficient] | [Learn/Review/Mastered] |
-| MCP | N/2 | [None/Basic/Proficient] | [Learn/Review/Mastered] |
-| Subagents | N/2 | [None/Basic/Proficient] | [Learn/Review/Mastered] |
-| Checkpoints | N/1 | [None/Proficient] | [Learn/Mastered] |
-| Advanced Features | N/2 | [None/Basic/Proficient] | [Learn/Review/Mastered] |
-| Plugins | N/2 | [None/Basic/Proficient] | [Learn/Review/Mastered] |
-| CLI | N/2 | [None/Basic/Proficient] | [Learn/Review/Mastered] |
+| Slash Commands | N/2 | [없음/기초/능숙] | [학습/복습/완료] |
+| Memory | N/2 | [없음/기초/능숙] | [학습/복습/완료] |
+| Skills | N/2 | [없음/기초/능숙] | [학습/복습/완료] |
+| Hooks | N/2 | [없음/기초/능숙] | [학습/복습/완료] |
+| MCP | N/2 | [없음/기초/능숙] | [학습/복습/완료] |
+| Subagents | N/2 | [없음/기초/능숙] | [학습/복습/완료] |
+| Checkpoints | N/1 | [없음/능숙] | [학습/완료] |
+| Advanced Features | N/2 | [없음/기초/능숙] | [학습/복습/완료] |
+| Plugins | N/2 | [없음/기초/능숙] | [학습/복습/완료] |
+| CLI | N/2 | [없음/기초/능숙] | [학습/복습/완료] |
 
-**Mastery key:** 0 = None, 1 = Basic, 2 = Proficient
+**숙련도 기준:** 0 = 없음, 1 = 기초, 2 = 능숙
 
-### Strength Areas
-[List topics with score 2/2 — these are mastered]
+### 강점 영역
+[2/2 점수를 받은 주제 목록 — 완전히 숙달된 항목]
 
-### Priority Gaps (Learn Next)
-[List topics with score 0 — these need attention first, ordered by dependency]
+### 우선 격차 (먼저 학습)
+[0점 주제 목록 — 의존성 순서로 정렬된 최우선 항목]
 
-### Review Areas
-[List topics with score 1/2 — basics known but advanced features not yet used]
+### 복습 영역
+[1/2 점수 주제 목록 — 기초는 알지만 고급 기능을 아직 사용하지 않은 항목]
 
-### Your Personalized Learning Path
+### 맞춤형 학습 경로
 
-[Output gap-specific learning path — see Step 4]
+[격차별 학습 경로 출력 — Step 4 참조]
 ```
 
-**Overall level calculation for Deep Assessment:**
-- 0-6 total points = Level 1: Beginner
-- 7-13 total points = Level 2: Intermediate
-- 14-20 total points = Level 3: Advanced
+**심층 평가 전반적 레벨 계산:**
+- 총 0~6점 = 레벨 1: 초급
+- 총 7~13점 = 레벨 2: 중급
+- 총 14~20점 = 레벨 3: 고급
 
 ---
 
-### Step 4: Generate Personalized Learning Path
+### Step 4: 맞춤형 학습 경로 생성
 
-Based on the assessment results, generate a learning path that is specific to the user's gaps. Do NOT just repeat the generic level path — adapt it.
+평가 결과를 바탕으로 사용자의 격차에 맞는 학습 경로를 생성합니다. 일반적인 레벨별 경로를 반복하지 마세요 — 맞춤화하세요.
 
-#### Rules for Path Generation
+#### 경로 생성 규칙
 
-1. **Skip mastered topics**: If a topic scored 2/2, do not include it in the path.
-2. **Prioritize by dependency order**: Slash Commands before Skills, Memory before Subagents, etc. The dependency order is:
-   - Slash Commands (no deps) -> Skills (depends on Slash Commands)
-   - Memory (no deps) -> Subagents (depends on Memory)
-   - CLI Basics (no deps) -> CLI Mastery (depends on all)
-   - Checkpoints (no deps)
-   - Hooks (depends on Slash Commands)
-   - MCP (no deps) -> Plugins (depends on MCP, Skills, Hooks)
-   - Advanced Features (depends on all previous)
-3. **For score 1/2 topics**: Recommend the "deep dive" — link to the specific advanced section they're missing.
-4. **Estimate time**: Sum only the topics they need to learn/review.
-5. **Group into phases**: Organize remaining topics into logical phases of 2-3 topics each.
+1. **숙달한 주제 건너뜀**: 2/2 점수를 받은 주제는 경로에 포함하지 않습니다.
+2. **의존성 순서로 우선순위 지정**: Skills 전에 Slash Commands, Subagents 전에 Memory 등. 의존성 순서:
+   - Slash Commands (의존성 없음) -> Skills (Slash Commands에 의존)
+   - Memory (의존성 없음) -> Subagents (Memory에 의존)
+   - CLI 기초 (의존성 없음) -> CLI 숙달 (모든 것에 의존)
+   - Checkpoints (의존성 없음)
+   - Hooks (Slash Commands에 의존)
+   - MCP (의존성 없음) -> Plugins (MCP, Skills, Hooks에 의존)
+   - Advanced Features (이전 모든 것에 의존)
+3. **점수 1/2 주제**: "심화 학습" 권장 — 부족한 특정 고급 섹션 링크 제공.
+4. **시간 추정**: 학습/복습이 필요한 주제만 합산.
+5. **단계별 그룹화**: 남은 주제를 각 2~3개 주제로 구성된 논리적 단계로 정리.
 
-#### Path Output Format
+#### 경로 출력 형식
 
 ```markdown
-### Your Personalized Learning Path
+### 맞춤형 학습 경로
 
-**Estimated time**: ~N hours (adjusted for your current skills)
+**예상 시간**: 약 N시간 (현재 기술 수준에 맞게 조정됨)
 
-#### Phase 1: [Phase Name] (~N hours)
-[Only if they have gaps in these areas]
+#### 단계 1: [단계 이름] (약 N시간)
+[이 영역에 격차가 있는 경우만]
 
-**[Topic Name]** — [Learn from scratch / Deep dive into advanced features]
-- Tutorial: [link to tutorial directory]
-- Focus on: [specific sections/concepts they need]
-- Key exercise: [one concrete exercise to do]
-- You'll know it's done when: [specific success criterion]
+**[주제 이름]** — [처음부터 학습 / 고급 기능 심화]
+- 튜토리얼: [튜토리얼 디렉토리 링크]
+- 집중 영역: [필요한 특정 섹션/개념]
+- 핵심 실습: [할 구체적인 실습 1개]
+- 완료 기준: [구체적인 성공 기준]
 
-**[Topic Name]** — ...
+**[주제 이름]** — ...
 
 ---
 
-#### Phase 2: [Phase Name] (~N hours)
+#### 단계 2: [단계 이름] (약 N시간)
 ...
 
 ---
 
-### Recommended Practice Projects
+### 권장 실습 프로젝트
 
-Based on your gaps, try these real-world exercises to solidify your learning:
+격차를 바탕으로 학습을 다지기 위한 실제 연습:
 
-1. **[Project name]**: [1-line description combining 2-3 gap topics]
-2. **[Project name]**: [1-line description]
-3. **[Project name]**: [1-line description]
+1. **[프로젝트 이름]**: [2~3개의 격차 주제를 결합한 한 줄 설명]
+2. **[프로젝트 이름]**: [한 줄 설명]
+3. **[프로젝트 이름]**: [한 줄 설명]
 ```
 
-#### Topic-Specific Recommendations
+#### 주제별 구체적 권장 사항
 
-Use these specific recommendations when a topic is a gap:
+격차가 있는 경우 다음의 구체적인 권장 사항을 사용합니다:
 
-**Slash Commands (score 0)**:
-- Tutorial: [01-slash-commands/](../../../01-slash-commands/)
-- Focus on: Built-in commands reference, creating your first SKILL.md, `$ARGUMENTS` syntax
-- Key exercise: Create a `/optimize` command and test it
-- Done when: You can create a custom skill with arguments and dynamic context
+**Slash Commands (점수 0)**:
+- 튜토리얼: [01-slash-commands/](../../../01-slash-commands/)
+- 집중 영역: 내장 명령어 레퍼런스, 첫 SKILL.md 생성, `$ARGUMENTS` 구문
+- 핵심 실습: `/optimize` 명령어를 만들고 테스트하기
+- 완료 기준: 인수와 동적 컨텍스트로 커스텀 스킬을 만들 수 있을 때
 
-**Slash Commands (score 1 — review)**:
-- Focus on: Dynamic context with `!`backtick`` syntax, `@file` references, `disable-model-invocation` vs `user-invocable` control
-- Done when: You can create a skill that injects live command output and controls its own invocation behavior
+**Slash Commands (점수 1 — 복습)**:
+- 집중 영역: `!`백틱`` 구문을 사용한 동적 컨텍스트, `@file` 참조, `disable-model-invocation` vs `user-invocable` 제어
+- 완료 기준: 실시간 명령어 출력을 삽입하고 자체 호출 동작을 제어하는 스킬을 만들 수 있을 때
 
-**Memory (score 0)**:
-- Tutorial: [02-memory/](../../../02-memory/)
-- Focus on: CLAUDE.md creation, `/init` and `/memory` commands, `#` prefix for quick updates
-- Key exercise: Create a project CLAUDE.md with your coding standards
-- Done when: Claude remembers your preferences across sessions
+**Memory (점수 0)**:
+- 튜토리얼: [02-memory/](../../../02-memory/)
+- 집중 영역: CLAUDE.md 생성, `/init` 및 `/memory` 명령어, 빠른 업데이트를 위한 `#` 접두사
+- 핵심 실습: 코딩 표준이 담긴 프로젝트 CLAUDE.md 만들기
+- 완료 기준: Claude가 세션 간에 선호 사항을 기억할 때
 
-**Memory (score 1 — review)**:
-- Focus on: 7-level hierarchy and priority order, .claude/rules/ directory with path-specific rules, `@import` syntax (max depth 5), Auto Memory MEMORY.md (200-line limit)
-- Done when: You have modular rules for different directories and understand the full hierarchy
+**Memory (점수 1 — 복습)**:
+- 집중 영역: 7단계 계층 및 우선순위 순서, 경로 특정 규칙이 있는 .claude/rules/ 디렉토리, `@import` 구문 (최대 깊이 5), Auto Memory MEMORY.md (200줄 제한)
+- 완료 기준: 다양한 디렉토리에 대한 모듈식 규칙을 갖추고 전체 계층을 이해할 때
 
-**Skills (score 0)**:
-- Tutorial: [03-skills/](../../../03-skills/)
-- Focus on: SKILL.md format, auto-invocation via description field, progressive disclosure (3 loading levels)
-- Key exercise: Install the code-review skill and verify it auto-triggers
-- Done when: A skill automatically activates based on conversation context
+**Skills (점수 0)**:
+- 튜토리얼: [03-skills/](../../../03-skills/)
+- 집중 영역: SKILL.md 형식, description 필드를 통한 자동 호출, 점진적 공개 (3가지 로딩 레벨)
+- 핵심 실습: code-review 스킬을 설치하고 자동 트리거 확인
+- 완료 기준: 대화 컨텍스트에 따라 스킬이 자동으로 활성화될 때
 
-**Skills (score 1 — review)**:
-- Focus on: `context: fork` with `agent` field for subagent execution, `disable-model-invocation` vs `user-invocable`, 2% context budget, bundled resources (scripts/, references/, assets/)
-- Done when: You can create a skill that runs in a subagent with forked context
+**Skills (점수 1 — 복습)**:
+- 집중 영역: subagent 실행을 위한 agent 필드와 `context: fork`, `disable-model-invocation` vs `user-invocable`, 컨텍스트 예산 2%, 번들 리소스 (scripts/, references/, assets/)
+- 완료 기준: 포크된 컨텍스트로 subagent에서 실행되는 스킬을 만들 수 있을 때
 
-**Hooks (score 0)**:
-- Tutorial: [06-hooks/](../../../06-hooks/)
-- Focus on: Configuration structure (matcher + hooks array), PreToolUse/PostToolUse events, exit codes (0=success, 2=block), JSON input/output format
-- Key exercise: Create a PreToolUse hook that validates Bash commands
-- Done when: A hook blocks dangerous commands before execution
+**Hooks (점수 0)**:
+- 튜토리얼: [06-hooks/](../../../06-hooks/)
+- 집중 영역: 설정 구조 (matcher + hooks 배열), PreToolUse/PostToolUse 이벤트, 종료 코드 (0=성공, 2=차단), JSON 입/출력 형식
+- 핵심 실습: Bash 명령어를 검증하는 PreToolUse hook 만들기
+- 완료 기준: hook이 실행 전에 위험한 명령어를 차단할 때
 
-**Hooks (score 1 — review)**:
-- Focus on: All 25 hook events (including PostToolUseFailure, StopFailure, TaskCreated, CwdChanged, FileChanged, PostCompact, Elicitation, ElicitationResult), 4 hook types (command, http, prompt, agent), component-scoped hooks in SKILL.md frontmatter, HTTP hooks with allowedEnvVars, `CLAUDE_ENV_FILE` for SessionStart/CwdChanged/FileChanged
-- Done when: You can create a prompt-based Stop hook and a component-scoped hook in a skill
+**Hooks (점수 1 — 복습)**:
+- 집중 영역: 25개의 모든 hook 이벤트 (PostToolUseFailure, StopFailure, TaskCreated, CwdChanged, FileChanged, PostCompact, Elicitation, ElicitationResult 포함), 4가지 hook 타입 (command, http, prompt, agent), SKILL.md frontmatter의 컴포넌트 범위 hooks, allowedEnvVars가 있는 HTTP hooks, SessionStart/CwdChanged/FileChanged의 `CLAUDE_ENV_FILE`
+- 완료 기준: 프롬프트 기반 Stop hook과 스킬의 컴포넌트 범위 hook을 만들 수 있을 때
 
-**MCP (score 0)**:
-- Tutorial: [05-mcp/](../../../05-mcp/)
-- Focus on: `claude mcp add` command, transport types (HTTP recommended), GitHub MCP setup, environment variable expansion
-- Key exercise: Add GitHub MCP server and query PRs
-- Done when: You can query live data from an external service via MCP
+**MCP (점수 0)**:
+- 튜토리얼: [05-mcp/](../../../05-mcp/)
+- 집중 영역: `claude mcp add` 명령어, 전송 타입 (HTTP 권장), GitHub MCP 설정, 환경 변수 확장
+- 핵심 실습: GitHub MCP 서버를 추가하고 PR 쿼리하기
+- 완료 기준: MCP를 통해 외부 서비스의 실시간 데이터를 쿼리할 수 있을 때
 
-**MCP (score 1 — review)**:
-- Focus on: Project-scope .mcp.json (requires team approval), OAuth 2.0 auth, MCP resources with `@server:resource` mentions, Tool Search (ENABLE_TOOL_SEARCH), `claude mcp serve`, output limits (10k/25k/50k)
-- Done when: You have a project .mcp.json and understand Tool Search auto mode
+**MCP (점수 1 — 복습)**:
+- 집중 영역: 프로젝트 범위 .mcp.json (팀 승인 필요), OAuth 2.0 인증, `@server:resource` mentions를 사용한 MCP 리소스, Tool Search (ENABLE_TOOL_SEARCH), `claude mcp serve`, 출력 제한 (10k/25k/50k)
+- 완료 기준: 프로젝트 .mcp.json을 갖추고 Tool Search 자동 모드를 이해할 때
 
-**Subagents (score 0)**:
-- Tutorial: [04-subagents/](../../../04-subagents/)
-- Focus on: Agent file format (.claude/agents/*.md), built-in agents (general-purpose, Plan, Explore), tools/model/permissionMode config
-- Key exercise: Create a code-reviewer subagent and test delegation
-- Done when: Claude delegates code review to your custom agent
+**Subagents (점수 0)**:
+- 튜토리얼: [04-subagents/](../../../04-subagents/)
+- 집중 영역: 에이전트 파일 형식 (.claude/agents/*.md), 내장 에이전트 (general-purpose, Plan, Explore), tools/model/permissionMode 설정
+- 핵심 실습: code-reviewer subagent를 만들고 위임 테스트
+- 완료 기준: Claude가 커스텀 에이전트에게 코드 리뷰를 위임할 때
 
-**Subagents (score 1 — review)**:
-- Focus on: Worktree isolation (`isolation: worktree`), persistent agent memory (`memory` field with scopes), background agents (Ctrl+B/Ctrl+F), agent allowlists with `Task(agent_name)`, agent teams (`--teammate-mode`)
-- Done when: You have a subagent with persistent memory running in worktree isolation
+**Subagents (점수 1 — 복습)**:
+- 집중 영역: 워크트리 격리 (`isolation: worktree`), 지속적 에이전트 메모리 (범위가 있는 `memory` 필드), 백그라운드 에이전트 (Ctrl+B/Ctrl+F), `Task(agent_name)` 에이전트 허용 목록, 에이전트 팀 (`--teammate-mode`)
+- 완료 기준: 워크트리 격리로 실행되는 지속적 메모리를 가진 subagent를 만들 때
 
-**Checkpoints (score 0)**:
-- Tutorial: [08-checkpoints/](../../../08-checkpoints/)
-- Focus on: Esc+Esc and /rewind access, 5 rewind options (restore code+conversation, restore conversation, restore code, summarize, cancel), limitations (bash filesystem ops not tracked)
-- Key exercise: Make experimental changes, then rewind to restore
-- Done when: You can confidently experiment knowing you can rewind
+**Checkpoints (점수 0)**:
+- 튜토리얼: [08-checkpoints/](../../../08-checkpoints/)
+- 집중 영역: Esc+Esc 및 /rewind 접근, 5가지 되감기 옵션 (코드+대화 복원, 대화 복원, 코드 복원, 요약, 취소), 제한사항 (bash 파일 시스템 작업은 추적 안 됨)
+- 핵심 실습: 실험적 변경 후 복원으로 되감기
+- 완료 기준: 되감기 가능하다는 것을 알고 자신 있게 실험할 수 있을 때
 
-**Advanced Features (score 0)**:
-- Tutorial: [09-advanced-features/](../../../09-advanced-features/)
-- Focus on: Planning mode (/plan or Shift+Tab), permission modes (5 types), extended thinking (Alt+T toggle)
-- Key exercise: Use planning mode to design a feature, then implement it
-- Done when: You can switch between planning and implementation modes fluently
+**Advanced Features (점수 0)**:
+- 튜토리얼: [09-advanced-features/](../../../09-advanced-features/)
+- 집중 영역: 계획 모드 (/plan 또는 Shift+Tab), 권한 모드 (5가지 타입), 확장 사고 (Alt+T 토글)
+- 핵심 실습: 계획 모드를 사용하여 기능 설계 후 구현
+- 완료 기준: 계획 모드와 구현 모드 사이를 자유롭게 전환할 때
 
-**Advanced Features (score 1 — review)**:
-- Focus on: Remote control (`claude remote-control`), web sessions (`claude --remote`), desktop handoff (`/desktop`), worktrees (`claude -w`), task lists (Ctrl+T), managed settings for enterprise
-- Done when: You can hand off sessions between CLI, web, and desktop
+**Advanced Features (점수 1 — 복습)**:
+- 집중 영역: 원격 제어 (`claude remote-control`), 웹 세션 (`claude --remote`), 데스크톱 핸드오프 (`/desktop`), 워크트리 (`claude -w`), 작업 목록 (Ctrl+T), 엔터프라이즈용 관리형 설정
+- 완료 기준: CLI, 웹, 데스크톱 간에 세션을 전환할 수 있을 때
 
-**Plugins (score 0)**:
-- Tutorial: [07-plugins/](../../../07-plugins/)
-- Focus on: Plugin structure (.claude-plugin/plugin.json), what plugins bundle (commands, agents, MCP, hooks, settings), installation from marketplace
-- Key exercise: Install a plugin and explore its components
-- Done when: You understand when to use a plugin vs standalone components
+**Plugins (점수 0)**:
+- 튜토리얼: [07-plugins/](../../../07-plugins/)
+- 집중 영역: 플러그인 구조 (.claude-plugin/plugin.json), 플러그인 번들 내용 (commands, agents, MCP, hooks, settings), 마켓플레이스에서 설치
+- 핵심 실습: 플러그인을 설치하고 컴포넌트 살펴보기
+- 완료 기준: 플러그인과 개별 컴포넌트의 사용 시점을 이해할 때
 
-**Plugins (score 1 — review)**:
-- Focus on: Creating plugin.json manifest, plugin hooks (hooks/hooks.json), LSP configuration (.lsp.json), `${CLAUDE_PLUGIN_ROOT}` variable, --plugin-dir for testing, marketplace publishing
-- Done when: You can create and test a plugin for your team
+**Plugins (점수 1 — 복습)**:
+- 집중 영역: plugin.json 매니페스트 생성, 플러그인 hooks (hooks/hooks.json), LSP 설정 (.lsp.json), `${CLAUDE_PLUGIN_ROOT}` 변수, 테스트용 --plugin-dir, 마켓플레이스 게시
+- 완료 기준: 팀을 위한 플러그인을 만들고 테스트할 수 있을 때
 
-**CLI (score 0)**:
-- Tutorial: [10-cli/](../../../10-cli/)
-- Focus on: Interactive vs print mode, `claude -p` with piping, `--output-format json`, session management (-c/-r)
-- Key exercise: Pipe a file to `claude -p` and get JSON output
-- Done when: You can use Claude non-interactively in a script
+**CLI (점수 0)**:
+- 튜토리얼: [10-cli/](../../../10-cli/)
+- 집중 영역: 인터랙티브 vs 출력 전용 모드, 파이핑과 함께 `claude -p`, `--output-format json`, 세션 관리 (-c/-r)
+- 핵심 실습: 파일을 `claude -p`에 파이프하고 JSON 출력 받기
+- 완료 기준: 스크립트에서 비인터랙티브 방식으로 Claude를 사용할 수 있을 때
 
-**CLI (score 1 — review)**:
-- Focus on: --agents flag with JSON config, --json-schema for structured output, --fallback-model, --from-pr, --strict-mcp-config, batch processing with for loops, `claude mcp serve`
-- Done when: You have a CI/CD script that uses Claude with structured JSON output
+**CLI (점수 1 — 복습)**:
+- 집중 영역: JSON 설정이 있는 --agents 플래그, 구조화된 출력용 --json-schema, --fallback-model, --from-pr, --strict-mcp-config, for 루프를 사용한 배치 처리, `claude mcp serve`
+- 완료 기준: 구조화된 JSON 출력으로 Claude를 사용하는 CI/CD 스크립트를 작성할 때
 
 ---
 
-### Step 5: Offer Follow-up Actions
+### Step 5: 후속 작업 제안
 
-After presenting results, ask the user what they'd like to do next:
+결과 제시 후 사용자에게 다음에 할 일을 묻습니다:
 
-Use AskUserQuestion with these options:
-- **Start learning** — "Help me begin the first topic in my learning path right now"
-- **Deep dive on a gap** — "Explain one of my gap areas in detail so I can learn it here"
-- **Practice project** — "Set up a practice project that covers my gap areas"
-- **Retake assessment** — "I want to retake the quiz (maybe the other mode)"
+AskUserQuestion을 사용하여 다음 선택지 제시:
+- **학습 시작** — "지금 바로 학습 경로의 첫 번째 주제를 시작하도록 도와주세요"
+- **격차 심화 학습** — "격차 영역 중 하나에 대해 자세히 설명해주세요"
+- **실습 프로젝트** — "격차 영역을 다루는 실습 프로젝트를 설정해주세요"
+- **평가 재시도** — "퀴즈를 다시 풀고 싶습니다 (다른 모드로도 가능)"
 
-If **Start learning**: Read the README.md of the first gap tutorial and walk the user through the first exercise.
-If **Deep dive on a gap**: Ask which gap topic, then read the relevant tutorial README.md and explain the key concepts with examples.
-If **Practice project**: Design a small project that combines 2-3 of their gap topics with concrete steps.
-If **Retake assessment**: Go back to Step 1.
+**학습 시작**: 첫 번째 격차 튜토리얼의 README.md를 읽고 첫 번째 실습을 안내합니다.
+**격차 심화**: 어떤 격차 주제인지 묻고, 관련 튜토리얼 README.md를 읽어 예시와 함께 핵심 개념을 설명합니다.
+**실습 프로젝트**: 2~3개의 격차 주제를 결합한 구체적인 단계가 있는 소규모 프로젝트를 설계합니다.
+**평가 재시도**: Step 1으로 돌아가 새로운 평가를 시작합니다.
 
-## Error Handling
+## 오류 처리
 
-### User selects no items in a round
-Treat as 0 points for that round's topics. Continue to next round.
+### 라운드에서 아무것도 선택하지 않은 경우
+해당 라운드의 주제에 0점을 줍니다. 다음 라운드로 계속 진행합니다.
 
-### User selects no items in any round
-Assign Level 1: Beginner. Encourage starting from the beginning. Output the full Level 1 path.
+### 어떤 라운드에서도 아무것도 선택하지 않은 경우
+레벨 1: 초급으로 지정합니다. 처음부터 시작하도록 격려합니다. 전체 레벨 1 경로를 출력합니다.
 
-### User wants to retake
-Re-run from Step 1 with a fresh assessment.
+### 재시도 원하는 경우
+새로운 평가로 Step 1부터 다시 실행합니다.
 
-### User disagrees with their level
-Acknowledge their preference. Ask which level they identify with. Present the path for their chosen level with a prerequisites check for topics they may have missed.
+### 레벨에 동의하지 않는 경우
+사용자의 의견을 수용합니다. 어떤 레벨로 인식하는지 묻습니다. 선택한 레벨의 경로를 제시하되 빠진 주제에 대한 사전 요건 확인을 포함합니다.
 
-### User asks about a specific topic
-If the user says something like "tell me about hooks" or "I want to learn MCP" during the assessment, note it. After presenting results, highlight that topic in their learning path regardless of score.
+### 특정 주제에 대해 묻는 경우
+평가 중에 "hooks에 대해 알려줘" 또는 "MCP를 배우고 싶어" 같은 말을 하면 메모해 둡니다. 결과 제시 후 점수와 관계없이 학습 경로에서 해당 주제를 강조합니다.
 
-## Validation
+## 유효성 검사
 
-### Triggering test suite
+### 트리거 테스트 스위트
 
-**Should trigger:**
-- "assess my level"
-- "take the quiz"
-- "find my level"
-- "where should I start"
-- "what level am I"
-- "learning path quiz"
-- "self-assessment"
-- "what should I learn next"
-- "check my skills"
-- "skill check"
-- "level up"
-- "how good am I at Claude Code"
-- "evaluate my Claude Code knowledge"
+**트리거되어야 하는 경우:**
+- "내 수준 평가해줘"
+- "퀴즈 풀어줘"
+- "내 레벨 찾아줘"
+- "어디서 시작해야 하나"
+- "내 레벨이 어느 정도야"
+- "학습 경로 퀴즈"
+- "자가 평가"
+- "다음에 뭘 배워야 해"
+- "기술 확인"
+- "스킬 체크"
+- "레벨 올려줘"
+- "Claude Code 얼마나 잘 하는지"
+- "Claude Code 지식 평가해줘"
 
-**Should NOT trigger:**
-- "review my code"
-- "create a skill"
-- "help me with MCP"
-- "explain slash commands"
-- "what is a checkpoint"
+**트리거되지 않아야 하는 경우:**
+- "내 코드 리뷰해줘"
+- "스킬 만들어줘"
+- "MCP 도와줘"
+- "slash commands 설명해줘"
+- "checkpoint가 뭐야"

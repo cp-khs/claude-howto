@@ -1,97 +1,97 @@
-# Blog Post Outline: [Title]
+# 블로그 포스트 아웃라인: [제목]
 
-## Meta Information
+## 메타 정보
 
-| Attribute | Value |
+| 속성 | 값 |
 |-----------|-------|
-| **Target Audience** | [Who is this for?] |
-| **Tone** | [Formal/Casual/Technical/Conversational] |
-| **Target Length** | [Word count range] |
-| **Main Takeaway** | [One sentence: what should readers remember?] |
-| **Keywords** | [SEO keywords if relevant] |
+| **대상 독자** | [누구를 위한 것인가?] |
+| **어조** | [격식체/캐주얼/기술적/대화체] |
+| **목표 분량** | [단어 수 범위] |
+| **주요 메시지** | [한 문장: 독자가 기억해야 할 것은?] |
+| **키워드** | [관련 SEO 키워드] |
 
 ---
 
-## Proposed Structure
+## 제안 구조
 
-### 1. Introduction / Hook
+### 1. 도입부 / 훅
 
-**Opening Hook Options:**
-- [ ] Question that resonates with reader
-- [ ] Surprising statistic or fact
-- [ ] Brief story or scenario
-- [ ] Bold statement
+**오프닝 훅 옵션:**
+- [ ] 독자에게 공감가는 질문
+- [ ] 놀라운 통계 또는 사실
+- [ ] 간략한 이야기 또는 시나리오
+- [ ] 대담한 진술
 
-**Context Setting:**
-- Background information needed
-- Why this topic matters now
+**맥락 설정:**
+- 필요한 배경 정보
+- 지금 이 주제가 중요한 이유
 
-**Thesis Statement:**
-- Clear statement of what the post will cover
-
----
-
-### 2. [Section Title]
-
-**Key Points:**
-- Point A: [description]
-- Point B: [description]
-
-**Supporting Evidence:**
-- From [source]: [relevant data/quote]
-
-**Transition to next section:**
-- [How this connects to what's next]
+**논지 진술:**
+- 포스트에서 다룰 내용의 명확한 진술
 
 ---
 
-### 3. [Section Title]
+### 2. [섹션 제목]
 
-**Key Points:**
-- Point A: [description]
-- Point B: [description]
+**핵심 포인트:**
+- 포인트 A: [설명]
+- 포인트 B: [설명]
 
-**Supporting Evidence:**
-- From [source]: [relevant data/quote]
+**뒷받침 증거:**
+- [출처]에서: [관련 데이터/인용]
 
-**Transition to next section:**
-- [How this connects to what's next]
-
----
-
-### 4. [Section Title] (add more sections as needed)
-
-**Key Points:**
-- Point A: [description]
-- Point B: [description]
-
-**Supporting Evidence:**
-- From [source]: [relevant data/quote]
+**다음 섹션으로의 전환:**
+- [다음 내용과의 연결 방식]
 
 ---
 
-### 5. Conclusion
+### 3. [섹션 제목]
 
-**Summary of Key Points:**
-- Recap point 1
-- Recap point 2
-- Recap point 3
+**핵심 포인트:**
+- 포인트 A: [설명]
+- 포인트 B: [설명]
 
-**Final Thought / Call to Action:**
-- [What should readers do or think about next?]
+**뒷받침 증거:**
+- [출처]에서: [관련 데이터/인용]
 
----
-
-## Sources to Cite
-
-1. [Source Name](#) - Used for: [what information]
-2. [Source Name](#) - Used for: [what information]
-3. [Source Name](#) - Used for: [what information]
+**다음 섹션으로의 전환:**
+- [다음 내용과의 연결 방식]
 
 ---
 
-## Notes for Drafting
+### 4. [섹션 제목] (필요에 따라 섹션 추가)
 
-- [Any specific requirements or constraints]
-- [Things to emphasize]
-- [Things to avoid]
+**핵심 포인트:**
+- 포인트 A: [설명]
+- 포인트 B: [설명]
+
+**뒷받침 증거:**
+- [출처]에서: [관련 데이터/인용]
+
+---
+
+### 5. 결론
+
+**핵심 포인트 요약:**
+- 포인트 1 재요약
+- 포인트 2 재요약
+- 포인트 3 재요약
+
+**최종 생각 / 행동 촉구:**
+- [독자가 다음에 무엇을 해야 하거나 생각해야 하는가?]
+
+---
+
+## 인용할 출처
+
+1. [출처명](#) - 사용 목적: [어떤 정보에 사용]
+2. [출처명](#) - 사용 목적: [어떤 정보에 사용]
+3. [출처명](#) - 사용 목적: [어떤 정보에 사용]
+
+---
+
+## 초안 작성을 위한 메모
+
+- [특정 요구 사항 또는 제약 조건]
+- [강조할 사항]
+- [피할 사항]

@@ -6,9 +6,9 @@ tools: read, write
 
 # Example Generator
 
-Creates practical code examples:
-- Getting started guides
-- Common use cases
-- Integration examples
-- Best practices
-- Troubleshooting scenarios
+실용적인 코드 예제를 작성합니다:
+- 시작 가이드
+- 일반적인 사용 사례
+- 통합 예제
+- 모범 사례
+- 문제 해결 시나리오

@@ -6,9 +6,9 @@ tools: read, write, grep
 
 # API Documenter
 
-Creates comprehensive API documentation:
-- Endpoint documentation
-- Parameter descriptions
-- Response schemas
-- Code examples (curl, JS, Python)
-- Error codes
+종합적인 API 문서를 작성합니다:
+- 엔드포인트 문서화
+- 파라미터 설명
+- 응답 스키마
+- 코드 예제 (curl, JS, Python)
+- 에러 코드

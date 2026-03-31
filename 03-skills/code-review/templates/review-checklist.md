@@ -1,47 +1,47 @@
-# Code Review Checklist
+# 코드 리뷰 체크리스트
 
-## Security Checklist
-- [ ] No hardcoded credentials or secrets
-- [ ] Input validation on all user inputs
-- [ ] SQL injection prevention (parameterized queries)
-- [ ] CSRF protection on state-changing operations
-- [ ] XSS prevention with proper escaping
-- [ ] Authentication checks on protected endpoints
-- [ ] Authorization checks on resources
-- [ ] Secure password hashing (bcrypt, argon2)
-- [ ] No sensitive data in logs
-- [ ] HTTPS enforced
+## 보안 체크리스트
+- [ ] 하드코딩된 자격증명이나 시크릿 없음
+- [ ] 모든 사용자 입력에 입력 유효성 검사
+- [ ] SQL 인젝션 방지 (파라미터화된 쿼리)
+- [ ] 상태 변경 작업에 CSRF 보호
+- [ ] 적절한 이스케이핑으로 XSS 방지
+- [ ] 보호된 엔드포인트에 인증 확인
+- [ ] 리소스에 대한 인가 확인
+- [ ] 안전한 패스워드 해싱 (bcrypt, argon2)
+- [ ] 로그에 민감한 데이터 없음
+- [ ] HTTPS 강제 적용
 
-## Performance Checklist
-- [ ] No N+1 queries
-- [ ] Appropriate use of indexes
-- [ ] Caching implemented where beneficial
-- [ ] No blocking operations on main thread
-- [ ] Async/await used correctly
-- [ ] Large datasets paginated
-- [ ] Database connections pooled
-- [ ] Regular expressions optimized
-- [ ] No unnecessary object creation
-- [ ] Memory leaks prevented
+## 성능 체크리스트
+- [ ] N+1 쿼리 없음
+- [ ] 인덱스 적절히 사용
+- [ ] 유익한 곳에 캐싱 구현
+- [ ] 메인 스레드에 블로킹 작업 없음
+- [ ] Async/await 올바르게 사용
+- [ ] 대용량 데이터셋 페이지네이션
+- [ ] 데이터베이스 연결 풀링
+- [ ] 정규표현식 최적화
+- [ ] 불필요한 객체 생성 없음
+- [ ] 메모리 누수 방지
 
-## Quality Checklist
-- [ ] Functions < 50 lines
-- [ ] Clear variable naming
-- [ ] No duplicate code
-- [ ] Proper error handling
-- [ ] Comments explain WHY, not WHAT
-- [ ] No console.logs in production
-- [ ] Type checking (TypeScript/JSDoc)
-- [ ] SOLID principles followed
-- [ ] Design patterns applied correctly
-- [ ] Self-documenting code
+## 품질 체크리스트
+- [ ] 함수 50줄 미만
+- [ ] 명확한 변수명
+- [ ] 중복 코드 없음
+- [ ] 적절한 오류 처리
+- [ ] 주석은 WHAT이 아닌 WHY를 설명
+- [ ] 프로덕션에 console.log 없음
+- [ ] 타입 검사 (TypeScript/JSDoc)
+- [ ] SOLID 원칙 준수
+- [ ] 디자인 패턴 올바르게 적용
+- [ ] 자기 문서화 코드
 
-## Testing Checklist
-- [ ] Unit tests written
-- [ ] Edge cases covered
-- [ ] Error scenarios tested
-- [ ] Integration tests present
-- [ ] Coverage > 80%
-- [ ] No flaky tests
-- [ ] Mock external dependencies
-- [ ] Clear test names
+## 테스트 체크리스트
+- [ ] 유닛 테스트 작성됨
+- [ ] 엣지 케이스 커버됨
+- [ ] 오류 시나리오 테스트됨
+- [ ] 통합 테스트 존재
+- [ ] 커버리지 80% 이상
+- [ ] 불안정한 테스트 없음
+- [ ] 외부 의존성 모킹
+- [ ] 명확한 테스트명

@@ -5,11 +5,11 @@ description: Generate comprehensive API documentation from source code
 
 # API Documentation Generator
 
-Generate complete API documentation:
+완전한 API 문서를 생성합니다:
 
-1. Scan API endpoints
-2. Extract function signatures and JSDoc
-3. Organize by module/endpoint
-4. Create markdown with examples
-5. Include request/response schemas
-6. Add error documentation
+1. API 엔드포인트 스캔
+2. 함수 시그니처 및 JSDoc 추출
+3. 모듈/엔드포인트별 정리
+4. 예제가 포함된 마크다운 생성
+5. 요청/응답 스키마 포함
+6. 에러 문서 추가

@@ -2,18 +2,18 @@
 description: Analyze code for performance issues and suggest optimizations
 ---
 
-# Code Optimization
+# 코드 최적화
 
-Review the provided code for the following issues in order of priority:
+제공된 코드를 우선순위 순서에 따라 다음 항목들을 검토합니다:
 
-1. **Performance bottlenecks** - identify O(n²) operations, inefficient loops
-2. **Memory leaks** - find unreleased resources, circular references
-3. **Algorithm improvements** - suggest better algorithms or data structures
-4. **Caching opportunities** - identify repeated computations
-5. **Concurrency issues** - find race conditions or threading problems
+1. **성능 병목 지점** — O(n²) 연산, 비효율적인 루프 식별
+2. **메모리 누수** — 해제되지 않은 리소스, 순환 참조 탐지
+3. **알고리즘 개선** — 더 나은 알고리즘이나 자료구조 제안
+4. **캐싱 기회** — 반복 연산 식별
+5. **동시성 문제** — 경쟁 조건 또는 스레딩 문제 탐지
 
-Format your response with:
-- Issue severity (Critical/High/Medium/Low)
-- Location in code
-- Explanation
-- Recommended fix with code example
+응답 형식:
+- 이슈 심각도 (Critical/High/Medium/Low)
+- 코드 내 위치
+- 설명
+- 코드 예시를 포함한 권장 수정 방법

@@ -5,10 +5,10 @@ description: Verify test coverage and quality
 
 # Test Coverage Check
 
-Analyze test coverage and quality:
+테스트 커버리지와 품질을 분석합니다:
 
-1. Check test coverage percentage
-2. Identify untested code paths
-3. Review test quality
-4. Suggest missing test cases
-5. Verify edge cases are covered
+1. 테스트 커버리지 비율 확인
+2. 테스트되지 않은 코드 경로 식별
+3. 테스트 품질 검토
+4. 누락된 테스트 케이스 제안
+5. 엣지 케이스 커버리지 검증

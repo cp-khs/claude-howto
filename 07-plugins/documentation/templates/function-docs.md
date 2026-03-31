@@ -1,38 +1,38 @@
 # Function: `functionName`
 
-## Description
-Brief description of what the function does.
+## 설명
+함수가 수행하는 작업에 대한 간략한 설명.
 
-## Signature
+## 시그니처
 ```typescript
 function functionName(param1: Type1, param2: Type2): ReturnType
 ```
 
-## Parameters
+## 파라미터
 
-| Parameter | Type | Required | Description |
+| 파라미터 | 타입 | 필수 | 설명 |
 |-----------|------|----------|-------------|
-| param1 | Type1 | Yes | Description of param1 |
-| param2 | Type2 | No | Description of param2 |
+| param1 | Type1 | 예 | param1에 대한 설명 |
+| param2 | Type2 | 아니오 | param2에 대한 설명 |
 
-## Returns
-**Type**: `ReturnType`
+## 반환값
+**타입**: `ReturnType`
 
-Description of what is returned.
+반환되는 값에 대한 설명.
 
-## Throws
-- `Error`: When invalid input is provided
-- `TypeError`: When wrong type is passed
+## 예외
+- `Error`: 잘못된 입력이 제공된 경우
+- `TypeError`: 잘못된 타입이 전달된 경우
 
-## Examples
+## 예제
 
-### Basic Usage
+### 기본 사용법
 ```typescript
 const result = functionName('value1', 'value2');
 console.log(result);
 ```
 
-### Advanced Usage
+### 고급 사용법
 ```typescript
 const result = functionName(
   complexParam1,
@@ -40,11 +40,11 @@ const result = functionName(
 );
 ```
 
-## Notes
-- Additional notes or warnings
-- Performance considerations
-- Best practices
+## 참고 사항
+- 추가 참고사항 또는 주의사항
+- 성능 고려사항
+- 모범 사례
 
-## See Also
-- [Related Function](#)
-- [API Documentation](#)
+## 관련 항목
+- [관련 함수](#)
+- [API 문서](#)

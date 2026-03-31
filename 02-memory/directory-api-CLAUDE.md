@@ -1,61 +1,61 @@
-# API Module Standards
+# API 모듈 표준
 
-This file overrides root CLAUDE.md for everything in /src/api/
+이 파일은 /src/api/ 디렉토리 내 모든 것에 대해 루트 CLAUDE.md를 재정의합니다.
 
-## API-Specific Standards
+## API 전용 표준
 
-### Request Validation
-- Use Zod for schema validation
-- Always validate input
-- Return 400 with validation errors
-- Include field-level error details
+### 요청 유효성 검사
+- 스키마 유효성 검사에 Zod 사용
+- 항상 입력값 검증
+- 유효성 검사 오류 시 400 반환
+- 필드 수준 오류 상세 정보 포함
 
-### Authentication
-- All endpoints require JWT token
-- Token in Authorization header
-- Token expires after 24 hours
-- Implement refresh token mechanism
+### 인증
+- 모든 엔드포인트에 JWT 토큰 필수
+- Authorization 헤더에 토큰 포함
+- 토큰 만료 시간: 24시간
+- 리프레시 토큰 메커니즘 구현
 
-### Response Format
+### 응답 형식
 
-All responses must follow this structure:
+모든 응답은 다음 구조를 따릅니다:
 
 ```json
 {
   "success": true,
-  "data": { /* actual data */ },
+  "data": { /* 실제 데이터 */ },
   "timestamp": "2025-11-06T10:30:00Z",
   "version": "1.0"
 }
 ```
 
-Error responses:
+오류 응답:
 ```json
 {
   "success": false,
   "error": {
     "code": "VALIDATION_ERROR",
-    "message": "User message",
-    "details": { /* field errors */ }
+    "message": "사용자 메시지",
+    "details": { /* 필드 오류 */ }
   },
   "timestamp": "2025-11-06T10:30:00Z"
 }
 ```
 
-### Pagination
-- Use cursor-based pagination (not offset)
-- Include `hasMore` boolean
-- Limit max page size to 100
-- Default page size: 20
+### 페이지네이션
+- 커서 기반 페이지네이션 사용 (오프셋 방식 금지)
+- `hasMore` 불리언 포함
+- 최대 페이지 크기: 100
+- 기본 페이지 크기: 20
 
-### Rate Limiting
-- 1000 requests per hour for authenticated users
-- 100 requests per hour for public endpoints
-- Return 429 when exceeded
-- Include retry-after header
+### 속도 제한
+- 인증된 사용자: 시간당 1000 요청
+- 공개 엔드포인트: 시간당 100 요청
+- 초과 시 429 반환
+- retry-after 헤더 포함
 
-### Caching
-- Use Redis for session caching
-- Cache duration: 5 minutes default
-- Invalidate on write operations
-- Tag cache keys with resource type
+### 캐싱
+- 세션 캐싱에 Redis 사용
+- 캐시 지속 시간: 기본 5분
+- 쓰기 작업 시 무효화
+- 리소스 유형으로 캐시 키 태그 지정

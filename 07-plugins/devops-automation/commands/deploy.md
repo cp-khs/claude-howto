@@ -5,11 +5,11 @@ description: Deploy application to production or staging
 
 # Deploy Application
 
-Execute deployment workflow:
+배포 워크플로우를 실행합니다:
 
-1. Run pre-deployment checks
-2. Build application
-3. Run tests
-4. Deploy to target environment
-5. Run health checks
-6. Notify team on Slack
+1. 배포 전 검사 실행
+2. 애플리케이션 빌드
+3. 테스트 실행
+4. 대상 환경에 배포
+5. 상태 확인 실행
+6. Slack으로 팀에 알림

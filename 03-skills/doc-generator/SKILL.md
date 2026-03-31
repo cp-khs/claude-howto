@@ -3,36 +3,36 @@ name: api-documentation-generator
 description: Generate comprehensive, accurate API documentation from source code. Use when creating or updating API documentation, generating OpenAPI specs, or when users mention API docs, endpoints, or documentation.
 ---
 
-# API Documentation Generator Skill
+# API 문서 생성기 스킬
 
-## Generates
+## 생성 항목
 
-- OpenAPI/Swagger specifications
-- API endpoint documentation
-- SDK usage examples
-- Integration guides
-- Error code references
-- Authentication guides
+- OpenAPI/Swagger 명세
+- API 엔드포인트 문서
+- SDK 사용 예시
+- 통합 가이드
+- 에러 코드 참조
+- 인증 가이드
 
-## Documentation Structure
+## 문서 구조
 
-### For Each Endpoint
+### 각 엔드포인트에 대해
 
 ```markdown
 ## GET /api/v1/users/:id
 
-### Description
-Brief explanation of what this endpoint does
+### 설명
+이 엔드포인트가 하는 일에 대한 간략한 설명
 
-### Parameters
+### 파라미터
 
-| Name | Type | Required | Description |
+| 이름 | 타입 | 필수 여부 | 설명 |
 |------|------|----------|-------------|
-| id | string | Yes | User ID |
+| id | string | 필수 | 사용자 ID |
 
-### Response
+### 응답
 
-**200 Success**
+**200 성공**
 ```json
 {
   "id": "usr_123",
@@ -42,7 +42,7 @@ Brief explanation of what this endpoint does
 }
 ```
 
-**404 Not Found**
+**404 찾을 수 없음**
 ```json
 {
   "error": "USER_NOT_FOUND",
@@ -50,7 +50,7 @@ Brief explanation of what this endpoint does
 }
 ```
 
-### Examples
+### 예시
 
 **cURL**
 ```bash

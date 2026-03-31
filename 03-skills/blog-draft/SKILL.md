@@ -3,272 +3,272 @@ name: blog-draft
 description: Draft a blog post from ideas and resources. Use when users want to write a blog post, create content from research, or draft articles. Guides through research, brainstorming, outlining, and iterative drafting with version control.
 ---
 
-## User Input
+## 사용자 입력
 
 ```text
 $ARGUMENTS
 ```
 
-You **MUST** consider the user input before proceeding. User should provide:
-- **Idea/Topic**: The main concept or theme for the blog post
-- **Resources**: URLs, files, or references to research (optional but recommended)
-- **Target audience**: Who the blog post is for (optional)
-- **Tone/Style**: Formal, casual, technical, etc. (optional)
+진행하기 전에 사용자 입력을 반드시 확인하세요. 사용자는 다음을 제공해야 합니다:
+- **아이디어/주제**: 블로그 포스트의 주요 개념 또는 테마
+- **리소스**: 조사할 URL, 파일 또는 참고 자료 (선택 사항이지만 권장)
+- **대상 독자**: 블로그 포스트의 독자층 (선택 사항)
+- **어조/스타일**: 격식체, 캐주얼, 기술적 등 (선택 사항)
 
-**IMPORTANT**: If the user is requesting updates to an **existing blog post**, skip steps 0-8 and start directly at **Step 9**. Read the existing draft file(s) first, then proceed with the iteration process.
+**중요**: 사용자가 **기존 블로그 포스트** 수정을 요청하는 경우, 0~8단계를 건너뛰고 **9단계**부터 시작하세요. 먼저 기존 초안 파일을 읽은 후 반복 작업을 진행하세요.
 
-## Execution Flow
+## 실행 흐름
 
-Follow these steps sequentially. **Do not skip steps or proceed without user approval where indicated.**
+아래 단계를 순서대로 따르세요. **지시된 곳에서 사용자 승인 없이 단계를 건너뛰거나 진행하지 마세요.**
 
-### Step 0: Create Project Folder
+### 0단계: 프로젝트 폴더 생성
 
-1. Generate a folder name using format: `YYYY-MM-DD-short-topic-name`
-   - Use today's date
-   - Create a short, URL-friendly slug from the topic (lowercase, hyphens, max 5 words)
+1. `YYYY-MM-DD-짧은-주제명` 형식으로 폴더 이름을 생성합니다:
+   - 오늘 날짜 사용
+   - 주제에서 짧고 URL 친화적인 슬러그 생성 (소문자, 하이픈, 최대 5단어)
 
-2. Create the folder structure:
+2. 폴더 구조를 생성합니다:
    ```
    blog-posts/
-   └── YYYY-MM-DD-short-topic-name/
+   └── YYYY-MM-DD-짧은-주제명/
        └── resources/
    ```
 
-3. Confirm folder creation with user before proceeding.
+3. 진행 전 사용자에게 폴더 생성을 확인합니다.
 
-### Step 1: Research & Resource Collection
+### 1단계: 리서치 및 리소스 수집
 
-1. Create `resources/` subfolder in the blog post directory
+1. 블로그 포스트 디렉토리에 `resources/` 하위 폴더를 생성합니다.
 
-2. For each provided resource:
-   - **URLs**: Fetch and save key information to `resources/` as markdown files
-   - **Files**: Read and summarize in `resources/`
-   - **Topics**: Use web search to gather up-to-date information
+2. 각 제공된 리소스에 대해:
+   - **URL**: 핵심 정보를 가져와 `resources/`에 마크다운 파일로 저장
+   - **파일**: 읽고 `resources/`에 요약
+   - **주제**: 웹 검색으로 최신 정보 수집
 
-3. For each resource, create a summary file in `resources/`:
-   - `resources/source-1-[short-name].md`
-   - `resources/source-2-[short-name].md`
-   - etc.
+3. 각 리소스에 대해 `resources/`에 요약 파일을 생성합니다:
+   - `resources/source-1-[짧은이름].md`
+   - `resources/source-2-[짧은이름].md`
+   - 등
 
-4. Each summary should include:
+4. 각 요약에는 다음을 포함합니다:
    ```markdown
-   # Source: [Title/URL]
+   # 출처: [제목/URL]
 
-   ## Key Points
-   - Point 1
-   - Point 2
+   ## 핵심 내용
+   - 내용 1
+   - 내용 2
 
-   ## Relevant Quotes/Data
-   - Quote or statistic 1
-   - Quote or statistic 2
+   ## 관련 인용/데이터
+   - 인용 또는 통계 1
+   - 인용 또는 통계 2
 
-   ## How This Relates to Topic
-   Brief explanation of relevance
+   ## 주제와의 관련성
+   관련성에 대한 간략한 설명
    ```
 
-5. Present research summary to user.
+5. 리서치 요약을 사용자에게 제시합니다.
 
-### Step 2: Brainstorm & Clarify
+### 2단계: 브레인스토밍 및 명확화
 
-1. Based on the idea and researched resources, present:
-   - **Main themes** identified from research
-   - **Potential angles** for the blog post
-   - **Key points** that should be covered
-   - **Gaps** in information that need clarification
+1. 아이디어와 조사된 리소스를 바탕으로 다음을 제시합니다:
+   - 리서치에서 파악된 **주요 테마**
+   - 블로그 포스트의 **잠재적 각도**
+   - 다뤄야 할 **핵심 포인트**
+   - 명확화가 필요한 정보의 **공백**
 
-2. Ask clarifying questions:
-   - What is the main takeaway you want readers to have?
-   - Are there specific points from the research you want to emphasize?
-   - What's the target length? (short: 500-800 words, medium: 1000-1500, long: 2000+)
-   - Any points you want to exclude?
+2. 명확화 질문을 합니다:
+   - 독자에게 전달하고 싶은 주요 메시지는 무엇인가요?
+   - 리서치에서 강조하고 싶은 특정 포인트가 있나요?
+   - 목표 분량은? (짧게: 500-800자, 중간: 1000-1500자, 길게: 2000자 이상)
+   - 제외하고 싶은 포인트가 있나요?
 
-3. **Wait for user responses before proceeding.**
+3. **진행하기 전에 사용자 응답을 기다립니다.**
 
-### Step 3: Propose Outline
+### 3단계: 아웃라인 제안
 
-1. Create a structured outline including:
+1. 다음을 포함하는 구조화된 아웃라인을 작성합니다:
 
    ```markdown
-   # Blog Post Outline: [Title]
+   # 블로그 포스트 아웃라인: [제목]
 
-   ## Meta Information
-   - **Target Audience**: [who]
-   - **Tone**: [style]
-   - **Target Length**: [word count]
-   - **Main Takeaway**: [key message]
+   ## 메타 정보
+   - **대상 독자**: [누구]
+   - **어조**: [스타일]
+   - **목표 분량**: [단어 수]
+   - **주요 메시지**: [핵심 메시지]
 
-   ## Proposed Structure
+   ## 제안 구조
 
-   ### Hook/Introduction
-   - Opening hook idea
-   - Context setting
-   - Thesis statement
+   ### 훅/도입부
+   - 오프닝 훅 아이디어
+   - 맥락 설정
+   - 논지 진술
 
-   ### Section 1: [Title]
-   - Key point A
-   - Key point B
-   - Supporting evidence from [source]
+   ### 섹션 1: [제목]
+   - 핵심 포인트 A
+   - 핵심 포인트 B
+   - [출처]의 뒷받침 증거
 
-   ### Section 2: [Title]
-   - Key point A
-   - Key point B
+   ### 섹션 2: [제목]
+   - 핵심 포인트 A
+   - 핵심 포인트 B
 
-   [Continue for all sections...]
+   [모든 섹션에 대해 계속...]
 
-   ### Conclusion
-   - Summary of key points
-   - Call to action or final thought
+   ### 결론
+   - 핵심 포인트 요약
+   - 행동 촉구 또는 최종 생각
 
-   ## Sources to Cite
-   - Source 1
-   - Source 2
+   ## 인용할 출처
+   - 출처 1
+   - 출처 2
    ```
 
-2. Present outline to user and **ask for approval or modifications**.
+2. 아웃라인을 사용자에게 제시하고 **승인 또는 수정 요청을 합니다**.
 
-### Step 4: Save Approved Outline
+### 4단계: 승인된 아웃라인 저장
 
-1. Once user approves the outline, save it to `OUTLINE.md` in the blog post folder.
+1. 사용자가 아웃라인을 승인하면, 블로그 포스트 폴더의 `OUTLINE.md`에 저장합니다.
 
-2. Confirm the outline has been saved.
+2. 아웃라인이 저장되었음을 확인합니다.
 
-### Step 5: Commit Outline (if in git repo)
+### 5단계: 아웃라인 커밋 (git 저장소인 경우)
 
-1. Check if current directory is a git repository.
+1. 현재 디렉토리가 git 저장소인지 확인합니다.
 
-2. If yes:
-   - Stage the new files: blog post folder, resources, and OUTLINE.md
-   - Create commit with message: `docs: Add outline for blog post - [topic-name]`
-   - Push to remote
+2. 그렇다면:
+   - 새 파일 스테이징: 블로그 포스트 폴더, 리소스, OUTLINE.md
+   - 커밋 메시지 생성: `docs: Add outline for blog post - [주제명]`
+   - 원격에 Push
 
-3. If not a git repo, skip this step and inform user.
+3. git 저장소가 아니라면, 이 단계를 건너뛰고 사용자에게 알립니다.
 
-### Step 6: Write Draft
+### 6단계: 초안 작성
 
-1. Based on the approved outline, write the full blog post draft.
+1. 승인된 아웃라인을 바탕으로 전체 블로그 포스트 초안을 작성합니다.
 
-2. Follow the structure from OUTLINE.md exactly.
+2. OUTLINE.md의 구조를 정확히 따릅니다.
 
-3. Include:
-   - Engaging introduction with hook
-   - Clear section headers
-   - Supporting evidence and examples from research
-   - Smooth transitions between sections
-   - Strong conclusion with takeaway
-   - **Citations**: All comparisons, statistics, data points, and factual claims MUST cite the original source
+3. 다음을 포함합니다:
+   - 훅이 있는 매력적인 도입부
+   - 명확한 섹션 헤더
+   - 리서치의 뒷받침 증거 및 예시
+   - 섹션 간 자연스러운 전환
+   - 핵심 메시지가 있는 강력한 결론
+   - **인용**: 모든 비교, 통계, 데이터 포인트, 사실적 주장은 반드시 원본 출처를 인용해야 합니다
 
-4. Save the draft as `draft-v0.1.md` in the blog post folder.
+4. 초안을 블로그 포스트 폴더에 `draft-v0.1.md`로 저장합니다.
 
-5. Format:
+5. 형식:
    ```markdown
-   # [Blog Post Title]
+   # [블로그 포스트 제목]
 
-   *[Optional: subtitle or tagline]*
+   *[선택 사항: 부제목 또는 태그라인]*
 
-   [Full content with inline citations...]
+   [인라인 인용이 포함된 전체 내용...]
 
    ---
 
-   ## References
-   - [1] Source 1 Title - URL or Citation
-   - [2] Source 2 Title - URL or Citation
-   - [3] Source 3 Title - URL or Citation
+   ## 참고 문헌
+   - [1] 출처 1 제목 - URL 또는 인용
+   - [2] 출처 2 제목 - URL 또는 인용
+   - [3] 출처 3 제목 - URL 또는 인용
    ```
 
-6. **Citation Requirements**:
-   - Every data point, statistic, or comparison MUST have an inline citation
-   - Use numbered references [1], [2], etc., or named citations [Source Name]
-   - Link citations to the References section at the end
-   - Example: "Studies show that 65% of developers prefer TypeScript [1]"
-   - Example: "React outperforms Vue in rendering speed by 20% [React Benchmarks 2024]"
+6. **인용 요구 사항**:
+   - 모든 데이터 포인트, 통계 또는 비교는 반드시 인라인 인용이 있어야 합니다
+   - 번호 참조 [1], [2] 등 또는 이름 인용 [출처명] 사용
+   - 인용을 끝부분의 참고 문헌 섹션으로 연결
+   - 예시: "연구에 따르면 65%의 개발자가 TypeScript를 선호합니다 [1]"
+   - 예시: "React는 Vue보다 렌더링 속도가 20% 빠릅니다 [React Benchmarks 2024]"
 
-### Step 7: Commit Draft (if in git repo)
+### 7단계: 초안 커밋 (git 저장소인 경우)
 
-1. Check if in git repository.
+1. git 저장소인지 확인합니다.
 
-2. If yes:
-   - Stage the draft file
-   - Create commit with message: `docs: Add draft v0.1 for blog post - [topic-name]`
-   - Push to remote
+2. 그렇다면:
+   - 초안 파일 스테이징
+   - 커밋 메시지 생성: `docs: Add draft v0.1 for blog post - [주제명]`
+   - 원격에 Push
 
-3. If not a git repo, skip and inform user.
+3. git 저장소가 아니라면, 건너뛰고 사용자에게 알립니다.
 
-### Step 8: Present Draft for Review
+### 8단계: 검토를 위한 초안 제시
 
-1. Present the draft content to user.
+1. 초안 내용을 사용자에게 제시합니다.
 
-2. Ask for feedback:
-   - Overall impression?
-   - Sections that need expansion or reduction?
-   - Tone adjustments needed?
-   - Missing information?
-   - Specific edits or rewrites?
+2. 피드백을 요청합니다:
+   - 전반적인 인상은?
+   - 확장하거나 줄여야 할 섹션?
+   - 어조 조정이 필요한가요?
+   - 누락된 정보?
+   - 특정 수정 또는 재작성 요청?
 
-3. **Wait for user response.**
+3. **사용자 응답을 기다립니다.**
 
-### Step 9: Iterate or Finalize
+### 9단계: 반복 또는 완성
 
-**If user requests changes:**
-1. Note all requested modifications
-2. Return to Step 6 with the following adjustments:
-   - Increment version number (v0.2, v0.3, etc.)
-   - Incorporate all feedback
-   - Save as `draft-v[X.Y].md`
-   - Repeat Steps 7-8
+**사용자가 변경을 요청하는 경우:**
+1. 모든 요청된 수정 사항을 기록합니다
+2. 다음 조정으로 6단계로 돌아갑니다:
+   - 버전 번호 증가 (v0.2, v0.3 등)
+   - 모든 피드백 반영
+   - `draft-v[X.Y].md`로 저장
+   - 7-8단계 반복
 
-**If user approves:**
-1. Confirm the final draft version
-2. Optionally rename to `final.md` if user requests
-3. Summarize the blog post creation process:
-   - Total versions created
-   - Key changes between versions
-   - Final word count
-   - Files created
+**사용자가 승인하는 경우:**
+1. 최종 초안 버전 확인
+2. 사용자가 요청하면 선택적으로 `final.md`로 이름 변경
+3. 블로그 포스트 작성 프로세스 요약:
+   - 생성된 총 버전 수
+   - 버전 간 주요 변경 사항
+   - 최종 단어 수
+   - 생성된 파일
 
-## Version Tracking
+## 버전 추적
 
-All drafts are preserved with incremental versioning:
-- `draft-v0.1.md` - Initial draft
-- `draft-v0.2.md` - After first round of feedback
-- `draft-v0.3.md` - After second round of feedback
-- etc.
+모든 초안은 증분 버전 관리로 보존됩니다:
+- `draft-v0.1.md` - 초기 초안
+- `draft-v0.2.md` - 첫 번째 피드백 후
+- `draft-v0.3.md` - 두 번째 피드백 후
+- 등
 
-This allows tracking the evolution of the blog post and reverting if needed.
+이를 통해 블로그 포스트의 발전 과정을 추적하고 필요시 되돌릴 수 있습니다.
 
-## Output Files Structure
+## 출력 파일 구조
 
 ```
 blog-posts/
-└── YYYY-MM-DD-topic-name/
+└── YYYY-MM-DD-주제명/
     ├── resources/
     │   ├── source-1-name.md
     │   ├── source-2-name.md
     │   └── ...
     ├── OUTLINE.md
     ├── draft-v0.1.md
-    ├── draft-v0.2.md (if iterations)
-    └── draft-v0.3.md (if more iterations)
+    ├── draft-v0.2.md (반복이 있는 경우)
+    └── draft-v0.3.md (추가 반복이 있는 경우)
 ```
 
-## Tips for Quality
+## 품질을 위한 팁
 
-- **Hook**: Start with a question, surprising fact, or relatable scenario
-- **Flow**: Each paragraph should connect to the next
-- **Evidence**: Support claims with data from research
-- **Citations**: ALWAYS cite sources for:
-  - All statistics and data points (e.g., "According to [Source], 75% of...")
-  - Comparisons between products, services, or approaches (e.g., "X performs 2x faster than Y [Source]")
-  - Factual claims about market trends, research findings, or benchmarks
-  - Use inline citations with format: [Source Name] or [Author, Year]
-- **Voice**: Maintain consistent tone throughout
-- **Length**: Respect the target word count
-- **Readability**: Use short paragraphs, bullet points where appropriate
-- **CTA**: End with a clear call-to-action or thought-provoking question
+- **훅**: 질문, 놀라운 사실 또는 공감할 수 있는 시나리오로 시작
+- **흐름**: 각 단락이 다음과 연결되어야 함
+- **증거**: 리서치의 데이터로 주장을 뒷받침
+- **인용**: 다음의 경우 항상 출처를 인용:
+  - 모든 통계 및 데이터 포인트 (예: "[출처]에 따르면 75%가...")
+  - 제품, 서비스 또는 접근법 간의 비교 (예: "X는 Y보다 2배 빠릅니다 [출처]")
+  - 시장 동향, 연구 결과 또는 벤치마크에 관한 사실적 주장
+  - 인라인 인용 형식 사용: [출처명] 또는 [저자, 연도]
+- **어조**: 전체적으로 일관된 어조 유지
+- **분량**: 목표 단어 수 준수
+- **가독성**: 짧은 단락, 적절한 곳에 불릿 포인트 사용
+- **CTA**: 명확한 행동 촉구 또는 생각을 자극하는 질문으로 마무리
 
-## Notes
+## 참고 사항
 
-- Always wait for user approval at outlined checkpoints
-- Preserve all draft versions for history
-- Use web search for up-to-date information when URLs are provided
-- If resources are insufficient, ask user for more or suggest additional research
-- Adapt tone based on target audience (technical, general, business, etc.)
+- 지정된 체크포인트에서 항상 사용자 승인을 기다립니다
+- 기록을 위해 모든 초안 버전을 보존합니다
+- URL이 제공된 경우 최신 정보를 위해 웹 검색을 사용합니다
+- 리소스가 충분하지 않으면, 사용자에게 추가 요청하거나 추가 리서치를 제안합니다
+- 대상 독자(기술적, 일반, 비즈니스 등)에 따라 어조를 조정합니다

@@ -5,10 +5,10 @@ description: Validate documentation for completeness and accuracy
 
 # Documentation Validation
 
-Validate documentation quality:
+문서 품질을 검증합니다:
 
-1. Check for broken links
-2. Verify code examples
-3. Ensure completeness
-4. Check formatting
-5. Validate against actual code
+1. 깨진 링크 확인
+2. 코드 예제 검증
+3. 완전성 확인
+4. 포맷 확인
+5. 실제 코드와 대조 검증

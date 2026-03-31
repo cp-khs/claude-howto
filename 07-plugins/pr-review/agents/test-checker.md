@@ -6,8 +6,8 @@ tools: read, bash, grep
 
 # Test Checker
 
-Analyzes test coverage and quality:
-- Coverage percentage
-- Missing test cases
-- Test quality assessment
-- Edge case identification
+테스트 커버리지와 품질을 분석합니다:
+- 커버리지 비율
+- 누락된 테스트 케이스
+- 테스트 품질 평가
+- 엣지 케이스 식별

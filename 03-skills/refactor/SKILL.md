@@ -3,85 +3,85 @@ name: code-refactor
 description: Systematic code refactoring based on Martin Fowler's methodology. Use when users ask to refactor code, improve code structure, reduce technical debt, clean up legacy code, eliminate code smells, or improve code maintainability. This skill guides through a phased approach with research, planning, and safe incremental implementation.
 ---
 
-# Code Refactoring Skill
+# 코드 리팩토링 스킬
 
-A systematic approach to refactoring code based on Martin Fowler's *Refactoring: Improving the Design of Existing Code* (2nd Edition). This skill emphasizes safe, incremental changes backed by tests.
+Martin Fowler의 *리팩토링: 기존 코드 개선* (2판)을 기반으로 한 체계적인 코드 리팩토링 접근법입니다. 이 스킬은 테스트로 뒷받침되는 안전하고 점진적인 변경을 강조합니다.
 
-> "Refactoring is the process of changing a software system in such a way that it does not alter the external behavior of the code yet improves its internal structure." — Martin Fowler
+> "리팩토링은 코드의 외부 동작을 변경하지 않으면서 내부 구조를 개선하는 방식으로 소프트웨어 시스템을 변경하는 프로세스입니다." — Martin Fowler
 
-## Core Principles
+## 핵심 원칙
 
-1. **Behavior Preservation**: External behavior must remain unchanged
-2. **Small Steps**: Make tiny, testable changes
-3. **Test-Driven**: Tests are the safety net
-4. **Continuous**: Refactoring is ongoing, not a one-time event
-5. **Collaborative**: User approval required at each phase
+1. **동작 보존**: 외부 동작은 변경되지 않아야 합니다
+2. **작은 단계**: 작고 테스트 가능한 변경 수행
+3. **테스트 주도**: 테스트가 안전망입니다
+4. **지속적**: 리팩토링은 일회성이 아닌 지속적인 작업입니다
+5. **협력적**: 각 단계에서 사용자 승인이 필요합니다
 
-## Workflow Overview
+## 워크플로우 개요
 
 ```
-Phase 1: Research & Analysis
+1단계: 리서치 및 분석
     ↓
-Phase 2: Test Coverage Assessment
+2단계: 테스트 커버리지 평가
     ↓
-Phase 3: Code Smell Identification
+3단계: 코드 스멜 식별
     ↓
-Phase 4: Refactoring Plan Creation
+4단계: 리팩토링 계획 작성
     ↓
-Phase 5: Incremental Implementation
+5단계: 점진적 구현
     ↓
-Phase 6: Review & Iteration
+6단계: 검토 및 반복
 ```
 
 ---
 
-## Phase 1: Research & Analysis
+## 1단계: 리서치 및 분석
 
-### Objectives
-- Understand the codebase structure and purpose
-- Identify the scope of refactoring
-- Gather context about business requirements
+### 목표
+- 코드베이스 구조와 목적 이해
+- 리팩토링 범위 파악
+- 비즈니스 요구 사항에 대한 맥락 수집
 
-### Questions to Ask User
-Before starting, clarify:
+### 사용자에게 물어볼 질문
+시작하기 전에 다음을 명확히 하세요:
 
-1. **Scope**: Which files/modules/functions need refactoring?
-2. **Goals**: What problems are you trying to solve? (readability, performance, maintainability)
-3. **Constraints**: Are there any areas that should NOT be changed?
-4. **Timeline pressure**: Is this blocking other work?
-5. **Test status**: Do tests exist? Are they passing?
+1. **범위**: 어떤 파일/모듈/함수를 리팩토링해야 하나요?
+2. **목표**: 해결하려는 문제는 무엇인가요? (가독성, 성능, 유지보수성)
+3. **제약 조건**: 변경하지 않아야 할 영역이 있나요?
+4. **타임라인 압박**: 다른 작업을 막고 있나요?
+5. **테스트 상태**: 테스트가 있나요? 통과하고 있나요?
 
-### Actions
-- [ ] Read and understand the target code
-- [ ] Identify dependencies and integrations
-- [ ] Document current architecture
-- [ ] Note any existing technical debt markers (TODOs, FIXMEs)
+### 작업
+- [ ] 대상 코드 읽고 이해
+- [ ] 의존성 및 통합 파악
+- [ ] 현재 아키텍처 문서화
+- [ ] 기존 기술 부채 마커 메모 (TODOs, FIXMEs)
 
-### Output
-Present findings to user:
-- Code structure summary
-- Identified problem areas
-- Initial recommendations
-- **Request approval to proceed**
+### 출력
+사용자에게 발견 사항 제시:
+- 코드 구조 요약
+- 식별된 문제 영역
+- 초기 권장 사항
+- **진행 승인 요청**
 
 ---
 
-## Phase 2: Test Coverage Assessment
+## 2단계: 테스트 커버리지 평가
 
-### Why Tests Matter
-> "Refactoring without tests is like driving without a seatbelt." — Martin Fowler
+### 테스트가 중요한 이유
+> "테스트 없이 리팩토링하는 것은 안전벨트 없이 운전하는 것과 같습니다." — Martin Fowler
 
-Tests are the **key enabler** of safe refactoring. Without them, you risk introducing bugs.
+테스트는 안전한 리팩토링의 **핵심 활성화 요소**입니다. 테스트 없이는 버그 도입 위험이 있습니다.
 
-### Assessment Steps
+### 평가 단계
 
-1. **Check for existing tests**
+1. **기존 테스트 확인**
    ```bash
-   # Look for test files
+   # 테스트 파일 찾기
    find . -name "*test*" -o -name "*spec*" | head -20
    ```
 
-2. **Run existing tests**
+2. **기존 테스트 실행**
    ```bash
    # JavaScript/TypeScript
    npm test
@@ -93,7 +93,7 @@ Tests are the **key enabler** of safe refactoring. Without them, you risk introd
    mvn test
    ```
 
-3. **Check coverage (if available)**
+3. **커버리지 확인 (가능한 경우)**
    ```bash
    # JavaScript
    npm run test:coverage
@@ -102,303 +102,303 @@ Tests are the **key enabler** of safe refactoring. Without them, you risk introd
    pytest --cov=.
    ```
 
-### Decision Point: Ask User
+### 결정 포인트: 사용자에게 물어보기
 
-**If tests exist and pass:**
-- Proceed to Phase 3
+**테스트가 존재하고 통과하는 경우:**
+- 3단계로 진행
 
-**If tests are missing or incomplete:**
-Present options:
-1. Write tests first (recommended)
-2. Add tests incrementally during refactoring
-3. Proceed without tests (risky - requires user acknowledgment)
+**테스트가 없거나 불완전한 경우:**
+옵션 제시:
+1. 먼저 테스트 작성 (권장)
+2. 리팩토링 중 점진적으로 테스트 추가
+3. 테스트 없이 진행 (위험 - 사용자 확인 필요)
 
-**If tests are failing:**
-- STOP. Fix failing tests before refactoring
-- Ask user: Should we fix tests first?
+**테스트가 실패하는 경우:**
+- 중지. 리팩토링 전에 실패하는 테스트 수정
+- 사용자에게 물어보기: 먼저 테스트를 수정해야 할까요?
 
-### Test Writing Guidelines (if needed)
+### 테스트 작성 지침 (필요한 경우)
 
-For each function being refactored, ensure tests cover:
-- Happy path (normal operation)
-- Edge cases (empty inputs, null, boundaries)
-- Error scenarios (invalid inputs, exceptions)
+리팩토링되는 각 함수에 대해 테스트가 다음을 커버하는지 확인합니다:
+- 해피 패스 (정상 작동)
+- 엣지 케이스 (빈 입력, null, 경계값)
+- 오류 시나리오 (잘못된 입력, 예외)
 
-Use the "red-green-refactor" cycle:
-1. Write failing test (red)
-2. Make it pass (green)
-3. Refactor
+"레드-그린-리팩토링" 사이클 사용:
+1. 실패하는 테스트 작성 (레드)
+2. 통과시키기 (그린)
+3. 리팩토링
 
 ---
 
-## Phase 3: Code Smell Identification
+## 3단계: 코드 스멜 식별
 
-### What Are Code Smells?
-Symptoms of deeper problems in code. They're not bugs, but indicators that the code could be improved.
+### 코드 스멜이란?
+코드에서 더 깊은 문제의 증상입니다. 버그가 아니라 코드가 개선될 수 있다는 지표입니다.
 
-### Common Code Smells to Check
+### 확인할 일반적인 코드 스멜
 
-See [references/code-smells.md](references/code-smells.md) for the complete catalog.
+전체 카탈로그는 [references/code-smells.md](references/code-smells.md)를 참조하세요.
 
-#### Quick Reference
+#### 빠른 참조
 
-| Smell | Signs | Impact |
+| 스멜 | 징후 | 영향 |
 |-------|-------|--------|
-| **Long Method** | Methods > 30-50 lines | Hard to understand, test, maintain |
-| **Duplicated Code** | Same logic in multiple places | Bug fixes needed in multiple places |
-| **Large Class** | Class with too many responsibilities | Violates Single Responsibility |
-| **Feature Envy** | Method uses another class's data more | Poor encapsulation |
-| **Primitive Obsession** | Overuse of primitives instead of objects | Missing domain concepts |
-| **Long Parameter List** | Methods with 4+ parameters | Hard to call correctly |
-| **Data Clumps** | Same data items appearing together | Missing abstraction |
-| **Switch Statements** | Complex switch/if-else chains | Hard to extend |
-| **Speculative Generality** | Code "just in case" | Unnecessary complexity |
-| **Dead Code** | Unused code | Confusion, maintenance burden |
+| **긴 메서드** | 30-50줄 이상의 메서드 | 이해, 테스트, 유지보수 어려움 |
+| **중복 코드** | 여러 곳에 같은 로직 | 여러 곳에서 버그 수정 필요 |
+| **거대한 클래스** | 너무 많은 책임을 가진 클래스 | 단일 책임 원칙 위반 |
+| **기능 욕심** | 메서드가 자신보다 다른 클래스의 데이터를 더 많이 사용 | 나쁜 캡슐화 |
+| **기본 타입 집착** | 객체 대신 기본 타입 과다 사용 | 도메인 개념 누락 |
+| **긴 파라미터 목록** | 4개 이상의 파라미터를 가진 메서드 | 올바르게 호출하기 어려움 |
+| **데이터 덩어리** | 같은 데이터 항목이 함께 나타남 | 누락된 추상화 |
+| **Switch 문** | 복잡한 switch/if-else 체인 | 확장하기 어려움 |
+| **추측적 일반화** | "혹시 모르니" 코드 | 불필요한 복잡성 |
+| **죽은 코드** | 사용되지 않는 코드 | 혼란, 유지보수 부담 |
 
-### Analysis Steps
+### 분석 단계
 
-1. **Automated Analysis** (if scripts available)
+1. **자동화 분석** (스크립트가 있는 경우)
    ```bash
    python scripts/detect-smells.py <file>
    ```
 
-2. **Manual Review**
-   - Walk through code systematically
-   - Note each smell with location and severity
-   - Categorize by impact (Critical/High/Medium/Low)
+2. **수동 검토**
+   - 코드를 체계적으로 검토
+   - 각 스멜을 위치 및 심각도와 함께 기록
+   - 영향에 따라 분류 (심각/높음/중간/낮음)
 
-3. **Prioritization**
-   Focus on smells that:
-   - Block current development
-   - Cause bugs or confusion
-   - Affect most-changed code paths
+3. **우선순위 결정**
+   다음에 해당하는 스멜에 집중:
+   - 현재 개발을 막는 것
+   - 버그나 혼란을 야기하는 것
+   - 가장 많이 변경되는 코드 경로에 영향을 미치는 것
 
-### Output: Smell Report
+### 출력: 스멜 보고서
 
-Present to user:
-- List of identified smells with locations
-- Severity assessment for each
-- Recommended priority order
-- **Request approval on priorities**
+사용자에게 제시:
+- 위치와 함께 식별된 스멜 목록
+- 각각에 대한 심각도 평가
+- 권장 우선순위 순서
+- **우선순위에 대한 승인 요청**
 
 ---
 
-## Phase 4: Refactoring Plan Creation
+## 4단계: 리팩토링 계획 작성
 
-### Selecting Refactorings
+### 리팩토링 선택
 
-For each smell, select an appropriate refactoring from the catalog.
+각 스멜에 대해 카탈로그에서 적절한 리팩토링을 선택합니다.
 
-See [references/refactoring-catalog.md](references/refactoring-catalog.md) for the complete list.
+전체 목록은 [references/refactoring-catalog.md](references/refactoring-catalog.md)를 참조하세요.
 
-#### Smell-to-Refactoring Mapping
+#### 스멜-리팩토링 매핑
 
-| Code Smell | Recommended Refactoring(s) |
+| 코드 스멜 | 권장 리팩토링 |
 |------------|---------------------------|
-| Long Method | Extract Method, Replace Temp with Query |
-| Duplicated Code | Extract Method, Pull Up Method, Form Template Method |
-| Large Class | Extract Class, Extract Subclass |
-| Feature Envy | Move Method, Move Field |
-| Primitive Obsession | Replace Primitive with Object, Replace Type Code with Class |
-| Long Parameter List | Introduce Parameter Object, Preserve Whole Object |
-| Data Clumps | Extract Class, Introduce Parameter Object |
-| Switch Statements | Replace Conditional with Polymorphism |
-| Speculative Generality | Collapse Hierarchy, Inline Class, Remove Dead Code |
-| Dead Code | Remove Dead Code |
+| 긴 메서드 | 메서드 추출, 임시값을 쿼리로 교체 |
+| 중복 코드 | 메서드 추출, 상위 메서드 끌어올리기, 템플릿 메서드 형성 |
+| 거대한 클래스 | 클래스 추출, 서브클래스 추출 |
+| 기능 욕심 | 메서드 이동, 필드 이동 |
+| 기본 타입 집착 | 기본 타입을 객체로 교체, 타입 코드를 클래스로 교체 |
+| 긴 파라미터 목록 | 파라미터 객체 도입, 전체 객체 보존 |
+| 데이터 덩어리 | 클래스 추출, 파라미터 객체 도입 |
+| Switch 문 | 조건문을 다형성으로 교체 |
+| 추측적 일반화 | 계층 구조 축소, 클래스 인라인, 죽은 코드 제거 |
+| 죽은 코드 | 죽은 코드 제거 |
 
-### Plan Structure
+### 계획 구조
 
-Use the template at [templates/refactoring-plan.md](templates/refactoring-plan.md).
+[templates/refactoring-plan.md](templates/refactoring-plan.md)의 템플릿을 사용하세요.
 
-For each refactoring:
-1. **Target**: What code will change
-2. **Smell**: What problem it addresses
-3. **Refactoring**: Which technique to apply
-4. **Steps**: Detailed micro-steps
-5. **Risks**: What could go wrong
-6. **Rollback**: How to undo if needed
+각 리팩토링에 대해:
+1. **대상**: 어떤 코드가 변경될 것인지
+2. **스멜**: 어떤 문제를 해결하는지
+3. **리팩토링**: 어떤 기법을 적용할 것인지
+4. **단계**: 상세한 마이크로 단계
+5. **위험**: 무엇이 잘못될 수 있는지
+6. **롤백**: 필요 시 어떻게 되돌리는지
 
-### Phased Approach
+### 단계적 접근법
 
-**CRITICAL**: Introduce refactoring gradually in phases.
+**중요**: 리팩토링을 단계적으로 점진적으로 도입하세요.
 
-**Phase A: Quick Wins** (Low risk, high value)
-- Rename variables for clarity
-- Extract obvious duplicate code
-- Remove dead code
+**A단계: 빠른 성과** (낮은 위험, 높은 가치)
+- 명확성을 위한 변수명 변경
+- 명백한 중복 코드 추출
+- 죽은 코드 제거
 
-**Phase B: Structural Improvements** (Medium risk)
-- Extract methods from long functions
-- Introduce parameter objects
-- Move methods to appropriate classes
+**B단계: 구조적 개선** (중간 위험)
+- 긴 함수에서 메서드 추출
+- 파라미터 객체 도입
+- 적절한 클래스로 메서드 이동
 
-**Phase C: Architectural Changes** (Higher risk)
-- Replace conditionals with polymorphism
-- Extract classes
-- Introduce design patterns
+**C단계: 아키텍처 변경** (높은 위험)
+- 조건문을 다형성으로 교체
+- 클래스 추출
+- 디자인 패턴 도입
 
-### Decision Point: Present Plan to User
+### 결정 포인트: 사용자에게 계획 제시
 
-Before implementation:
-- Show complete refactoring plan
-- Explain each phase and its risks
-- Get explicit approval for each phase
-- **Ask**: "Should I proceed with Phase A?"
+구현 전에:
+- 완전한 리팩토링 계획 제시
+- 각 단계와 위험 설명
+- 각 단계에 대한 명시적 승인 받기
+- **물어보기**: "A단계를 진행해도 될까요?"
 
 ---
 
-## Phase 5: Incremental Implementation
+## 5단계: 점진적 구현
 
-### The Golden Rule
-> "Change → Test → Green? → Commit → Next step"
+### 황금 규칙
+> "변경 → 테스트 → 그린? → 커밋 → 다음 단계"
 
-### Implementation Rhythm
+### 구현 리듬
 
-For each refactoring step:
+각 리팩토링 단계에 대해:
 
-1. **Pre-check**
-   - Tests are passing (green)
-   - Code compiles
+1. **사전 확인**
+   - 테스트가 통과 중 (그린)
+   - 코드가 컴파일됨
 
-2. **Make ONE small change**
-   - Follow the mechanics from the catalog
-   - Keep changes minimal
+2. **하나의 작은 변경 수행**
+   - 카탈로그의 메커니즘 따르기
+   - 변경을 최소화
 
-3. **Verify**
-   - Run tests immediately
-   - Check for compilation errors
+3. **검증**
+   - 즉시 테스트 실행
+   - 컴파일 오류 확인
 
-4. **If tests pass (green)**
-   - Commit with descriptive message
-   - Move to next step
+4. **테스트가 통과하면 (그린)**
+   - 설명적인 메시지로 커밋
+   - 다음 단계로 이동
 
-5. **If tests fail (red)**
-   - STOP immediately
-   - Undo the change
-   - Analyze what went wrong
-   - Ask user if unclear
+5. **테스트가 실패하면 (레드)**
+   - 즉시 중지
+   - 변경 되돌리기
+   - 무엇이 잘못되었는지 분석
+   - 불명확하면 사용자에게 물어보기
 
-### Commit Strategy
+### 커밋 전략
 
-Each commit should be:
-- **Atomic**: One logical change
-- **Reversible**: Easy to revert
-- **Descriptive**: Clear commit message
+각 커밋은:
+- **원자적**: 하나의 논리적 변경
+- **되돌릴 수 있는**: 쉽게 취소 가능
+- **설명적**: 명확한 커밋 메시지
 
-Example commit messages:
+커밋 메시지 예시:
 ```
 refactor: Extract calculateTotal() from processOrder()
 refactor: Rename 'x' to 'customerCount' for clarity
 refactor: Remove unused validateOldFormat() method
 ```
 
-### Progress Reporting
+### 진행 상황 보고
 
-After each sub-phase, report to user:
-- Changes made
-- Tests still passing?
-- Any issues encountered
-- **Ask**: "Continue with next batch?"
+각 하위 단계 후 사용자에게 보고:
+- 수행된 변경 사항
+- 테스트가 여전히 통과하는지?
+- 발생한 이슈
+- **물어보기**: "다음 배치를 계속할까요?"
 
 ---
 
-## Phase 6: Review & Iteration
+## 6단계: 검토 및 반복
 
-### Post-Refactoring Checklist
+### 리팩토링 후 체크리스트
 
-- [ ] All tests passing
-- [ ] No new warnings/errors
-- [ ] Code compiles successfully
-- [ ] Behavior unchanged (manual verification)
-- [ ] Documentation updated if needed
-- [ ] Commit history is clean
+- [ ] 모든 테스트 통과
+- [ ] 새로운 경고/오류 없음
+- [ ] 코드가 성공적으로 컴파일됨
+- [ ] 동작이 변경되지 않음 (수동 검증)
+- [ ] 필요한 경우 문서 업데이트됨
+- [ ] 커밋 기록이 깔끔함
 
-### Metrics Comparison
+### 메트릭 비교
 
-Run complexity analysis before and after:
+복잡도 분석을 이전 및 이후로 실행:
 ```bash
 python scripts/analyze-complexity.py <file>
 ```
 
-Present improvements:
-- Lines of code change
-- Cyclomatic complexity change
-- Maintainability index change
+개선 사항 제시:
+- 코드 줄 수 변화
+- 순환 복잡도 변화
+- 유지보수성 지수 변화
 
-### User Review
+### 사용자 검토
 
-Present final results:
-- Summary of all changes
-- Before/after code comparison
-- Metrics improvements
-- Remaining technical debt
-- **Ask**: "Are you satisfied with these changes?"
+최종 결과 제시:
+- 모든 변경 사항 요약
+- 이전/이후 코드 비교
+- 메트릭 개선 사항
+- 남아있는 기술 부채
+- **물어보기**: "이 변경 사항에 만족하시나요?"
 
-### Next Steps
+### 다음 단계
 
-Discuss with user:
-- Additional smells to address?
-- Schedule follow-up refactoring?
-- Apply similar changes elsewhere?
-
----
-
-## Important Guidelines
-
-### When to STOP and Ask
-
-Always pause and consult user when:
-- Unsure about business logic
-- Change might affect external APIs
-- Test coverage is inadequate
-- Significant architectural decision needed
-- Risk level increases
-- You encounter unexpected complexity
-
-### Safety Rules
-
-1. **Never refactor without tests** (unless user explicitly acknowledges risk)
-2. **Never make big changes** - break into tiny steps
-3. **Never skip the test run** after each change
-4. **Never continue if tests fail** - fix or rollback first
-5. **Never assume** - when in doubt, ask
-
-### What NOT to Do
-
-- Don't combine refactoring with feature additions
-- Don't refactor during production emergencies
-- Don't refactor code you don't understand
-- Don't over-engineer - keep it simple
-- Don't refactor everything at once
+사용자와 논의:
+- 해결할 추가 스멜이 있나요?
+- 후속 리팩토링을 예약할까요?
+- 다른 곳에도 유사한 변경을 적용할까요?
 
 ---
 
-## Quick Start Example
+## 중요 지침
 
-### Scenario: Long Method with Duplication
+### 중지하고 물어봐야 할 때
 
-**Before:**
+항상 다음의 경우 일시 중지하고 사용자에게 문의:
+- 비즈니스 로직에 대해 확신이 없을 때
+- 변경이 외부 API에 영향을 줄 수 있을 때
+- 테스트 커버리지가 불충분할 때
+- 중요한 아키텍처 결정이 필요할 때
+- 위험 수준이 높아질 때
+- 예상치 못한 복잡성을 만났을 때
+
+### 안전 규칙
+
+1. **테스트 없이 리팩토링하지 않습니다** (사용자가 명시적으로 위험을 인정하지 않는 한)
+2. **큰 변경을 하지 않습니다** - 작은 단계로 나누세요
+3. **각 변경 후 테스트 실행을 건너뛰지 않습니다**
+4. **테스트가 실패하면 계속하지 않습니다** - 먼저 수정하거나 롤백
+5. **가정하지 않습니다** - 의심스럽다면 물어보세요
+
+### 하지 말아야 할 것
+
+- 리팩토링과 기능 추가를 함께 하지 마세요
+- 프로덕션 긴급 상황 중에 리팩토링하지 마세요
+- 이해하지 못하는 코드를 리팩토링하지 마세요
+- 과도하게 엔지니어링하지 마세요 - 단순하게 유지하세요
+- 한 번에 모든 것을 리팩토링하지 마세요
+
+---
+
+## 빠른 시작 예시
+
+### 시나리오: 중복이 있는 긴 메서드
+
+**이전:**
 ```javascript
 function processOrder(order) {
-  // 150 lines of code with:
-  // - Duplicated validation logic
-  // - Inline calculations
-  // - Mixed responsibilities
+  // 다음을 포함한 150줄의 코드:
+  // - 중복된 유효성 검사 로직
+  // - 인라인 계산
+  // - 혼합된 책임
 }
 ```
 
-**Refactoring Steps:**
+**리팩토링 단계:**
 
-1. **Ensure tests exist** for processOrder()
-2. **Extract** validation into validateOrder()
-3. **Test** - should pass
-4. **Extract** calculation into calculateOrderTotal()
-5. **Test** - should pass
-6. **Extract** notification into notifyCustomer()
-7. **Test** - should pass
-8. **Review** - processOrder() now orchestrates 3 clear functions
+1. **테스트 존재 확인** processOrder()에 대해
+2. **유효성 검사를** validateOrder()로 추출
+3. **테스트** - 통과해야 함
+4. **계산을** calculateOrderTotal()로 추출
+5. **테스트** - 통과해야 함
+6. **알림을** notifyCustomer()로 추출
+7. **테스트** - 통과해야 함
+8. **검토** - processOrder()가 이제 3개의 명확한 함수를 조율
 
-**After:**
+**이후:**
 ```javascript
 function processOrder(order) {
   validateOrder(order);
@@ -410,17 +410,17 @@ function processOrder(order) {
 
 ---
 
-## References
+## 참조
 
-- [Code Smells Catalog](references/code-smells.md) - Complete list of code smells
-- [Refactoring Catalog](references/refactoring-catalog.md) - Refactoring techniques
-- [Refactoring Plan Template](templates/refactoring-plan.md) - Planning template
+- [코드 스멜 카탈로그](references/code-smells.md) - 코드 스멜 전체 목록
+- [리팩토링 카탈로그](references/refactoring-catalog.md) - 리팩토링 기법
+- [리팩토링 계획 템플릿](templates/refactoring-plan.md) - 계획 템플릿
 
-## Scripts
+## 스크립트
 
-- `scripts/analyze-complexity.py` - Analyze code complexity metrics
-- `scripts/detect-smells.py` - Automated smell detection
+- `scripts/analyze-complexity.py` - 코드 복잡도 메트릭 분석
+- `scripts/detect-smells.py` - 자동화된 스멜 감지
 
-## Version History
+## 버전 기록
 
-- v1.0.0 (2025-01-15): Initial release with Fowler methodology, phased approach, user consultation points
+- v1.0.0 (2025-01-15): Fowler 방법론, 단계적 접근법, 사용자 상담 포인트를 포함한 초기 릴리스

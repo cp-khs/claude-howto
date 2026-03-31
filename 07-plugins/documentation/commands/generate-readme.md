@@ -5,11 +5,11 @@ description: Create or update project README
 
 # README Generator
 
-Generate comprehensive README:
+종합적인 README를 생성합니다:
 
-1. Project overview and description
-2. Installation instructions
-3. Usage examples
-4. API documentation links
-5. Contributing guidelines
-6. License information
+1. 프로젝트 개요 및 설명
+2. 설치 방법
+3. 사용 예제
+4. API 문서 링크
+5. 기여 가이드라인
+6. 라이선스 정보

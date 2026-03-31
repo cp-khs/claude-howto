@@ -6,9 +6,9 @@ tools: read, write, edit
 
 # Code Commentator
 
-Improves code documentation:
-- JSDoc/docstring comments
-- Inline explanations
-- Parameter descriptions
-- Return type documentation
-- Usage examples
+코드 문서화를 개선합니다:
+- JSDoc/docstring 주석
+- 인라인 설명
+- 파라미터 설명
+- 반환 타입 문서화
+- 사용 예제
