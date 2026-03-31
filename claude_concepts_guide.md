@@ -3,13 +3,13 @@
   <img alt="Claude How To" src="resources/logos/claude-howto-logo.svg">
 </picture>
 
-# Complete Guide to Claude Concepts
+# Claude 개념 완전 가이드
 
-A comprehensive reference guide covering Slash Commands, Subagents, Memory, MCP Protocol, and Agent Skills with tables, diagrams, and practical examples.
+Slash Commands, Subagents, Memory, MCP Protocol, Agent Skills를 표, 다이어그램, 실전 예제로 정리한 종합 참고 가이드입니다.
 
 ---
 
-## Table of Contents
+## 목차
 
 1. [Slash Commands](#slash-commands)
 2. [Subagents](#subagents)
@@ -20,17 +20,17 @@ A comprehensive reference guide covering Slash Commands, Subagents, Memory, MCP 
 7. [Hooks](#hooks)
 8. [Checkpoints and Rewind](#checkpoints-and-rewind)
 9. [Advanced Features](#advanced-features)
-10. [Comparison & Integration](#comparison--integration)
+10. [비교 & 통합](#comparison--integration)
 
 ---
 
 ## Slash Commands
 
-### Overview
+### 개요
 
-Slash commands are user-invoked shortcuts stored as Markdown files that Claude Code can execute. They enable teams to standardize frequently-used prompts and workflows.
+Slash commands는 Claude Code가 실행할 수 있는 Markdown 파일로 저장된, 사용자가 직접 호출하는 단축 명령어입니다. 팀이 자주 사용하는 프롬프트와 워크플로우를 표준화할 수 있게 해줍니다.
 
-### Architecture
+### 아키텍처
 
 ```mermaid
 graph TD
@@ -41,7 +41,7 @@ graph TD
     E -->|Returns| F["Result in Context"]
 ```
 
-### File Structure
+### 파일 구조
 
 ```mermaid
 graph LR
@@ -53,29 +53,29 @@ graph LR
     E -->|contains| G["generate-readme.md"]
 ```
 
-### Command Organization Table
+### 명령어 구성 표
 
-| Location | Scope | Availability | Use Case | Git Tracked |
+| 위치 | 범위 | 사용 가능 대상 | 활용 사례 | Git 추적 |
 |----------|-------|--------------|----------|-------------|
-| `.claude/commands/` | Project-specific | Team members | Team workflows, shared standards | ✅ Yes |
-| `~/.claude/commands/` | Personal | Individual user | Personal shortcuts across projects | ❌ No |
-| Subdirectories | Namespaced | Based on parent | Organize by category | ✅ Yes |
+| `.claude/commands/` | 프로젝트 전용 | 팀원 | 팀 워크플로우, 공유 기준 | ✅ 예 |
+| `~/.claude/commands/` | 개인 | 개별 사용자 | 프로젝트 간 개인 단축키 | ❌ 아니오 |
+| 하위 디렉토리 | 네임스페이스 | 상위 기준 | 카테고리별 구성 | ✅ 예 |
 
-### Features & Capabilities
+### 기능 및 지원 여부
 
-| Feature | Example | Supported |
+| 기능 | 예시 | 지원 여부 |
 |---------|---------|-----------|
-| Shell script execution | `bash scripts/deploy.sh` | ✅ Yes |
-| File references | `@path/to/file.js` | ✅ Yes |
-| Bash integration | `$(git log --oneline)` | ✅ Yes |
-| Arguments | `/pr --verbose` | ✅ Yes |
-| MCP commands | `/mcp__github__list_prs` | ✅ Yes |
+| 셸 스크립트 실행 | `bash scripts/deploy.sh` | ✅ 예 |
+| 파일 참조 | `@path/to/file.js` | ✅ 예 |
+| bash 통합 | `$(git log --oneline)` | ✅ 예 |
+| 인수 전달 | `/pr --verbose` | ✅ 예 |
+| MCP 명령어 | `/mcp__github__list_prs` | ✅ 예 |
 
-### Practical Examples
+### 실전 예제
 
-#### Example 1: Code Optimization Command
+#### 예제 1: 코드 최적화 명령어
 
-**File:** `.claude/commands/optimize.md`
+**파일:** `.claude/commands/optimize.md`
 
 ```markdown
 ---
@@ -101,17 +101,17 @@ Format your response with:
 - Recommended fix with code example
 ```
 
-**Usage:**
+**사용법:**
 ```bash
-# User types in Claude Code
+# Claude Code에서 입력
 /optimize
 
-# Claude loads the prompt and waits for code input
+# Claude가 프롬프트를 불러오고 코드 입력을 기다림
 ```
 
-#### Example 2: Pull Request Helper Command
+#### 예제 2: Pull Request 헬퍼 명령어
 
-**File:** `.claude/commands/pr.md`
+**파일:** `.claude/commands/pr.md`
 
 ```markdown
 ---
@@ -143,16 +143,16 @@ Before creating a PR, execute these steps:
    - Potential impacts
 ```
 
-**Usage:**
+**사용법:**
 ```bash
 /pr
 
-# Claude runs through checklist and prepares the PR
+# Claude가 체크리스트를 순서대로 실행하고 PR을 준비함
 ```
 
-#### Example 3: Hierarchical Documentation Generator
+#### 예제 3: 계층형 문서 생성기
 
-**File:** `.claude/commands/docs/generate-api-docs.md`
+**파일:** `.claude/commands/docs/generate-api-docs.md`
 
 ```markdown
 ---
@@ -178,7 +178,7 @@ Output format:
 - Add TypeScript types
 ```
 
-### Command Lifecycle Diagram
+### 명령어 생명주기 다이어그램
 
 ```mermaid
 sequenceDiagram
@@ -198,26 +198,26 @@ sequenceDiagram
     Claude->>User: Returns analysis
 ```
 
-### Best Practices
+### 모범 사례
 
-| ✅ Do | ❌ Don't |
+| ✅ 권장 | ❌ 비권장 |
 |------|---------|
-| Use clear, action-oriented names | Create commands for one-time tasks |
-| Document trigger words in description | Build complex logic in commands |
-| Keep commands focused on single task | Create redundant commands |
-| Version control project commands | Hardcode sensitive information |
-| Organize in subdirectories | Create long lists of commands |
-| Use simple, readable prompts | Use abbreviated or cryptic wording |
+| 명확하고 행동 지향적인 이름 사용 | 일회성 작업에 명령어 생성 |
+| 설명에 트리거 단어 문서화 | 명령어에 복잡한 로직 구현 |
+| 단일 작업에 집중하는 명령어 유지 | 중복 명령어 생성 |
+| 프로젝트 명령어를 버전 관리 | 민감한 정보 하드코딩 |
+| 하위 디렉토리로 구성 | 긴 명령어 목록 생성 |
+| 단순하고 읽기 쉬운 프롬프트 사용 | 축약어나 암호 같은 표현 사용 |
 
 ---
 
 ## Subagents
 
-### Overview
+### 개요
 
-Subagents are specialized AI assistants with isolated context windows and customized system prompts. They enable delegated task execution while maintaining clean separation of concerns.
+Subagents는 격리된 컨텍스트 창과 맞춤형 시스템 프롬프트를 가진 전문화된 AI 어시스턴트입니다. 명확한 관심사 분리를 유지하면서 위임된 작업 실행을 가능하게 합니다.
 
-### Architecture Diagram
+### 아키텍처 다이어그램
 
 ```mermaid
 graph TB
@@ -237,7 +237,7 @@ graph TB
     Main -->|synthesizes| User
 ```
 
-### Subagent Lifecycle
+### Subagent 생명주기
 
 ```mermaid
 sequenceDiagram
@@ -257,16 +257,16 @@ sequenceDiagram
     MainAgent-->>User: Provide synthesis
 ```
 
-### Subagent Configuration Table
+### Subagent 설정 표
 
-| Configuration | Type | Purpose | Example |
+| 설정 항목 | 타입 | 목적 | 예시 |
 |---------------|------|---------|---------|
-| `name` | String | Agent identifier | `code-reviewer` |
-| `description` | String | Purpose & trigger terms | `Comprehensive code quality analysis` |
-| `tools` | List/String | Allowed capabilities | `read, grep, diff, lint_runner` |
-| `system_prompt` | Markdown | Behavioral instructions | Custom guidelines |
+| `name` | String | 에이전트 식별자 | `code-reviewer` |
+| `description` | String | 목적 및 트리거 단어 | `Comprehensive code quality analysis` |
+| `tools` | List/String | 허용된 기능 | `read, grep, diff, lint_runner` |
+| `system_prompt` | Markdown | 행동 지침 | 커스텀 가이드라인 |
 
-### Tool Access Hierarchy
+### 도구 접근 계층
 
 ```mermaid
 graph TD
@@ -279,11 +279,11 @@ graph TD
     C -->|Explicit List| C2["Bash(npm:*), Bash(test:*)"]
 ```
 
-### Practical Examples
+### 실전 예제
 
-#### Example 1: Complete Subagent Setup
+#### 예제 1: 완전한 Subagent 설정
 
-**File:** `.claude/agents/code-reviewer.md`
+**파일:** `.claude/agents/code-reviewer.md`
 
 ```yaml
 ---
@@ -329,7 +329,7 @@ For each issue:
 - **Fix**: Use JOIN or batch query
 ```
 
-**File:** `.claude/agents/test-engineer.md`
+**파일:** `.claude/agents/test-engineer.md`
 
 ```yaml
 ---
@@ -370,7 +370,7 @@ You are expert at:
 - Report missing coverage areas
 ```
 
-**File:** `.claude/agents/documentation-writer.md`
+**파일:** `.claude/agents/documentation-writer.md`
 
 ```yaml
 ---
@@ -415,45 +415,45 @@ You create:
 - Related topics
 ```
 
-#### Example 2: Subagent Delegation in Action
+#### 예제 2: Subagent 위임 실행
 
 ```markdown
-# Scenario: Building a Payment Feature
+# 시나리오: 결제 기능 구축
 
-## User Request
-"Build a secure payment processing feature that integrates with Stripe"
+## 사용자 요청
+"Stripe와 연동하는 안전한 결제 처리 기능을 만들어줘"
 
-## Main Agent Flow
+## Main Agent 흐름
 
-1. **Planning Phase**
-   - Understands requirements
-   - Determines tasks needed
-   - Plans architecture
+1. **계획 단계**
+   - 요구사항 파악
+   - 필요한 작업 결정
+   - 아키텍처 계획
 
-2. **Delegates to Code Reviewer Subagent**
-   - Task: "Review the payment processing implementation for security"
-   - Context: Auth, API keys, token handling
-   - Reviews for: SQL injection, key exposure, HTTPS enforcement
+2. **Code Reviewer Subagent에 위임**
+   - 작업: "결제 처리 구현의 보안을 검토해줘"
+   - 컨텍스트: 인증, API 키, 토큰 처리
+   - 검토 항목: SQL 인젝션, 키 노출, HTTPS 강제 여부
 
-3. **Delegates to Test Engineer Subagent**
-   - Task: "Create comprehensive tests for payment flows"
-   - Context: Success scenarios, failures, edge cases
-   - Creates tests for: Valid payments, declined cards, network failures, webhooks
+3. **Test Engineer Subagent에 위임**
+   - 작업: "결제 플로우에 대한 포괄적인 테스트를 작성해줘"
+   - 컨텍스트: 성공 시나리오, 실패, 엣지 케이스
+   - 작성 대상: 정상 결제, 카드 거부, 네트워크 오류, 웹훅
 
-4. **Delegates to Documentation Writer Subagent**
-   - Task: "Document the payment API endpoints"
-   - Context: Request/response schemas
-   - Produces: API docs with curl examples, error codes
+4. **Documentation Writer Subagent에 위임**
+   - 작업: "결제 API 엔드포인트를 문서화해줘"
+   - 컨텍스트: 요청/응답 스키마
+   - 산출물: curl 예제와 에러 코드가 포함된 API 문서
 
-5. **Synthesis**
-   - Main agent collects all outputs
-   - Integrates findings
-   - Returns complete solution to user
+5. **통합**
+   - Main agent가 모든 결과물 수집
+   - 결과 통합
+   - 완성된 솔루션을 사용자에게 반환
 ```
 
-#### Example 3: Tool Permission Scoping
+#### 예제 3: 도구 권한 범위 설정
 
-**Restrictive Setup - Limited to Specific Commands**
+**제한적 설정 - 특정 명령어만 허용**
 
 ```yaml
 ---
@@ -476,7 +476,7 @@ This agent:
 This ensures the reviewer doesn't accidentally break anything.
 ```
 
-**Extended Setup - All Tools for Implementation**
+**확장 설정 - 구현을 위한 모든 도구 허용**
 
 ```yaml
 ---
@@ -500,7 +500,7 @@ This agent:
 Full capabilities for independent feature development.
 ```
 
-### Subagent Context Management
+### Subagent 컨텍스트 관리
 
 ```mermaid
 graph TB
@@ -523,30 +523,30 @@ graph TB
     style D fill:#fff9c4
 ```
 
-### When to Use Subagents
+### Subagent를 사용해야 할 때
 
-| Scenario | Use Subagent | Why |
+| 시나리오 | Subagent 사용 | 이유 |
 |----------|--------------|-----|
-| Complex feature with many steps | ✅ Yes | Separate concerns, prevent context pollution |
-| Quick code review | ❌ No | Not necessary overhead |
-| Parallel task execution | ✅ Yes | Each subagent has own context |
-| Specialized expertise needed | ✅ Yes | Custom system prompts |
-| Long-running analysis | ✅ Yes | Prevents main context exhaustion |
-| Single task | ❌ No | Adds latency unnecessarily |
+| 여러 단계로 구성된 복잡한 기능 | ✅ 예 | 관심사 분리, 컨텍스트 오염 방지 |
+| 간단한 코드 리뷰 | ❌ 아니오 | 불필요한 오버헤드 |
+| 병렬 작업 실행 | ✅ 예 | 각 subagent가 독립된 컨텍스트 보유 |
+| 전문 지식이 필요한 경우 | ✅ 예 | 커스텀 시스템 프롬프트 적용 가능 |
+| 장시간 분석 작업 | ✅ 예 | main 컨텍스트 소진 방지 |
+| 단일 작업 | ❌ 아니오 | 불필요하게 지연 증가 |
 
 ### Agent Teams
 
-Agent Teams coordinate multiple agents working on related tasks. Rather than delegating to one subagent at a time, Agent Teams allow the main agent to orchestrate a group of agents that collaborate, share intermediate results, and work toward a common goal. This is useful for large-scale tasks like full-stack feature development where a frontend agent, backend agent, and testing agent work in parallel.
+Agent Teams는 관련 작업을 수행하는 여러 에이전트를 조율합니다. 하나의 subagent에 순차적으로 위임하는 방식과 달리, Agent Teams는 main agent가 그룹을 지휘하여 에이전트들이 협업하고 중간 결과를 공유하며 공동 목표를 향해 함께 작업할 수 있게 합니다. 프론트엔드 에이전트, 백엔드 에이전트, 테스팅 에이전트가 병렬로 작업하는 풀스택 기능 개발과 같은 대규모 작업에 유용합니다.
 
 ---
 
 ## Memory
 
-### Overview
+### 개요
 
-Memory enables Claude to retain context across sessions and conversations. It exists in two forms: automatic synthesis in claude.ai, and filesystem-based CLAUDE.md in Claude Code.
+Memory는 Claude가 세션과 대화 간에 컨텍스트를 유지할 수 있게 합니다. 두 가지 형태로 존재합니다: claude.ai에서의 자동 합성, 그리고 Claude Code에서의 파일시스템 기반 CLAUDE.md입니다.
 
-### Memory Architecture
+### Memory 아키텍처
 
 ```mermaid
 graph TB
@@ -561,9 +561,9 @@ graph TB
     A -->|Uses context| C
 ```
 
-### Memory Hierarchy in Claude Code (7 Tiers)
+### Claude Code의 Memory 계층 구조 (7단계)
 
-Claude Code loads memory from 7 tiers, listed from highest to lowest priority:
+Claude Code는 7단계의 계층에서 memory를 불러오며, 우선순위가 높은 것부터 낮은 것 순으로 나열됩니다:
 
 ```mermaid
 graph TD
@@ -583,30 +583,30 @@ graph TD
     style G fill:#fff3e0,stroke:#333,color:#333
 ```
 
-### Memory Locations Table
+### Memory 위치 표
 
-| Tier | Location | Scope | Priority | Shared | Best For |
+| 단계 | 위치 | 범위 | 우선순위 | 공유 여부 | 최적 활용 |
 |------|----------|-------|----------|--------|----------|
-| 1. Managed Policy | Enterprise admin | Organization | Highest | All org users | Compliance, security policies |
-| 2. Project | `./CLAUDE.md` | Project | High | Team (Git) | Team standards, architecture |
-| 3. Project Rules | `.claude/rules/*.md` | Project | High | Team (Git) | Modular project conventions |
-| 4. User | `~/.claude/CLAUDE.md` | Personal | Medium | Individual | Personal preferences |
-| 5. User Rules | `~/.claude/rules/*.md` | Personal | Medium | Individual | Personal rule modules |
-| 6. Local | `.claude/local/CLAUDE.md` | Local | Low | Not shared | Machine-specific settings |
-| 7. Auto Memory | Automatic | Session | Lowest | Individual | Learned preferences, patterns |
+| 1. Managed Policy | 엔터프라이즈 관리자 | 조직 | 최고 | 전체 조직 사용자 | 컴플라이언스, 보안 정책 |
+| 2. Project | `./CLAUDE.md` | 프로젝트 | 높음 | 팀 (Git) | 팀 기준, 아키텍처 |
+| 3. Project Rules | `.claude/rules/*.md` | 프로젝트 | 높음 | 팀 (Git) | 모듈식 프로젝트 규칙 |
+| 4. User | `~/.claude/CLAUDE.md` | 개인 | 중간 | 개인 | 개인 환경설정 |
+| 5. User Rules | `~/.claude/rules/*.md` | 개인 | 중간 | 개인 | 개인 규칙 모듈 |
+| 6. Local | `.claude/local/CLAUDE.md` | 로컬 | 낮음 | 공유 안 됨 | 머신별 설정 |
+| 7. Auto Memory | 자동 | 세션 | 최저 | 개인 | 학습된 환경설정, 패턴 |
 
 ### Auto Memory
 
-Auto Memory automatically captures user preferences and patterns observed during sessions. Claude learns from your interactions and remembers:
+Auto Memory는 세션 중 관찰된 사용자 환경설정과 패턴을 자동으로 캡처합니다. Claude는 상호작용을 통해 다음을 학습하고 기억합니다:
 
-- Coding style preferences
-- Common corrections you make
-- Framework and tool choices
-- Communication style preferences
+- 코딩 스타일 환경설정
+- 자주 하는 수정 사항
+- 프레임워크 및 도구 선택
+- 커뮤니케이션 스타일 환경설정
 
-Auto Memory works in the background and does not require manual configuration.
+Auto Memory는 백그라운드에서 작동하며 별도의 설정이 필요하지 않습니다.
 
-### Memory Update Lifecycle
+### Memory 업데이트 생명주기
 
 ```mermaid
 sequenceDiagram
@@ -625,11 +625,11 @@ sequenceDiagram
     Claude-->>User: "Memory saved!"
 ```
 
-### Practical Examples
+### 실전 예제
 
-#### Example 1: Project Memory Structure
+#### 예제 1: 프로젝트 Memory 구조
 
-**File:** `./CLAUDE.md`
+**파일:** `./CLAUDE.md`
 
 ```markdown
 # Project Configuration
@@ -722,9 +722,9 @@ sequenceDiagram
 - Admin Panel: `/projects/admin`
 ```
 
-#### Example 2: Directory-Specific Memory
+#### 예제 2: 디렉토리별 Memory
 
-**File:** `./src/api/CLAUDE.md`
+**파일:** `./src/api/CLAUDE.md`
 
 ~~~~markdown
 # API Module Standards
@@ -790,9 +790,9 @@ All responses must follow this structure:
 - Tag cache keys with resource type
 ~~~~
 
-#### Example 3: Personal Memory
+#### 예제 3: 개인 Memory
 
-**File:** `~/.claude/CLAUDE.md`
+**파일:** `~/.claude/CLAUDE.md`
 
 ~~~~markdown
 # My Development Preferences
@@ -857,9 +857,9 @@ project/
 - **Test Framework**: Jest with React Testing Library
 ~~~~
 
-#### Example 4: Memory Update During Session
+#### 예제 4: 세션 중 Memory 업데이트
 
-**Session Interaction:**
+**세션 대화:**
 
 ```markdown
 User: Remember that I prefer using React hooks instead of class components
@@ -884,9 +884,9 @@ Added to ./CLAUDE.md:
 - Use useMemo for expensive computations
 ```
 
-### Memory in Claude Web/Desktop
+### Claude 웹/데스크톱에서의 Memory
 
-#### Memory Synthesis Timeline
+#### Memory 합성 타임라인
 
 ```mermaid
 graph LR
@@ -897,7 +897,7 @@ graph LR
     E -->|24 hours later| F["Memory Refreshed"]
 ```
 
-**Example Memory Summary:**
+**Memory 요약 예시:**
 
 ```markdown
 ## Claude's Memory of User
@@ -927,27 +927,27 @@ graph LR
 - Document architecture
 ```
 
-### Memory Features Comparison
+### Memory 기능 비교
 
-| Feature | Claude Web/Desktop | Claude Code (CLAUDE.md) |
+| 기능 | Claude 웹/데스크톱 | Claude Code (CLAUDE.md) |
 |---------|-------------------|------------------------|
-| Auto-synthesis | ✅ Every 24h | ❌ Manual |
-| Cross-project | ✅ Shared | ❌ Project-specific |
-| Team access | ✅ Shared projects | ✅ Git-tracked |
-| Searchable | ✅ Built-in | ✅ Through `/memory` |
-| Editable | ✅ In-chat | ✅ Direct file edit |
-| Import/Export | ✅ Yes | ✅ Copy/paste |
-| Persistent | ✅ 24h+ | ✅ Indefinite |
+| 자동 합성 | ✅ 24시간마다 | ❌ 수동 |
+| 크로스 프로젝트 | ✅ 공유됨 | ❌ 프로젝트 전용 |
+| 팀 접근 | ✅ 공유 프로젝트 | ✅ Git 추적 |
+| 검색 가능 | ✅ 내장 | ✅ `/memory`를 통해 |
+| 편집 가능 | ✅ 대화 내에서 | ✅ 파일 직접 편집 |
+| 가져오기/내보내기 | ✅ 예 | ✅ 복사/붙여넣기 |
+| 영속성 | ✅ 24시간+ | ✅ 무기한 |
 
 ---
 
 ## MCP Protocol
 
-### Overview
+### 개요
 
-MCP (Model Context Protocol) is a standardized way for Claude to access external tools, APIs, and real-time data sources. Unlike Memory, MCP provides live access to changing data.
+MCP (Model Context Protocol)는 Claude가 외부 도구, API, 실시간 데이터 소스에 접근하는 표준화된 방법입니다. Memory와 달리 MCP는 변화하는 데이터에 실시간으로 접근합니다.
 
-### MCP Architecture
+### MCP 아키텍처
 
 ```mermaid
 graph TB
@@ -966,7 +966,7 @@ graph TB
     B -->|Response| A
 ```
 
-### MCP Ecosystem
+### MCP 생태계
 
 ```mermaid
 graph TB
@@ -983,7 +983,7 @@ graph TB
     F -->|Docs| K["Google Drive"]
 ```
 
-### MCP Setup Process
+### MCP 설정 과정
 
 ```mermaid
 sequenceDiagram
@@ -1003,24 +1003,24 @@ sequenceDiagram
     Claude->>User: ✅ MCP connected!
 ```
 
-### Available MCP Servers Table
+### 사용 가능한 MCP 서버 표
 
-| MCP Server | Purpose | Common Tools | Auth | Real-time |
+| MCP 서버 | 목적 | 주요 도구 | 인증 | 실시간 |
 |------------|---------|--------------|------|-----------|
-| **Filesystem** | File operations | read, write, delete | OS permissions | ✅ Yes |
-| **GitHub** | Repository management | list_prs, create_issue, push | OAuth | ✅ Yes |
-| **Slack** | Team communication | send_message, list_channels | Token | ✅ Yes |
-| **Database** | SQL queries | query, insert, update | Credentials | ✅ Yes |
-| **Google Docs** | Document access | read, write, share | OAuth | ✅ Yes |
-| **Asana** | Project management | create_task, update_status | API Key | ✅ Yes |
-| **Stripe** | Payment data | list_charges, create_invoice | API Key | ✅ Yes |
-| **Memory** | Persistent memory | store, retrieve, delete | Local | ❌ No |
+| **Filesystem** | 파일 작업 | read, write, delete | OS 권한 | ✅ 예 |
+| **GitHub** | 저장소 관리 | list_prs, create_issue, push | OAuth | ✅ 예 |
+| **Slack** | 팀 커뮤니케이션 | send_message, list_channels | Token | ✅ 예 |
+| **Database** | SQL 쿼리 | query, insert, update | 자격증명 | ✅ 예 |
+| **Google Docs** | 문서 접근 | read, write, share | OAuth | ✅ 예 |
+| **Asana** | 프로젝트 관리 | create_task, update_status | API Key | ✅ 예 |
+| **Stripe** | 결제 데이터 | list_charges, create_invoice | API Key | ✅ 예 |
+| **Memory** | 영속적 메모리 | store, retrieve, delete | 로컬 | ❌ 아니오 |
 
-### Practical Examples
+### 실전 예제
 
-#### Example 1: GitHub MCP Configuration
+#### 예제 1: GitHub MCP 설정
 
-**File:** `.mcp.json` (project scope) or `~/.claude.json` (user scope)
+**파일:** `.mcp.json` (프로젝트 범위) 또는 `~/.claude.json` (사용자 범위)
 
 ```json
 {
@@ -1036,7 +1036,7 @@ sequenceDiagram
 }
 ```
 
-**Available GitHub MCP Tools:**
+**사용 가능한 GitHub MCP 도구:**
 
 ~~~~markdown
 # GitHub MCP Tools
@@ -1080,9 +1080,9 @@ Reviewers: @bob, @charlie
 - `create_commit` - Create new commit
 ~~~~
 
-#### Example 2: Database MCP Setup
+#### 예제 2: 데이터베이스 MCP 설정
 
-**Configuration:**
+**설정:**
 
 ```json
 {
@@ -1098,14 +1098,14 @@ Reviewers: @bob, @charlie
 }
 ```
 
-**Example Usage:**
+**사용 예시:**
 
 ```markdown
 User: Fetch all users with more than 10 orders
 
 Claude: I'll query your database to find that information.
 
-# Using MCP database tool:
+# MCP database tool 사용:
 SELECT u.*, COUNT(o.id) as order_count
 FROM users u
 LEFT JOIN orders o ON u.id = o.user_id
@@ -1113,62 +1113,62 @@ GROUP BY u.id
 HAVING COUNT(o.id) > 10
 ORDER BY order_count DESC;
 
-# Results:
+# 결과:
 - Alice: 15 orders
 - Bob: 12 orders
 - Charlie: 11 orders
 ```
 
-#### Example 3: Multi-MCP Workflow
+#### 예제 3: 다중 MCP 워크플로우
 
-**Scenario: Daily Report Generation**
+**시나리오: 일일 보고서 생성**
 
 ```markdown
-# Daily Report Workflow using Multiple MCPs
+# 여러 MCP를 활용한 일일 보고서 워크플로우
 
-## Setup
-1. GitHub MCP - fetch PR metrics
-2. Database MCP - query sales data
-3. Slack MCP - post report
-4. Filesystem MCP - save report
+## 설정
+1. GitHub MCP - PR 지표 가져오기
+2. Database MCP - 판매 데이터 쿼리
+3. Slack MCP - 보고서 게시
+4. Filesystem MCP - 보고서 저장
 
-## Workflow
+## 워크플로우
 
-### Step 1: Fetch GitHub Data
+### 1단계: GitHub 데이터 가져오기
 /mcp__github__list_prs completed:true last:7days
 
-Output:
-- Total PRs: 42
-- Average merge time: 2.3 hours
-- Review turnaround: 1.1 hours
+결과:
+- 총 PR: 42개
+- 평균 병합 시간: 2.3시간
+- 리뷰 처리 시간: 1.1시간
 
-### Step 2: Query Database
+### 2단계: 데이터베이스 쿼리
 SELECT COUNT(*) as sales, SUM(amount) as revenue
 FROM orders
 WHERE created_at > NOW() - INTERVAL '1 day'
 
-Output:
-- Sales: 247
-- Revenue: $12,450
+결과:
+- 판매: 247건
+- 매출: $12,450
 
-### Step 3: Generate Report
-Combine data into HTML report
+### 3단계: 보고서 생성
+데이터를 HTML 보고서로 취합
 
-### Step 4: Save to Filesystem
-Write report.html to /reports/
+### 4단계: 파일시스템에 저장
+/reports/에 report.html 저장
 
-### Step 5: Post to Slack
-Send summary to #daily-reports channel
+### 5단계: Slack에 게시
+#daily-reports 채널에 요약 전송
 
-Final Output:
-✅ Report generated and posted
-📊 47 PRs merged this week
-💰 $12,450 in daily sales
+최종 결과:
+✅ 보고서 생성 및 게시 완료
+📊 이번 주 PR 47개 병합
+💰 일일 매출 $12,450
 ```
 
-#### Example 4: Filesystem MCP Operations
+#### 예제 4: Filesystem MCP 작업
 
-**Configuration:**
+**설정:**
 
 ```json
 {
@@ -1181,18 +1181,18 @@ Final Output:
 }
 ```
 
-**Available Operations:**
+**사용 가능한 작업:**
 
-| Operation | Command | Purpose |
+| 작업 | 명령어 | 목적 |
 |-----------|---------|---------|
-| List files | `ls ~/projects` | Show directory contents |
-| Read file | `cat src/main.ts` | Read file contents |
-| Write file | `create docs/api.md` | Create new file |
-| Edit file | `edit src/app.ts` | Modify file |
-| Search | `grep "async function"` | Search in files |
-| Delete | `rm old-file.js` | Delete file |
+| 파일 목록 | `ls ~/projects` | 디렉토리 내용 표시 |
+| 파일 읽기 | `cat src/main.ts` | 파일 내용 읽기 |
+| 파일 쓰기 | `create docs/api.md` | 새 파일 생성 |
+| 파일 편집 | `edit src/app.ts` | 파일 수정 |
+| 검색 | `grep "async function"` | 파일 내 검색 |
+| 삭제 | `rm old-file.js` | 파일 삭제 |
 
-### MCP vs Memory: Decision Matrix
+### MCP vs Memory: 결정 매트릭스
 
 ```mermaid
 graph TD
@@ -1209,7 +1209,7 @@ graph TD
     style D fill:#fff9c4
 ```
 
-### Request/Response Pattern
+### 요청/응답 패턴
 
 ```mermaid
 sequenceDiagram
@@ -1231,11 +1231,11 @@ sequenceDiagram
 
 ## Agent Skills
 
-### Overview
+### 개요
 
-Agent Skills are reusable, model-invoked capabilities packaged as folders containing instructions, scripts, and resources. Claude automatically detects and uses relevant skills.
+Agent Skills는 지침, 스크립트, 리소스가 담긴 폴더로 패키징된 재사용 가능한 모델 호출 기능입니다. Claude가 관련 Skills를 자동으로 감지하고 사용합니다.
 
-### Skill Architecture
+### Skill 아키텍처
 
 ```mermaid
 graph TB
@@ -1253,7 +1253,7 @@ graph TB
     F --> A
 ```
 
-### Skill Loading Process
+### Skill 로딩 과정
 
 ```mermaid
 sequenceDiagram
@@ -1272,16 +1272,16 @@ sequenceDiagram
     Claude->>User: Generate Excel file
 ```
 
-### Skill Types & Locations Table
+### Skill 유형 및 위치 표
 
-| Type | Location | Scope | Shared | Sync | Best For |
+| 유형 | 위치 | 범위 | 공유 여부 | 동기화 | 최적 활용 |
 |------|----------|-------|--------|------|----------|
-| Pre-built | Built-in | Global | All users | Auto | Document creation |
-| Personal | `~/.claude/skills/` | Individual | No | Manual | Personal automation |
-| Project | `.claude/skills/` | Team | Yes | Git | Team standards |
-| Plugin | Via plugin install | Varies | Depends | Auto | Integrated features |
+| 사전 빌드 | 내장 | 전역 | 모든 사용자 | 자동 | 문서 생성 |
+| 개인 | `~/.claude/skills/` | 개인 | 아니오 | 수동 | 개인 자동화 |
+| 프로젝트 | `.claude/skills/` | 팀 | 예 | Git | 팀 기준 |
+| Plugin | 플러그인 설치 경유 | 다양 | 상황에 따라 | 자동 | 통합 기능 |
 
-### Pre-built Skills
+### 사전 빌드 Skills
 
 ```mermaid
 graph TB
@@ -1306,25 +1306,25 @@ graph TB
     E --> E2["Fill forms"]
 ```
 
-### Bundled Skills
+### 번들 Skills
 
-Claude Code now includes 5 bundled skills available out of the box:
+Claude Code에는 이제 기본 제공되는 5가지 번들 Skills가 포함되어 있습니다:
 
-| Skill | Command | Purpose |
+| Skill | 명령어 | 목적 |
 |-------|---------|---------|
-| **Simplify** | `/simplify` | Simplify complex code or explanations |
-| **Batch** | `/batch` | Run operations across multiple files or items |
-| **Debug** | `/debug` | Systematic debugging of issues with root cause analysis |
-| **Loop** | `/loop` | Schedule recurring tasks on a timer |
-| **Claude API** | `/claude-api` | Interact with the Anthropic API directly |
+| **Simplify** | `/simplify` | 복잡한 코드나 설명 단순화 |
+| **Batch** | `/batch` | 여러 파일 또는 항목에 걸쳐 작업 실행 |
+| **Debug** | `/debug` | 근본 원인 분석을 통한 체계적인 디버깅 |
+| **Loop** | `/loop` | 타이머로 반복 작업 예약 |
+| **Claude API** | `/claude-api` | Anthropic API 직접 상호작용 |
 
-These bundled skills are always available and do not require installation or configuration.
+이 번들 Skills는 항상 사용 가능하며 설치나 설정이 필요하지 않습니다.
 
-### Practical Examples
+### 실전 예제
 
-#### Example 1: Custom Code Review Skill
+#### 예제 1: 커스텀 코드 리뷰 Skill
 
-**Directory Structure:**
+**디렉토리 구조:**
 
 ```
 ~/.claude/skills/code-review/
@@ -1337,7 +1337,7 @@ These bundled skills are always available and do not require installation or con
     └── compare-complexity.py
 ```
 
-**File:** `~/.claude/skills/code-review/SKILL.md`
+**파일:** `~/.claude/skills/code-review/SKILL.md`
 
 ```yaml
 ---
@@ -1717,10 +1717,10 @@ Use this template when documenting each issue found during code review.
 #### Current (Problematic)
 
 ```typescript
-// Shows the N+1 query problem
+// N+1 쿼리 문제를 보여줌
 const users = fetchUsers();
 users.forEach(user => {
-  const posts = fetchUserPosts(user.id); // Query per user!
+  const posts = fetchUserPosts(user.id); // 사용자당 쿼리 발생!
   renderUserPosts(posts);
 });
 ```
@@ -1728,7 +1728,7 @@ users.forEach(user => {
 #### Suggested Fix
 
 ```typescript
-// Optimized with JOIN query
+// JOIN 쿼리로 최적화
 const usersWithPosts = fetchUsersWithPosts();
 usersWithPosts.forEach(({ user, posts }) => {
   renderUserPosts(posts);
@@ -1787,7 +1787,7 @@ When reviewing multiple findings, track:
 **Overall Code Quality:** 1-5 stars
 ~~~~
 
-## Usage Example
+## 사용 예시
 
 ~~~~markdown
 User: Review this React component code
@@ -1833,9 +1833,9 @@ const users = fetchUsersWithPosts(); // 1 query
 - Props should have TypeScript types
 ~~~~
 
-#### Example 2: Brand Voice Skill
+#### 예제 2: 브랜드 보이스 Skill
 
-**Directory Structure:**
+**디렉토리 구조:**
 
 ```
 .claude/skills/brand-voice/
@@ -1848,7 +1848,7 @@ const users = fetchUsersWithPosts(); // 1 query
     └── blog-post-template.md
 ```
 
-**File:** `.claude/skills/brand-voice/SKILL.md`
+**파일:** `.claude/skills/brand-voice/SKILL.md`
 
 ```yaml
 ---
@@ -1972,9 +1972,9 @@ Educational blog post:
 "Let's explore how agents improve code review workflows. Here's what we learned..."
 ```
 
-#### Example 3: Documentation Generator Skill
+#### 예제 3: 문서 생성기 Skill
 
-**File:** `.claude/skills/doc-generator/SKILL.md`
+**파일:** `.claude/skills/doc-generator/SKILL.md`
 
 ~~~~yaml
 ---
@@ -2116,7 +2116,7 @@ if __name__ == '__main__':
     markdown = generate_markdown_docs(extractor.endpoints)
     print(markdown)
 ~~~~
-### Skill Discovery & Invocation
+### Skill 탐색 및 호출
 
 ```mermaid
 graph TD
@@ -2132,7 +2132,7 @@ graph TD
     I --> J["Return Results"]
 ```
 
-### Skill vs Other Features
+### Skill vs 다른 기능 비교
 
 ```mermaid
 graph TB
@@ -2160,11 +2160,11 @@ graph TB
 
 ## Claude Code Plugins
 
-### Overview
+### 개요
 
-Claude Code Plugins are bundled collections of customizations (slash commands, subagents, MCP servers, and hooks) that install with a single command. They represent the highest-level extension mechanism—combining multiple features into cohesive, shareable packages.
+Claude Code Plugins는 단일 명령어로 설치되는 커스터마이징(slash commands, subagents, MCP 서버, hooks)의 번들 모음입니다. 여러 기능을 응집된 공유 가능한 패키지로 결합하는 최상위 확장 메커니즘입니다.
 
-### Architecture
+### 아키텍처
 
 ```mermaid
 graph TB
@@ -2182,7 +2182,7 @@ graph TB
     A -->|bundles| F
 ```
 
-### Plugin Loading Process
+### Plugin 로딩 과정
 
 ```mermaid
 sequenceDiagram
@@ -2211,16 +2211,16 @@ sequenceDiagram
     Tools-->>Claude: Plugin installed ✅
 ```
 
-### Plugin Types & Distribution
+### Plugin 유형 및 배포
 
-| Type | Scope | Shared | Authority | Examples |
+| 유형 | 범위 | 공유 여부 | 권한 | 예시 |
 |------|-------|--------|-----------|----------|
-| Official | Global | All users | Anthropic | PR Review, Security Guidance |
-| Community | Public | All users | Community | DevOps, Data Science |
-| Organization | Internal | Team members | Company | Internal standards, tools |
-| Personal | Individual | Single user | Developer | Custom workflows |
+| 공식 | 전역 | 모든 사용자 | Anthropic | PR Review, Security Guidance |
+| 커뮤니티 | 공개 | 모든 사용자 | 커뮤니티 | DevOps, Data Science |
+| 조직 | 내부 | 팀원 | 회사 | 내부 기준, 도구 |
+| 개인 | 개인 | 단일 사용자 | 개발자 | 커스텀 워크플로우 |
 
-### Plugin Definition Structure
+### Plugin 정의 구조
 
 ```yaml
 ---
@@ -2230,16 +2230,16 @@ description: "What this plugin does"
 author: "Your Name"
 license: MIT
 
-# Plugin metadata
+# Plugin 메타데이터
 tags:
   - category
   - use-case
 
-# Requirements
+# 요구사항
 requires:
   - claude-code: ">=1.0.0"
 
-# Components bundled
+# 번들된 컴포넌트
 components:
   - type: commands
     path: commands/
@@ -2250,14 +2250,14 @@ components:
   - type: hooks
     path: hooks/
 
-# Configuration
+# 설정
 config:
   auto_load: true
   enabled_by_default: true
 ---
 ```
 
-### Plugin Structure
+### Plugin 구조
 
 ```
 my-plugin/
@@ -2291,11 +2291,11 @@ my-plugin/
     └── plugin.test.js
 ```
 
-### Practical Examples
+### 실전 예제
 
-#### Example 1: PR Review Plugin
+#### 예제 1: PR Review Plugin
 
-**File:** `.claude-plugin/plugin.json`
+**파일:** `.claude-plugin/plugin.json`
 
 ```json
 {
@@ -2309,7 +2309,7 @@ my-plugin/
 }
 ```
 
-**File:** `commands/review-pr.md`
+**파일:** `commands/review-pr.md`
 
 ```markdown
 ---
@@ -2328,7 +2328,7 @@ This command initiates a complete pull request review including:
 5. Performance impact assessment
 ```
 
-**File:** `agents/security-reviewer.md`
+**파일:** `agents/security-reviewer.md`
 
 ```yaml
 ---
@@ -2346,12 +2346,12 @@ Specializes in finding security vulnerabilities:
 - Secure configuration
 ```
 
-**Installation:**
+**설치:**
 
 ```bash
 /plugin install pr-review
 
-# Result:
+# 결과:
 # ✅ 3 slash commands installed
 # ✅ 3 subagents configured
 # ✅ 2 MCP servers connected
@@ -2359,9 +2359,9 @@ Specializes in finding security vulnerabilities:
 # ✅ Ready to use!
 ```
 
-#### Example 2: DevOps Plugin
+#### 예제 2: DevOps Plugin
 
-**Components:**
+**컴포넌트:**
 
 ```
 devops-automation/
@@ -2388,9 +2388,9 @@ devops-automation/
     └── health-check.sh
 ```
 
-#### Example 3: Documentation Plugin
+#### 예제 3: Documentation Plugin
 
-**Bundled Components:**
+**번들 컴포넌트:**
 
 ```
 documentation/
@@ -2412,7 +2412,7 @@ documentation/
     └── adr-template.md
 ```
 
-### Plugin Marketplace
+### Plugin 마켓플레이스
 
 ```mermaid
 graph TB
@@ -2438,7 +2438,7 @@ graph TB
     D -->|Internal| D3["Compliance"]
 ```
 
-### Plugin Installation & Lifecycle
+### Plugin 설치 및 생명주기
 
 ```mermaid
 graph LR
@@ -2455,33 +2455,33 @@ graph LR
     J -->|Back| G
 ```
 
-### Plugin Features Comparison
+### Plugin 기능 비교
 
-| Feature | Slash Command | Skill | Subagent | Plugin |
+| 기능 | Slash Command | Skill | Subagent | Plugin |
 |---------|---------------|-------|----------|--------|
-| **Installation** | Manual copy | Manual copy | Manual config | One command |
-| **Setup Time** | 5 minutes | 10 minutes | 15 minutes | 2 minutes |
-| **Bundling** | Single file | Single file | Single file | Multiple |
-| **Versioning** | Manual | Manual | Manual | Automatic |
-| **Team Sharing** | Copy file | Copy file | Copy file | Install ID |
-| **Updates** | Manual | Manual | Manual | Auto-available |
-| **Dependencies** | None | None | None | May include |
-| **Marketplace** | No | No | No | Yes |
-| **Distribution** | Repository | Repository | Repository | Marketplace |
+| **설치** | 수동 복사 | 수동 복사 | 수동 설정 | 명령어 한 번 |
+| **설정 시간** | 5분 | 10분 | 15분 | 2분 |
+| **번들링** | 단일 파일 | 단일 파일 | 단일 파일 | 다중 |
+| **버전 관리** | 수동 | 수동 | 수동 | 자동 |
+| **팀 공유** | 파일 복사 | 파일 복사 | 파일 복사 | 설치 ID |
+| **업데이트** | 수동 | 수동 | 수동 | 자동 제공 |
+| **의존성** | 없음 | 없음 | 없음 | 포함 가능 |
+| **마켓플레이스** | 아니오 | 아니오 | 아니오 | 예 |
+| **배포** | 저장소 | 저장소 | 저장소 | 마켓플레이스 |
 
-### Plugin Use Cases
+### Plugin 활용 사례
 
-| Use Case | Recommendation | Why |
+| 활용 사례 | 권장 사항 | 이유 |
 |----------|-----------------|-----|
-| **Team Onboarding** | ✅ Use Plugin | Instant setup, all configurations |
-| **Framework Setup** | ✅ Use Plugin | Bundles framework-specific commands |
-| **Enterprise Standards** | ✅ Use Plugin | Central distribution, version control |
-| **Quick Task Automation** | ❌ Use Command | Overkill complexity |
-| **Single Domain Expertise** | ❌ Use Skill | Too heavy, use skill instead |
-| **Specialized Analysis** | ❌ Use Subagent | Create manually or use skill |
-| **Live Data Access** | ❌ Use MCP | Standalone, don't bundle |
+| **팀 온보딩** | ✅ Plugin 사용 | 즉각적인 설정, 모든 설정 포함 |
+| **프레임워크 설정** | ✅ Plugin 사용 | 프레임워크별 명령어 번들 |
+| **엔터프라이즈 기준** | ✅ Plugin 사용 | 중앙 배포, 버전 관리 |
+| **빠른 작업 자동화** | ❌ Command 사용 | 과도한 복잡성 |
+| **단일 도메인 전문성** | ❌ Skill 사용 | 너무 무거움, Skill 사용 권장 |
+| **전문 분석** | ❌ Subagent 사용 | 수동 생성 또는 Skill 사용 |
+| **실시간 데이터 접근** | ❌ MCP 사용 | 독립적으로, 번들하지 않음 |
 
-### When to Create a Plugin
+### Plugin 생성 시점
 
 ```mermaid
 graph TD
@@ -2497,20 +2497,20 @@ graph TD
     G -->|No| D
 ```
 
-### Publishing a Plugin
+### Plugin 배포하기
 
-**Steps to publish:**
+**배포 단계:**
 
-1. Create plugin structure with all components
-2. Write `.claude-plugin/plugin.json` manifest
-3. Create `README.md` with documentation
-4. Test locally with `/plugin install ./my-plugin`
-5. Submit to plugin marketplace
-6. Get reviewed and approved
-7. Published on marketplace
-8. Users can install with one command
+1. 모든 컴포넌트를 포함한 Plugin 구조 생성
+2. `.claude-plugin/plugin.json` 매니페스트 작성
+3. 문서와 함께 `README.md` 생성
+4. `/plugin install ./my-plugin`으로 로컬 테스트
+5. Plugin 마켓플레이스에 제출
+6. 검토 및 승인
+7. 마켓플레이스에 게시
+8. 사용자가 명령어 한 번으로 설치 가능
 
-**Example submission:**
+**제출 예시:**
 
 ~~~~markdown
 # PR Review Plugin
@@ -2549,39 +2549,39 @@ Complete PR review workflow with security, testing, and documentation checks.
 - CodeQL (optional)
 ~~~~
 
-### Plugin vs Manual Configuration
+### Plugin vs 수동 설정
 
-**Manual Setup (2+ hours):**
-- Install slash commands one by one
-- Create subagents individually
-- Configure MCPs separately
-- Set up hooks manually
-- Document everything
-- Share with team (hope they configure correctly)
+**수동 설정 (2시간 이상):**
+- Slash commands 하나씩 설치
+- Subagents 개별 생성
+- MCPs 별도 설정
+- Hooks 수동 설정
+- 모든 내용 문서화
+- 팀과 공유 (올바르게 설정했기를 바람)
 
-**With Plugin (2 minutes):**
+**Plugin 사용 (2분):**
 ```bash
 /plugin install pr-review
-# ✅ Everything installed and configured
-# ✅ Ready to use immediately
-# ✅ Team can reproduce exact setup
+# ✅ 모든 항목 설치 및 설정 완료
+# ✅ 즉시 사용 가능
+# ✅ 팀이 동일한 설정 재현 가능
 ```
 
 ---
 
-## Comparison & Integration
+## 비교 & 통합
 
-### Feature Comparison Matrix
+### 기능 비교 매트릭스
 
-| Feature | Invocation | Persistence | Scope | Use Case |
+| 기능 | 호출 방식 | 영속성 | 범위 | 활용 사례 |
 |---------|-----------|------------|-------|----------|
-| **Slash Commands** | Manual (`/cmd`) | Session only | Single command | Quick shortcuts |
-| **Subagents** | Auto-delegated | Isolated context | Specialized task | Task distribution |
-| **Memory** | Auto-loaded | Cross-session | User/team context | Long-term learning |
-| **MCP Protocol** | Auto-queried | Real-time external | Live data access | Dynamic information |
-| **Skills** | Auto-invoked | Filesystem-based | Reusable expertise | Automated workflows |
+| **Slash Commands** | 수동 (`/cmd`) | 세션만 | 단일 명령어 | 빠른 단축키 |
+| **Subagents** | 자동 위임 | 격리된 컨텍스트 | 전문화된 작업 | 작업 분배 |
+| **Memory** | 자동 로드 | 세션 간 | 사용자/팀 컨텍스트 | 장기 학습 |
+| **MCP Protocol** | 자동 쿼리 | 실시간 외부 | 실시간 데이터 접근 | 동적 정보 |
+| **Skills** | 자동 호출 | 파일시스템 기반 | 재사용 가능한 전문성 | 자동화 워크플로우 |
 
-### Interaction Timeline
+### 상호작용 타임라인
 
 ```mermaid
 graph LR
@@ -2602,9 +2602,9 @@ graph LR
     J -->|Uses| B
 ```
 
-### Practical Integration Example: Customer Support Automation
+### 실전 통합 예제: 고객 지원 자동화
 
-#### Architecture
+#### 아키텍처
 
 ```mermaid
 graph TB
@@ -2630,60 +2630,60 @@ graph TB
     Output -->|Send| Reply["Customer Reply"]
 ```
 
-#### Request Flow
+#### 요청 흐름
 
 ```markdown
-## Customer Support Request Flow
+## 고객 지원 요청 흐름
 
-### 1. Incoming Email
-"I'm getting error 500 when trying to upload files. This is blocking my workflow!"
+### 1. 수신 이메일
+"파일 업로드 시 500 에러가 발생합니다. 업무가 막혀 있어요!"
 
-### 2. Memory Lookup
-- Loads CLAUDE.md with support standards
-- Checks customer history: VIP customer, 3rd incident this month
+### 2. Memory 조회
+- 지원 기준이 담긴 CLAUDE.md 로드
+- 고객 이력 확인: VIP 고객, 이번 달 3번째 사고
 
-### 3. MCP Queries
-- GitHub MCP: List open issues (finds related bug report)
-- Database MCP: Check system status (no outages reported)
-- Slack MCP: Check if engineering is aware
+### 3. MCP 쿼리
+- GitHub MCP: 오픈 이슈 목록 (관련 버그 리포트 발견)
+- Database MCP: 시스템 상태 확인 (장애 없음)
+- Slack MCP: 엔지니어링팀 인지 여부 확인
 
-### 4. Skill Detection & Loading
-- Request matches "Technical Support" skill
-- Loads support response template from Skill
+### 4. Skill 감지 및 로딩
+- 요청이 "Technical Support" Skill에 매칭
+- Skill에서 지원 응답 템플릿 로드
 
-### 5. Subagent Delegation
-- Routes to Tech Support Subagent
-- Provides context: customer history, error details, known issues
-- Subagent has full access to: read, bash, grep tools
+### 5. Subagent 위임
+- Tech Support Subagent로 라우팅
+- 컨텍스트 제공: 고객 이력, 오류 세부사항, 알려진 이슈
+- Subagent는 read, bash, grep 도구 전체 접근 가능
 
-### 6. Subagent Processing
+### 6. Subagent 처리
 Tech Support Subagent:
-- Searches codebase for 500 error in file upload
-- Finds recent change in commit 8f4a2c
-- Creates workaround documentation
+- 파일 업로드의 500 에러를 코드베이스에서 검색
+- 커밋 8f4a2c에서 최근 변경 발견
+- 임시 해결책 문서 작성
 
-### 7. Skill Execution
+### 7. Skill 실행
 Response Generator Skill:
-- Uses Brand Voice guidelines
-- Formats response with empathy
-- Includes workaround steps
-- Links to related documentation
+- Brand Voice 가이드라인 적용
+- 공감을 담은 응답 형식화
+- 임시 해결 단계 포함
+- 관련 문서 링크 추가
 
-### 8. MCP Output
-- Posts update to #support Slack channel
-- Tags engineering team
-- Updates ticket in Jira MCP
+### 8. MCP 출력
+- #support Slack 채널에 업데이트 게시
+- 엔지니어링팀 태그
+- Jira MCP에서 티켓 업데이트
 
-### 9. Response
-Customer receives:
-- Empathetic acknowledgment
-- Explanation of cause
-- Immediate workaround
-- Timeline for permanent fix
-- Link to related issues
+### 9. 응답
+고객이 받는 내용:
+- 공감적인 인정
+- 원인 설명
+- 즉각적인 임시 해결책
+- 영구 수정 일정
+- 관련 이슈 링크
 ```
 
-### Complete Feature Orchestration
+### 전체 기능 조율
 
 ```mermaid
 sequenceDiagram
@@ -2710,7 +2710,7 @@ sequenceDiagram
     Claude->>User: Complete system delivered
 ```
 
-### When to Use Each Feature
+### 각 기능을 사용할 때
 
 ```mermaid
 graph TD
@@ -2729,7 +2729,7 @@ graph TD
     G --> G1["✅ Auto-invoked expertise"]
 ```
 
-### Selection Decision Tree
+### 선택 결정 트리
 
 ```mermaid
 graph TD
@@ -2754,94 +2754,94 @@ graph TD
 
 ---
 
-## Summary Table
+## 요약 표
 
-| Aspect | Slash Commands | Subagents | Memory | MCP | Skills | Plugins |
+| 항목 | Slash Commands | Subagents | Memory | MCP | Skills | Plugins |
 |--------|---|---|---|---|---|---|
-| **Setup Difficulty** | Easy | Medium | Easy | Medium | Medium | Easy |
-| **Learning Curve** | Low | Medium | Low | Medium | Medium | Low |
-| **Team Benefit** | High | High | Medium | High | High | Very High |
-| **Automation Level** | Low | High | Medium | High | High | Very High |
-| **Context Management** | Single-session | Isolated | Persistent | Real-time | Persistent | All features |
-| **Maintenance Burden** | Low | Medium | Low | Medium | Medium | Low |
-| **Scalability** | Good | Excellent | Good | Excellent | Excellent | Excellent |
-| **Shareability** | Fair | Fair | Good | Good | Good | Excellent |
-| **Versioning** | Manual | Manual | Manual | Manual | Manual | Automatic |
-| **Installation** | Manual copy | Manual config | N/A | Manual config | Manual copy | One command |
+| **설정 난이도** | 쉬움 | 중간 | 쉬움 | 중간 | 중간 | 쉬움 |
+| **학습 곡선** | 낮음 | 중간 | 낮음 | 중간 | 중간 | 낮음 |
+| **팀 혜택** | 높음 | 높음 | 중간 | 높음 | 높음 | 매우 높음 |
+| **자동화 수준** | 낮음 | 높음 | 중간 | 높음 | 높음 | 매우 높음 |
+| **컨텍스트 관리** | 단일 세션 | 격리됨 | 영속적 | 실시간 | 영속적 | 모든 기능 |
+| **유지보수 부담** | 낮음 | 중간 | 낮음 | 중간 | 중간 | 낮음 |
+| **확장성** | 좋음 | 탁월 | 좋음 | 탁월 | 탁월 | 탁월 |
+| **공유 가능성** | 보통 | 보통 | 좋음 | 좋음 | 좋음 | 탁월 |
+| **버전 관리** | 수동 | 수동 | 수동 | 수동 | 수동 | 자동 |
+| **설치** | 수동 복사 | 수동 설정 | 해당 없음 | 수동 설정 | 수동 복사 | 명령어 한 번 |
 
 ---
 
-## Quick Start Guide
+## 빠른 시작 가이드
 
-### Week 1: Start Simple
-- Create 2-3 slash commands for common tasks
-- Enable Memory in Settings
-- Document team standards in CLAUDE.md
+### 1주차: 간단하게 시작
+- 자주 사용하는 작업에 대한 slash commands 2-3개 생성
+- 설정에서 Memory 활성화
+- CLAUDE.md에 팀 기준 문서화
 
-### Week 2: Add Real-time Access
-- Set up 1 MCP (GitHub or Database)
-- Use `/mcp` to configure
-- Query live data in your workflows
+### 2주차: 실시간 접근 추가
+- MCP 1개 설정 (GitHub 또는 데이터베이스)
+- `/mcp`로 설정
+- 워크플로우에서 실시간 데이터 쿼리
 
-### Week 3: Distribute Work
-- Create first Subagent for specific role
-- Use `/agents` command
-- Test delegation with simple task
+### 3주차: 작업 분배
+- 특정 역할을 위한 첫 번째 Subagent 생성
+- `/agents` 명령어 사용
+- 간단한 작업으로 위임 테스트
 
-### Week 4: Automate Everything
-- Create first Skill for repeated automation
-- Use Skill marketplace or build custom
-- Combine all features for full workflow
+### 4주차: 모든 것 자동화
+- 반복 자동화를 위한 첫 번째 Skill 생성
+- Skill 마켓플레이스 활용 또는 커스텀 빌드
+- 모든 기능 결합하여 전체 워크플로우 구성
 
-### Ongoing
-- Review and update Memory monthly
-- Add new Skills as patterns emerge
-- Optimize MCP queries
-- Refine Subagent prompts
+### 지속적으로
+- Memory를 월별로 검토 및 업데이트
+- 패턴이 생기면 새 Skills 추가
+- MCP 쿼리 최적화
+- Subagent 프롬프트 개선
 
 ---
 
 ## Hooks
 
-### Overview
+### 개요
 
-Hooks are event-driven shell commands that execute automatically in response to Claude Code events. They enable automation, validation, and custom workflows without manual intervention.
+Hooks는 Claude Code 이벤트에 응답하여 자동으로 실행되는 이벤트 기반 셸 명령어입니다. 수동 개입 없이 자동화, 유효성 검사, 커스텀 워크플로우를 구현할 수 있습니다.
 
-### Hook Events
+### Hook 이벤트
 
-Claude Code supports **25 hook events** across four hook types (command, http, prompt, agent):
+Claude Code는 네 가지 hook 유형(command, http, prompt, agent)에 걸쳐 **25개의 hook 이벤트**를 지원합니다:
 
-| Hook Event | Trigger | Use Cases |
+| Hook 이벤트 | 트리거 | 활용 사례 |
 |------------|---------|-----------|
-| **SessionStart** | Session begins/resumes/clear/compact | Environment setup, initialization |
-| **InstructionsLoaded** | CLAUDE.md or rules file loaded | Validation, transformation, augmentation |
-| **UserPromptSubmit** | User submits prompt | Input validation, prompt filtering |
-| **PreToolUse** | Before any tool runs | Validation, approval gates, logging |
-| **PermissionRequest** | Permission dialog shown | Auto-approve/deny flows |
-| **PostToolUse** | After tool succeeds | Auto-formatting, notifications, cleanup |
-| **PostToolUseFailure** | Tool execution fails | Error handling, logging |
-| **Notification** | Notification sent | Alerting, external integrations |
-| **SubagentStart** | Subagent spawned | Context injection, initialization |
-| **SubagentStop** | Subagent finishes | Result validation, logging |
-| **Stop** | Claude finishes responding | Summary generation, cleanup tasks |
-| **StopFailure** | API error ends turn | Error recovery, logging |
-| **TeammateIdle** | Agent team teammate idle | Work distribution, coordination |
-| **TaskCompleted** | Task marked complete | Post-task processing |
-| **TaskCreated** | Task created via TaskCreate | Task tracking, logging |
-| **ConfigChange** | Config file changes | Validation, propagation |
-| **CwdChanged** | Working directory changes | Directory-specific setup |
-| **FileChanged** | Watched file changes | File monitoring, rebuild triggers |
-| **PreCompact** | Before context compaction | State preservation |
-| **PostCompact** | After compaction completes | Post-compact actions |
-| **WorktreeCreate** | Worktree being created | Environment setup, dependency install |
-| **WorktreeRemove** | Worktree being removed | Cleanup, resource deallocation |
-| **Elicitation** | MCP server requests user input | Input validation |
-| **ElicitationResult** | User responds to elicitation | Response processing |
-| **SessionEnd** | Session terminates | Cleanup, final logging |
+| **SessionStart** | 세션 시작/재개/초기화/압축 | 환경 설정, 초기화 |
+| **InstructionsLoaded** | CLAUDE.md 또는 rules 파일 로드 | 유효성 검사, 변환, 증강 |
+| **UserPromptSubmit** | 사용자가 프롬프트 제출 | 입력 유효성 검사, 프롬프트 필터링 |
+| **PreToolUse** | 도구 실행 전 | 유효성 검사, 승인 게이트, 로깅 |
+| **PermissionRequest** | 권한 다이얼로그 표시 | 자동 승인/거부 흐름 |
+| **PostToolUse** | 도구 성공 후 | 자동 포맷팅, 알림, 정리 |
+| **PostToolUseFailure** | 도구 실행 실패 | 오류 처리, 로깅 |
+| **Notification** | 알림 전송 | 알림, 외부 통합 |
+| **SubagentStart** | Subagent 생성 | 컨텍스트 주입, 초기화 |
+| **SubagentStop** | Subagent 완료 | 결과 유효성 검사, 로깅 |
+| **Stop** | Claude가 응답 완료 | 요약 생성, 정리 작업 |
+| **StopFailure** | API 오류로 턴 종료 | 오류 복구, 로깅 |
+| **TeammateIdle** | 에이전트 팀 동료 유휴 | 작업 분배, 조율 |
+| **TaskCompleted** | 작업이 완료로 표시됨 | 작업 후 처리 |
+| **TaskCreated** | TaskCreate를 통해 작업 생성 | 작업 추적, 로깅 |
+| **ConfigChange** | 설정 파일 변경 | 유효성 검사, 전파 |
+| **CwdChanged** | 작업 디렉토리 변경 | 디렉토리별 설정 |
+| **FileChanged** | 감시 파일 변경 | 파일 모니터링, 리빌드 트리거 |
+| **PreCompact** | 컨텍스트 압축 전 | 상태 보존 |
+| **PostCompact** | 압축 완료 후 | 압축 후 작업 |
+| **WorktreeCreate** | 워크트리 생성 중 | 환경 설정, 의존성 설치 |
+| **WorktreeRemove** | 워크트리 제거 중 | 정리, 리소스 해제 |
+| **Elicitation** | MCP 서버가 사용자 입력 요청 | 입력 유효성 검사 |
+| **ElicitationResult** | 사용자가 elicitation에 응답 | 응답 처리 |
+| **SessionEnd** | 세션 종료 | 정리, 최종 로깅 |
 
-### Common Hooks
+### 일반적인 Hooks
 
-Hooks are configured in `~/.claude/settings.json` (user-level) or `.claude/settings.json` (project-level):
+Hooks는 `~/.claude/settings.json` (사용자 수준) 또는 `.claude/settings.json` (프로젝트 수준)에서 설정합니다:
 
 ```json
 {
@@ -2872,73 +2872,73 @@ Hooks are configured in `~/.claude/settings.json` (user-level) or `.claude/setti
 }
 ```
 
-### Hook Environment Variables
+### Hook 환경 변수
 
-- `$CLAUDE_FILE_PATH` - Path to file being edited/written
-- `$CLAUDE_TOOL_NAME` - Name of tool being used
-- `$CLAUDE_SESSION_ID` - Current session identifier
-- `$CLAUDE_PROJECT_DIR` - Project directory path
+- `$CLAUDE_FILE_PATH` - 편집/작성 중인 파일 경로
+- `$CLAUDE_TOOL_NAME` - 사용 중인 도구 이름
+- `$CLAUDE_SESSION_ID` - 현재 세션 식별자
+- `$CLAUDE_PROJECT_DIR` - 프로젝트 디렉토리 경로
 
-### Best Practices
+### 모범 사례
 
-✅ **Do:**
-- Keep hooks fast (< 1 second)
-- Use hooks for validation and automation
-- Handle errors gracefully
-- Use absolute paths
+✅ **권장:**
+- Hook을 빠르게 유지 (1초 미만)
+- 유효성 검사와 자동화에 Hooks 활용
+- 오류를 우아하게 처리
+- 절대 경로 사용
 
-❌ **Don't:**
-- Make hooks interactive
-- Use hooks for long-running tasks
-- Hardcode credentials
+❌ **비권장:**
+- Hooks를 인터랙티브하게 만들지 말 것
+- 장시간 실행 작업에 Hooks 사용 금지
+- 자격증명 하드코딩 금지
 
-**See**: [06-hooks/](06-hooks/) for detailed examples
+**참조**: [06-hooks/](06-hooks/) 에서 상세 예제 확인
 
 ---
 
 ## Checkpoints and Rewind
 
-### Overview
+### 개요
 
-Checkpoints allow you to save conversation state and rewind to previous points, enabling safe experimentation and exploration of multiple approaches.
+Checkpoints는 대화 상태를 저장하고 이전 시점으로 되돌릴 수 있게 하여 안전한 실험과 여러 접근 방법 탐색을 가능하게 합니다.
 
-### Key Concepts
+### 핵심 개념
 
-| Concept | Description |
+| 개념 | 설명 |
 |---------|-------------|
-| **Checkpoint** | Snapshot of conversation state including messages, files, and context |
-| **Rewind** | Return to a previous checkpoint, discarding subsequent changes |
-| **Branch Point** | Checkpoint from which multiple approaches are explored |
+| **Checkpoint** | 메시지, 파일, 컨텍스트를 포함한 대화 상태의 스냅샷 |
+| **Rewind** | 이전 checkpoint로 돌아가고 이후 변경사항 폐기 |
+| **Branch Point** | 여러 접근 방법을 탐색하는 출발점이 되는 checkpoint |
 
-### Accessing Checkpoints
+### Checkpoints 접근하기
 
-Checkpoints are created automatically with every user prompt. To rewind:
+Checkpoints는 모든 사용자 프롬프트와 함께 자동으로 생성됩니다. 되돌리려면:
 
 ```bash
-# Press Esc twice to open the checkpoint browser
+# Esc를 두 번 눌러 checkpoint 브라우저 열기
 Esc + Esc
 
-# Or use the /rewind command
+# 또는 /rewind 명령어 사용
 /rewind
 ```
 
-When you select a checkpoint, you choose from five options:
-1. **Restore code and conversation** -- Revert both to that point
-2. **Restore conversation** -- Rewind messages, keep current code
-3. **Restore code** -- Revert files, keep conversation
-4. **Summarize from here** -- Compress conversation into a summary
-5. **Never mind** -- Cancel
+checkpoint를 선택하면 다섯 가지 옵션 중 선택합니다:
+1. **Restore code and conversation** -- 코드와 대화 모두 해당 시점으로 되돌림
+2. **Restore conversation** -- 메시지만 되돌리고 현재 코드 유지
+3. **Restore code** -- 파일만 되돌리고 대화 유지
+4. **Summarize from here** -- 대화를 요약으로 압축
+5. **Never mind** -- 취소
 
-### Use Cases
+### 활용 사례
 
-| Scenario | Workflow |
+| 시나리오 | 워크플로우 |
 |----------|----------|
-| **Exploring Approaches** | Save → Try A → Save → Rewind → Try B → Compare |
-| **Safe Refactoring** | Save → Refactor → Test → If fail: Rewind |
-| **A/B Testing** | Save → Design A → Save → Rewind → Design B → Compare |
-| **Mistake Recovery** | Notice issue → Rewind to last good state |
+| **접근 방법 탐색** | 저장 → A 시도 → 저장 → Rewind → B 시도 → 비교 |
+| **안전한 리팩토링** | 저장 → 리팩토링 → 테스트 → 실패 시: Rewind |
+| **A/B 테스트** | 저장 → 디자인 A → 저장 → Rewind → 디자인 B → 비교 |
+| **실수 복구** | 문제 발견 → 마지막 정상 상태로 Rewind |
 
-### Configuration
+### 설정
 
 ```json
 {
@@ -2946,7 +2946,7 @@ When you select a checkpoint, you choose from five options:
 }
 ```
 
-**See**: [08-checkpoints/](08-checkpoints/) for detailed examples
+**참조**: [08-checkpoints/](08-checkpoints/) 에서 상세 예제 확인
 
 ---
 
@@ -2954,135 +2954,135 @@ When you select a checkpoint, you choose from five options:
 
 ### Planning Mode
 
-Create detailed implementation plans before coding.
+코딩 전에 상세한 구현 계획을 수립합니다.
 
-**Activation:**
+**활성화:**
 ```bash
 /plan Implement user authentication system
 ```
 
-**Benefits:**
-- Clear roadmap with time estimates
-- Risk assessment
-- Systematic task breakdown
-- Opportunity for review and modification
+**장점:**
+- 시간 예상이 포함된 명확한 로드맵
+- 위험 평가
+- 체계적인 작업 분해
+- 검토 및 수정 기회
 
 ### Extended Thinking
 
-Deep reasoning for complex problems.
+복잡한 문제에 대한 심층 추론입니다.
 
-**Activation:**
-- Toggle with `Alt+T` (or `Option+T` on macOS) during a session
-- Set `MAX_THINKING_TOKENS` environment variable for programmatic control
+**활성화:**
+- 세션 중 `Alt+T` (macOS에서는 `Option+T`)로 토글
+- 프로그래밍 방식 제어를 위해 `MAX_THINKING_TOKENS` 환경 변수 설정
 
 ```bash
-# Enable extended thinking via environment variable
+# 환경 변수로 extended thinking 활성화
 export MAX_THINKING_TOKENS=50000
 claude -p "Should we use microservices or monolith?"
 ```
 
-**Benefits:**
-- Thorough analysis of trade-offs
-- Better architectural decisions
-- Consideration of edge cases
-- Systematic evaluation
+**장점:**
+- 트레이드오프의 철저한 분석
+- 더 나은 아키텍처 결정
+- 엣지 케이스 고려
+- 체계적인 평가
 
 ### Background Tasks
 
-Run long operations without blocking the conversation.
+대화를 차단하지 않고 장시간 작업을 실행합니다.
 
-**Usage:**
+**사용법:**
 ```bash
 User: Run tests in background
 
 Claude: Started task bg-1234
 
-/task list           # Show all tasks
-/task status bg-1234 # Check progress
-/task show bg-1234   # View output
-/task cancel bg-1234 # Cancel task
+/task list           # 모든 작업 표시
+/task status bg-1234 # 진행 상황 확인
+/task show bg-1234   # 출력 내용 확인
+/task cancel bg-1234 # 작업 취소
 ```
 
 ### Permission Modes
 
-Control what Claude can do.
+Claude가 수행할 수 있는 작업을 제어합니다.
 
-| Mode | Description | Use Case |
+| 모드 | 설명 | 활용 사례 |
 |------|-------------|----------|
-| **default** | Standard permissions with prompts for sensitive actions | General development |
-| **acceptEdits** | Automatically accept file edits without confirmation | Trusted editing workflows |
-| **plan** | Analysis and planning only, no file modifications | Code review, architecture planning |
-| **auto** | Automatically approve safe actions, prompt only for risky ones | Balanced autonomy with safety |
-| **dontAsk** | Execute all actions without confirmation prompts | Experienced users, automation |
-| **bypassPermissions** | Full unrestricted access, no safety checks | CI/CD pipelines, trusted scripts |
+| **default** | 민감한 작업에는 프롬프트가 표시되는 표준 권한 | 일반 개발 |
+| **acceptEdits** | 확인 없이 파일 편집 자동 수락 | 신뢰할 수 있는 편집 워크플로우 |
+| **plan** | 분석 및 계획만, 파일 수정 없음 | 코드 리뷰, 아키텍처 계획 |
+| **auto** | 안전한 작업은 자동 승인, 위험한 것만 프롬프트 | 안전성과 자율성의 균형 |
+| **dontAsk** | 확인 프롬프트 없이 모든 작업 실행 | 숙련 사용자, 자동화 |
+| **bypassPermissions** | 완전 무제한 접근, 안전 검사 없음 | CI/CD 파이프라인, 신뢰할 수 있는 스크립트 |
 
-**Usage:**
+**사용법:**
 ```bash
-claude --permission-mode plan          # Read-only analysis
-claude --permission-mode acceptEdits   # Auto-accept edits
-claude --permission-mode auto          # Auto-approve safe actions
-claude --permission-mode dontAsk       # No confirmation prompts
+claude --permission-mode plan          # 읽기 전용 분석
+claude --permission-mode acceptEdits   # 편집 자동 수락
+claude --permission-mode auto          # 안전한 작업 자동 승인
+claude --permission-mode dontAsk       # 확인 프롬프트 없음
 ```
 
 ### Headless Mode (Print Mode)
 
-Run Claude Code without interactive input for automation and CI/CD using the `-p` (print) flag.
+`-p` (print) 플래그를 사용하여 인터랙티브 입력 없이 자동화 및 CI/CD에서 Claude Code를 실행합니다.
 
-**Usage:**
+**사용법:**
 ```bash
-# Run specific task
+# 특정 작업 실행
 claude -p "Run all tests"
 
-# Pipe input for analysis
+# 분석을 위해 입력 파이프
 cat error.log | claude -p "explain this error"
 
-# CI/CD integration (GitHub Actions)
+# CI/CD 통합 (GitHub Actions)
 - name: AI Code Review
   run: claude -p "Review PR changes and report issues"
 
-# JSON output for scripting
+# 스크립팅을 위한 JSON 출력
 claude -p --output-format json "list all functions in src/"
 ```
 
 ### Scheduled Tasks
 
-Run tasks on a repeating schedule using the `/loop` command.
+`/loop` 명령어를 사용하여 반복 일정으로 작업을 실행합니다.
 
-**Usage:**
+**사용법:**
 ```bash
 /loop every 30m "Run tests and report failures"
 /loop every 2h "Check for dependency updates"
 /loop every 1d "Generate daily summary of code changes"
 ```
 
-Scheduled tasks run in the background and report results when complete. They are useful for continuous monitoring, periodic checks, and automated maintenance workflows.
+예약된 작업은 백그라운드에서 실행되며 완료 시 결과를 보고합니다. 지속적인 모니터링, 주기적인 점검, 자동화된 유지보수 워크플로우에 유용합니다.
 
-### Chrome Integration
+### Chrome 통합
 
-Claude Code can integrate with the Chrome browser for web automation tasks. This enables capabilities like navigating web pages, filling forms, taking screenshots, and extracting data from websites directly within your development workflow.
+Claude Code는 웹 자동화 작업을 위해 Chrome 브라우저와 통합될 수 있습니다. 개발 워크플로우 내에서 웹 페이지 탐색, 양식 작성, 스크린샷 촬영, 웹사이트에서 데이터 추출 등의 기능을 직접 사용할 수 있습니다.
 
 ### Session Management
 
-Manage multiple work sessions.
+여러 작업 세션을 관리합니다.
 
-**Commands:**
+**명령어:**
 ```bash
-/resume                # Resume a previous conversation
-/rename "Feature"      # Name the current session
-/fork                  # Fork into a new session
-claude -c              # Continue most recent conversation
-claude -r "Feature"    # Resume session by name/ID
+/resume                # 이전 대화 재개
+/rename "Feature"      # 현재 세션 이름 지정
+/fork                  # 새 세션으로 분기
+claude -c              # 가장 최근 대화 계속
+claude -r "Feature"    # 이름/ID로 세션 재개
 ```
 
 ### Interactive Features
 
-**Keyboard Shortcuts:**
-- `Ctrl + R` - Search command history
-- `Tab` - Autocomplete
-- `↑ / ↓` - Command history
-- `Ctrl + L` - Clear screen
+**키보드 단축키:**
+- `Ctrl + R` - 명령어 기록 검색
+- `Tab` - 자동완성
+- `↑ / ↓` - 명령어 기록
+- `Ctrl + L` - 화면 지우기
 
-**Multi-line Input:**
+**멀티라인 입력:**
 ```bash
 User: \
 > Long complex prompt
@@ -3090,9 +3090,9 @@ User: \
 > \end
 ```
 
-### Configuration
+### 설정
 
-Complete configuration example:
+완전한 설정 예시:
 
 ```json
 {
@@ -3114,11 +3114,11 @@ Complete configuration example:
 }
 ```
 
-**See**: [09-advanced-features/](09-advanced-features/) for comprehensive guide
+**참조**: [09-advanced-features/](09-advanced-features/) 에서 종합 가이드 확인
 
 ---
 
-## Resources
+## 리소스
 
 - [Claude Code Documentation](https://code.claude.com/docs/en/overview)
 - [Anthropic Documentation](https://docs.anthropic.com)
@@ -3127,6 +3127,6 @@ Complete configuration example:
 
 ---
 
-*Last updated: March 2026*
-*For Claude Haiku 4.5, Sonnet 4.6, and Opus 4.6*
-*Now includes: Hooks, Checkpoints, Planning Mode, Extended Thinking, Background Tasks, Permission Modes (6 modes), Headless Mode, Session Management, Auto Memory, Agent Teams, Scheduled Tasks, Chrome Integration, Channels, Voice Dictation, and Bundled Skills*
+*최종 업데이트: 2026년 3월*
+*Claude Haiku 4.5, Sonnet 4.6, Opus 4.6 기준*
+*포함 내용: Hooks, Checkpoints, Planning Mode, Extended Thinking, Background Tasks, Permission Modes (6가지), Headless Mode, Session Management, Auto Memory, Agent Teams, Scheduled Tasks, Chrome Integration, Channels, Voice Dictation, 번들 Skills*
