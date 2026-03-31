@@ -5,13 +5,13 @@
 
 # Claude Code Plugins
 
-This folder contains complete plugin examples that bundle multiple Claude Code features into cohesive, installable packages.
+이 폴더에는 여러 Claude Code 기능을 하나의 응집력 있고 설치 가능한 패키지로 묶은 완전한 플러그인 예제들이 포함되어 있습니다.
 
-## Overview
+## 개요
 
-Claude Code Plugins are bundled collections of customizations (slash commands, subagents, MCP servers, and hooks) that install with a single command. They represent the highest-level extension mechanism—combining multiple features into cohesive, shareable packages.
+Claude Code Plugins는 커스터마이징(slash commands, subagents, MCP 서버, hooks)을 묶어 단일 명령으로 설치할 수 있는 번들 컬렉션입니다. 여러 기능을 하나의 응집력 있고 공유 가능한 패키지로 결합하는 최상위 확장 메커니즘입니다.
 
-## Plugin Architecture
+## 플러그인 아키텍처
 
 ```mermaid
 graph TB
@@ -29,7 +29,7 @@ graph TB
     A -->|bundles| F
 ```
 
-## Plugin Loading Process
+## 플러그인 로딩 과정
 
 ```mermaid
 sequenceDiagram
@@ -58,18 +58,18 @@ sequenceDiagram
     Tools-->>Claude: Plugin installed ✅
 ```
 
-## Plugin Types & Distribution
+## 플러그인 유형 및 배포 방식
 
-| Type | Scope | Shared | Authority | Examples |
+| 유형 | 범위 | 공유 대상 | 관리 주체 | 예시 |
 |------|-------|--------|-----------|----------|
-| Official | Global | All users | Anthropic | PR Review, Security Guidance |
-| Community | Public | All users | Community | DevOps, Data Science |
-| Organization | Internal | Team members | Company | Internal standards, tools |
-| Personal | Individual | Single user | Developer | Custom workflows |
+| 공식(Official) | 전역 | 모든 사용자 | Anthropic | PR Review, Security Guidance |
+| 커뮤니티(Community) | 공개 | 모든 사용자 | 커뮤니티 | DevOps, Data Science |
+| 조직(Organization) | 내부 | 팀 구성원 | 회사 | 내부 표준, 도구 |
+| 개인(Personal) | 개인 | 단일 사용자 | 개발자 | 커스텀 워크플로우 |
 
-## Plugin Definition Structure
+## 플러그인 정의 구조
 
-Plugin manifest uses JSON format in `.claude-plugin/plugin.json`:
+플러그인 manifest는 `.claude-plugin/plugin.json`에 JSON 형식으로 작성합니다:
 
 ```json
 {
@@ -85,7 +85,7 @@ Plugin manifest uses JSON format in `.claude-plugin/plugin.json`:
 }
 ```
 
-## Plugin Structure Example
+## 플러그인 구조 예시
 
 ```
 my-plugin/
@@ -119,32 +119,32 @@ my-plugin/
     └── plugin.test.js
 ```
 
-### LSP server configuration
+### LSP 서버 설정
 
-Plugins can include Language Server Protocol (LSP) support for real-time code intelligence. LSP servers provide diagnostics, code navigation, and symbol information as you work.
+플러그인은 실시간 코드 인텔리전스를 위한 Language Server Protocol(LSP) 지원을 포함할 수 있습니다. LSP 서버는 작업 중에 진단, 코드 탐색, 심볼 정보를 제공합니다.
 
-**Configuration locations**:
-- `.lsp.json` file in the plugin root directory
-- Inline `lsp` key in `plugin.json`
+**설정 위치**:
+- 플러그인 루트 디렉토리의 `.lsp.json` 파일
+- `plugin.json`의 인라인 `lsp` 키
 
-#### Field reference
+#### 필드 참조
 
-| Field | Required | Description |
+| 필드 | 필수 여부 | 설명 |
 |-------|----------|-------------|
-| `command` | Yes | LSP server binary (must be in PATH) |
-| `extensionToLanguage` | Yes | Maps file extensions to language IDs |
-| `args` | No | Command-line arguments for the server |
-| `transport` | No | Communication method: `stdio` (default) or `socket` |
-| `env` | No | Environment variables for the server process |
-| `initializationOptions` | No | Options sent during LSP initialization |
-| `settings` | No | Workspace configuration passed to the server |
-| `workspaceFolder` | No | Override the workspace folder path |
-| `startupTimeout` | No | Maximum time (ms) to wait for server startup |
-| `shutdownTimeout` | No | Maximum time (ms) for graceful shutdown |
-| `restartOnCrash` | No | Automatically restart if the server crashes |
-| `maxRestarts` | No | Maximum restart attempts before giving up |
+| `command` | 필수 | LSP 서버 바이너리 (PATH에 있어야 함) |
+| `extensionToLanguage` | 필수 | 파일 확장자를 언어 ID에 매핑 |
+| `args` | 선택 | 서버의 커맨드라인 인수 |
+| `transport` | 선택 | 통신 방식: `stdio` (기본값) 또는 `socket` |
+| `env` | 선택 | 서버 프로세스용 환경 변수 |
+| `initializationOptions` | 선택 | LSP 초기화 시 전달되는 옵션 |
+| `settings` | 선택 | 서버에 전달되는 워크스페이스 설정 |
+| `workspaceFolder` | 선택 | 워크스페이스 폴더 경로 재정의 |
+| `startupTimeout` | 선택 | 서버 시작 대기 최대 시간(ms) |
+| `shutdownTimeout` | 선택 | 정상 종료를 위한 최대 시간(ms) |
+| `restartOnCrash` | 선택 | 서버 충돌 시 자동 재시작 여부 |
+| `maxRestarts` | 선택 | 포기 전 최대 재시작 횟수 |
 
-#### Example configurations
+#### 설정 예시
 
 **Go (gopls)**:
 
@@ -192,28 +192,28 @@ Plugins can include Language Server Protocol (LSP) support for real-time code in
 }
 ```
 
-#### Available LSP plugins
+#### 사용 가능한 LSP 플러그인
 
-The official marketplace includes pre-configured LSP plugins:
+공식 마켓플레이스에는 미리 설정된 LSP 플러그인이 포함되어 있습니다:
 
-| Plugin | Language | Server Binary | Install Command |
+| 플러그인 | 언어 | 서버 바이너리 | 설치 명령 |
 |--------|----------|---------------|----------------|
 | `pyright-lsp` | Python | `pyright-langserver` | `pip install pyright` |
 | `typescript-lsp` | TypeScript/JavaScript | `typescript-language-server` | `npm install -g typescript-language-server typescript` |
-| `rust-lsp` | Rust | `rust-analyzer` | Install via `rustup component add rust-analyzer` |
+| `rust-lsp` | Rust | `rust-analyzer` | `rustup component add rust-analyzer`으로 설치 |
 
-#### LSP capabilities
+#### LSP 기능
 
-Once configured, LSP servers provide:
+설정이 완료되면 LSP 서버가 다음 기능을 제공합니다:
 
-- **Instant diagnostics** — errors and warnings appear immediately after edits
-- **Code navigation** — go to definition, find references, implementations
-- **Hover information** — type signatures and documentation on hover
-- **Symbol listing** — browse symbols in the current file or workspace
+- **즉각적인 진단** — 편집 직후 오류 및 경고 표시
+- **코드 탐색** — 정의로 이동, 참조 찾기, 구현 확인
+- **호버 정보** — 호버 시 타입 서명 및 문서 표시
+- **심볼 목록** — 현재 파일 또는 워크스페이스의 심볼 탐색
 
-## Plugin Options (v2.1.83+)
+## 플러그인 옵션 (v2.1.83+)
 
-Plugins can declare user-configurable options in the manifest via `userConfig`. Values marked `sensitive: true` are stored in the system keychain rather than plain-text settings files:
+플러그인은 manifest의 `userConfig`를 통해 사용자가 설정 가능한 옵션을 선언할 수 있습니다. `sensitive: true`로 표시된 값은 일반 텍스트 설정 파일 대신 시스템 키체인에 저장됩니다:
 
 ```json
 {
@@ -232,9 +232,9 @@ Plugins can declare user-configurable options in the manifest via `userConfig`. 
 }
 ```
 
-## Persistent Plugin Data (`${CLAUDE_PLUGIN_DATA}`) (v2.1.78+)
+## 영구적 플러그인 데이터 (`${CLAUDE_PLUGIN_DATA}`) (v2.1.78+)
 
-Plugins have access to a persistent state directory via the `${CLAUDE_PLUGIN_DATA}` environment variable. This directory is unique per plugin and survives across sessions, making it suitable for caches, databases, and other persistent state:
+플러그인은 `${CLAUDE_PLUGIN_DATA}` 환경 변수를 통해 영구 상태 디렉토리에 접근할 수 있습니다. 이 디렉토리는 플러그인별로 고유하며 세션이 종료되어도 유지되므로, 캐시, 데이터베이스 등 영구적인 상태 저장에 적합합니다:
 
 ```json
 {
@@ -248,11 +248,11 @@ Plugins have access to a persistent state directory via the `${CLAUDE_PLUGIN_DAT
 }
 ```
 
-The directory is created automatically when the plugin is installed. Files stored here persist until the plugin is uninstalled.
+플러그인이 설치될 때 디렉토리가 자동으로 생성됩니다. 여기에 저장된 파일은 플러그인을 제거할 때까지 유지됩니다.
 
-## Inline Plugin via Settings (`source: 'settings'`) (v2.1.80+)
+## 설정을 통한 인라인 플러그인 (`source: 'settings'`) (v2.1.80+)
 
-Plugins can be defined inline in settings files as marketplace entries using the `source: 'settings'` field. This allows embedding a plugin definition directly without requiring a separate repository or marketplace:
+플러그인은 `source: 'settings'` 필드를 사용하여 설정 파일에 마켓플레이스 항목으로 인라인 정의될 수 있습니다. 이를 통해 별도의 저장소나 마켓플레이스 없이 플러그인 정의를 직접 포함할 수 있습니다:
 
 ```json
 {
@@ -271,9 +271,9 @@ Plugins can be defined inline in settings files as marketplace entries using the
 }
 ```
 
-## Plugin Settings
+## 플러그인 설정
 
-Plugins can ship a `settings.json` file to provide default configuration. This currently supports the `agent` key, which sets the main thread agent for the plugin:
+플러그인은 기본 설정을 제공하기 위해 `settings.json` 파일을 포함할 수 있습니다. 현재 플러그인의 메인 스레드 에이전트를 설정하는 `agent` 키를 지원합니다:
 
 ```json
 {
@@ -281,22 +281,22 @@ Plugins can ship a `settings.json` file to provide default configuration. This c
 }
 ```
 
-When a plugin includes `settings.json`, its defaults are applied on installation. Users can override these settings in their own project or user configuration.
+플러그인이 `settings.json`을 포함하는 경우, 설치 시 기본값이 적용됩니다. 사용자는 자신의 프로젝트 또는 사용자 설정에서 이 설정을 재정의할 수 있습니다.
 
-## Standalone vs Plugin Approach
+## 독립 실행 방식 vs 플러그인 방식
 
-| Approach | Command Names | Configuration | Best For |
+| 방식 | 커맨드 이름 | 설정 | 적합한 상황 |
 |----------|---------------|---|---|
-| **Standalone** | `/hello` | Manual setup in CLAUDE.md | Personal, project-specific |
-| **Plugins** | `/plugin-name:hello` | Automated via plugin.json | Sharing, distribution, team use |
+| **독립 실행(Standalone)** | `/hello` | CLAUDE.md에 수동 설정 | 개인, 프로젝트별 용도 |
+| **Plugins** | `/plugin-name:hello` | plugin.json으로 자동화 | 공유, 배포, 팀 사용 |
 
-Use **standalone slash commands** for quick personal workflows. Use **plugins** when you want to bundle multiple features, share with a team, or publish for distribution.
+빠른 개인 워크플로우에는 **독립 실행 slash commands**를 사용하세요. 여러 기능을 묶거나 팀과 공유하거나 배포하려면 **plugins**를 사용하세요.
 
-## Practical Examples
+## 실용적인 예시
 
-### Example 1: PR Review Plugin
+### 예시 1: PR Review 플러그인
 
-**File:** `.claude-plugin/plugin.json`
+**파일:** `.claude-plugin/plugin.json`
 
 ```json
 {
@@ -311,7 +311,7 @@ Use **standalone slash commands** for quick personal workflows. Use **plugins** 
 }
 ```
 
-**File:** `commands/review-pr.md`
+**파일:** `commands/review-pr.md`
 
 ```markdown
 ---
@@ -330,7 +330,7 @@ This command initiates a complete pull request review including:
 5. Performance impact assessment
 ```
 
-**File:** `agents/security-reviewer.md`
+**파일:** `agents/security-reviewer.md`
 
 ```yaml
 ---
@@ -348,12 +348,12 @@ Specializes in finding security vulnerabilities:
 - Secure configuration
 ```
 
-**Installation:**
+**설치:**
 
 ```bash
 /plugin install pr-review
 
-# Result:
+# 결과:
 # ✅ 3 slash commands installed
 # ✅ 3 subagents configured
 # ✅ 2 MCP servers connected
@@ -361,9 +361,9 @@ Specializes in finding security vulnerabilities:
 # ✅ Ready to use!
 ```
 
-### Example 2: DevOps Plugin
+### 예시 2: DevOps 플러그인
 
-**Components:**
+**구성 요소:**
 
 ```
 devops-automation/
@@ -390,9 +390,9 @@ devops-automation/
     └── health-check.sh
 ```
 
-### Example 3: Documentation Plugin
+### 예시 3: 문서화 플러그인
 
-**Bundled Components:**
+**번들 구성 요소:**
 
 ```
 documentation/
@@ -414,9 +414,9 @@ documentation/
     └── adr-template.md
 ```
 
-## Plugin Marketplace
+## 플러그인 마켓플레이스
 
-The official Anthropic-managed plugin directory is `anthropics/claude-plugins-official`. Enterprise admins can also create private plugin marketplaces for internal distribution.
+공식 Anthropic 관리 플러그인 디렉토리는 `anthropics/claude-plugins-official`입니다. 엔터프라이즈 관리자는 내부 배포를 위한 비공개 플러그인 마켓플레이스를 별도로 생성할 수도 있습니다.
 
 ```mermaid
 graph TB
@@ -447,25 +447,25 @@ graph TB
     style D fill:#fff3e0,stroke:#333,color:#333
 ```
 
-### Marketplace Configuration
+### 마켓플레이스 설정
 
-Enterprise and advanced users can control marketplace behavior through settings:
+엔터프라이즈 및 고급 사용자는 설정을 통해 마켓플레이스 동작을 제어할 수 있습니다:
 
-| Setting | Description |
+| 설정 | 설명 |
 |---------|-------------|
-| `extraKnownMarketplaces` | Add additional marketplace sources beyond the defaults |
-| `strictKnownMarketplaces` | Control which marketplaces users are allowed to add |
-| `deniedPlugins` | Admin-managed blocklist to prevent specific plugins from being installed |
+| `extraKnownMarketplaces` | 기본값 외에 추가 마켓플레이스 소스를 추가 |
+| `strictKnownMarketplaces` | 사용자가 추가할 수 있는 마켓플레이스를 제어 |
+| `deniedPlugins` | 특정 플러그인 설치를 방지하는 관리자 관리 차단 목록 |
 
-### Additional Marketplace Features
+### 마켓플레이스 추가 기능
 
-- **Default git timeout**: Increased from 30s to 120s for large plugin repositories
-- **Custom npm registries**: Plugins can specify custom npm registry URLs for dependency resolution
-- **Version pinning**: Lock plugins to specific versions for reproducible environments
+- **기본 git 타임아웃**: 대형 플러그인 저장소를 위해 30초에서 120초로 증가
+- **커스텀 npm 레지스트리**: 플러그인이 의존성 해결을 위한 커스텀 npm 레지스트리 URL을 지정 가능
+- **버전 고정(Version pinning)**: 재현 가능한 환경을 위해 플러그인을 특정 버전에 고정
 
-### Marketplace definition schema
+### 마켓플레이스 정의 스키마
 
-Plugin marketplaces are defined in `.claude-plugin/marketplace.json`:
+플러그인 마켓플레이스는 `.claude-plugin/marketplace.json`에 정의합니다:
 
 ```json
 {
@@ -492,65 +492,65 @@ Plugin marketplaces are defined in `.claude-plugin/marketplace.json`:
 }
 ```
 
-| Field | Required | Description |
+| 필드 | 필수 여부 | 설명 |
 |-------|----------|-------------|
-| `name` | Yes | Marketplace name in kebab-case |
-| `owner` | Yes | Organization or user who maintains the marketplace |
-| `plugins` | Yes | Array of plugin entries |
-| `plugins[].name` | Yes | Plugin name (kebab-case) |
-| `plugins[].source` | Yes | Plugin source (path string or source object) |
-| `plugins[].description` | No | Brief plugin description |
-| `plugins[].version` | No | Semantic version string |
-| `plugins[].author` | No | Plugin author name |
+| `name` | 필수 | kebab-case 형식의 마켓플레이스 이름 |
+| `owner` | 필수 | 마켓플레이스를 유지 관리하는 조직 또는 사용자 |
+| `plugins` | 필수 | 플러그인 항목 배열 |
+| `plugins[].name` | 필수 | 플러그인 이름 (kebab-case) |
+| `plugins[].source` | 필수 | 플러그인 소스 (경로 문자열 또는 소스 객체) |
+| `plugins[].description` | 선택 | 플러그인 간단 설명 |
+| `plugins[].version` | 선택 | 시맨틱 버전 문자열 |
+| `plugins[].author` | 선택 | 플러그인 작성자 이름 |
 
-### Plugin source types
+### 플러그인 소스 유형
 
-Plugins can be sourced from multiple locations:
+플러그인은 여러 위치에서 가져올 수 있습니다:
 
-| Source | Syntax | Example |
+| 소스 | 문법 | 예시 |
 |--------|--------|---------|
-| **Relative path** | String path | `"./plugins/my-plugin"` |
+| **상대 경로** | 문자열 경로 | `"./plugins/my-plugin"` |
 | **GitHub** | `{ "source": "github", "repo": "owner/repo" }` | `{ "source": "github", "repo": "acme/lint-plugin", "ref": "v1.0" }` |
 | **Git URL** | `{ "source": "url", "url": "..." }` | `{ "source": "url", "url": "https://git.internal/plugin.git" }` |
-| **Git subdirectory** | `{ "source": "git-subdir", "url": "...", "path": "..." }` | `{ "source": "git-subdir", "url": "https://github.com/org/monorepo.git", "path": "packages/plugin" }` |
+| **Git 하위 디렉토리** | `{ "source": "git-subdir", "url": "...", "path": "..." }` | `{ "source": "git-subdir", "url": "https://github.com/org/monorepo.git", "path": "packages/plugin" }` |
 | **npm** | `{ "source": "npm", "package": "..." }` | `{ "source": "npm", "package": "@acme/claude-plugin", "version": "^2.0" }` |
 | **pip** | `{ "source": "pip", "package": "..." }` | `{ "source": "pip", "package": "claude-data-plugin", "version": ">=1.0" }` |
 
-GitHub and git sources support optional `ref` (branch/tag) and `sha` (commit hash) fields for version pinning.
+GitHub 및 git 소스는 버전 고정을 위한 선택적 `ref`(브랜치/태그) 및 `sha`(커밋 해시) 필드를 지원합니다.
 
-### Distribution methods
+### 배포 방법
 
-**GitHub (recommended)**:
+**GitHub (권장)**:
 ```bash
-# Users add your marketplace
+# 사용자가 마켓플레이스를 추가하는 명령
 /plugin marketplace add owner/repo-name
 ```
 
-**Other git services** (full URL required):
+**기타 git 서비스** (전체 URL 필요):
 ```bash
 /plugin marketplace add https://gitlab.com/org/marketplace-repo.git
 ```
 
-**Private repositories**: Supported via git credential helpers or environment tokens. Users must have read access to the repository.
+**비공개 저장소**: git 자격 증명 헬퍼 또는 환경 토큰을 통해 지원됩니다. 사용자는 저장소에 읽기 권한이 있어야 합니다.
 
-**Official marketplace submission**: Submit plugins to the Anthropic-curated marketplace for broader distribution.
+**공식 마켓플레이스 제출**: 더 넓은 배포를 위해 Anthropic 큐레이션 마켓플레이스에 플러그인을 제출합니다.
 
-### Strict mode
+### 엄격 모드(Strict mode)
 
-Control how marketplace definitions interact with local `plugin.json` files:
+마켓플레이스 정의와 로컬 `plugin.json` 파일이 상호작용하는 방식을 제어합니다:
 
-| Setting | Behavior |
+| 설정 | 동작 |
 |---------|----------|
-| `strict: true` (default) | Local `plugin.json` is authoritative; marketplace entry supplements it |
-| `strict: false` | Marketplace entry is the entire plugin definition |
+| `strict: true` (기본값) | 로컬 `plugin.json`이 권위 있음; 마켓플레이스 항목이 보완 |
+| `strict: false` | 마켓플레이스 항목이 전체 플러그인 정의가 됨 |
 
-**Organization restrictions** with `strictKnownMarketplaces`:
+`strictKnownMarketplaces`를 이용한 **조직 제한**:
 
-| Value | Effect |
+| 값 | 효과 |
 |-------|--------|
-| Not set | No restrictions — users can add any marketplace |
-| Empty array `[]` | Lockdown — no marketplaces allowed |
-| Array of patterns | Allowlist — only matching marketplaces can be added |
+| 미설정 | 제한 없음 — 사용자가 어떤 마켓플레이스든 추가 가능 |
+| 빈 배열 `[]` | 잠금 — 마켓플레이스 추가 불가 |
+| 패턴 배열 | 허용 목록 — 매칭되는 마켓플레이스만 추가 가능 |
 
 ```json
 {
@@ -561,9 +561,9 @@ Control how marketplace definitions interact with local `plugin.json` files:
 }
 ```
 
-> **Warning**: In strict mode with `strictKnownMarketplaces`, users can only install plugins from allowlisted marketplaces. This is useful for enterprise environments requiring controlled plugin distribution.
+> **경고**: `strictKnownMarketplaces`와 함께 엄격 모드에서는 사용자가 허용 목록에 있는 마켓플레이스의 플러그인만 설치할 수 있습니다. 플러그인 배포를 제어해야 하는 엔터프라이즈 환경에 유용합니다.
 
-## Plugin Installation & Lifecycle
+## 플러그인 설치 및 생애주기
 
 ```mermaid
 graph LR
@@ -580,61 +580,61 @@ graph LR
     J -->|Back| G
 ```
 
-## Plugin Features Comparison
+## 플러그인 기능 비교
 
-| Feature | Slash Command | Skill | Subagent | Plugin |
+| 기능 | Slash Command | Skill | Subagent | Plugin |
 |---------|---------------|-------|----------|--------|
-| **Installation** | Manual copy | Manual copy | Manual config | One command |
-| **Setup Time** | 5 minutes | 10 minutes | 15 minutes | 2 minutes |
-| **Bundling** | Single file | Single file | Single file | Multiple |
-| **Versioning** | Manual | Manual | Manual | Automatic |
-| **Team Sharing** | Copy file | Copy file | Copy file | Install ID |
-| **Updates** | Manual | Manual | Manual | Auto-available |
-| **Dependencies** | None | None | None | May include |
-| **Marketplace** | No | No | No | Yes |
-| **Distribution** | Repository | Repository | Repository | Marketplace |
+| **설치** | 수동 복사 | 수동 복사 | 수동 설정 | 단일 명령 |
+| **설정 시간** | 5분 | 10분 | 15분 | 2분 |
+| **번들링** | 단일 파일 | 단일 파일 | 단일 파일 | 다중 |
+| **버전 관리** | 수동 | 수동 | 수동 | 자동 |
+| **팀 공유** | 파일 복사 | 파일 복사 | 파일 복사 | 설치 ID |
+| **업데이트** | 수동 | 수동 | 수동 | 자동 제공 |
+| **의존성** | 없음 | 없음 | 없음 | 포함 가능 |
+| **마켓플레이스** | 없음 | 없음 | 없음 | 있음 |
+| **배포** | 저장소 | 저장소 | 저장소 | 마켓플레이스 |
 
-## Plugin CLI Commands
+## 플러그인 CLI 명령
 
-All plugin operations are available as CLI commands:
+모든 플러그인 작업은 CLI 명령으로 사용 가능합니다:
 
 ```bash
-claude plugin install <name>@<marketplace>   # Install from a marketplace
-claude plugin uninstall <name>               # Remove a plugin
-claude plugin list                           # List installed plugins
-claude plugin enable <name>                  # Enable a disabled plugin
-claude plugin disable <name>                 # Disable a plugin
-claude plugin validate                       # Validate plugin structure
+claude plugin install <name>@<marketplace>   # 마켓플레이스에서 설치
+claude plugin uninstall <name>               # 플러그인 제거
+claude plugin list                           # 설치된 플러그인 목록
+claude plugin enable <name>                  # 비활성화된 플러그인 활성화
+claude plugin disable <name>                 # 플러그인 비활성화
+claude plugin validate                       # 플러그인 구조 유효성 검사
 ```
 
-## Installation Methods
+## 설치 방법
 
-### From Marketplace
+### 마켓플레이스에서 설치
 ```bash
 /plugin install plugin-name
-# or from CLI:
+# 또는 CLI에서:
 claude plugin install plugin-name@marketplace-name
 ```
 
-### Enable / Disable (with auto-detected scope)
+### 활성화 / 비활성화 (범위 자동 감지)
 ```bash
 /plugin enable plugin-name
 /plugin disable plugin-name
 ```
 
-### Local Plugin (for development)
+### 로컬 플러그인 (개발용)
 ```bash
-# CLI flag for local testing (repeatable for multiple plugins)
+# 로컬 테스트를 위한 CLI 플래그 (여러 플러그인에 반복 사용 가능)
 claude --plugin-dir ./path/to/plugin
 claude --plugin-dir ./plugin-a --plugin-dir ./plugin-b
 ```
 
-### From Git Repository
+### Git 저장소에서 설치
 ```bash
 /plugin install github:username/repo
 ```
 
-## When to Create a Plugin
+## 플러그인 생성 시점
 
 ```mermaid
 graph TD
@@ -650,83 +650,83 @@ graph TD
     G -->|No| D
 ```
 
-### Plugin Use Cases
+### 플러그인 활용 사례
 
-| Use Case | Recommendation | Why |
+| 활용 사례 | 권장 사항 | 이유 |
 |----------|-----------------|-----|
-| **Team Onboarding** | ✅ Use Plugin | Instant setup, all configurations |
-| **Framework Setup** | ✅ Use Plugin | Bundles framework-specific commands |
-| **Enterprise Standards** | ✅ Use Plugin | Central distribution, version control |
-| **Quick Task Automation** | ❌ Use Command | Overkill complexity |
-| **Single Domain Expertise** | ❌ Use Skill | Too heavy, use skill instead |
-| **Specialized Analysis** | ❌ Use Subagent | Create manually or use skill |
-| **Live Data Access** | ❌ Use MCP | Standalone, don't bundle |
+| **팀 온보딩** | ✅ 플러그인 사용 | 즉각적인 설정, 모든 설정 포함 |
+| **프레임워크 설정** | ✅ 플러그인 사용 | 프레임워크별 명령 번들 |
+| **엔터프라이즈 표준** | ✅ 플러그인 사용 | 중앙 배포, 버전 관리 |
+| **빠른 작업 자동화** | ❌ Command 사용 | 플러그인은 과도한 복잡성 |
+| **단일 도메인 전문성** | ❌ Skill 사용 | 너무 무거움, skill 사용 권장 |
+| **특화된 분석** | ❌ Subagent 사용 | 수동으로 생성하거나 skill 사용 |
+| **실시간 데이터 접근** | ❌ MCP 사용 | 독립 실행, 번들 불필요 |
 
-## Testing a Plugin
+## 플러그인 테스트
 
-Before publishing, test your plugin locally using the `--plugin-dir` CLI flag (repeatable for multiple plugins):
+게시 전에 `--plugin-dir` CLI 플래그를 사용하여 플러그인을 로컬에서 테스트합니다 (여러 플러그인에 반복 사용 가능):
 
 ```bash
 claude --plugin-dir ./my-plugin
 claude --plugin-dir ./my-plugin --plugin-dir ./another-plugin
 ```
 
-This launches Claude Code with your plugin loaded, allowing you to:
-- Verify all slash commands are available
-- Test subagents and agents function correctly
-- Confirm MCP servers connect properly
-- Validate hook execution
-- Check LSP server configurations
-- Check for any configuration errors
+이를 통해 플러그인이 로드된 Claude Code가 실행되어 다음을 확인할 수 있습니다:
+- 모든 slash commands 사용 가능 여부 확인
+- subagents와 에이전트 정상 동작 테스트
+- MCP 서버 올바른 연결 확인
+- hook 실행 유효성 검사
+- LSP 서버 설정 확인
+- 설정 오류 확인
 
-## Hot-Reload
+## 핫 리로드(Hot-Reload)
 
-Plugins support hot-reload during development. When you modify plugin files, Claude Code can detect changes automatically. You can also force a reload with:
+플러그인은 개발 중 핫 리로드를 지원합니다. 플러그인 파일을 수정하면 Claude Code가 변경 사항을 자동으로 감지할 수 있습니다. 다음 명령으로 강제 리로드도 가능합니다:
 
 ```bash
 /reload-plugins
 ```
 
-This re-reads all plugin manifests, commands, agents, skills, hooks, and MCP/LSP configurations without restarting the session.
+이 명령은 세션을 재시작하지 않고 모든 플러그인 manifest, commands, agents, skills, hooks, MCP/LSP 설정을 다시 읽습니다.
 
-## Managed Settings for Plugins
+## 플러그인 관리 설정
 
-Administrators can control plugin behavior across an organization using managed settings:
+관리자는 관리 설정을 사용하여 조직 전체의 플러그인 동작을 제어할 수 있습니다:
 
-| Setting | Description |
+| 설정 | 설명 |
 |---------|-------------|
-| `enabledPlugins` | Allowlist of plugins that are enabled by default |
-| `deniedPlugins` | Blocklist of plugins that cannot be installed |
-| `extraKnownMarketplaces` | Add additional marketplace sources beyond the defaults |
-| `strictKnownMarketplaces` | Restrict which marketplaces users are allowed to add |
-| `allowedChannelPlugins` | Control which plugins are permitted per release channel |
+| `enabledPlugins` | 기본적으로 활성화되는 플러그인 허용 목록 |
+| `deniedPlugins` | 설치할 수 없는 플러그인 차단 목록 |
+| `extraKnownMarketplaces` | 기본값 외에 추가 마켓플레이스 소스를 추가 |
+| `strictKnownMarketplaces` | 사용자가 추가할 수 있는 마켓플레이스 제한 |
+| `allowedChannelPlugins` | 릴리스 채널별 허용 플러그인 제어 |
 
-These settings can be applied at the organization level via managed configuration files and take precedence over user-level settings.
+이 설정들은 관리 설정 파일을 통해 조직 수준에서 적용되며 사용자 수준 설정보다 우선합니다.
 
-## Plugin Security
+## 플러그인 보안
 
-Plugin subagents run in a restricted sandbox. The following frontmatter keys are **not allowed** in plugin subagent definitions:
+플러그인 subagents는 제한된 샌드박스에서 실행됩니다. 다음 frontmatter 키는 플러그인 subagent 정의에서 **허용되지 않습니다**:
 
-- `hooks` -- Subagents cannot register event handlers
-- `mcpServers` -- Subagents cannot configure MCP servers
-- `permissionMode` -- Subagents cannot override the permission model
+- `hooks` -- Subagents는 이벤트 핸들러를 등록할 수 없음
+- `mcpServers` -- Subagents는 MCP 서버를 설정할 수 없음
+- `permissionMode` -- Subagents는 권한 모델을 재정의할 수 없음
 
-This ensures that plugins cannot escalate privileges or modify the host environment beyond their declared scope.
+이를 통해 플러그인이 선언된 범위를 넘어 권한을 확대하거나 호스트 환경을 수정할 수 없도록 보장합니다.
 
-## Publishing a Plugin
+## 플러그인 게시
 
-**Steps to publish:**
+**게시 단계:**
 
-1. Create plugin structure with all components
-2. Write `.claude-plugin/plugin.json` manifest
-3. Create `README.md` with documentation
-4. Test locally with `claude --plugin-dir ./my-plugin`
-5. Submit to plugin marketplace
-6. Get reviewed and approved
-7. Published on marketplace
-8. Users can install with one command
+1. 모든 구성 요소를 포함한 플러그인 구조 생성
+2. `.claude-plugin/plugin.json` manifest 작성
+3. 문서화를 위한 `README.md` 작성
+4. `claude --plugin-dir ./my-plugin`으로 로컬 테스트
+5. 플러그인 마켓플레이스에 제출
+6. 검토 및 승인
+7. 마켓플레이스에 게시
+8. 사용자가 단일 명령으로 설치 가능
 
-**Example submission:**
+**제출 예시:**
 
 ```markdown
 # PR Review Plugin
@@ -765,179 +765,179 @@ Complete PR review workflow with security, testing, and documentation checks.
 - CodeQL (optional)
 ```
 
-## Plugin vs Manual Configuration
+## 플러그인 vs 수동 설정
 
-**Manual Setup (2+ hours):**
-- Install slash commands one by one
-- Create subagents individually
-- Configure MCPs separately
-- Set up hooks manually
-- Document everything
-- Share with team (hope they configure correctly)
+**수동 설정 (2시간 이상):**
+- slash commands를 하나씩 설치
+- subagents를 개별적으로 생성
+- MCPs를 별도로 설정
+- hooks를 수동으로 설정
+- 모든 내용 문서화
+- 팀과 공유 (올바르게 설정되기를 기대)
 
-**With Plugin (2 minutes):**
+**플러그인 사용 시 (2분):**
 ```bash
 /plugin install pr-review
-# ✅ Everything installed and configured
-# ✅ Ready to use immediately
-# ✅ Team can reproduce exact setup
+# ✅ 모든 것이 설치 및 설정됨
+# ✅ 즉시 사용 가능
+# ✅ 팀이 동일한 설정 재현 가능
 ```
 
-## Best Practices
+## 모범 사례
 
-### Do's ✅
-- Use clear, descriptive plugin names
-- Include comprehensive README
-- Version your plugin properly (semver)
-- Test all components together
-- Document requirements clearly
-- Provide usage examples
-- Include error handling
-- Tag appropriately for discovery
-- Maintain backward compatibility
-- Keep plugins focused and cohesive
-- Include comprehensive tests
-- Document all dependencies
+### 권장 사항 ✅
+- 명확하고 설명적인 플러그인 이름 사용
+- 포괄적인 README 포함
+- 플러그인 버전을 올바르게 관리 (semver)
+- 모든 구성 요소를 함께 테스트
+- 요구 사항 명확히 문서화
+- 사용 예시 제공
+- 오류 처리 포함
+- 검색을 위한 적절한 태그 지정
+- 하위 호환성 유지
+- 플러그인을 집중적이고 응집력 있게 유지
+- 포괄적인 테스트 포함
+- 모든 의존성 문서화
 
-### Don'ts ❌
-- Don't bundle unrelated features
-- Don't hardcode credentials
-- Don't skip testing
-- Don't forget documentation
-- Don't create redundant plugins
-- Don't ignore versioning
-- Don't overcomplicate component dependencies
-- Don't forget to handle errors gracefully
+### 금지 사항 ❌
+- 관련 없는 기능을 번들로 묶지 말 것
+- 자격 증명을 하드코딩하지 말 것
+- 테스트를 건너뛰지 말 것
+- 문서화를 잊지 말 것
+- 중복 플러그인을 만들지 말 것
+- 버전 관리를 무시하지 말 것
+- 구성 요소 의존성을 과도하게 복잡하게 만들지 말 것
+- 오류를 정상적으로 처리하는 것을 잊지 말 것
 
-## Installation Instructions
+## 설치 안내
 
-### Installing from Marketplace
+### 마켓플레이스에서 설치
 
-1. **Browse available plugins:**
+1. **사용 가능한 플러그인 탐색:**
    ```bash
    /plugin list
    ```
 
-2. **View plugin details:**
+2. **플러그인 상세 정보 확인:**
    ```bash
    /plugin info plugin-name
    ```
 
-3. **Install a plugin:**
+3. **플러그인 설치:**
    ```bash
    /plugin install plugin-name
    ```
 
-### Installing from Local Path
+### 로컬 경로에서 설치
 
 ```bash
 /plugin install ./path/to/plugin-directory
 ```
 
-### Installing from GitHub
+### GitHub에서 설치
 
 ```bash
 /plugin install github:username/repo
 ```
 
-### Listing Installed Plugins
+### 설치된 플러그인 목록 확인
 
 ```bash
 /plugin list --installed
 ```
 
-### Updating a Plugin
+### 플러그인 업데이트
 
 ```bash
 /plugin update plugin-name
 ```
 
-### Disabling/Enabling a Plugin
+### 플러그인 비활성화/활성화
 
 ```bash
-# Temporarily disable
+# 일시적으로 비활성화
 /plugin disable plugin-name
 
-# Re-enable
+# 다시 활성화
 /plugin enable plugin-name
 ```
 
-### Uninstalling a Plugin
+### 플러그인 제거
 
 ```bash
 /plugin uninstall plugin-name
 ```
 
-## Related Concepts
+## 관련 개념
 
-The following Claude Code features work together with plugins:
+다음 Claude Code 기능들은 플러그인과 함께 동작합니다:
 
-- **[Slash Commands](../01-slash-commands/)** - Individual commands bundled in plugins
-- **[Memory](../02-memory/)** - Persistent context for plugins
-- **[Skills](../03-skills/)** - Domain expertise that can be wrapped into plugins
-- **[Subagents](../04-subagents/)** - Specialized agents included as plugin components
-- **[MCP Servers](../05-mcp/)** - Model Context Protocol integrations bundled in plugins
-- **[Hooks](../06-hooks/)** - Event handlers that trigger plugin workflows
+- **[Slash Commands](../01-slash-commands/)** — 플러그인에 번들된 개별 명령
+- **[Memory](../02-memory/)** — 플러그인을 위한 영구적 컨텍스트
+- **[Skills](../03-skills/)** — 플러그인으로 래핑될 수 있는 도메인 전문성
+- **[Subagents](../04-subagents/)** — 플러그인 구성 요소로 포함된 특화 에이전트
+- **[MCP Servers](../05-mcp/)** — 플러그인에 번들된 Model Context Protocol 통합
+- **[Hooks](../06-hooks/)** — 플러그인 워크플로우를 트리거하는 이벤트 핸들러
 
-## Complete Example Workflow
+## 완전한 예시 워크플로우
 
-### PR Review Plugin Full Workflow
+### PR Review 플러그인 전체 워크플로우
 
 ```
-1. User: /review-pr
+1. 사용자: /review-pr
 
-2. Plugin executes:
-   ├── pre-review.js hook validates git repo
-   ├── GitHub MCP fetches PR data
-   ├── security-reviewer subagent analyzes security
-   ├── test-checker subagent verifies coverage
-   └── performance-analyzer subagent checks performance
+2. 플러그인 실행:
+   ├── pre-review.js hook이 git 저장소 유효성 검사
+   ├── GitHub MCP가 PR 데이터 가져오기
+   ├── security-reviewer subagent가 보안 분석
+   ├── test-checker subagent가 커버리지 확인
+   └── performance-analyzer subagent가 성능 점검
 
-3. Results synthesized and presented:
+3. 결과 종합 및 표시:
    ✅ Security: No critical issues
    ⚠️  Testing: Coverage 65% (recommend 80%+)
    ✅ Performance: No significant impact
    📝 12 recommendations provided
 ```
 
-## Troubleshooting
+## 문제 해결
 
-### Plugin Won't Install
-- Check Claude Code version compatibility: `/version`
-- Verify `plugin.json` syntax with a JSON validator
-- Check internet connection (for remote plugins)
-- Review permissions: `ls -la plugin/`
+### 플러그인이 설치되지 않는 경우
+- Claude Code 버전 호환성 확인: `/version`
+- JSON 유효성 검사기로 `plugin.json` 문법 확인
+- 인터넷 연결 확인 (원격 플러그인의 경우)
+- 권한 확인: `ls -la plugin/`
 
-### Components Not Loading
-- Verify paths in `plugin.json` match actual directory structure
-- Check file permissions: `chmod +x scripts/`
-- Review component file syntax
-- Check logs: `/plugin debug plugin-name`
+### 구성 요소가 로드되지 않는 경우
+- `plugin.json`의 경로가 실제 디렉토리 구조와 일치하는지 확인
+- 파일 권한 확인: `chmod +x scripts/`
+- 구성 요소 파일 문법 검토
+- 로그 확인: `/plugin debug plugin-name`
 
-### MCP Connection Failed
-- Verify environment variables are set correctly
-- Check MCP server installation and health
-- Test MCP connection independently with `/mcp test`
-- Review MCP configuration in `mcp/` directory
+### MCP 연결 실패
+- 환경 변수가 올바르게 설정되어 있는지 확인
+- MCP 서버 설치 및 상태 확인
+- `/mcp test`로 MCP 연결을 독립적으로 테스트
+- `mcp/` 디렉토리의 MCP 설정 검토
 
-### Commands Not Available After Install
-- Ensure plugin was installed successfully: `/plugin list --installed`
-- Check if plugin is enabled: `/plugin status plugin-name`
-- Restart Claude Code: `exit` and reopen
-- Check for naming conflicts with existing commands
+### 설치 후 명령을 사용할 수 없는 경우
+- 플러그인이 성공적으로 설치되었는지 확인: `/plugin list --installed`
+- 플러그인 활성화 여부 확인: `/plugin status plugin-name`
+- Claude Code 재시작: `exit` 후 다시 열기
+- 기존 명령과의 이름 충돌 확인
 
-### Hook Execution Issues
-- Verify hook files have correct permissions
-- Check hook syntax and event names
-- Review hook logs for error details
-- Test hooks manually if possible
+### Hook 실행 문제
+- hook 파일에 올바른 권한이 있는지 확인
+- hook 문법 및 이벤트 이름 확인
+- 오류 세부 정보를 위한 hook 로그 검토
+- 가능하다면 hooks 수동 테스트
 
-## Additional Resources
+## 추가 리소스
 
-- [Official Plugins Documentation](https://code.claude.com/docs/en/plugins)
-- [Discover Plugins](https://code.claude.com/docs/en/discover-plugins)
+- [공식 Plugins 문서](https://code.claude.com/docs/en/plugins)
+- [Plugins 탐색](https://code.claude.com/docs/en/discover-plugins)
 - [Plugin Marketplaces](https://code.claude.com/docs/en/plugin-marketplaces)
-- [Plugins Reference](https://code.claude.com/docs/en/plugins-reference)
-- [MCP Server Reference](https://modelcontextprotocol.io/)
-- [Subagent Configuration Guide](../04-subagents/README.md)
-- [Hook System Reference](../06-hooks/README.md)
+- [Plugins 참조](https://code.claude.com/docs/en/plugins-reference)
+- [MCP Server 참조](https://modelcontextprotocol.io/)
+- [Subagent 설정 가이드](../04-subagents/README.md)
+- [Hook 시스템 참조](../06-hooks/README.md)

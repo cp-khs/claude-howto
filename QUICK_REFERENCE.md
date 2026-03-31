@@ -3,71 +3,71 @@
   <img alt="Claude How To" src="resources/logos/claude-howto-logo.svg">
 </picture>
 
-# Claude Code Examples - Quick Reference Card
+# Claude Code 예제 - 빠른 참조 카드
 
-## 🚀 Installation Quick Commands
+## 🚀 빠른 설치 명령어
 
 ### Slash Commands
 ```bash
-# Install all
+# 전체 설치
 cp 01-slash-commands/*.md .claude/commands/
 
-# Install specific
+# 특정 항목 설치
 cp 01-slash-commands/optimize.md .claude/commands/
 ```
 
 ### Memory
 ```bash
-# Project memory
+# 프로젝트 memory
 cp 02-memory/project-CLAUDE.md ./CLAUDE.md
 
-# Personal memory
+# 개인 memory
 cp 02-memory/personal-CLAUDE.md ~/.claude/CLAUDE.md
 ```
 
 ### Skills
 ```bash
-# Personal skills
+# 개인 skills
 cp -r 03-skills/code-review ~/.claude/skills/
 
-# Project skills
+# 프로젝트 skills
 cp -r 03-skills/code-review .claude/skills/
 ```
 
 ### Subagents
 ```bash
-# Install all
+# 전체 설치
 cp 04-subagents/*.md .claude/agents/
 
-# Install specific
+# 특정 항목 설치
 cp 04-subagents/code-reviewer.md .claude/agents/
 ```
 
 ### MCP
 ```bash
-# Set credentials
+# 자격 증명 설정
 export GITHUB_TOKEN="your_token"
 export DATABASE_URL="postgresql://..."
 
-# Install config (project scope)
+# 설정 설치 (프로젝트 범위)
 cp 05-mcp/github-mcp.json .mcp.json
 
-# Or user scope: add to ~/.claude.json
+# 또는 사용자 범위: ~/.claude.json 에 추가
 ```
 
 ### Hooks
 ```bash
-# Install hooks
+# hooks 설치
 mkdir -p ~/.claude/hooks
 cp 06-hooks/*.sh ~/.claude/hooks/
 chmod +x ~/.claude/hooks/*.sh
 
-# Configure in settings (~/.claude/settings.json)
+# settings에서 설정 (~/.claude/settings.json)
 ```
 
 ### Plugins
 ```bash
-# Install from examples (if published)
+# 예제에서 설치 (게시된 경우)
 /plugin install pr-review
 /plugin install devops-automation
 /plugin install documentation
@@ -75,87 +75,87 @@ chmod +x ~/.claude/hooks/*.sh
 
 ### Checkpoints
 ```bash
-# Checkpoints are created automatically with every user prompt
-# To rewind, press Esc twice or use:
+# Checkpoints는 모든 사용자 프롬프트마다 자동으로 생성됩니다
+# 되돌리려면 Esc를 두 번 누르거나 아래 명령을 사용하세요:
 /rewind
 
-# Then choose: Restore code and conversation, Restore conversation,
-# Restore code, Summarize from here, or Never mind
+# 선택: 코드와 대화 복원, 대화만 복원,
+# 코드만 복원, 여기서부터 요약, 취소
 ```
 
-### Advanced Features
+### 고급 기능
 ```bash
-# Configure in settings (.claude/settings.json)
-# See 09-advanced-features/config-examples.json
+# settings에서 설정 (.claude/settings.json)
+# 09-advanced-features/config-examples.json 참고
 
 # Planning mode
 /plan Task description
 
-# Permission modes (use --permission-mode flag)
-# default        - Ask for approval on risky actions
-# acceptEdits    - Auto-accept file edits, ask for others
-# plan           - Read-only analysis, no modifications
-# dontAsk        - Accept all actions except risky ones
-# auto           - Background classifier decides permissions automatically
-# bypassPermissions - Accept all actions (requires --dangerously-skip-permissions)
+# Permission modes (--permission-mode 플래그 사용)
+# default        - 위험한 작업에 대해 승인 요청
+# acceptEdits    - 파일 수정 자동 수락, 나머지는 요청
+# plan           - 읽기 전용 분석, 수정 없음
+# dontAsk        - 위험한 작업 제외 모두 수락
+# auto           - 백그라운드 분류기가 권한 자동 결정
+# bypassPermissions - 모든 작업 수락 (--dangerously-skip-permissions 필요)
 
-# Session management
-/resume                # Resume a previous conversation
-/rename "name"         # Name the current session
-/fork                  # Fork the current session
-claude -c              # Continue most recent conversation
-claude -r "session"    # Resume session by name/ID
+# 세션 관리
+/resume                # 이전 대화 재개
+/rename "name"         # 현재 세션 이름 지정
+/fork                  # 현재 세션 분기
+claude -c              # 가장 최근 대화 이어서 시작
+claude -r "session"    # 이름/ID로 세션 재개
 ```
 
 ---
 
-## 📋 Feature Cheat Sheet
+## 📋 기능 치트 시트
 
-| Feature | Install Path | Usage |
+| 기능 | 설치 경로 | 사용법 |
 |---------|-------------|-------|
 | **Slash Commands (55+)** | `.claude/commands/*.md` | `/command-name` |
-| **Memory** | `./CLAUDE.md` | Auto-loaded |
-| **Skills** | `.claude/skills/*/SKILL.md` | Auto-invoked |
-| **Subagents** | `.claude/agents/*.md` | Auto-delegated |
-| **MCP** | `.mcp.json` (project) or `~/.claude.json` (user) | `/mcp__server__action` |
-| **Hooks (25 events)** | `~/.claude/hooks/*.sh` | Event-triggered (4 types) |
-| **Plugins** | Via `/plugin install` | Bundles all |
-| **Checkpoints** | Built-in | `Esc+Esc` or `/rewind` |
-| **Planning Mode** | Built-in | `/plan <task>` |
-| **Permission Modes (6)** | Built-in | `--allowedTools`, `--permission-mode` |
-| **Sessions** | Built-in | `/session <command>` |
-| **Background Tasks** | Built-in | Run in background |
-| **Remote Control** | Built-in | WebSocket API |
-| **Web Sessions** | Built-in | `claude web` |
-| **Git Worktrees** | Built-in | `/worktree` |
-| **Auto Memory** | Built-in | Auto-saves to CLAUDE.md |
-| **Task List** | Built-in | `/task list` |
-| **Bundled Skills (5)** | Built-in | `/simplify`, `/loop`, `/claude-api`, `/voice`, `/browse` |
+| **Memory** | `./CLAUDE.md` | 자동 로드 |
+| **Skills** | `.claude/skills/*/SKILL.md` | 자동 실행 |
+| **Subagents** | `.claude/agents/*.md` | 자동 위임 |
+| **MCP** | `.mcp.json` (프로젝트) 또는 `~/.claude.json` (사용자) | `/mcp__server__action` |
+| **Hooks (25가지 이벤트)** | `~/.claude/hooks/*.sh` | 이벤트 트리거 (4가지 유형) |
+| **Plugins** | `/plugin install` 사용 | 모두 번들 |
+| **Checkpoints** | 내장 | `Esc+Esc` 또는 `/rewind` |
+| **Planning Mode** | 내장 | `/plan <task>` |
+| **Permission Modes (6가지)** | 내장 | `--allowedTools`, `--permission-mode` |
+| **Sessions** | 내장 | `/session <command>` |
+| **백그라운드 태스크** | 내장 | 백그라운드 실행 |
+| **원격 제어** | 내장 | WebSocket API |
+| **Web Sessions** | 내장 | `claude web` |
+| **Git Worktrees** | 내장 | `/worktree` |
+| **Auto Memory** | 내장 | CLAUDE.md에 자동 저장 |
+| **Task List** | 내장 | `/task list` |
+| **번들 Skills (5개)** | 내장 | `/simplify`, `/loop`, `/claude-api`, `/voice`, `/browse` |
 
 ---
 
-## 🎯 Common Use Cases
+## 🎯 주요 사용 사례
 
-### Code Review
+### 코드 리뷰
 ```bash
-# Method 1: Slash command
+# 방법 1: Slash command
 cp 01-slash-commands/optimize.md .claude/commands/
-# Use: /optimize
+# 사용: /optimize
 
-# Method 2: Subagent
+# 방법 2: Subagent
 cp 04-subagents/code-reviewer.md .claude/agents/
-# Use: Auto-delegated
+# 사용: 자동 위임
 
-# Method 3: Skill
+# 방법 3: Skill
 cp -r 03-skills/code-review ~/.claude/skills/
-# Use: Auto-invoked
+# 사용: 자동 실행
 
-# Method 4: Plugin (best)
+# 방법 4: Plugin (최선)
 /plugin install pr-review
-# Use: /review-pr
+# 사용: /review-pr
 ```
 
-### Documentation
+### 문서화
 ```bash
 # Slash command
 cp 01-slash-commands/generate-api-docs.md .claude/commands/
@@ -166,140 +166,140 @@ cp 04-subagents/documentation-writer.md .claude/agents/
 # Skill
 cp -r 03-skills/doc-generator ~/.claude/skills/
 
-# Plugin (complete solution)
+# Plugin (완전한 솔루션)
 /plugin install documentation
 ```
 
 ### DevOps
 ```bash
-# Complete plugin
+# 완전한 plugin
 /plugin install devops-automation
 
-# Commands: /deploy, /rollback, /status, /incident
+# 명령어: /deploy, /rollback, /status, /incident
 ```
 
-### Team Standards
+### 팀 표준
 ```bash
-# Project memory
+# 프로젝트 memory
 cp 02-memory/project-CLAUDE.md ./CLAUDE.md
 
-# Edit for your team
+# 팀에 맞게 편집
 vim CLAUDE.md
 ```
 
-### Automation & Hooks
+### 자동화 및 Hooks
 ```bash
-# Install hooks (25 events, 4 types: command, http, prompt, agent)
+# hooks 설치 (25가지 이벤트, 4가지 유형: command, http, prompt, agent)
 mkdir -p ~/.claude/hooks
 cp 06-hooks/*.sh ~/.claude/hooks/
 chmod +x ~/.claude/hooks/*.sh
 
-# Examples:
-# - Pre-commit tests: pre-commit.sh
-# - Auto-format code: format-code.sh
-# - Security scanning: security-scan.sh
+# 예시:
+# - 커밋 전 테스트: pre-commit.sh
+# - 코드 자동 포맷: format-code.sh
+# - 보안 스캔: security-scan.sh
 
-# Auto Mode for fully autonomous workflows
+# 완전 자율 워크플로우를 위한 Auto Mode
 claude --enable-auto-mode -p "Refactor and test the auth module"
-# Or cycle modes interactively with Shift+Tab
+# 또는 Shift+Tab으로 대화형 모드 전환
 ```
 
-### Safe Refactoring
+### 안전한 리팩토링
 ```bash
-# Checkpoints are created automatically before each prompt
-# Try refactoring
-# If it works: continue
-# If it fails: press Esc+Esc or use /rewind to go back
+# Checkpoints는 각 프롬프트 전에 자동으로 생성됩니다
+# 리팩토링 시도
+# 성공 시: 계속 진행
+# 실패 시: Esc+Esc를 누르거나 /rewind로 되돌리기
 ```
 
-### Complex Implementation
+### 복잡한 구현
 ```bash
-# Use planning mode
+# Planning mode 사용
 /plan Implement user authentication system
 
-# Claude creates detailed plan
-# Review and approve
-# Claude implements systematically
+# Claude가 상세 계획 생성
+# 검토 및 승인
+# Claude가 체계적으로 구현
 ```
 
-### CI/CD Integration
+### CI/CD 연동
 ```bash
-# Run in headless mode (non-interactive)
+# 헤드리스 모드(비대화형)로 실행
 claude -p "Run all tests and generate report"
 
-# With permission mode for CI
+# CI용 permission mode 사용
 claude -p "Run tests" --permission-mode dontAsk
 
-# With Auto Mode for fully autonomous CI tasks
+# 완전 자율 CI 작업을 위한 Auto Mode
 claude --enable-auto-mode -p "Run tests and fix failures"
 
-# With hooks for automation
-# See 09-advanced-features/README.md
+# 자동화를 위한 hooks 사용
+# 09-advanced-features/README.md 참고
 ```
 
-### Learning & Experimentation
+### 학습 및 실험
 ```bash
-# Use plan mode for safe analysis
+# 안전한 분석을 위해 plan mode 사용
 claude --permission-mode plan
 
-# Experiment safely - checkpoints are created automatically
-# If you need to rewind: press Esc+Esc or use /rewind
+# 안전하게 실험 - checkpoints가 자동으로 생성됩니다
+# 되돌려야 할 경우: Esc+Esc를 누르거나 /rewind 사용
 ```
 
-### Agent Teams
+### 에이전트 팀
 ```bash
-# Enable agent teams
+# 에이전트 팀 활성화
 export CLAUDE_AGENT_TEAMS=1
 
-# Or in settings.json
+# 또는 settings.json에서
 { "agentTeams": { "enabled": true } }
 
-# Start with: "Implement feature X using a team approach"
+# 시작: "Implement feature X using a team approach"
 ```
 
-### Scheduled Tasks
+### 예약 태스크
 ```bash
-# Run a command every 5 minutes
+# 5분마다 명령 실행
 /loop 5m /check-status
 
-# One-time reminder
+# 일회성 알림
 /loop 30m "remind me to check the deploy"
 ```
 
 ---
 
-## 📁 File Locations Reference
+## 📁 파일 위치 참조
 
 ```
-Your Project/
+프로젝트 폴더/
 ├── .claude/
-│   ├── commands/              # Slash commands go here
-│   ├── agents/                # Subagents go here
-│   ├── skills/                # Project skills go here
-│   └── settings.json          # Project settings (hooks, etc.)
-├── .mcp.json                  # MCP configuration (project scope)
-├── CLAUDE.md                  # Project memory
+│   ├── commands/              # Slash commands 위치
+│   ├── agents/                # Subagents 위치
+│   ├── skills/                # 프로젝트 skills 위치
+│   └── settings.json          # 프로젝트 설정 (hooks 등)
+├── .mcp.json                  # MCP 설정 (프로젝트 범위)
+├── CLAUDE.md                  # 프로젝트 memory
 └── src/
     └── api/
-        └── CLAUDE.md          # Directory-specific memory
+        └── CLAUDE.md          # 디렉토리별 memory
 
-User Home/
+사용자 홈/
 ├── .claude/
-│   ├── commands/              # Personal commands
-│   ├── agents/                # Personal agents
-│   ├── skills/                # Personal skills
-│   ├── hooks/                 # Hook scripts
-│   ├── settings.json          # User settings
-│   ├── managed-settings.d/    # Managed settings (enterprise/org)
-│   └── CLAUDE.md              # Personal memory
-└── .claude.json               # Personal MCP config (user scope)
+│   ├── commands/              # 개인 commands
+│   ├── agents/                # 개인 agents
+│   ├── skills/                # 개인 skills
+│   ├── hooks/                 # Hook 스크립트
+│   ├── settings.json          # 사용자 설정
+│   ├── managed-settings.d/    # 관리형 설정 (엔터프라이즈/조직)
+│   └── CLAUDE.md              # 개인 memory
+└── .claude.json               # 개인 MCP 설정 (사용자 범위)
 ```
 
 ---
 
-## 🔍 Finding Examples
+## 🔍 예제 찾기
 
-### By Category
+### 카테고리별
 - **Slash Commands**: `01-slash-commands/`
 - **Memory**: `02-memory/`
 - **Skills**: `03-skills/`
@@ -308,73 +308,73 @@ User Home/
 - **Hooks**: `06-hooks/`
 - **Plugins**: `07-plugins/`
 - **Checkpoints**: `08-checkpoints/`
-- **Advanced Features**: `09-advanced-features/`
+- **고급 기능**: `09-advanced-features/`
 - **CLI**: `10-cli/`
 
-### By Use Case
-- **Performance**: `01-slash-commands/optimize.md`
-- **Security**: `04-subagents/secure-reviewer.md`
-- **Testing**: `04-subagents/test-engineer.md`
-- **Docs**: `03-skills/doc-generator/`
+### 사용 사례별
+- **성능 최적화**: `01-slash-commands/optimize.md`
+- **보안**: `04-subagents/secure-reviewer.md`
+- **테스팅**: `04-subagents/test-engineer.md`
+- **문서화**: `03-skills/doc-generator/`
 - **DevOps**: `07-plugins/devops-automation/`
 
-### By Complexity
-- **Simple**: Slash commands
-- **Medium**: Subagents, Memory
-- **Advanced**: Skills, Hooks
-- **Complete**: Plugins
+### 복잡도별
+- **간단**: Slash commands
+- **중간**: Subagents, Memory
+- **고급**: Skills, Hooks
+- **완전**: Plugins
 
 ---
 
-## 🎓 Learning Path
+## 🎓 학습 경로
 
-### Day 1
+### 1일차
 ```bash
-# Read overview
+# 개요 읽기
 cat README.md
 
-# Install a command
+# 명령어 설치
 cp 01-slash-commands/optimize.md .claude/commands/
 
-# Try it
+# 사용해보기
 /optimize
 ```
 
-### Day 2-3
+### 2~3일차
 ```bash
-# Set up memory
+# memory 설정
 cp 02-memory/project-CLAUDE.md ./CLAUDE.md
 vim CLAUDE.md
 
-# Install subagent
+# subagent 설치
 cp 04-subagents/code-reviewer.md .claude/agents/
 ```
 
-### Day 4-5
+### 4~5일차
 ```bash
-# Set up MCP
+# MCP 설정
 export GITHUB_TOKEN="your_token"
 cp 05-mcp/github-mcp.json .mcp.json
 
-# Try MCP commands
+# MCP 명령어 사용
 /mcp__github__list_prs
 ```
 
-### Week 2
+### 2주차
 ```bash
-# Install skill
+# skill 설치
 cp -r 03-skills/code-review ~/.claude/skills/
 
-# Let it auto-invoke
-# Just say: "Review this code for issues"
+# 자동 실행 허용
+# 그냥 말하면 됩니다: "Review this code for issues"
 ```
 
-### Week 3+
+### 3주차 이후
 ```bash
-# Install complete plugin
+# 완전한 plugin 설치
 /plugin install pr-review
 
-# Use bundled features
+# 번들 기능 사용
 /review-pr
 /check-security
 /check-tests
@@ -382,125 +382,125 @@ cp -r 03-skills/code-review ~/.claude/skills/
 
 ---
 
-## New Features (March 2026)
+## 새 기능 (2026년 3월)
 
-| Feature | Description | Usage |
+| 기능 | 설명 | 사용법 |
 |---------|-------------|-------|
-| **Auto Mode** | Fully autonomous operation with background classifier | `--enable-auto-mode` flag, `Shift+Tab` to cycle modes |
-| **Channels** | Discord and Telegram integration | `--channels` flag, Discord/Telegram bots |
-| **Voice Dictation** | Speak commands and context to Claude | `/voice` command |
-| **Hooks (25 events)** | Expanded hook system with 4 types | command, http, prompt, agent hook types |
-| **MCP Elicitation** | MCP servers can request user input at runtime | Auto-prompted when server needs clarification |
-| **WebSocket MCP** | WebSocket transport for MCP connections | Configure in `.mcp.json` with `ws://` URLs |
-| **Plugin LSP** | Language Server Protocol support for plugins | `userConfig`, `${CLAUDE_PLUGIN_DATA}` variable |
-| **Remote Control** | Control Claude Code via WebSocket API | `claude --remote` for external integrations |
-| **Web Sessions** | Browser-based Claude Code interface | `claude web` to launch |
-| **Desktop App** | Native desktop application | Download from claude.ai/download |
-| **Task List** | Manage background tasks | `/task list`, `/task status <id>` |
-| **Auto Memory** | Automatic memory saving from conversations | Claude auto-saves key context to CLAUDE.md |
-| **Git Worktrees** | Isolated workspaces for parallel development | `/worktree` to create isolated workspace |
-| **Model Selection** | Switch between Sonnet 4.6 and Opus 4.6 | `/model` or `--model` flag |
-| **Agent Teams** | Coordinate multiple agents on tasks | Enable with `CLAUDE_AGENT_TEAMS=1` env var |
-| **Scheduled Tasks** | Recurring tasks with `/loop` | `/loop 5m /command` or CronCreate tool |
-| **Chrome Integration** | Browser automation | `--chrome` flag or `/chrome` command |
-| **Keyboard Customization** | Custom keybindings | `/keybindings` command |
+| **Auto Mode** | 백그라운드 분류기를 통한 완전 자율 동작 | `--enable-auto-mode` 플래그, `Shift+Tab`으로 모드 전환 |
+| **Channels** | Discord 및 Telegram 연동 | `--channels` 플래그, Discord/Telegram 봇 |
+| **Voice Dictation** | Claude에게 명령과 컨텍스트를 음성으로 전달 | `/voice` 명령어 |
+| **Hooks (25가지 이벤트)** | 4가지 유형으로 확장된 hook 시스템 | command, http, prompt, agent hook 유형 |
+| **MCP Elicitation** | MCP 서버가 런타임에 사용자 입력 요청 가능 | 서버에 설명이 필요할 때 자동 프롬프트 |
+| **WebSocket MCP** | MCP 연결을 위한 WebSocket 전송 | `.mcp.json`에서 `ws://` URL로 설정 |
+| **Plugin LSP** | plugins를 위한 Language Server Protocol 지원 | `userConfig`, `${CLAUDE_PLUGIN_DATA}` 변수 |
+| **원격 제어** | WebSocket API로 Claude Code 제어 | 외부 연동을 위한 `claude --remote` |
+| **Web Sessions** | 브라우저 기반 Claude Code 인터페이스 | `claude web`으로 실행 |
+| **데스크톱 앱** | 네이티브 데스크톱 애플리케이션 | claude.ai/download에서 다운로드 |
+| **Task List** | 백그라운드 태스크 관리 | `/task list`, `/task status <id>` |
+| **Auto Memory** | 대화에서 자동 memory 저장 | Claude가 핵심 컨텍스트를 CLAUDE.md에 자동 저장 |
+| **Git Worktrees** | 병렬 개발을 위한 격리된 작업 공간 | `/worktree`로 격리된 작업 공간 생성 |
+| **모델 선택** | Sonnet 4.6과 Opus 4.6 간 전환 | `/model` 또는 `--model` 플래그 |
+| **Agent Teams** | 여러 에이전트를 태스크에 협력 조율 | `CLAUDE_AGENT_TEAMS=1` 환경 변수로 활성화 |
+| **Scheduled Tasks** | `/loop`을 통한 반복 태스크 | `/loop 5m /command` 또는 CronCreate 도구 |
+| **Chrome Integration** | 브라우저 자동화 | `--chrome` 플래그 또는 `/chrome` 명령어 |
+| **키보드 커스터마이징** | 사용자 정의 키 바인딩 | `/keybindings` 명령어 |
 
 ---
 
-## Tips & Tricks
+## 팁 & 트릭
 
-### Customization
-- Start with examples as-is
-- Modify to fit your needs
-- Test before sharing with team
-- Version control your configurations
+### 커스터마이징
+- 예제를 그대로 시작하세요
+- 필요에 맞게 수정하세요
+- 팀과 공유하기 전에 테스트하세요
+- 설정 파일을 버전 관리하세요
 
-### Best Practices
-- Use memory for team standards
-- Use plugins for complete workflows
-- Use subagents for complex tasks
-- Use slash commands for quick tasks
+### 모범 사례
+- 팀 표준에는 memory 사용
+- 완전한 워크플로우에는 plugins 사용
+- 복잡한 태스크에는 subagents 사용
+- 빠른 작업에는 slash commands 사용
 
-### Troubleshooting
+### 트러블슈팅
 ```bash
-# Check file locations
+# 파일 위치 확인
 ls -la .claude/commands/
 ls -la .claude/agents/
 
-# Verify YAML syntax
+# YAML 문법 확인
 head -20 .claude/agents/code-reviewer.md
 
-# Test MCP connection
+# MCP 연결 테스트
 echo $GITHUB_TOKEN
 ```
 
 ---
 
-## 📊 Feature Matrix
+## 📊 기능 매트릭스
 
-| Need | Use This | Example |
+| 필요 | 사용할 것 | 예제 |
 |------|----------|---------|
-| Quick shortcut | Slash Command (55+) | `01-slash-commands/optimize.md` |
-| Team standards | Memory | `02-memory/project-CLAUDE.md` |
-| Auto workflow | Skill | `03-skills/code-review/` |
-| Specialized task | Subagent | `04-subagents/code-reviewer.md` |
-| External data | MCP (+ Elicitation, WebSocket) | `05-mcp/github-mcp.json` |
-| Event automation | Hook (25 events, 4 types) | `06-hooks/pre-commit.sh` |
-| Complete solution | Plugin (+ LSP support) | `07-plugins/pr-review/` |
-| Safe experiment | Checkpoint | `08-checkpoints/checkpoint-examples.md` |
-| Fully autonomous | Auto Mode | `--enable-auto-mode` or `Shift+Tab` |
-| Chat integrations | Channels | `--channels` (Discord, Telegram) |
-| CI/CD pipeline | CLI | `10-cli/README.md` |
+| 빠른 단축키 | Slash Command (55+) | `01-slash-commands/optimize.md` |
+| 팀 표준 | Memory | `02-memory/project-CLAUDE.md` |
+| 자동 워크플로우 | Skill | `03-skills/code-review/` |
+| 전문화된 태스크 | Subagent | `04-subagents/code-reviewer.md` |
+| 외부 데이터 | MCP (+ Elicitation, WebSocket) | `05-mcp/github-mcp.json` |
+| 이벤트 자동화 | Hook (25가지 이벤트, 4가지 유형) | `06-hooks/pre-commit.sh` |
+| 완전한 솔루션 | Plugin (+ LSP 지원) | `07-plugins/pr-review/` |
+| 안전한 실험 | Checkpoint | `08-checkpoints/checkpoint-examples.md` |
+| 완전 자율 | Auto Mode | `--enable-auto-mode` 또는 `Shift+Tab` |
+| 채팅 연동 | Channels | `--channels` (Discord, Telegram) |
+| CI/CD 파이프라인 | CLI | `10-cli/README.md` |
 
 ---
 
-## 🔗 Quick Links
+## 🔗 빠른 링크
 
-- **Main Guide**: `README.md`
-- **Complete Index**: `INDEX.md`
-- **Summary**: `EXAMPLES_SUMMARY.md`
-- **Original Guide**: `claude_concepts_guide.md`
-
----
-
-## 📞 Common Questions
-
-**Q: Which should I use?**
-A: Start with slash commands, add features as needed.
-
-**Q: Can I mix features?**
-A: Yes! They work together. Memory + Commands + MCP = powerful.
-
-**Q: How do I share with team?**
-A: Commit `.claude/` directory to git.
-
-**Q: What about secrets?**
-A: Use environment variables, never hardcode.
-
-**Q: Can I modify examples?**
-A: Absolutely! They're templates to customize.
+- **메인 가이드**: `README.md`
+- **전체 인덱스**: `INDEX.md`
+- **요약**: `EXAMPLES_SUMMARY.md`
+- **원본 가이드**: `claude_concepts_guide.md`
 
 ---
 
-## ✅ Checklist
+## 📞 자주 묻는 질문
 
-Getting started checklist:
+**Q: 무엇을 사용해야 하나요?**
+A: slash commands부터 시작하고, 필요에 따라 기능을 추가하세요.
 
-- [ ] Read `README.md`
-- [ ] Install 1 slash command
-- [ ] Try the command
-- [ ] Create project `CLAUDE.md`
-- [ ] Install 1 subagent
-- [ ] Set up 1 MCP integration
-- [ ] Install 1 skill
-- [ ] Try a complete plugin
-- [ ] Customize for your needs
-- [ ] Share with team
+**Q: 기능을 혼합해서 사용할 수 있나요?**
+A: 네! 함께 작동합니다. Memory + Commands + MCP = 강력한 조합.
+
+**Q: 팀과 공유하려면 어떻게 하나요?**
+A: `.claude/` 디렉토리를 git에 커밋하세요.
+
+**Q: 시크릿(비밀 값)은 어떻게 하나요?**
+A: 환경 변수를 사용하고, 절대 하드코딩하지 마세요.
+
+**Q: 예제를 수정할 수 있나요?**
+A: 물론입니다! 커스터마이징을 위한 템플릿입니다.
 
 ---
 
-**Quick Start**: `cat README.md`
+## ✅ 체크리스트
 
-**Full Index**: `cat INDEX.md`
+시작하기 체크리스트:
 
-**This Card**: Keep it handy for quick reference!
+- [ ] `README.md` 읽기
+- [ ] slash command 1개 설치
+- [ ] 명령어 사용해보기
+- [ ] 프로젝트 `CLAUDE.md` 생성
+- [ ] subagent 1개 설치
+- [ ] MCP 연동 1개 설정
+- [ ] skill 1개 설치
+- [ ] 완전한 plugin 사용해보기
+- [ ] 필요에 맞게 커스터마이징
+- [ ] 팀과 공유
+
+---
+
+**빠른 시작**: `cat README.md`
+
+**전체 인덱스**: `cat INDEX.md`
+
+**이 카드**: 빠른 참조를 위해 가까이 두세요!

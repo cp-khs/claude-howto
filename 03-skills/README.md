@@ -3,31 +3,31 @@
   <img alt="Claude How To" src="../resources/logos/claude-howto-logo.svg">
 </picture>
 
-# Agent Skills Guide
+# Agent Skills 가이드
 
-Agent Skills are reusable, filesystem-based capabilities that extend Claude's functionality. They package domain-specific expertise, workflows, and best practices into discoverable components that Claude automatically uses when relevant.
+Agent Skills는 Claude의 기능을 확장하는, 재사용 가능한 파일 시스템 기반 기능입니다. 도메인별 전문 지식, 워크플로우, 모범 사례를 Claude가 관련 상황에 자동으로 활용할 수 있는 검색 가능한 컴포넌트로 패키징합니다.
 
-## Overview
+## 개요
 
-**Agent Skills** are modular capabilities that transform general-purpose agents into specialists. Unlike prompts (conversation-level instructions for one-off tasks), Skills load on-demand and eliminate the need to repeatedly provide the same guidance across multiple conversations.
+**Agent Skills**는 범용 에이전트를 전문가로 변환하는 모듈식 기능입니다. 일회성 작업을 위한 대화 수준 지침인 프롬프트와 달리, Skills는 필요 시 로드되어 여러 대화에서 동일한 안내를 반복적으로 제공할 필요가 없습니다.
 
-### Key Benefits
+### 주요 장점
 
-- **Specialize Claude**: Tailor capabilities for domain-specific tasks
-- **Reduce repetition**: Create once, use automatically across conversations
-- **Compose capabilities**: Combine Skills to build complex workflows
-- **Scale workflows**: Reuse skills across multiple projects and teams
-- **Maintain quality**: Embed best practices directly into your workflow
+- **Claude 전문화**: 도메인별 작업에 맞게 기능을 조정
+- **반복 제거**: 한 번 만들면 대화 전반에 걸쳐 자동으로 사용
+- **기능 조합**: Skills를 결합하여 복잡한 워크플로우 구성
+- **워크플로우 확장**: 여러 프로젝트와 팀에 걸쳐 skills 재사용
+- **품질 유지**: 모범 사례를 워크플로우에 직접 내장
 
-Skills follow the [Agent Skills](https://agentskills.io) open standard, which works across multiple AI tools. Claude Code extends the standard with additional features like invocation control, subagent execution, and dynamic context injection.
+Skills는 여러 AI 도구에서 작동하는 [Agent Skills](https://agentskills.io) 오픈 표준을 따릅니다. Claude Code는 호출 제어, subagent 실행, 동적 컨텍스트 주입 같은 추가 기능으로 이 표준을 확장합니다.
 
-> **Note**: Custom slash commands have been merged into skills. `.claude/commands/` files still work and support the same frontmatter fields. Skills are recommended for new development. When both exist at the same path (e.g., `.claude/commands/review.md` and `.claude/skills/review/SKILL.md`), the skill takes precedence.
+> **참고**: 커스텀 슬래시 명령어가 skills로 통합되었습니다. `.claude/commands/` 파일은 계속 동작하며 동일한 frontmatter 필드를 지원합니다. 새로운 개발에는 Skills 사용을 권장합니다. 동일한 경로에 양쪽이 모두 존재하는 경우(예: `.claude/commands/review.md`와 `.claude/skills/review/SKILL.md`), skill이 우선합니다.
 
-## How Skills Work: Progressive Disclosure
+## Skills의 동작 방식: 점진적 공개
 
-Skills leverage a **progressive disclosure** architecture—Claude loads information in stages as needed, rather than consuming context upfront. This enables efficient context management while maintaining unlimited scalability.
+Skills는 **점진적 공개(progressive disclosure)** 아키텍처를 활용합니다. Claude는 미리 컨텍스트를 소비하는 대신, 필요에 따라 단계적으로 정보를 로드합니다. 이를 통해 효율적인 컨텍스트 관리와 무제한 확장성을 동시에 실현합니다.
 
-### Three Levels of Loading
+### 세 가지 로딩 단계
 
 ```mermaid
 graph TB
@@ -53,15 +53,15 @@ graph TB
     B --> C
 ```
 
-| Level | When Loaded | Token Cost | Content |
+| 단계 | 로드 시점 | 토큰 비용 | 내용 |
 |-------|------------|------------|---------|
-| **Level 1: Metadata** | Always (at startup) | ~100 tokens per Skill | `name` and `description` from YAML frontmatter |
-| **Level 2: Instructions** | When Skill is triggered | Under 5k tokens | SKILL.md body with instructions and guidance |
-| **Level 3+: Resources** | As needed | Effectively unlimited | Bundled files executed via bash without loading contents into context |
+| **Level 1: 메타데이터** | 항상 (시작 시) | Skill당 ~100 토큰 | YAML frontmatter의 `name`과 `description` |
+| **Level 2: 지침** | Skill 트리거 시 | 5k 토큰 미만 | 지침과 안내가 담긴 SKILL.md 본문 |
+| **Level 3+: 리소스** | 필요 시 | 사실상 무제한 | 컨텍스트에 내용을 로드하지 않고 bash로 실행되는 번들 파일 |
 
-This means you can install many Skills without context penalty—Claude only knows each Skill exists and when to use it until actually triggered.
+즉, Skills를 많이 설치해도 컨텍스트 페널티가 없습니다. 실제로 트리거되기 전까지 Claude는 각 Skill의 존재와 사용 시점만 파악합니다.
 
-## Skill Loading Process
+## Skill 로딩 프로세스
 
 ```mermaid
 sequenceDiagram
@@ -83,40 +83,40 @@ sequenceDiagram
     Claude->>User: Comprehensive code review
 ```
 
-## Skill Types & Locations
+## Skill 유형 및 위치
 
-| Type | Location | Scope | Shared | Best For |
+| 유형 | 위치 | 범위 | 공유 여부 | 적합한 용도 |
 |------|----------|-------|--------|----------|
-| **Enterprise** | Managed settings | All org users | Yes | Organization-wide standards |
-| **Personal** | `~/.claude/skills/<skill-name>/SKILL.md` | Individual | No | Personal workflows |
-| **Project** | `.claude/skills/<skill-name>/SKILL.md` | Team | Yes (via git) | Team standards |
-| **Plugin** | `<plugin>/skills/<skill-name>/SKILL.md` | Where enabled | Depends | Bundled with plugins |
+| **엔터프라이즈** | 관리형 설정 | 전체 조직 사용자 | 예 | 조직 전체 표준 |
+| **개인** | `~/.claude/skills/<skill-name>/SKILL.md` | 개인 | 아니오 | 개인 워크플로우 |
+| **프로젝트** | `.claude/skills/<skill-name>/SKILL.md` | 팀 | 예 (git 통해) | 팀 표준 |
+| **플러그인** | `<plugin>/skills/<skill-name>/SKILL.md` | 활성화된 곳 | 상황에 따라 다름 | 플러그인에 번들 |
 
-When skills share the same name across levels, higher-priority locations win: **enterprise > personal > project**. Plugin skills use a `plugin-name:skill-name` namespace, so they cannot conflict.
+동일한 이름의 skills가 여러 레벨에 걸쳐 존재할 경우, 우선순위가 높은 위치가 적용됩니다: **엔터프라이즈 > 개인 > 프로젝트**. 플러그인 skills는 `plugin-name:skill-name` 네임스페이스를 사용하므로 충돌이 발생하지 않습니다.
 
-### Automatic Discovery
+### 자동 검색
 
-**Nested directories**: When you work with files in subdirectories, Claude Code automatically discovers skills from nested `.claude/skills/` directories. For example, if you're editing a file in `packages/frontend/`, Claude Code also looks for skills in `packages/frontend/.claude/skills/`. This supports monorepo setups where packages have their own skills.
+**중첩 디렉토리**: 하위 디렉토리의 파일을 작업할 때, Claude Code는 중첩된 `.claude/skills/` 디렉토리에서 skills를 자동으로 검색합니다. 예를 들어, `packages/frontend/`의 파일을 편집 중이라면 Claude Code는 `packages/frontend/.claude/skills/`에서도 skills를 찾습니다. 이는 각 패키지가 자체 skills를 보유하는 모노레포 설정을 지원합니다.
 
-**`--add-dir` directories**: Skills from directories added via `--add-dir` are loaded automatically with live change detection. Any edits to skill files in those directories take effect immediately without restarting Claude Code.
+**`--add-dir` 디렉토리**: `--add-dir`로 추가된 디렉토리의 Skills는 실시간 변경 감지와 함께 자동으로 로드됩니다. 해당 디렉토리의 skill 파일을 수정하면 Claude Code를 재시작하지 않아도 즉시 반영됩니다.
 
-**Description budget**: Skill descriptions (Level 1 metadata) are capped at **2% of the context window** (fallback: **16,000 characters**). If you have many skills installed, some may be excluded. Run `/context` to check for warnings. Override the budget with the `SLASH_COMMAND_TOOL_CHAR_BUDGET` environment variable.
+**설명 버짓**: Skill 설명(Level 1 메타데이터)은 **컨텍스트 윈도우의 2%** (대체 값: **16,000자**)로 제한됩니다. Skills가 많이 설치된 경우 일부가 제외될 수 있습니다. `/context`를 실행하여 경고를 확인하세요. `SLASH_COMMAND_TOOL_CHAR_BUDGET` 환경 변수로 버짓을 재정의할 수 있습니다.
 
-## Creating Custom Skills
+## 커스텀 Skills 만들기
 
-### Basic Directory Structure
+### 기본 디렉토리 구조
 
 ```
 my-skill/
-├── SKILL.md           # Main instructions (required)
-├── template.md        # Template for Claude to fill in
+├── SKILL.md           # 메인 지침 (필수)
+├── template.md        # Claude가 채울 템플릿
 ├── examples/
-│   └── sample.md      # Example output showing expected format
+│   └── sample.md      # 예상 형식을 보여주는 예시 출력
 └── scripts/
-    └── validate.sh    # Script Claude can execute
+    └── validate.sh    # Claude가 실행할 수 있는 스크립트
 ```
 
-### SKILL.md Format
+### SKILL.md 형식
 
 ```yaml
 ---
@@ -133,27 +133,27 @@ Provide clear, step-by-step guidance for Claude.
 Show concrete examples of using this Skill.
 ```
 
-### Required Fields
+### 필수 필드
 
-- **name**: lowercase letters, numbers, hyphens only (max 64 characters). Cannot contain "anthropic" or "claude".
-- **description**: what the Skill does AND when to use it (max 1024 characters). This is critical for Claude to know when to activate the skill.
+- **name**: 소문자, 숫자, 하이픈만 허용 (최대 64자). "anthropic" 또는 "claude" 포함 불가.
+- **description**: Skill이 하는 일과 사용 시점 (최대 1024자). Claude가 skill을 언제 활성화할지 파악하기 위한 핵심 필드입니다.
 
-### Optional Frontmatter Fields
+### 선택적 Frontmatter 필드
 
 ```yaml
 ---
 name: my-skill
 description: What this skill does and when to use it
-argument-hint: "[filename] [format]"        # Hint for autocomplete
-disable-model-invocation: true              # Only user can invoke
-user-invocable: false                       # Hide from slash menu
-allowed-tools: Read, Grep, Glob             # Restrict tool access
-model: opus                                 # Specific model to use
-effort: high                                # Effort level override (low, medium, high, max)
-context: fork                               # Run in isolated subagent
-agent: Explore                              # Which agent type (with context: fork)
-shell: bash                                 # Shell for commands: bash (default) or powershell
-hooks:                                      # Skill-scoped hooks
+argument-hint: "[filename] [format]"        # 자동완성 힌트
+disable-model-invocation: true              # 사용자만 호출 가능
+user-invocable: false                       # 슬래시 메뉴에서 숨김
+allowed-tools: Read, Grep, Glob             # 도구 접근 제한
+model: opus                                 # 사용할 특정 모델
+effort: high                                # effort 수준 재정의 (low, medium, high, max)
+context: fork                               # 격리된 subagent에서 실행
+agent: Explore                              # 에이전트 유형 (context: fork와 함께 사용)
+shell: bash                                 # 명령어 실행 shell: bash (기본값) 또는 powershell
+hooks:                                      # skill 범위 hooks
   PreToolUse:
     - matcher: "Bash"
       hooks:
@@ -162,28 +162,28 @@ hooks:                                      # Skill-scoped hooks
 ---
 ```
 
-| Field | Description |
+| 필드 | 설명 |
 |-------|-------------|
-| `name` | Lowercase letters, numbers, hyphens only (max 64 chars). Cannot contain "anthropic" or "claude". |
-| `description` | What the Skill does AND when to use it (max 1024 chars). Critical for auto-invocation matching. |
-| `argument-hint` | Hint shown in the `/` autocomplete menu (e.g., `"[filename] [format]"`). |
-| `disable-model-invocation` | `true` = only the user can invoke via `/name`. Claude will never auto-invoke. |
-| `user-invocable` | `false` = hidden from the `/` menu. Only Claude can invoke it automatically. |
-| `allowed-tools` | Comma-separated list of tools the skill may use without permission prompts. |
-| `model` | Model override while the skill is active (e.g., `opus`, `sonnet`). |
-| `effort` | Effort level override while the skill is active: `low`, `medium`, `high`, or `max`. |
-| `context` | `fork` to run the skill in a forked subagent context with its own context window. |
-| `agent` | Subagent type when `context: fork` (e.g., `Explore`, `Plan`, `general-purpose`). |
-| `shell` | Shell used for `!`command`` substitutions and scripts: `bash` (default) or `powershell`. |
-| `hooks` | Hooks scoped to this skill's lifecycle (same format as global hooks). |
+| `name` | 소문자, 숫자, 하이픈만 허용 (최대 64자). "anthropic" 또는 "claude" 포함 불가. |
+| `description` | Skill이 하는 일과 사용 시점 (최대 1024자). 자동 호출 매칭의 핵심. |
+| `argument-hint` | `/` 자동완성 메뉴에 표시되는 힌트 (예: `"[filename] [format]"`). |
+| `disable-model-invocation` | `true` = 사용자만 `/name`으로 호출 가능. Claude는 자동 호출 안 함. |
+| `user-invocable` | `false` = `/` 메뉴에서 숨김. Claude만 자동으로 호출 가능. |
+| `allowed-tools` | 권한 프롬프트 없이 skill이 사용할 수 있는 도구의 쉼표 구분 목록. |
+| `model` | skill이 활성화된 동안 적용되는 모델 재정의 (예: `opus`, `sonnet`). |
+| `effort` | skill이 활성화된 동안 적용되는 effort 수준 재정의: `low`, `medium`, `high`, `max`. |
+| `context` | `fork`를 설정하면 자체 컨텍스트 윈도우를 가진 포크된 subagent 컨텍스트에서 skill을 실행. |
+| `agent` | `context: fork` 사용 시 subagent 유형 (예: `Explore`, `Plan`, `general-purpose`). |
+| `shell` | `` !`command` `` 치환 및 스크립트에 사용되는 shell: `bash` (기본값) 또는 `powershell`. |
+| `hooks` | 이 skill의 수명 주기에 범위가 지정된 hooks (전역 hooks와 동일한 형식). |
 
-## Skill Content Types
+## Skill 콘텐츠 유형
 
-Skills can contain two types of content, each suited for different purposes:
+Skills는 각기 다른 목적에 맞는 두 가지 유형의 콘텐츠를 포함할 수 있습니다.
 
-### Reference Content
+### 참조 콘텐츠
 
-Adds knowledge Claude applies to your current work—conventions, patterns, style guides, domain knowledge. Runs inline with your conversation context.
+현재 작업에 Claude가 적용하는 지식을 추가합니다—컨벤션, 패턴, 스타일 가이드, 도메인 지식 등. 현재 대화 컨텍스트와 인라인으로 실행됩니다.
 
 ```yaml
 ---
@@ -197,9 +197,9 @@ When writing API endpoints:
 - Include request validation
 ```
 
-### Task Content
+### 작업 콘텐츠
 
-Step-by-step instructions for specific actions. Often invoked directly with `/skill-name`.
+특정 행동을 위한 단계별 지침입니다. 주로 `/skill-name`으로 직접 호출됩니다.
 
 ```yaml
 ---
@@ -215,33 +215,33 @@ Deploy the application:
 3. Push to the deployment target
 ```
 
-## Controlling Skill Invocation
+## Skill 호출 제어
 
-By default, both you and Claude can invoke any skill. Two frontmatter fields control the three invocation modes:
+기본적으로 사용자와 Claude 모두 어떤 skill이든 호출할 수 있습니다. 두 가지 frontmatter 필드로 세 가지 호출 모드를 제어합니다.
 
-| Frontmatter | You can invoke | Claude can invoke |
+| Frontmatter | 사용자 호출 | Claude 호출 |
 |---|---|---|
-| (default) | Yes | Yes |
-| `disable-model-invocation: true` | Yes | No |
-| `user-invocable: false` | No | Yes |
+| (기본값) | 가능 | 가능 |
+| `disable-model-invocation: true` | 가능 | 불가 |
+| `user-invocable: false` | 불가 | 가능 |
 
-**Use `disable-model-invocation: true`** for workflows with side effects: `/commit`, `/deploy`, `/send-slack-message`. You don't want Claude deciding to deploy because your code looks ready.
+**`disable-model-invocation: true`** 는 `/commit`, `/deploy`, `/send-slack-message`처럼 부작용이 있는 워크플로우에 사용하세요. 코드가 배포 준비된 것처럼 보인다고 Claude가 자동으로 배포하는 상황은 원치 않을 것입니다.
 
-**Use `user-invocable: false`** for background knowledge that isn't actionable as a command. A `legacy-system-context` skill explains how an old system works—useful for Claude, but not a meaningful action for users.
+**`user-invocable: false`** 는 명령어로 실행할 수 없는 배경 지식에 사용하세요. `legacy-system-context` skill은 오래된 시스템의 동작 방식을 설명합니다—Claude에게는 유용하지만, 사용자에게는 의미 있는 액션이 아닙니다.
 
-## String Substitutions
+## 문자열 치환
 
-Skills support dynamic values that are resolved before the skill content reaches Claude:
+Skills는 skill 콘텐츠가 Claude에게 전달되기 전에 해석되는 동적 값을 지원합니다.
 
-| Variable | Description |
+| 변수 | 설명 |
 |----------|-------------|
-| `$ARGUMENTS` | All arguments passed when invoking the skill |
-| `$ARGUMENTS[N]` or `$N` | Access specific argument by index (0-based) |
-| `${CLAUDE_SESSION_ID}` | Current session ID |
-| `${CLAUDE_SKILL_DIR}` | Directory containing the skill's SKILL.md file |
-| `` !`command` `` | Dynamic context injection — runs a shell command and inlines the output |
+| `$ARGUMENTS` | skill 호출 시 전달된 모든 인수 |
+| `$ARGUMENTS[N]` 또는 `$N` | 인덱스(0부터 시작)로 특정 인수 접근 |
+| `${CLAUDE_SESSION_ID}` | 현재 세션 ID |
+| `${CLAUDE_SKILL_DIR}` | skill의 SKILL.md 파일이 위치한 디렉토리 |
+| `` !`command` `` | 동적 컨텍스트 주입 — shell 명령어를 실행하고 출력을 인라인으로 삽입 |
 
-**Example:**
+**예시:**
 
 ```yaml
 ---
@@ -256,11 +256,11 @@ Fix GitHub issue $ARGUMENTS following our coding standards.
 4. Create a commit
 ```
 
-Running `/fix-issue 123` replaces `$ARGUMENTS` with `123`.
+`/fix-issue 123`을 실행하면 `$ARGUMENTS`가 `123`으로 대체됩니다.
 
-## Injecting Dynamic Context
+## 동적 컨텍스트 주입
 
-The `!`command`` syntax runs shell commands before the skill content is sent to Claude:
+`` !`command` `` 문법은 skill 콘텐츠가 Claude에게 전송되기 전에 shell 명령어를 실행합니다.
 
 ```yaml
 ---
@@ -279,22 +279,22 @@ agent: Explore
 Summarize this pull request...
 ```
 
-Commands execute immediately; Claude only sees the final output. By default, commands run in `bash`. Set `shell: powershell` in frontmatter to use PowerShell instead.
+명령어는 즉시 실행되며 Claude는 최종 출력만 확인합니다. 기본적으로 명령어는 `bash`에서 실행됩니다. frontmatter에 `shell: powershell`을 설정하면 PowerShell을 사용합니다.
 
-## Running Skills in Subagents
+## Subagents에서 Skills 실행
 
-Add `context: fork` to run a skill in an isolated subagent context. The skill content becomes the task for a dedicated subagent with its own context window, keeping the main conversation uncluttered.
+`context: fork`를 추가하면 격리된 subagent 컨텍스트에서 skill을 실행합니다. skill 콘텐츠는 전용 subagent의 작업이 되어 자체 컨텍스트 윈도우를 가지므로, 메인 대화가 복잡해지지 않습니다.
 
-The `agent` field specifies which agent type to use:
+`agent` 필드는 사용할 에이전트 유형을 지정합니다.
 
-| Agent Type | Best For |
+| 에이전트 유형 | 적합한 용도 |
 |---|---|
-| `Explore` | Read-only research, codebase analysis |
-| `Plan` | Creating implementation plans |
-| `general-purpose` | Broad tasks requiring all tools |
-| Custom agents | Specialized agents defined in your configuration |
+| `Explore` | 읽기 전용 연구, 코드베이스 분석 |
+| `Plan` | 구현 계획 수립 |
+| `general-purpose` | 모든 도구가 필요한 광범위한 작업 |
+| 커스텀 에이전트 | 설정에서 정의한 특수 에이전트 |
 
-**Example frontmatter:**
+**예시 frontmatter:**
 
 ```yaml
 ---
@@ -303,7 +303,7 @@ agent: Explore
 ---
 ```
 
-**Full skill example:**
+**전체 skill 예시:**
 
 ```yaml
 ---
@@ -319,11 +319,11 @@ Research $ARGUMENTS thoroughly:
 3. Summarize findings with specific file references
 ```
 
-## Practical Examples
+## 실용적인 예시
 
-### Example 1: Code Review Skill
+### 예시 1: 코드 리뷰 Skill
 
-**Directory Structure:**
+**디렉토리 구조:**
 
 ```
 ~/.claude/skills/code-review/
@@ -336,7 +336,7 @@ Research $ARGUMENTS thoroughly:
     └── compare-complexity.py
 ```
 
-**File:** `~/.claude/skills/code-review/SKILL.md`
+**파일:** `~/.claude/skills/code-review/SKILL.md`
 
 ```yaml
 ---
@@ -391,11 +391,11 @@ For each piece of code reviewed, provide:
 For detailed checklists, see [templates/review-checklist.md](templates/review-checklist.md).
 ```
 
-### Example 2: Codebase Visualizer Skill
+### 예시 2: 코드베이스 시각화 Skill
 
-A skill that generates interactive HTML visualizations:
+인터랙티브 HTML 시각화를 생성하는 skill입니다.
 
-**Directory Structure:**
+**디렉토리 구조:**
 
 ```
 ~/.claude/skills/codebase-visualizer/
@@ -404,7 +404,7 @@ A skill that generates interactive HTML visualizations:
     └── visualize.py
 ```
 
-**File:** `~/.claude/skills/codebase-visualizer/SKILL.md`
+**파일:** `~/.claude/skills/codebase-visualizer/SKILL.md`
 
 ```yaml
 ---
@@ -435,9 +435,9 @@ This creates `codebase-map.html` and opens it in your default browser.
 - **Directory totals**: Shows aggregate size of each folder
 ```
 
-The bundled Python script does the heavy lifting while Claude handles orchestration.
+번들된 Python 스크립트가 핵심 작업을 처리하고, Claude는 오케스트레이션을 담당합니다.
 
-### Example 3: Deploy Skill (User-Invoked Only)
+### 예시 3: 배포 Skill (사용자 호출 전용)
 
 ```yaml
 ---
@@ -456,7 +456,7 @@ Deploy $ARGUMENTS to production:
 5. Report deployment status
 ```
 
-### Example 4: Brand Voice Skill (Background Knowledge)
+### 예시 4: 브랜드 보이스 Skill (배경 지식)
 
 ```yaml
 ---
@@ -480,7 +480,7 @@ user-invocable: false
 For templates, see [templates/](templates/).
 ```
 
-### Example 5: CLAUDE.md Generator Skill
+### 예시 5: CLAUDE.md 생성 Skill
 
 ```yaml
 ---
@@ -508,9 +508,9 @@ description: Create or update CLAUDE.md files following best practices for optim
 - **Known Issues / Gotchas**: Things that trip up developers
 ```
 
-### Example 6: Refactoring Skill with Scripts
+### 예시 6: 스크립트를 포함한 리팩토링 Skill
 
-**Directory Structure:**
+**디렉토리 구조:**
 
 ```
 refactor/
@@ -525,7 +525,7 @@ refactor/
     └── detect-smells.py
 ```
 
-**File:** `refactor/SKILL.md`
+**파일:** `refactor/SKILL.md`
 
 ```yaml
 ---
@@ -554,251 +554,251 @@ For code smell catalog, see [references/code-smells.md](references/code-smells.m
 For refactoring techniques, see [references/refactoring-catalog.md](references/refactoring-catalog.md).
 ```
 
-## Supporting Files
+## 지원 파일
 
-Skills can include multiple files in their directory beyond `SKILL.md`. These supporting files (templates, examples, scripts, reference documents) let you keep the main skill file focused while providing Claude with additional resources it can load as needed.
+Skills는 `SKILL.md` 외에도 디렉토리 내에 여러 파일을 포함할 수 있습니다. 이러한 지원 파일(템플릿, 예시, 스크립트, 참조 문서)을 통해 메인 skill 파일은 간결하게 유지하면서, Claude가 필요 시 로드할 수 있는 추가 리소스를 제공할 수 있습니다.
 
 ```
 my-skill/
-├── SKILL.md              # Main instructions (required, keep under 500 lines)
-├── templates/            # Templates for Claude to fill in
+├── SKILL.md              # 메인 지침 (필수, 500줄 미만으로 유지)
+├── templates/            # Claude가 채울 템플릿
 │   └── output-format.md
-├── examples/             # Example outputs showing expected format
+├── examples/             # 예상 형식을 보여주는 예시 출력
 │   └── sample-output.md
-├── references/           # Domain knowledge and specifications
+├── references/           # 도메인 지식 및 명세
 │   └── api-spec.md
-└── scripts/              # Scripts Claude can execute
+└── scripts/              # Claude가 실행할 수 있는 스크립트
     └── validate.sh
 ```
 
-Guidelines for supporting files:
+지원 파일 관련 지침:
 
-- Keep `SKILL.md` under **500 lines**. Move detailed reference material, large examples, and specifications to separate files.
-- Reference additional files from `SKILL.md` using **relative paths** (e.g., `[API reference](references/api-spec.md)`).
-- Supporting files are loaded at Level 3 (as needed), so they do not consume context until Claude actually reads them.
+- `SKILL.md`는 **500줄** 미만으로 유지하세요. 상세한 참조 자료, 대용량 예시, 명세는 별도 파일로 이동하세요.
+- `SKILL.md`에서 **상대 경로**를 사용하여 추가 파일을 참조하세요 (예: `[API reference](references/api-spec.md)`).
+- 지원 파일은 Level 3에서 필요 시 로드되므로, Claude가 실제로 읽기 전까지 컨텍스트를 소비하지 않습니다.
 
-## Managing Skills
+## Skills 관리
 
-### Viewing Available Skills
+### 사용 가능한 Skills 확인
 
-Ask Claude directly:
+Claude에게 직접 물어보세요:
 ```
 What Skills are available?
 ```
 
-Or check the filesystem:
+또는 파일 시스템을 확인하세요:
 ```bash
-# List personal Skills
+# 개인 Skills 목록
 ls ~/.claude/skills/
 
-# List project Skills
+# 프로젝트 Skills 목록
 ls .claude/skills/
 ```
 
-### Testing a Skill
+### Skill 테스트
 
-Two ways to test:
+두 가지 방법으로 테스트할 수 있습니다.
 
-**Let Claude invoke it automatically** by asking something that matches the description:
+**설명과 일치하는 질문을 통해 Claude가 자동으로 호출하도록 하기:**
 ```
 Can you help me review this code for security issues?
 ```
 
-**Or invoke it directly** with the skill name:
+**또는 skill 이름으로 직접 호출하기:**
 ```
 /code-review src/auth/login.ts
 ```
 
-### Updating a Skill
+### Skill 업데이트
 
-Edit the `SKILL.md` file directly. Changes take effect on next Claude Code startup.
+`SKILL.md` 파일을 직접 수정하세요. 다음 번 Claude Code 시작 시 변경 사항이 반영됩니다.
 
 ```bash
-# Personal Skill
+# 개인 Skill
 code ~/.claude/skills/my-skill/SKILL.md
 
-# Project Skill
+# 프로젝트 Skill
 code .claude/skills/my-skill/SKILL.md
 ```
 
-### Restricting Claude's Skill Access
+### Claude의 Skill 접근 제한
 
-Three ways to control which skills Claude can invoke:
+Claude가 호출할 수 있는 skills를 제어하는 세 가지 방법:
 
-**Disable all skills** in `/permissions`:
+**`/permissions`에서 모든 skills 비활성화:**
 ```
-# Add to deny rules:
+# 거부 규칙에 추가:
 Skill
 ```
 
-**Allow or deny specific skills**:
+**특정 skills 허용 또는 거부:**
 ```
-# Allow only specific skills
+# 특정 skills만 허용
 Skill(commit)
 Skill(review-pr *)
 
-# Deny specific skills
+# 특정 skills 거부
 Skill(deploy *)
 ```
 
-**Hide individual skills** by adding `disable-model-invocation: true` to their frontmatter.
+**개별 skills 숨기기**: frontmatter에 `disable-model-invocation: true`를 추가하세요.
 
-## Best Practices
+## 모범 사례
 
-### 1. Make Descriptions Specific
+### 1. 설명을 구체적으로 작성하기
 
-- **Bad (Vague)**: "Helps with documents"
-- **Good (Specific)**: "Extract text and tables from PDF files, fill forms, merge documents. Use when working with PDF files or when the user mentions PDFs, forms, or document extraction."
+- **나쁜 예 (모호함)**: "Helps with documents"
+- **좋은 예 (구체적)**: "Extract text and tables from PDF files, fill forms, merge documents. Use when working with PDF files or when the user mentions PDFs, forms, or document extraction."
 
-### 2. Keep Skills Focused
+### 2. Skills를 집중적으로 유지하기
 
-- One Skill = one capability
+- 하나의 Skill = 하나의 기능
 - ✅ "PDF form filling"
-- ❌ "Document processing" (too broad)
+- ❌ "Document processing" (너무 광범위)
 
-### 3. Include Trigger Terms
+### 3. 트리거 단어 포함하기
 
-Add keywords in descriptions that match user requests:
+사용자 요청과 일치하는 키워드를 설명에 추가하세요:
 ```yaml
 description: Analyze Excel spreadsheets, generate pivot tables, create charts. Use when working with Excel files, spreadsheets, or .xlsx files.
 ```
 
-### 4. Keep SKILL.md Under 500 Lines
+### 4. SKILL.md를 500줄 미만으로 유지하기
 
-Move detailed reference material to separate files that Claude loads as needed.
+상세한 참조 자료는 Claude가 필요 시 로드하는 별도 파일로 이동하세요.
 
-### 5. Reference Supporting Files
+### 5. 지원 파일 참조하기
 
 ```markdown
-## Additional resources
+## 추가 리소스
 
-- For complete API details, see [reference.md](reference.md)
-- For usage examples, see [examples.md](examples.md)
+- 전체 API 상세 내용은 [reference.md](reference.md) 참조
+- 사용 예시는 [examples.md](examples.md) 참조
 ```
 
-### Do's
+### 해야 할 것
 
-- Use clear, descriptive names
-- Include comprehensive instructions
-- Add concrete examples
-- Package related scripts and templates
-- Test with real scenarios
-- Document dependencies
+- 명확하고 설명적인 이름 사용
+- 포괄적인 지침 포함
+- 구체적인 예시 추가
+- 관련 스크립트와 템플릿 패키징
+- 실제 시나리오로 테스트
+- 의존성 문서화
 
-### Don'ts
+### 하지 말아야 할 것
 
-- Don't create skills for one-time tasks
-- Don't duplicate existing functionality
-- Don't make skills too broad
-- Don't skip the description field
-- Don't install skills from untrusted sources without auditing
+- 일회성 작업에 skills 만들지 않기
+- 기존 기능 중복 만들지 않기
+- Skills를 너무 광범위하게 만들지 않기
+- description 필드 생략하지 않기
+- 감사하지 않고 신뢰할 수 없는 출처의 skills 설치하지 않기
 
-## Troubleshooting
+## 문제 해결
 
-### Quick Reference
+### 빠른 참조
 
-| Issue | Solution |
+| 문제 | 해결책 |
 |-------|----------|
-| Claude doesn't use Skill | Make description more specific with trigger terms |
-| Skill file not found | Verify path: `~/.claude/skills/name/SKILL.md` |
-| YAML errors | Check `---` markers, indentation, no tabs |
-| Skills conflict | Use distinct trigger terms in descriptions |
-| Scripts not running | Check permissions: `chmod +x scripts/*.py` |
-| Claude doesn't see all skills | Too many skills; check `/context` for warnings |
+| Claude가 Skill을 사용하지 않음 | 트리거 단어를 포함하여 설명을 더 구체적으로 수정 |
+| Skill 파일을 찾을 수 없음 | 경로 확인: `~/.claude/skills/name/SKILL.md` |
+| YAML 오류 | `---` 마커, 들여쓰기, 탭 사용 여부 확인 |
+| Skills 충돌 | 설명에 고유한 트리거 단어 사용 |
+| 스크립트가 실행되지 않음 | 권한 확인: `chmod +x scripts/*.py` |
+| Claude가 모든 skills를 보지 못함 | Skills가 너무 많음; `/context`에서 경고 확인 |
 
-### Skill Not Triggering
+### Skill이 트리거되지 않을 때
 
-If Claude doesn't use your skill when expected:
+예상대로 Claude가 skill을 사용하지 않는 경우:
 
-1. Check the description includes keywords users would naturally say
-2. Verify the skill appears when asking "What skills are available?"
-3. Try rephrasing your request to match the description
-4. Invoke directly with `/skill-name` to test
+1. 설명에 사용자가 자연스럽게 말할 키워드가 포함되어 있는지 확인
+2. "What skills are available?"라고 물었을 때 해당 skill이 표시되는지 확인
+3. 설명과 일치하도록 요청을 다르게 표현해 보기
+4. `/skill-name`으로 직접 호출하여 테스트
 
-### Skill Triggers Too Often
+### Skill이 너무 자주 트리거될 때
 
-If Claude uses your skill when you don't want it:
+원하지 않을 때 Claude가 skill을 사용하는 경우:
 
-1. Make the description more specific
-2. Add `disable-model-invocation: true` for manual-only invocation
+1. 설명을 더 구체적으로 수정
+2. 수동 호출만 허용하도록 `disable-model-invocation: true` 추가
 
-### Claude Doesn't See All Skills
+### Claude가 모든 Skills를 보지 못할 때
 
-Skill descriptions are loaded at **2% of the context window** (fallback: **16,000 characters**). Run `/context` to check for warnings about excluded skills. Override the budget with the `SLASH_COMMAND_TOOL_CHAR_BUDGET` environment variable.
+Skill 설명은 **컨텍스트 윈도우의 2%** (대체 값: **16,000자**)에서 로드됩니다. `/context`를 실행하여 제외된 skills에 대한 경고를 확인하세요. `SLASH_COMMAND_TOOL_CHAR_BUDGET` 환경 변수로 버짓을 재정의할 수 있습니다.
 
-## Security Considerations
+## 보안 고려사항
 
-**Only use Skills from trusted sources.** Skills provide Claude with capabilities through instructions and code—a malicious Skill can direct Claude to invoke tools or execute code in harmful ways.
+**신뢰할 수 있는 출처의 Skills만 사용하세요.** Skills는 지침과 코드를 통해 Claude에게 기능을 제공합니다. 악의적인 Skill은 도구를 호출하거나 유해한 방식으로 코드를 실행하도록 Claude를 유도할 수 있습니다.
 
-**Key security considerations:**
+**주요 보안 고려사항:**
 
-- **Audit thoroughly**: Review all files in the Skill directory
-- **External sources are risky**: Skills that fetch from external URLs can be compromised
-- **Tool misuse**: Malicious Skills can invoke tools in harmful ways
-- **Treat like installing software**: Only use Skills from trusted sources
+- **철저한 감사**: Skill 디렉토리의 모든 파일 검토
+- **외부 출처는 위험함**: 외부 URL에서 가져오는 Skills는 손상될 수 있음
+- **도구 남용**: 악의적인 Skills는 도구를 유해한 방식으로 호출할 수 있음
+- **소프트웨어 설치처럼 취급**: 신뢰할 수 있는 출처의 Skills만 사용
 
-## Skills vs Other Features
+## Skills와 다른 기능 비교
 
-| Feature | Invocation | Best For |
+| 기능 | 호출 방식 | 적합한 용도 |
 |---------|------------|----------|
-| **Skills** | Auto or `/name` | Reusable expertise, workflows |
-| **Slash Commands** | User-initiated `/name` | Quick shortcuts (merged into skills) |
-| **Subagents** | Auto-delegated | Isolated task execution |
-| **Memory (CLAUDE.md)** | Always loaded | Persistent project context |
-| **MCP** | Real-time | External data/service access |
-| **Hooks** | Event-driven | Automated side effects |
+| **Skills** | 자동 또는 `/name` | 재사용 가능한 전문 지식, 워크플로우 |
+| **Slash Commands** | 사용자 시작 `/name` | 빠른 단축키 (skills로 통합됨) |
+| **Subagents** | 자동 위임 | 격리된 작업 실행 |
+| **Memory (CLAUDE.md)** | 항상 로드 | 지속적인 프로젝트 컨텍스트 |
+| **MCP** | 실시간 | 외부 데이터/서비스 접근 |
+| **Hooks** | 이벤트 기반 | 자동화된 부작용 처리 |
 
-## Bundled Skills
+## 번들된 Skills
 
-Claude Code ships with several built-in skills that are always available without installation:
+Claude Code는 설치 없이 항상 사용 가능한 여러 내장 skills를 제공합니다.
 
-| Skill | Description |
+| Skill | 설명 |
 |-------|-------------|
-| `/simplify` | Review changed files for reuse, quality, and efficiency; spawns 3 parallel review agents |
-| `/batch <instruction>` | Orchestrate large-scale parallel changes across codebase using git worktrees |
-| `/debug [description]` | Troubleshoot current session by reading debug log |
-| `/loop [interval] <prompt>` | Run prompt repeatedly on interval (e.g., `/loop 5m check the deploy`) |
-| `/claude-api` | Load Claude API/SDK reference; auto-activates on `anthropic`/`@anthropic-ai/sdk` imports |
+| `/simplify` | 변경된 파일을 재사용성, 품질, 효율성 관점에서 검토; 3개의 병렬 리뷰 에이전트 생성 |
+| `/batch <instruction>` | git worktrees를 사용하여 코드베이스 전반의 대규모 병렬 변경 오케스트레이션 |
+| `/debug [description]` | 디버그 로그를 읽어 현재 세션 문제 해결 |
+| `/loop [interval] <prompt>` | 지정된 간격으로 프롬프트를 반복 실행 (예: `/loop 5m check the deploy`) |
+| `/claude-api` | Claude API/SDK 참조 로드; `anthropic`/`@anthropic-ai/sdk` import 시 자동 활성화 |
 
-These skills are available out-of-the-box and do not need to be installed or configured. They follow the same SKILL.md format as custom skills.
+이 skills는 기본 제공되므로 설치나 설정이 필요 없습니다. 커스텀 skills와 동일한 SKILL.md 형식을 따릅니다.
 
-## Sharing Skills
+## Skills 공유
 
-### Project Skills (Team Sharing)
+### 프로젝트 Skills (팀 공유)
 
-1. Create Skill in `.claude/skills/`
-2. Commit to git
-3. Team members pull changes — Skills available immediately
+1. `.claude/skills/`에 Skill 생성
+2. git에 커밋
+3. 팀원들이 변경 사항을 pull — Skills 즉시 사용 가능
 
-### Personal Skills
+### 개인 Skills
 
 ```bash
-# Copy to personal directory
+# 개인 디렉토리에 복사
 cp -r my-skill ~/.claude/skills/
 
-# Make scripts executable
+# 스크립트 실행 권한 설정
 chmod +x ~/.claude/skills/my-skill/scripts/*.py
 ```
 
-### Plugin Distribution
+### 플러그인 배포
 
-Package skills in a plugin's `skills/` directory for broader distribution.
+더 넓은 배포를 위해 플러그인의 `skills/` 디렉토리에 skills를 패키징하세요.
 
-## Going Further: A Skill Collection and a Skill Manager
+## 더 나아가기: Skill 컬렉션과 Skill 관리 도구
 
-Once you start building skills seriously, two things become essential: a library of proven skills and a tool to manage them.
+Skills를 본격적으로 만들기 시작하면 두 가지가 필수적으로 필요해집니다: 검증된 skills 라이브러리와 이를 관리할 도구입니다.
 
-**[luongnv89/skills](https://github.com/luongnv89/skills)** — A collection of skills I use daily across almost all my projects. Highlights include `logo-designer` (generates project logos on the fly) and `ollama-optimizer` (tunes local LLM performance for your hardware). Great starting point if you want ready-to-use skills.
+**[luongnv89/skills](https://github.com/luongnv89/skills)** — 거의 모든 프로젝트에서 매일 사용하는 skills 컬렉션입니다. `logo-designer` (프로젝트 로고를 즉석에서 생성)와 `ollama-optimizer` (하드웨어에 맞게 로컬 LLM 성능 조정) 같은 highlights가 있습니다. 바로 사용할 수 있는 skills가 필요하다면 훌륭한 시작점입니다.
 
-**[luongnv89/asm](https://github.com/luongnv89/asm)** — Agent Skill Manager. Handles skill development, duplicate detection, and testing. The `asm link` command lets you test a skill in any project without copying files around — essential once you have more than a handful of skills.
+**[luongnv89/asm](https://github.com/luongnv89/asm)** — Agent Skill Manager. skill 개발, 중복 감지, 테스트를 처리합니다. `asm link` 명령어를 사용하면 파일을 복사하지 않고도 어떤 프로젝트에서나 skill을 테스트할 수 있습니다—skills가 여러 개로 늘어나면 필수입니다.
 
-## Additional Resources
+## 추가 리소스
 
-- [Official Skills Documentation](https://code.claude.com/docs/en/skills)
-- [Agent Skills Architecture Blog](https://claude.com/blog/equipping-agents-for-the-real-world-with-agent-skills)
-- [Skills Repository](https://github.com/luongnv89/skills) - Collection of ready-to-use skills
-- [Slash Commands Guide](../01-slash-commands/) - User-initiated shortcuts
-- [Subagents Guide](../04-subagents/) - Delegated AI agents
-- [Memory Guide](../02-memory/) - Persistent context
-- [MCP (Model Context Protocol)](../05-mcp/) - Real-time external data
-- [Hooks Guide](../06-hooks/) - Event-driven automation
+- [공식 Skills 문서](https://code.claude.com/docs/en/skills)
+- [Agent Skills 아키텍처 블로그](https://claude.com/blog/equipping-agents-for-the-real-world-with-agent-skills)
+- [Skills 저장소](https://github.com/luongnv89/skills) - 바로 사용 가능한 skills 컬렉션
+- [Slash Commands 가이드](../01-slash-commands/) - 사용자 시작 단축키
+- [Subagents 가이드](../04-subagents/) - 위임된 AI 에이전트
+- [Memory 가이드](../02-memory/) - 지속적인 컨텍스트
+- [MCP (Model Context Protocol)](../05-mcp/) - 실시간 외부 데이터
+- [Hooks 가이드](../06-hooks/) - 이벤트 기반 자동화

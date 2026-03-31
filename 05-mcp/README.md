@@ -5,20 +5,20 @@
 
 # MCP (Model Context Protocol)
 
-This folder contains comprehensive documentation and examples for MCP server configurations and usage with Claude Code.
+이 폴더에는 Claude Code와 함께 사용하는 MCP 서버 설정 및 활용에 관한 포괄적인 문서와 예제가 담겨 있습니다.
 
-## Overview
+## 개요
 
-MCP (Model Context Protocol) is a standardized way for Claude to access external tools, APIs, and real-time data sources. Unlike Memory, MCP provides live access to changing data.
+MCP (Model Context Protocol)는 Claude가 외부 도구, API, 실시간 데이터 소스에 접근하기 위한 표준화된 방법입니다. Memory와 달리 MCP는 변화하는 데이터에 실시간으로 접근합니다.
 
-Key characteristics:
-- Real-time access to external services
-- Live data synchronization
-- Extensible architecture
-- Secure authentication
-- Tool-based interactions
+주요 특징:
+- 외부 서비스에 실시간 접근
+- 라이브 데이터 동기화
+- 확장 가능한 아키텍처
+- 안전한 인증
+- 도구 기반 상호작용
 
-## MCP Architecture
+## MCP 아키텍처
 
 ```mermaid
 graph TB
@@ -41,7 +41,7 @@ graph TB
     style C fill:#e8f5e9,stroke:#333,color:#333
 ```
 
-## MCP Ecosystem
+## MCP 생태계
 
 ```mermaid
 graph TB
@@ -70,85 +70,85 @@ graph TB
     style K fill:#e8f5e9,stroke:#333,color:#333
 ```
 
-## MCP Installation Methods
+## MCP 설치 방법
 
-Claude Code supports multiple transport protocols for MCP server connections:
+Claude Code는 MCP 서버 연결에 여러 전송 프로토콜을 지원합니다.
 
-### HTTP Transport (Recommended)
+### HTTP 전송 (권장)
 
 ```bash
-# Basic HTTP connection
+# 기본 HTTP 연결
 claude mcp add --transport http notion https://mcp.notion.com/mcp
 
-# HTTP with authentication header
+# 인증 헤더 포함 HTTP 연결
 claude mcp add --transport http secure-api https://api.example.com/mcp \
   --header "Authorization: Bearer your-token"
 ```
 
-### Stdio Transport (Local)
+### Stdio 전송 (로컬)
 
-For locally running MCP servers:
+로컬에서 실행 중인 MCP 서버에 사용합니다.
 
 ```bash
-# Local Node.js server
+# 로컬 Node.js 서버
 claude mcp add --transport stdio myserver -- npx @myorg/mcp-server
 
-# With environment variables
+# 환경 변수 포함
 claude mcp add --transport stdio myserver --env KEY=value -- npx server
 ```
 
-### SSE Transport (Deprecated)
+### SSE 전송 (deprecated)
 
-Server-Sent Events transport is deprecated in favor of `http` but still supported:
+Server-Sent Events 전송은 `http`로 대체되어 deprecated되었지만 여전히 지원됩니다.
 
 ```bash
 claude mcp add --transport sse legacy-server https://example.com/sse
 ```
 
-### WebSocket Transport
+### WebSocket 전송
 
-WebSocket transport for persistent bidirectional connections:
+지속적인 양방향 연결을 위한 WebSocket 전송입니다.
 
 ```bash
 claude mcp add --transport ws realtime-server wss://example.com/mcp
 ```
 
-### Windows-Specific Note
+### Windows 특이사항
 
-On native Windows (not WSL), use `cmd /c` for npx commands:
+네이티브 Windows(WSL 제외)에서는 npx 명령에 `cmd /c`를 사용합니다.
 
 ```bash
 claude mcp add --transport stdio my-server -- cmd /c npx -y @some/package
 ```
 
-### OAuth 2.0 Authentication
+### OAuth 2.0 인증
 
-Claude Code supports OAuth 2.0 for MCP servers that require it. When connecting to an OAuth-enabled server, Claude Code handles the entire authentication flow:
+Claude Code는 OAuth 2.0이 필요한 MCP 서버를 지원합니다. OAuth가 활성화된 서버에 연결할 때 Claude Code가 전체 인증 흐름을 처리합니다.
 
 ```bash
-# Connect to an OAuth-enabled MCP server (interactive flow)
+# OAuth가 활성화된 MCP 서버에 연결 (대화형 흐름)
 claude mcp add --transport http my-service https://my-service.example.com/mcp
 
-# Pre-configure OAuth credentials for non-interactive setup
+# 비대화형 설정을 위한 OAuth 자격 증명 사전 구성
 claude mcp add --transport http my-service https://my-service.example.com/mcp \
   --client-id "your-client-id" \
   --client-secret "your-client-secret" \
   --callback-port 8080
 ```
 
-| Feature | Description |
+| 기능 | 설명 |
 |---------|-------------|
-| **Interactive OAuth** | Use `/mcp` to trigger the browser-based OAuth flow |
-| **Pre-configured OAuth clients** | Built-in OAuth clients for common services like Notion, Stripe, and others (v2.1.30+) |
-| **Pre-configured credentials** | `--client-id`, `--client-secret`, `--callback-port` flags for automated setup |
-| **Token storage** | Tokens are stored securely in your system keychain |
-| **Step-up auth** | Supports step-up authentication for privileged operations |
-| **Discovery caching** | OAuth discovery metadata is cached for faster reconnections |
-| **Metadata override** | `oauth.authServerMetadataUrl` in `.mcp.json` to override default OAuth metadata discovery |
+| **대화형 OAuth** | `/mcp`를 사용하여 브라우저 기반 OAuth 흐름 시작 |
+| **사전 구성된 OAuth 클라이언트** | Notion, Stripe 등 일반적인 서비스를 위한 내장 OAuth 클라이언트 (v2.1.30+) |
+| **사전 구성된 자격 증명** | 자동화 설정을 위한 `--client-id`, `--client-secret`, `--callback-port` 플래그 |
+| **토큰 저장** | 토큰은 시스템 키체인에 안전하게 저장됨 |
+| **단계적 인증** | 권한이 필요한 작업에 대한 step-up 인증 지원 |
+| **검색 캐싱** | OAuth 검색 메타데이터를 캐싱하여 재연결 속도 향상 |
+| **메타데이터 재정의** | `.mcp.json`의 `oauth.authServerMetadataUrl`로 기본 OAuth 메타데이터 검색 재정의 |
 
-#### Overriding OAuth Metadata Discovery
+#### OAuth 메타데이터 검색 재정의
 
-If your MCP server returns errors on the standard OAuth metadata endpoint (`/.well-known/oauth-authorization-server`) but exposes a working OIDC endpoint, you can tell Claude Code to fetch OAuth metadata from a specific URL. Set `authServerMetadataUrl` in the `oauth` object of your server config:
+MCP 서버가 표준 OAuth 메타데이터 엔드포인트(`/.well-known/oauth-authorization-server`)에서 오류를 반환하지만 작동하는 OIDC 엔드포인트를 노출하는 경우, Claude Code에 특정 URL에서 OAuth 메타데이터를 가져오도록 지정할 수 있습니다. 서버 설정의 `oauth` 객체에 `authServerMetadataUrl`을 설정합니다.
 
 ```json
 {
@@ -164,23 +164,23 @@ If your MCP server returns errors on the standard OAuth metadata endpoint (`/.we
 }
 ```
 
-The URL must use `https://`. This option requires Claude Code v2.1.64 or later.
+URL은 반드시 `https://`를 사용해야 합니다. 이 옵션은 Claude Code v2.1.64 이상이 필요합니다.
 
-### Claude.ai MCP Connectors
+### Claude.ai MCP 커넥터
 
-MCP servers configured in your Claude.ai account are automatically available in Claude Code. This means any MCP connections you set up through the Claude.ai web interface will be accessible without additional configuration.
+Claude.ai 계정에 설정된 MCP 서버는 Claude Code에서 자동으로 사용할 수 있습니다. Claude.ai 웹 인터페이스를 통해 설정한 MCP 연결은 별도 설정 없이 접근 가능합니다.
 
-Claude.ai MCP connectors are also available in `--print` mode (v2.1.83+), enabling non-interactive and scripted usage.
+Claude.ai MCP 커넥터는 `--print` 모드(v2.1.83+)에서도 사용할 수 있어 비대화형 및 스크립트 방식의 활용이 가능합니다.
 
-To disable Claude.ai MCP servers in Claude Code, set the `ENABLE_CLAUDEAI_MCP_SERVERS` environment variable to `false`:
+Claude Code에서 Claude.ai MCP 서버를 비활성화하려면 `ENABLE_CLAUDEAI_MCP_SERVERS` 환경 변수를 `false`로 설정합니다.
 
 ```bash
 ENABLE_CLAUDEAI_MCP_SERVERS=false claude
 ```
 
-> **Note:** This feature is only available for users logged in with Claude.ai accounts.
+> **참고:** 이 기능은 Claude.ai 계정으로 로그인한 사용자에게만 제공됩니다.
 
-## MCP Setup Process
+## MCP 설정 프로세스
 
 ```mermaid
 sequenceDiagram
@@ -200,74 +200,74 @@ sequenceDiagram
     Claude->>User: ✅ MCP connected!
 ```
 
-## MCP Tool Search
+## MCP 도구 검색
 
-When MCP tool descriptions exceed 10% of the context window, Claude Code automatically enables tool search to efficiently select the right tools without overwhelming the model context.
+MCP 도구 설명이 컨텍스트 창의 10%를 초과하면 Claude Code는 자동으로 도구 검색을 활성화하여 모델 컨텍스트를 과부하시키지 않고 적절한 도구를 효율적으로 선택합니다.
 
-| Setting | Value | Description |
+| 설정 | 값 | 설명 |
 |---------|-------|-------------|
-| `ENABLE_TOOL_SEARCH` | `auto` (default) | Automatically enables when tool descriptions exceed 10% of context |
-| `ENABLE_TOOL_SEARCH` | `auto:<N>` | Automatically enables at a custom threshold of `N` tools |
-| `ENABLE_TOOL_SEARCH` | `true` | Always enabled regardless of tool count |
-| `ENABLE_TOOL_SEARCH` | `false` | Disabled; all tool descriptions sent in full |
+| `ENABLE_TOOL_SEARCH` | `auto` (기본값) | 도구 설명이 컨텍스트의 10%를 초과하면 자동 활성화 |
+| `ENABLE_TOOL_SEARCH` | `auto:<N>` | 사용자 지정 임계값 `N`개 도구에서 자동 활성화 |
+| `ENABLE_TOOL_SEARCH` | `true` | 도구 수에 관계없이 항상 활성화 |
+| `ENABLE_TOOL_SEARCH` | `false` | 비활성화; 모든 도구 설명을 전체 전송 |
 
-> **Note:** Tool search requires Sonnet 4 or later, or Opus 4 or later. Haiku models are not supported for tool search.
+> **참고:** 도구 검색은 Sonnet 4 이상 또는 Opus 4 이상이 필요합니다. Haiku 모델은 도구 검색을 지원하지 않습니다.
 
-## Dynamic Tool Updates
+## 동적 도구 업데이트
 
-Claude Code supports MCP `list_changed` notifications. When an MCP server dynamically adds, removes, or modifies its available tools, Claude Code receives the update and adjusts its tool list automatically -- no reconnection or restart required.
+Claude Code는 MCP `list_changed` 알림을 지원합니다. MCP 서버가 동적으로 도구를 추가, 제거, 수정하면 Claude Code가 업데이트를 수신하고 재연결이나 재시작 없이 자동으로 도구 목록을 조정합니다.
 
-## MCP Elicitation
+## MCP 요청(Elicitation)
 
-MCP servers can request structured input from the user via interactive dialogs (v2.1.49+). This allows an MCP server to ask for additional information mid-workflow -- for example, prompting for a confirmation, selecting from a list of options, or filling in required fields -- adding interactivity to MCP server interactions.
+MCP 서버는 대화형 다이얼로그를 통해 사용자에게 구조화된 입력을 요청할 수 있습니다(v2.1.49+). 이를 통해 MCP 서버가 워크플로 도중 추가 정보를 요청할 수 있습니다. 예를 들어, 확인 요청, 옵션 목록 중 선택, 필수 필드 입력 등 MCP 서버 상호작용에 대화성을 추가합니다.
 
-## Tool Description and Instruction Cap
+## 도구 설명 및 지침 크기 제한
 
-As of v2.1.84, Claude Code enforces a **2 KB cap** on tool descriptions and instructions per MCP server. This prevents individual servers from consuming excessive context with overly verbose tool definitions, reducing context bloat and keeping interactions efficient.
+v2.1.84부터 Claude Code는 MCP 서버당 도구 설명 및 지침에 **2 KB 제한**을 적용합니다. 이는 개별 서버가 지나치게 장황한 도구 정의로 과도한 컨텍스트를 소비하는 것을 방지하여 컨텍스트 비대화를 줄이고 상호작용을 효율적으로 유지합니다.
 
-## MCP Prompts as Slash Commands
+## MCP 프롬프트를 슬래시 명령으로 사용
 
-MCP servers can expose prompts that appear as slash commands in Claude Code. Prompts are accessible using the naming convention:
+MCP 서버는 Claude Code에서 슬래시 명령으로 나타나는 프롬프트를 노출할 수 있습니다. 프롬프트는 다음 명명 규칙으로 접근합니다.
 
 ```
 /mcp__<server>__<prompt>
 ```
 
-For example, if a server named `github` exposes a prompt called `review`, you can invoke it as `/mcp__github__review`.
+예를 들어, `github`라는 서버가 `review`라는 프롬프트를 노출하면 `/mcp__github__review`로 호출할 수 있습니다.
 
-## Server Deduplication
+## 서버 중복 제거
 
-When the same MCP server is defined at multiple scopes (local, project, user), the local configuration takes precedence. This allows you to override project-level or user-level MCP settings with local customizations without conflicts.
+동일한 MCP 서버가 여러 범위(local, project, user)에 정의된 경우 로컬 설정이 우선합니다. 이를 통해 충돌 없이 프로젝트 수준 또는 사용자 수준 MCP 설정을 로컬 커스터마이징으로 재정의할 수 있습니다.
 
-## MCP Resources via @ Mentions
+## @ 멘션을 통한 MCP 리소스 참조
 
-You can reference MCP resources directly in your prompts using the `@` mention syntax:
+`@` 멘션 구문을 사용하여 프롬프트에서 MCP 리소스를 직접 참조할 수 있습니다.
 
 ```
 @server-name:protocol://resource/path
 ```
 
-For example, to reference a specific database resource:
+예를 들어, 특정 데이터베이스 리소스를 참조하려면 다음과 같이 합니다.
 
 ```
 @database:postgres://mydb/users
 ```
 
-This allows Claude to fetch and include MCP resource content inline as part of the conversation context.
+이를 통해 Claude가 MCP 리소스 내용을 가져와 대화 컨텍스트의 일부로 인라인 포함할 수 있습니다.
 
-## MCP Scopes
+## MCP 범위
 
-MCP configurations can be stored at different scopes with varying levels of sharing:
+MCP 설정은 다양한 공유 수준을 가진 여러 범위에 저장할 수 있습니다.
 
-| Scope | Location | Description | Shared With | Requires Approval |
+| 범위 | 위치 | 설명 | 공유 대상 | 승인 필요 |
 |-------|----------|-------------|-------------|------------------|
-| **Local** (default) | `~/.claude.json` (under project path) | Private to current user, current project only (was called `project` in older versions) | Just you | No |
-| **Project** | `.mcp.json` | Checked into git repository | Team members | Yes (first use) |
-| **User** | `~/.claude.json` | Available across all projects (was called `global` in older versions) | Just you | No |
+| **Local** (기본값) | `~/.claude.json` (프로젝트 경로 아래) | 현재 사용자, 현재 프로젝트에만 비공개 (이전 버전에서는 `project`라 불림) | 본인만 | 아니오 |
+| **Project** | `.mcp.json` | git 저장소에 커밋됨 | 팀 구성원 | 예 (최초 사용 시) |
+| **User** | `~/.claude.json` | 모든 프로젝트에서 사용 가능 (이전 버전에서는 `global`이라 불림) | 본인만 | 아니오 |
 
-### Using Project Scope
+### Project 범위 사용
 
-Store project-specific MCP configurations in `.mcp.json`:
+프로젝트별 MCP 설정을 `.mcp.json`에 저장합니다.
 
 ```json
 {
@@ -280,53 +280,53 @@ Store project-specific MCP configurations in `.mcp.json`:
 }
 ```
 
-Team members will see an approval prompt on first use of project MCPs.
+팀 구성원은 프로젝트 MCP를 최초 사용 시 승인 프롬프트를 보게 됩니다.
 
-## MCP Configuration Management
+## MCP 설정 관리
 
-### Adding MCP Servers
+### MCP 서버 추가
 
 ```bash
-# Add HTTP-based server
+# HTTP 기반 서버 추가
 claude mcp add --transport http github https://api.github.com/mcp
 
-# Add local stdio server
+# 로컬 stdio 서버 추가
 claude mcp add --transport stdio database -- npx @company/db-server
 
-# List all MCP servers
+# 모든 MCP 서버 나열
 claude mcp list
 
-# Get details on specific server
+# 특정 서버 세부 정보 확인
 claude mcp get github
 
-# Remove an MCP server
+# MCP 서버 제거
 claude mcp remove github
 
-# Reset project-specific approval choices
+# 프로젝트별 승인 선택 초기화
 claude mcp reset-project-choices
 
-# Import from Claude Desktop
+# Claude Desktop에서 가져오기
 claude mcp add-from-claude-desktop
 ```
 
-## Available MCP Servers Table
+## 사용 가능한 MCP 서버 목록
 
-| MCP Server | Purpose | Common Tools | Auth | Real-time |
+| MCP 서버 | 목적 | 주요 도구 | 인증 | 실시간 |
 |------------|---------|--------------|------|-----------|
-| **Filesystem** | File operations | read, write, delete | OS permissions | ✅ Yes |
-| **GitHub** | Repository management | list_prs, create_issue, push | OAuth | ✅ Yes |
-| **Slack** | Team communication | send_message, list_channels | Token | ✅ Yes |
-| **Database** | SQL queries | query, insert, update | Credentials | ✅ Yes |
-| **Google Docs** | Document access | read, write, share | OAuth | ✅ Yes |
-| **Asana** | Project management | create_task, update_status | API Key | ✅ Yes |
-| **Stripe** | Payment data | list_charges, create_invoice | API Key | ✅ Yes |
-| **Memory** | Persistent memory | store, retrieve, delete | Local | ❌ No |
+| **Filesystem** | 파일 작업 | read, write, delete | OS 권한 | ✅ 예 |
+| **GitHub** | 저장소 관리 | list_prs, create_issue, push | OAuth | ✅ 예 |
+| **Slack** | 팀 커뮤니케이션 | send_message, list_channels | Token | ✅ 예 |
+| **Database** | SQL 쿼리 | query, insert, update | 자격 증명 | ✅ 예 |
+| **Google Docs** | 문서 접근 | read, write, share | OAuth | ✅ 예 |
+| **Asana** | 프로젝트 관리 | create_task, update_status | API Key | ✅ 예 |
+| **Stripe** | 결제 데이터 | list_charges, create_invoice | API Key | ✅ 예 |
+| **Memory** | 영구 메모리 | store, retrieve, delete | 로컬 | ❌ 아니오 |
 
-## Practical Examples
+## 실용적인 예제
 
-### Example 1: GitHub MCP Configuration
+### 예제 1: GitHub MCP 설정
 
-**File:** `.mcp.json` (project root)
+**파일:** `.mcp.json` (프로젝트 루트)
 
 ```json
 {
@@ -342,17 +342,17 @@ claude mcp add-from-claude-desktop
 }
 ```
 
-**Available GitHub MCP Tools:**
+**사용 가능한 GitHub MCP 도구:**
 
-#### Pull Request Management
-- `list_prs` - List all PRs in repository
-- `get_pr` - Get PR details including diff
-- `create_pr` - Create new PR
-- `update_pr` - Update PR description/title
-- `merge_pr` - Merge PR to main branch
-- `review_pr` - Add review comments
+#### Pull Request 관리
+- `list_prs` - 저장소의 모든 PR 나열
+- `get_pr` - diff 포함 PR 세부 정보 가져오기
+- `create_pr` - 새 PR 생성
+- `update_pr` - PR 설명/제목 업데이트
+- `merge_pr` - PR을 main 브랜치에 병합
+- `review_pr` - 리뷰 댓글 추가
 
-**Example request:**
+**요청 예시:**
 ```
 /mcp__github__get_pr 456
 
@@ -364,34 +364,34 @@ Status: OPEN
 Reviewers: @bob, @charlie
 ```
 
-#### Issue Management
-- `list_issues` - List all issues
-- `get_issue` - Get issue details
-- `create_issue` - Create new issue
-- `close_issue` - Close issue
-- `add_comment` - Add comment to issue
+#### 이슈 관리
+- `list_issues` - 모든 이슈 나열
+- `get_issue` - 이슈 세부 정보 가져오기
+- `create_issue` - 새 이슈 생성
+- `close_issue` - 이슈 닫기
+- `add_comment` - 이슈에 댓글 추가
 
-#### Repository Information
-- `get_repo_info` - Repository details
-- `list_files` - File tree structure
-- `get_file_content` - Read file contents
-- `search_code` - Search across codebase
+#### 저장소 정보
+- `get_repo_info` - 저장소 세부 정보
+- `list_files` - 파일 트리 구조
+- `get_file_content` - 파일 내용 읽기
+- `search_code` - 코드베이스 전체 검색
 
-#### Commit Operations
-- `list_commits` - Commit history
-- `get_commit` - Specific commit details
-- `create_commit` - Create new commit
+#### 커밋 작업
+- `list_commits` - 커밋 이력
+- `get_commit` - 특정 커밋 세부 정보
+- `create_commit` - 새 커밋 생성
 
-**Setup**:
+**설정**:
 ```bash
 export GITHUB_TOKEN="your_github_token"
-# Or use the CLI to add directly:
+# 또는 CLI를 사용하여 직접 추가:
 claude mcp add --transport stdio github -- npx @modelcontextprotocol/server-github
 ```
 
-### Environment Variable Expansion in Configuration
+### 설정에서의 환경 변수 확장
 
-MCP configurations support environment variable expansion with fallback defaults. The `${VAR}` and `${VAR:-default}` syntax works in the following fields: `command`, `args`, `env`, `url`, and `headers`.
+MCP 설정은 기본값이 있는 환경 변수 확장을 지원합니다. `${VAR}` 및 `${VAR:-default}` 구문은 `command`, `args`, `env`, `url`, `headers` 필드에서 동작합니다.
 
 ```json
 {
@@ -415,13 +415,13 @@ MCP configurations support environment variable expansion with fallback defaults
 }
 ```
 
-Variables are expanded at runtime:
-- `${VAR}` - Uses environment variable, error if not set
-- `${VAR:-default}` - Uses environment variable, falls back to default if not set
+변수는 런타임에 확장됩니다:
+- `${VAR}` - 환경 변수 사용, 설정되지 않으면 오류
+- `${VAR:-default}` - 환경 변수 사용, 설정되지 않으면 기본값으로 대체
 
-### Example 2: Database MCP Setup
+### 예제 2: Database MCP 설정
 
-**Configuration:**
+**설정:**
 
 ```json
 {
@@ -437,7 +437,7 @@ Variables are expanded at runtime:
 }
 ```
 
-**Example Usage:**
+**사용 예시:**
 
 ```markdown
 User: Fetch all users with more than 10 orders
@@ -458,71 +458,71 @@ ORDER BY order_count DESC;
 - Charlie: 11 orders
 ```
 
-**Setup**:
+**설정**:
 ```bash
 export DATABASE_URL="postgresql://user:pass@localhost/mydb"
-# Or use the CLI to add directly:
+# 또는 CLI를 사용하여 직접 추가:
 claude mcp add --transport stdio database -- npx @modelcontextprotocol/server-database
 ```
 
-### Example 3: Multi-MCP Workflow
+### 예제 3: 다중 MCP 워크플로
 
-**Scenario: Daily Report Generation**
+**시나리오: 일일 보고서 생성**
 
 ```markdown
-# Daily Report Workflow using Multiple MCPs
+# 여러 MCP를 활용한 일일 보고서 워크플로
 
-## Setup
-1. GitHub MCP - fetch PR metrics
-2. Database MCP - query sales data
-3. Slack MCP - post report
-4. Filesystem MCP - save report
+## 설정
+1. GitHub MCP - PR 지표 가져오기
+2. Database MCP - 영업 데이터 쿼리
+3. Slack MCP - 보고서 게시
+4. Filesystem MCP - 보고서 저장
 
-## Workflow
+## 워크플로
 
-### Step 1: Fetch GitHub Data
+### 1단계: GitHub 데이터 가져오기
 /mcp__github__list_prs completed:true last:7days
 
-Output:
-- Total PRs: 42
-- Average merge time: 2.3 hours
-- Review turnaround: 1.1 hours
+출력:
+- 총 PR: 42
+- 평균 병합 시간: 2.3시간
+- 리뷰 응답 시간: 1.1시간
 
-### Step 2: Query Database
+### 2단계: 데이터베이스 쿼리
 SELECT COUNT(*) as sales, SUM(amount) as revenue
 FROM orders
 WHERE created_at > NOW() - INTERVAL '1 day'
 
-Output:
-- Sales: 247
-- Revenue: $12,450
+출력:
+- 판매: 247건
+- 매출: $12,450
 
-### Step 3: Generate Report
-Combine data into HTML report
+### 3단계: 보고서 생성
+데이터를 HTML 보고서로 통합
 
-### Step 4: Save to Filesystem
-Write report.html to /reports/
+### 4단계: 파일시스템에 저장
+report.html을 /reports/에 저장
 
-### Step 5: Post to Slack
-Send summary to #daily-reports channel
+### 5단계: Slack에 게시
+#daily-reports 채널에 요약 전송
 
-Final Output:
-✅ Report generated and posted
-📊 47 PRs merged this week
-💰 $12,450 in daily sales
+최종 출력:
+✅ 보고서 생성 및 게시 완료
+📊 이번 주 PR 병합: 47건
+💰 일일 매출: $12,450
 ```
 
-**Setup**:
+**설정**:
 ```bash
 export GITHUB_TOKEN="your_github_token"
 export DATABASE_URL="postgresql://user:pass@localhost/mydb"
 export SLACK_TOKEN="your_slack_token"
-# Add each MCP server via the CLI or configure them in .mcp.json
+# CLI를 통해 각 MCP 서버를 추가하거나 .mcp.json에 설정
 ```
 
-### Example 4: Filesystem MCP Operations
+### 예제 4: Filesystem MCP 작업
 
-**Configuration:**
+**설정:**
 
 ```json
 {
@@ -535,24 +535,24 @@ export SLACK_TOKEN="your_slack_token"
 }
 ```
 
-**Available Operations:**
+**사용 가능한 작업:**
 
-| Operation | Command | Purpose |
+| 작업 | 명령 | 목적 |
 |-----------|---------|---------|
-| List files | `ls ~/projects` | Show directory contents |
-| Read file | `cat src/main.ts` | Read file contents |
-| Write file | `create docs/api.md` | Create new file |
-| Edit file | `edit src/app.ts` | Modify file |
-| Search | `grep "async function"` | Search in files |
-| Delete | `rm old-file.js` | Delete file |
+| 파일 목록 | `ls ~/projects` | 디렉토리 내용 표시 |
+| 파일 읽기 | `cat src/main.ts` | 파일 내용 읽기 |
+| 파일 쓰기 | `create docs/api.md` | 새 파일 생성 |
+| 파일 편집 | `edit src/app.ts` | 파일 수정 |
+| 검색 | `grep "async function"` | 파일 내 검색 |
+| 삭제 | `rm old-file.js` | 파일 삭제 |
 
-**Setup**:
+**설정**:
 ```bash
-# Use the CLI to add directly:
+# CLI를 사용하여 직접 추가:
 claude mcp add --transport stdio filesystem -- npx @modelcontextprotocol/server-filesystem /home/user/projects
 ```
 
-## MCP vs Memory: Decision Matrix
+## MCP vs Memory: 결정 매트릭스
 
 ```mermaid
 graph TD
@@ -573,7 +573,7 @@ graph TD
     style F fill:#e8f5e9,stroke:#333,color:#333
 ```
 
-## Request/Response Pattern
+## 요청/응답 패턴
 
 ```mermaid
 sequenceDiagram
@@ -591,18 +591,18 @@ sequenceDiagram
     Note over MCP,DB: Real-time access<br/>No caching
 ```
 
-## Environment Variables
+## 환경 변수
 
-Store sensitive credentials in environment variables:
+민감한 자격 증명은 환경 변수에 저장합니다.
 
 ```bash
-# ~/.bashrc or ~/.zshrc
+# ~/.bashrc 또는 ~/.zshrc
 export GITHUB_TOKEN="ghp_xxxxxxxxxxxxx"
 export DATABASE_URL="postgresql://user:pass@localhost/mydb"
 export SLACK_TOKEN="xoxb-xxxxxxxxxxxxx"
 ```
 
-Then reference them in MCP config:
+그런 다음 MCP 설정에서 참조합니다.
 
 ```json
 {
@@ -612,40 +612,40 @@ Then reference them in MCP config:
 }
 ```
 
-## Claude as MCP Server (`claude mcp serve`)
+## Claude를 MCP 서버로 사용 (`claude mcp serve`)
 
-Claude Code itself can act as an MCP server for other applications. This enables external tools, editors, and automation systems to leverage Claude's capabilities through the standard MCP protocol.
+Claude Code 자체가 다른 애플리케이션을 위한 MCP 서버로 동작할 수 있습니다. 이를 통해 외부 도구, 편집기, 자동화 시스템이 표준 MCP 프로토콜을 통해 Claude의 기능을 활용할 수 있습니다.
 
 ```bash
-# Start Claude Code as an MCP server on stdio
+# Claude Code를 stdio MCP 서버로 시작
 claude mcp serve
 ```
 
-Other applications can then connect to this server as they would any stdio-based MCP server. For example, to add Claude Code as an MCP server in another Claude Code instance:
+다른 애플리케이션은 stdio 기반 MCP 서버처럼 이 서버에 연결할 수 있습니다. 예를 들어, 다른 Claude Code 인스턴스에 Claude Code를 MCP 서버로 추가하려면 다음과 같이 합니다.
 
 ```bash
 claude mcp add --transport stdio claude-agent -- claude mcp serve
 ```
 
-This is useful for building multi-agent workflows where one Claude instance orchestrates another.
+이는 한 Claude 인스턴스가 다른 인스턴스를 조율하는 멀티 에이전트 워크플로를 구축할 때 유용합니다.
 
-## Managed MCP Configuration (Enterprise)
+## 관리형 MCP 설정 (엔터프라이즈)
 
-For enterprise deployments, IT administrators can enforce MCP server policies through the `managed-mcp.json` configuration file. This file provides exclusive control over which MCP servers are permitted or blocked organization-wide.
+엔터프라이즈 배포를 위해 IT 관리자는 `managed-mcp.json` 설정 파일을 통해 MCP 서버 정책을 강제할 수 있습니다. 이 파일은 조직 전체에서 허용되거나 차단되는 MCP 서버를 독점적으로 제어합니다.
 
-**Location:**
+**위치:**
 - macOS: `/Library/Application Support/ClaudeCode/managed-mcp.json`
 - Linux: `~/.config/ClaudeCode/managed-mcp.json`
 - Windows: `%APPDATA%\ClaudeCode\managed-mcp.json`
 
-**Features:**
-- `allowedMcpServers` -- whitelist of permitted servers
-- `deniedMcpServers` -- blocklist of prohibited servers
-- Supports matching by server name, command, and URL patterns
-- Organization-wide MCP policies enforced before user configuration
-- Prevents unauthorized server connections
+**기능:**
+- `allowedMcpServers` -- 허용된 서버의 화이트리스트
+- `deniedMcpServers` -- 금지된 서버의 블랙리스트
+- 서버 이름, 명령, URL 패턴으로 매칭 지원
+- 사용자 설정 이전에 적용되는 조직 전체 MCP 정책
+- 승인되지 않은 서버 연결 방지
 
-**Example configuration:**
+**설정 예시:**
 
 ```json
 {
@@ -670,16 +670,16 @@ For enterprise deployments, IT administrators can enforce MCP server policies th
 }
 ```
 
-> **Note:** When both `allowedMcpServers` and `deniedMcpServers` match a server, the deny rule takes precedence.
+> **참고:** `allowedMcpServers`와 `deniedMcpServers` 모두 서버에 매칭되면 거부 규칙이 우선합니다.
 
-## Plugin-Provided MCP Servers
+## 플러그인 제공 MCP 서버
 
-Plugins can bundle their own MCP servers, making them available automatically when the plugin is installed. Plugin-provided MCP servers can be defined in two ways:
+플러그인은 자체 MCP 서버를 번들로 포함하여 플러그인 설치 시 자동으로 사용 가능하게 할 수 있습니다. 플러그인 제공 MCP 서버는 두 가지 방식으로 정의할 수 있습니다.
 
-1. **Standalone `.mcp.json`** -- Place a `.mcp.json` file in the plugin root directory
-2. **Inline in `plugin.json`** -- Define MCP servers directly within the plugin manifest
+1. **독립 `.mcp.json`** -- 플러그인 루트 디렉토리에 `.mcp.json` 파일 배치
+2. **`plugin.json`에 인라인 정의** -- 플러그인 매니페스트 내에 직접 MCP 서버 정의
 
-Use the `${CLAUDE_PLUGIN_ROOT}` variable to reference paths relative to the plugin's installation directory:
+플러그인의 설치 디렉토리에 상대적인 경로를 참조하려면 `${CLAUDE_PLUGIN_ROOT}` 변수를 사용합니다.
 
 ```json
 {
@@ -695,9 +695,9 @@ Use the `${CLAUDE_PLUGIN_ROOT}` variable to reference paths relative to the plug
 }
 ```
 
-## Subagent-Scoped MCP
+## Subagent 범위 MCP
 
-MCP servers can be defined inline within agent frontmatter using the `mcpServers:` key, scoping them to a specific subagent rather than the entire project. This is useful when an agent needs access to a particular MCP server that other agents in the workflow do not require.
+MCP 서버는 에이전트 프론트매터의 `mcpServers:` 키를 사용하여 인라인으로 정의할 수 있으며, 전체 프로젝트가 아닌 특정 Subagent에 한정됩니다. 이는 워크플로의 다른 에이전트는 필요하지 않지만 특정 에이전트만 특정 MCP 서버에 접근해야 할 때 유용합니다.
 
 ```yaml
 ---
@@ -710,40 +710,40 @@ mcpServers:
 You are an agent with access to my-tool for specialized operations.
 ```
 
-Subagent-scoped MCP servers are only available within that agent's execution context and are not shared with the parent or sibling agents.
+Subagent 범위 MCP 서버는 해당 에이전트의 실행 컨텍스트 내에서만 사용 가능하며 부모 또는 형제 에이전트와 공유되지 않습니다.
 
-## MCP Output Limits
+## MCP 출력 제한
 
-Claude Code enforces limits on MCP tool output to prevent context overflow:
+Claude Code는 컨텍스트 오버플로를 방지하기 위해 MCP 도구 출력에 제한을 적용합니다.
 
-| Limit | Threshold | Behavior |
+| 제한 | 임계값 | 동작 |
 |-------|-----------|----------|
-| **Warning** | 10,000 tokens | A warning is displayed that the output is large |
-| **Default max** | 25,000 tokens | Output is truncated beyond this limit |
-| **Disk persistence** | 50,000 characters | Tool results exceeding 50K characters are persisted to disk |
+| **경고** | 10,000 토큰 | 출력이 크다는 경고 표시 |
+| **기본 최대값** | 25,000 토큰 | 이 제한을 초과하면 출력 잘림 |
+| **디스크 지속성** | 50,000자 | 50K자를 초과하는 도구 결과는 디스크에 저장 |
 
-The maximum output limit is configurable via the `MAX_MCP_OUTPUT_TOKENS` environment variable:
+최대 출력 제한은 `MAX_MCP_OUTPUT_TOKENS` 환경 변수로 설정할 수 있습니다.
 
 ```bash
-# Increase the max output to 50,000 tokens
+# 최대 출력을 50,000 토큰으로 늘리기
 export MAX_MCP_OUTPUT_TOKENS=50000
 ```
 
-## Solving Context Bloat with Code Execution
+## 코드 실행을 통한 컨텍스트 비대화 해결
 
-As MCP adoption scales, connecting to dozens of servers with hundreds or thousands of tools creates a significant challenge: **context bloat**. This is arguably the biggest problem with MCP at scale, and Anthropic's engineering team has proposed an elegant solution — using code execution instead of direct tool calls.
+MCP 도입이 확장됨에 따라 수백, 수천 개의 도구를 가진 수십 개의 서버에 연결하면 중요한 문제가 생깁니다: **컨텍스트 비대화**. 이는 MCP를 대규모로 사용할 때 가장 큰 문제이며, Anthropic 엔지니어링 팀은 직접 도구 호출 대신 코드 실행을 사용하는 우아한 해결책을 제안했습니다.
 
-> **Source**: [Code Execution with MCP: Building More Efficient Agents](https://www.anthropic.com/engineering/code-execution-with-mcp) — Anthropic Engineering Blog
+> **출처**: [Code Execution with MCP: Building More Efficient Agents](https://www.anthropic.com/engineering/code-execution-with-mcp) — Anthropic Engineering Blog
 
-### The Problem: Two Sources of Token Waste
+### 문제: 토큰 낭비의 두 가지 원인
 
-**1. Tool definitions overload the context window**
+**1. 도구 정의가 컨텍스트 창을 과부하시킴**
 
-Most MCP clients load all tool definitions upfront. When connected to thousands of tools, the model must process hundreds of thousands of tokens before it even reads the user's request.
+대부분의 MCP 클라이언트는 모든 도구 정의를 미리 로드합니다. 수천 개의 도구에 연결된 경우 모델은 사용자 요청을 읽기도 전에 수십만 토큰을 처리해야 합니다.
 
-**2. Intermediate results consume additional tokens**
+**2. 중간 결과가 추가 토큰을 소비함**
 
-Every intermediate tool result passes through the model's context. Consider transferring a meeting transcript from Google Drive to Salesforce — the full transcript flows through context **twice**: once when reading it, and again when writing it to the destination. A 2-hour meeting transcript could mean 50,000+ extra tokens.
+모든 중간 도구 결과가 모델의 컨텍스트를 통과합니다. Google Drive에서 Salesforce로 회의록을 전송하는 경우를 생각해보면 — 전체 회의록이 컨텍스트를 **두 번** 통과합니다: 읽을 때 한 번, 대상에 쓸 때 또 한 번. 2시간짜리 회의록은 50,000개 이상의 추가 토큰을 의미할 수 있습니다.
 
 ```mermaid
 graph LR
@@ -756,9 +756,9 @@ graph LR
     style B fill:#f3e5f5,stroke:#333,color:#333
 ```
 
-### The Solution: MCP Tools as Code APIs
+### 해결책: MCP 도구를 코드 API로 사용
 
-Instead of passing tool definitions and results through the context window, the agent **writes code** that calls MCP tools as APIs. The code runs in a sandboxed execution environment, and only the final result returns to the model.
+도구 정의와 결과를 컨텍스트 창을 통해 전달하는 대신, 에이전트가 MCP 도구를 API로 호출하는 **코드를 작성**합니다. 코드는 샌드박스 실행 환경에서 실행되고 최종 결과만 모델로 반환됩니다.
 
 ```mermaid
 graph LR
@@ -772,9 +772,9 @@ graph LR
     style C fill:#f3e5f5,stroke:#333,color:#333
 ```
 
-#### How It Works
+#### 작동 방식
 
-MCP tools are presented as a file tree of typed functions:
+MCP 도구는 타입이 있는 함수들의 파일 트리로 표현됩니다.
 
 ```
 servers/
@@ -787,7 +787,7 @@ servers/
 └── ...
 ```
 
-Each tool file contains a typed wrapper:
+각 도구 파일에는 타입이 있는 래퍼가 포함됩니다.
 
 ```typescript
 // ./servers/google-drive/getDocument.ts
@@ -810,13 +810,13 @@ export async function getDocument(
 }
 ```
 
-The agent then writes code to orchestrate the tools:
+그런 다음 에이전트는 도구를 조율하는 코드를 작성합니다.
 
 ```typescript
 import * as gdrive from './servers/google-drive';
 import * as salesforce from './servers/salesforce';
 
-// Data flows directly between tools — never through the model
+// 데이터가 모델을 거치지 않고 도구 간에 직접 흐름
 const transcript = (
   await gdrive.getDocument({ documentId: 'abc123' })
 ).content;
@@ -828,38 +828,38 @@ await salesforce.updateRecord({
 });
 ```
 
-**Result: Token usage drops from ~150,000 to ~2,000 — a 98.7% reduction.**
+**결과: 토큰 사용량이 약 150,000에서 약 2,000으로 감소 — 98.7% 절감.**
 
-### Key Benefits
+### 주요 이점
 
-| Benefit | Description |
+| 이점 | 설명 |
 |---------|-------------|
-| **Progressive Disclosure** | Agent browses the filesystem to load only the tool definitions it needs, instead of all tools upfront |
-| **Context-Efficient Results** | Data is filtered/transformed in the execution environment before returning to the model |
-| **Powerful Control Flow** | Loops, conditionals, and error handling run in code without round-tripping through the model |
-| **Privacy Preservation** | Intermediate data (PII, sensitive records) stays in the execution environment; never enters the model context |
-| **State Persistence** | Agents can save intermediate results to files and build reusable skill functions |
+| **점진적 공개** | 에이전트가 파일시스템을 탐색하여 미리 모든 도구를 로드하는 대신 필요한 도구 정의만 로드 |
+| **컨텍스트 효율적 결과** | 데이터가 모델로 반환되기 전에 실행 환경에서 필터링/변환됨 |
+| **강력한 제어 흐름** | 루프, 조건문, 오류 처리가 모델을 왕복하지 않고 코드에서 실행됨 |
+| **프라이버시 보호** | 중간 데이터(PII, 민감한 기록)가 실행 환경에 유지되어 모델 컨텍스트에 들어가지 않음 |
+| **상태 지속성** | 에이전트가 중간 결과를 파일에 저장하고 재사용 가능한 스킬 함수를 구축할 수 있음 |
 
-#### Example: Filtering Large Datasets
+#### 예시: 대용량 데이터셋 필터링
 
 ```typescript
-// Without code execution — all 10,000 rows flow through context
+// 코드 실행 없이 — 10,000개 행이 모두 컨텍스트를 통과
 // TOOL CALL: gdrive.getSheet(sheetId: 'abc123')
 //   -> returns 10,000 rows in context
 
-// With code execution — filter in the execution environment
+// 코드 실행 사용 — 실행 환경에서 필터링
 const allRows = await gdrive.getSheet({ sheetId: 'abc123' });
 const pendingOrders = allRows.filter(
   row => row["Status"] === 'pending'
 );
 console.log(`Found ${pendingOrders.length} pending orders`);
-console.log(pendingOrders.slice(0, 5)); // Only 5 rows reach the model
+console.log(pendingOrders.slice(0, 5)); // 5개 행만 모델에 도달
 ```
 
-#### Example: Loop Without Round-Tripping
+#### 예시: 왕복 없는 루프
 
 ```typescript
-// Poll for a deployment notification — runs entirely in code
+// 배포 알림을 폴링 — 전적으로 코드에서 실행
 let found = false;
 while (!found) {
   const messages = await slack.getChannelHistory({
@@ -873,41 +873,41 @@ while (!found) {
 console.log('Deployment notification received');
 ```
 
-### Trade-offs to Consider
+### 고려해야 할 트레이드오프
 
-Code execution introduces its own complexity. Running agent-generated code requires:
+코드 실행은 자체적인 복잡성을 도입합니다. 에이전트가 생성한 코드를 실행하려면 다음이 필요합니다.
 
-- A **secure sandboxed execution environment** with appropriate resource limits
-- **Monitoring and logging** of executed code
-- Additional **infrastructure overhead** compared to direct tool calls
+- 적절한 리소스 제한이 있는 **안전한 샌드박스 실행 환경**
+- 실행된 코드의 **모니터링 및 로깅**
+- 직접 도구 호출에 비해 추가적인 **인프라 오버헤드**
 
-The benefits — reduced token costs, lower latency, improved tool composition — should be weighed against these implementation costs. For agents with only a few MCP servers, direct tool calls may be simpler. For agents at scale (dozens of servers, hundreds of tools), code execution is a significant improvement.
+토큰 비용 절감, 지연 시간 단축, 향상된 도구 구성 등의 이점을 이러한 구현 비용과 비교해야 합니다. MCP 서버가 몇 개뿐인 에이전트에서는 직접 도구 호출이 더 간단할 수 있습니다. 대규모(수십 개의 서버, 수백 개의 도구) 에이전트에서는 코드 실행이 상당한 개선입니다.
 
-### MCPorter: A Runtime for MCP Tool Composition
+### MCPorter: MCP 도구 구성을 위한 런타임
 
-[MCPorter](https://github.com/steipete/mcporter) is a TypeScript runtime and CLI toolkit that makes calling MCP servers practical without boilerplate — and helps reduce context bloat through selective tool exposure and typed wrappers.
+[MCPorter](https://github.com/steipete/mcporter)는 보일러플레이트 없이 MCP 서버를 실용적으로 호출할 수 있게 하고, 선택적 도구 노출과 타입이 있는 래퍼를 통해 컨텍스트 비대화를 줄이는 데 도움을 주는 TypeScript 런타임 및 CLI 툴킷입니다.
 
-**What it solves:** Instead of loading all tool definitions from all MCP servers upfront, MCPorter lets you discover, inspect, and call specific tools on demand — keeping your context lean.
+**해결하는 문제:** 모든 MCP 서버의 모든 도구 정의를 미리 로드하는 대신 MCPorter를 사용하면 특정 도구를 온디맨드로 검색, 검사, 호출할 수 있어 컨텍스트를 가볍게 유지합니다.
 
-**Key features:**
+**주요 기능:**
 
-| Feature | Description |
+| 기능 | 설명 |
 |---------|-------------|
-| **Zero-config discovery** | Auto-discovers MCP servers from Cursor, Claude, Codex, or local configs |
-| **Typed tool clients** | `mcporter emit-ts` generates `.d.ts` interfaces and ready-to-run wrappers |
-| **Composable API** | `createServerProxy()` exposes tools as camelCase methods with `.text()`, `.json()`, `.markdown()` helpers |
-| **CLI generation** | `mcporter generate-cli` converts any MCP server into a standalone CLI with `--include-tools` / `--exclude-tools` filtering |
-| **Parameter hiding** | Optional parameters stay hidden by default, reducing schema verbosity |
+| **설정 없는 검색** | Cursor, Claude, Codex 또는 로컬 설정에서 MCP 서버를 자동 검색 |
+| **타입 있는 도구 클라이언트** | `mcporter emit-ts`가 `.d.ts` 인터페이스와 즉시 실행 가능한 래퍼 생성 |
+| **조합 가능한 API** | `createServerProxy()`가 `.text()`, `.json()`, `.markdown()` 헬퍼와 함께 도구를 camelCase 메서드로 노출 |
+| **CLI 생성** | `mcporter generate-cli`가 `--include-tools` / `--exclude-tools` 필터링 기능을 가진 독립 CLI로 MCP 서버를 변환 |
+| **파라미터 숨김** | 선택적 파라미터가 기본적으로 숨겨져 스키마 장황함 감소 |
 
-**Installation:**
+**설치:**
 
 ```bash
-npx mcporter list          # No install required — discover servers instantly
-pnpm add mcporter          # Add to a project
-brew install steipete/tap/mcporter  # macOS via Homebrew
+npx mcporter list          # 설치 불필요 — 즉시 서버 검색
+pnpm add mcporter          # 프로젝트에 추가
+brew install steipete/tap/mcporter  # macOS Homebrew를 통해 설치
 ```
 
-**Example — composing tools in TypeScript:**
+**예시 — TypeScript에서 도구 구성:**
 
 ```typescript
 import { createRuntime, createServerProxy } from "mcporter";
@@ -916,7 +916,7 @@ const runtime = await createRuntime();
 const gdrive = createServerProxy(runtime, "google-drive");
 const salesforce = createServerProxy(runtime, "salesforce");
 
-// Data flows between tools without passing through the model context
+// 데이터가 모델 컨텍스트를 거치지 않고 도구 간에 흐름
 const doc = await gdrive.getDocument({ documentId: "abc123" });
 await salesforce.updateRecord({
   objectType: "SalesMeeting",
@@ -925,77 +925,77 @@ await salesforce.updateRecord({
 });
 ```
 
-**Example — CLI tool call:**
+**예시 — CLI 도구 호출:**
 
 ```bash
-# Call a specific tool directly
+# 특정 도구를 직접 호출
 npx mcporter call linear.create_comment issueId:ENG-123 body:'Looks good!'
 
-# List available servers and tools
+# 사용 가능한 서버 및 도구 나열
 npx mcporter list
 ```
 
-MCPorter complements the code-execution approach described above by providing the runtime infrastructure for calling MCP tools as typed APIs — making it straightforward to keep intermediate data out of the model context.
+MCPorter는 위에서 설명한 코드 실행 접근 방식을 보완하여 MCP 도구를 타입 있는 API로 호출하기 위한 런타임 인프라를 제공합니다 — 중간 데이터를 모델 컨텍스트 밖에 유지하는 것을 간단하게 만듭니다.
 
-## Best Practices
+## 모범 사례
 
-### Security Considerations
+### 보안 고려 사항
 
-#### Do's ✅
-- Use environment variables for all credentials
-- Rotate tokens and API keys regularly (monthly recommended)
-- Use read-only tokens when possible
-- Limit MCP server access scope to minimum required
-- Monitor MCP server usage and access logs
-- Use OAuth for external services when available
-- Implement rate limiting on MCP requests
-- Test MCP connections before production use
-- Document all active MCP connections
-- Keep MCP server packages updated
+#### 해야 할 것 ✅
+- 모든 자격 증명에 환경 변수 사용
+- 토큰 및 API 키 정기 교체 (월 1회 권장)
+- 가능한 경우 읽기 전용 토큰 사용
+- MCP 서버 접근 범위를 최소 필요 수준으로 제한
+- MCP 서버 사용량 및 접근 로그 모니터링
+- 외부 서비스에는 가능한 경우 OAuth 사용
+- MCP 요청에 속도 제한 구현
+- 프로덕션 사용 전 MCP 연결 테스트
+- 모든 활성 MCP 연결 문서화
+- MCP 서버 패키지를 최신 상태로 유지
 
-#### Don'ts ❌
-- Don't hardcode credentials in config files
-- Don't commit tokens or secrets to git
-- Don't share tokens in team chats or emails
-- Don't use personal tokens for team projects
-- Don't grant unnecessary permissions
-- Don't ignore authentication errors
-- Don't expose MCP endpoints publicly
-- Don't run MCP servers with root/admin privileges
-- Don't cache sensitive data in logs
-- Don't disable authentication mechanisms
+#### 하지 말아야 할 것 ❌
+- 설정 파일에 자격 증명 하드코딩 금지
+- 토큰이나 시크릿을 git에 커밋 금지
+- 팀 채팅이나 이메일에서 토큰 공유 금지
+- 팀 프로젝트에 개인 토큰 사용 금지
+- 불필요한 권한 부여 금지
+- 인증 오류 무시 금지
+- MCP 엔드포인트를 공개적으로 노출 금지
+- root/admin 권한으로 MCP 서버 실행 금지
+- 로그에 민감한 데이터 캐싱 금지
+- 인증 메커니즘 비활성화 금지
 
-### Configuration Best Practices
+### 설정 모범 사례
 
-1. **Version Control**: Keep `.mcp.json` in git but use environment variables for secrets
-2. **Least Privilege**: Grant minimum permissions needed for each MCP server
-3. **Isolation**: Run different MCP servers in separate processes when possible
-4. **Monitoring**: Log all MCP requests and errors for audit trails
-5. **Testing**: Test all MCP configurations before deploying to production
+1. **버전 관리**: `.mcp.json`을 git에 유지하되 시크릿은 환경 변수 사용
+2. **최소 권한**: 각 MCP 서버에 필요한 최소 권한만 부여
+3. **격리**: 가능한 경우 서로 다른 MCP 서버를 별도 프로세스에서 실행
+4. **모니터링**: 감사 추적을 위해 모든 MCP 요청 및 오류 로깅
+5. **테스팅**: 프로덕션에 배포하기 전 모든 MCP 설정 테스트
 
-### Performance Tips
+### 성능 팁
 
-- Cache frequently accessed data at the application level
-- Use MCP queries that are specific to reduce data transfer
-- Monitor response times for MCP operations
-- Consider rate limiting for external APIs
-- Use batching when performing multiple operations
+- 애플리케이션 수준에서 자주 접근하는 데이터 캐싱
+- 데이터 전송을 줄이기 위해 구체적인 MCP 쿼리 사용
+- MCP 작업의 응답 시간 모니터링
+- 외부 API에 대한 속도 제한 고려
+- 여러 작업을 수행할 때 배치 처리 사용
 
-## Installation Instructions
+## 설치 안내
 
-### Prerequisites
-- Node.js and npm installed
-- Claude Code CLI installed
-- API tokens/credentials for external services
+### 사전 조건
+- Node.js 및 npm 설치
+- Claude Code CLI 설치
+- 외부 서비스용 API 토큰/자격 증명
 
-### Step-by-Step Setup
+### 단계별 설정
 
-1. **Add your first MCP server** using the CLI (example: GitHub):
+1. **첫 번째 MCP 서버 추가** — CLI 사용 (예: GitHub):
 ```bash
 claude mcp add --transport stdio github -- npx @modelcontextprotocol/server-github
 ```
 
-   Or create a `.mcp.json` file in your project root:
+   또는 프로젝트 루트에 `.mcp.json` 파일 생성:
 ```json
 {
   "mcpServers": {
@@ -1010,23 +1010,23 @@ claude mcp add --transport stdio github -- npx @modelcontextprotocol/server-gith
 }
 ```
 
-2. **Set environment variables:**
+2. **환경 변수 설정:**
 ```bash
 export GITHUB_TOKEN="your_github_personal_access_token"
 ```
 
-3. **Test the connection:**
+3. **연결 테스트:**
 ```bash
 claude /mcp
 ```
 
-4. **Use MCP tools:**
+4. **MCP 도구 사용:**
 ```bash
 /mcp__github__list_prs
 /mcp__github__create_issue "Title" "Description"
 ```
 
-### Installation for Specific Services
+### 특정 서비스 설치
 
 **GitHub MCP:**
 ```bash
@@ -1048,65 +1048,65 @@ npm install -g @modelcontextprotocol/server-filesystem
 npm install -g @modelcontextprotocol/server-slack
 ```
 
-## Troubleshooting
+## 문제 해결
 
-### MCP Server Not Found
+### MCP 서버를 찾을 수 없음
 ```bash
-# Verify MCP server is installed
+# MCP 서버 설치 여부 확인
 npm list -g @modelcontextprotocol/server-github
 
-# Install if missing
+# 없으면 설치
 npm install -g @modelcontextprotocol/server-github
 ```
 
-### Authentication Failed
+### 인증 실패
 ```bash
-# Verify environment variable is set
+# 환경 변수가 설정되어 있는지 확인
 echo $GITHUB_TOKEN
 
-# Re-export if needed
+# 필요한 경우 다시 내보내기
 export GITHUB_TOKEN="your_token"
 
-# Verify token has correct permissions
-# Check GitHub token scopes at: https://github.com/settings/tokens
+# 토큰에 올바른 권한이 있는지 확인
+# https://github.com/settings/tokens 에서 GitHub 토큰 범위 확인
 ```
 
-### Connection Timeout
-- Check network connectivity: `ping api.github.com`
-- Verify API endpoint is accessible
-- Check rate limits on API
-- Try increasing timeout in config
-- Check for firewall or proxy issues
+### 연결 타임아웃
+- 네트워크 연결 확인: `ping api.github.com`
+- API 엔드포인트 접근 가능 여부 확인
+- API 속도 제한 확인
+- 설정에서 타임아웃 값 늘리기 시도
+- 방화벽 또는 프록시 문제 확인
 
-### MCP Server Crashes
-- Check MCP server logs: `~/.claude/logs/`
-- Verify all environment variables are set
-- Ensure proper file permissions
-- Try reinstalling the MCP server package
-- Check for conflicting processes on the same port
+### MCP 서버 충돌
+- MCP 서버 로그 확인: `~/.claude/logs/`
+- 모든 환경 변수가 설정되어 있는지 확인
+- 적절한 파일 권한 확인
+- MCP 서버 패키지 재설치 시도
+- 동일 포트에서 충돌하는 프로세스 확인
 
-## Related Concepts
+## 관련 개념
 
 ### Memory vs MCP
-- **Memory**: Stores persistent, unchanging data (preferences, context, history)
-- **MCP**: Accesses live, changing data (APIs, databases, real-time services)
+- **Memory**: 변경되지 않는 영구 데이터 저장 (환경 설정, 컨텍스트, 이력)
+- **MCP**: 변화하는 라이브 데이터 접근 (API, 데이터베이스, 실시간 서비스)
 
-### When to Use Each
-- **Use Memory** for: User preferences, conversation history, learned context
-- **Use MCP** for: Current GitHub issues, live database queries, real-time data
+### 각각을 사용할 때
+- **Memory 사용**: 사용자 환경 설정, 대화 이력, 학습된 컨텍스트
+- **MCP 사용**: 현재 GitHub 이슈, 라이브 데이터베이스 쿼리, 실시간 데이터
 
-### Integration with Other Claude Features
-- Combine MCP with Memory for rich context
-- Use MCP tools in prompts for better reasoning
-- Leverage multiple MCPs for complex workflows
+### 다른 Claude 기능과의 통합
+- 풍부한 컨텍스트를 위해 MCP와 Memory 결합
+- 더 나은 추론을 위해 프롬프트에서 MCP 도구 사용
+- 복잡한 워크플로를 위해 여러 MCP 활용
 
-## Additional Resources
+## 추가 자료
 
-- [Official MCP Documentation](https://code.claude.com/docs/en/mcp)
-- [MCP Protocol Specification](https://modelcontextprotocol.io/specification)
-- [MCP GitHub Repository](https://github.com/modelcontextprotocol/servers)
-- [Available MCP Servers](https://github.com/modelcontextprotocol/servers)
-- [MCPorter](https://github.com/steipete/mcporter) — TypeScript runtime & CLI for calling MCP servers without boilerplate
-- [Code Execution with MCP](https://www.anthropic.com/engineering/code-execution-with-mcp) — Anthropic's engineering blog on solving context bloat
-- [Claude Code CLI Reference](https://code.claude.com/docs/en/cli-reference)
-- [Claude API Documentation](https://docs.anthropic.com)
+- [공식 MCP 문서](https://code.claude.com/docs/en/mcp)
+- [MCP 프로토콜 사양](https://modelcontextprotocol.io/specification)
+- [MCP GitHub 저장소](https://github.com/modelcontextprotocol/servers)
+- [사용 가능한 MCP 서버](https://github.com/modelcontextprotocol/servers)
+- [MCPorter](https://github.com/steipete/mcporter) — 보일러플레이트 없이 MCP 서버를 호출하기 위한 TypeScript 런타임 & CLI
+- [Code Execution with MCP](https://www.anthropic.com/engineering/code-execution-with-mcp) — 컨텍스트 비대화 해결에 관한 Anthropic 엔지니어링 블로그
+- [Claude Code CLI 레퍼런스](https://code.claude.com/docs/en/cli-reference)
+- [Claude API 문서](https://docs.anthropic.com)

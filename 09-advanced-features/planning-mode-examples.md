@@ -1,10 +1,10 @@
-# Planning Mode Examples
+# Planning Mode 예시
 
-Real-world examples demonstrating effective use of planning mode in Claude Code.
+Claude Code에서 Planning Mode를 효과적으로 활용하는 실제 예시 모음입니다.
 
-## Example 1: Building a REST API
+## 예시 1: REST API 구축
 
-### Without Planning Mode
+### Planning Mode 없이
 
 ```
 User: Build a REST API for a blog
@@ -13,7 +13,7 @@ Claude: I'll create the API...
 [Starts coding immediately, may miss requirements]
 ```
 
-### With Planning Mode
+### Planning Mode로
 
 ```
 User: /plan Build a REST API for a blog
@@ -95,9 +95,9 @@ Claude: Starting Phase 1: Project Setup...
 [Implements each phase systematically]
 ```
 
-## Example 2: Database Migration
+## 예시 2: 데이터베이스 마이그레이션
 
-### With Planning Mode
+### Planning Mode로
 
 ```
 User: /plan Migrate from MongoDB to PostgreSQL
@@ -181,7 +181,7 @@ User: Modify - let's add a rollback plan for each phase
 Claude: Updated plan with rollback procedures for each phase...
 ```
 
-## Example 3: Frontend Refactoring
+## 예시 3: 프론트엔드 리팩토링
 
 ```
 User: /plan Refactor our React app from class components to hooks
@@ -275,7 +275,7 @@ Claude: I'll create a systematic refactoring plan.
 Proceed? (yes/no/modify)
 ```
 
-## Example 4: Security Implementation
+## 예시 4: 보안 구현
 
 ```
 User: /plan Implement comprehensive security for our web app
@@ -380,7 +380,7 @@ Claude: Let me create a thorough security implementation plan.
 Proceed? (yes/no/modify)
 ```
 
-## Example 5: Performance Optimization
+## 예시 5: 성능 최적화
 
 ```
 User: /plan Optimize our slow e-commerce website
@@ -496,38 +496,38 @@ Claude: Let me create a comprehensive performance optimization plan.
 Proceed with this plan? (yes/no/modify)
 ```
 
-## Key Takeaways
+## 핵심 정리
 
-### Benefits of Planning Mode
+### Planning Mode의 장점
 
-1. **Clarity**: Clear roadmap before starting
-2. **Estimation**: Time and effort estimates
-3. **Risk Assessment**: Identify potential issues early
-4. **Prioritization**: Logical order of tasks
-5. **Approval**: Review and approve before execution
-6. **Modification**: Adjust plan based on feedback
+1. **명확성**: 시작 전 명확한 로드맵 확보
+2. **추정**: 시간 및 공수 예측
+3. **위험 평가**: 잠재적 문제를 조기에 식별
+4. **우선순위**: 논리적인 작업 순서
+5. **승인**: 실행 전 검토 및 승인
+6. **수정**: 피드백을 바탕으로 계획 조정
 
-### When to Use Planning Mode
+### Planning Mode 사용 시기
 
-✅ **Always use for**:
-- Multi-day projects
-- Team collaborations
-- Critical system changes
-- Learning new concepts
-- Complex refactoring
+✅ **항상 사용**:
+- 며칠에 걸친 프로젝트
+- 팀 협업
+- 중요한 시스템 변경
+- 새로운 개념 학습
+- 복잡한 리팩토링
 
-❌ **Don't use for**:
-- Bug fixes
-- Small tweaks
-- Simple queries
-- Quick experiments
+❌ **사용 불필요**:
+- 버그 수정
+- 소소한 조정
+- 단순 질의
+- 빠른 실험
 
-### Best Practices
+### 모범 사례
 
-1. **Review plans carefully** before approving
-2. **Modify plans** when you spot issues
-3. **Break down** complex tasks
-4. **Estimate realistic** timeframes
-5. **Include rollback** strategies
-6. **Add success** criteria
-7. **Plan for testing** at each phase
+1. 승인 전 **계획을 꼼꼼히 검토**
+2. 문제를 발견하면 **계획 수정**
+3. 복잡한 작업은 **세분화**
+4. **현실적인 일정** 추정
+5. **롤백 전략** 포함
+6. **성공 기준** 추가
+7. 각 단계에서 **테스트 계획** 수립
