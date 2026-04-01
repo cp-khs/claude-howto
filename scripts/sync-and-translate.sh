@@ -105,6 +105,32 @@ git merge main --no-edit || {
 echo ""
 echo "▶ Claude Code로 번역 시작..."
 
+# claude 바이너리 경로 탐색 (PATH → 앱 번들 순서)
+CLAUDE_BIN=""
+if command -v claude &>/dev/null; then
+  CLAUDE_BIN="claude"
+else
+  # macOS 앱 번들 및 Cursor 익스텐션에서 동적으로 탐색
+  CLAUDE_BIN=$(find \
+    "$HOME/Library/Application Support/Claude/claude-code" \
+    "$HOME/.cursor/extensions" \
+    -name "claude" \
+    \( -path "*/MacOS/claude" -o -path "*/native-binary/claude" \) \
+    2>/dev/null | sort -V | tail -1 || true)
+fi
+
+if [[ -z "$CLAUDE_BIN" ]]; then
+  echo ""
+  echo "⚠️  claude 명령어를 찾을 수 없습니다."
+  echo "   다음 중 하나를 실행하여 PATH에 등록하세요:"
+  echo "   1) Claude Code 앱을 실행한 뒤 'Install CLI' 메뉴 사용"
+  echo "   2) sudo ln -sf \"/path/to/claude.app/Contents/MacOS/claude\" /usr/local/bin/claude"
+  echo ""
+  echo "   번역 필요 파일이 /tmp/changed_md.txt에 저장됐습니다."
+  echo "$CHANGED_MD" > /tmp/changed_md.txt
+  exit 1
+fi
+
 FILE_LIST=$(echo "$CHANGED_MD" | tr '\n' ' ')
 
 TRANSLATE_PROMPT="다음 파일들을 한국어로 번역하세요.
@@ -112,7 +138,7 @@ TRANSLATE_PROMPT="다음 파일들을 한국어로 번역하세요.
 번역 대상 파일: ${FILE_LIST}
 각 파일을 Read로 읽고 Write로 동일 경로에 저장하세요."
 
-claude -p --allowedTools "Read,Write" "$TRANSLATE_PROMPT" || {
+"$CLAUDE_BIN" -p --allowedTools "Read,Write" "$TRANSLATE_PROMPT" || {
   echo ""
   echo "⚠️  Claude Code 자동 번역 실패. 수동으로 번역하세요."
   echo "   변경 파일 목록이 /tmp/changed_md.txt에 저장됐습니다."
