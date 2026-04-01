@@ -1,108 +1,122 @@
-# Clean Code Rules for AI Code Generation
+# AI 코드 생성을 위한 클린 코드 규칙
 
-These rules guide code generation to produce maintainable, professional-quality code.
+이 규칙들은 유지보수 가능하고 전문적인 품질의 코드를 생성하도록 안내합니다.
 
-## Meaningful Names
-- Use intention-revealing names that explain why something exists
-- Avoid disinformation and meaningless distinctions (e.g., `data`, `info`, `manager`)
-- Use pronounceable, searchable names
-- Class names: nouns (e.g., `UserAccount`, `PaymentProcessor`)
-- Method names: verbs (e.g., `calculateTotal`, `sendEmail`)
-- Avoid mental mapping and encodings (Hungarian notation, prefixes)
+## 의미 있는 이름
 
-## Functions
-- Keep functions small (< 20 lines ideal)
-- Do one thing only - Single Responsibility Principle
-- One level of abstraction per function
-- Limit arguments: 0-2 ideal, 3 maximum, avoid flag arguments
-- No side effects - function should do what its name says
-- Separate commands (change state) from queries (return info)
-- Prefer exceptions over error codes
+- 무언가가 존재하는 이유를 설명하는 의도가 드러나는 이름을 사용할 것
+- 잘못된 정보와 무의미한 구분을 피할 것 (예: `data`, `info`, `manager`)
+- 발음 가능하고 검색하기 쉬운 이름을 사용할 것
+- 클래스 이름: 명사 (예: `UserAccount`, `PaymentProcessor`)
+- 메서드 이름: 동사 (예: `calculateTotal`, `sendEmail`)
+- 멘탈 매핑과 인코딩(헝가리안 표기법, 접두사)을 피할 것
 
-## Comments
-- Code should be self-explanatory - avoid comments when possible
-- Good comments: legal info, warnings, TODOs, public API documentation
-- Bad comments: redundant, misleading, or explaining bad code
-- Never comment out code - delete it (version control preserves history)
-- If you need a comment, consider refactoring the code instead
+## 함수
 
-## Formatting
-- Keep files small and focused
-- Vertical formatting: related concepts close together, blank lines separate concepts
-- Horizontal formatting: limit line length (80-120 characters)
-- Use consistent indentation and team style
-- Group related functions together
+- 함수를 작게 유지할 것 (이상적으로 20줄 미만)
+- 한 가지만 할 것 — 단일 책임 원칙
+- 함수 내 추상화 수준을 통일할 것
+- 인수 제한: 이상 0-2개, 최대 3개, 플래그 인수 금지
+- 부수 효과 없음 — 함수는 이름이 나타내는 것만 해야 함
+- 명령(상태 변경)과 조회(정보 반환)를 분리할 것
+- 오류 코드보다 예외를 선호할 것
 
-## Objects and Data Structures
-- Objects: hide data behind abstractions, expose behavior through methods
-- Data structures: expose data, have minimal behavior
-- Law of Demeter: only talk to immediate friends, avoid `a.getB().getC().doSomething()`
-- Don't expose internal structure through getters/setters blindly
+## 주석
 
-## Error Handling
-- Use exceptions, not return codes or error flags
-- Write `try-catch-finally` first when code might fail
-- Provide context in exception messages
-- Don't return `null` - return empty collections or use Optional/Maybe
-- Don't pass `null` as arguments
+- 코드는 자체적으로 설명되어야 함 — 가능하면 주석을 피할 것
+- 좋은 주석: 법적 정보, 경고, TODO, 공개 API 문서
+- 나쁜 주석: 중복된, 잘못된, 나쁜 코드를 설명하는 주석
+- 코드를 주석 처리하지 말 것 — 삭제할 것 (버전 관리가 이력을 보존)
+- 주석이 필요하다면 대신 코드 리팩토링을 고려할 것
 
-## Classes
-- Small classes: measured by responsibilities, not lines
-- Single Responsibility Principle: one reason to change
-- High cohesion: class variables used by many methods
-- Low coupling: minimal dependencies between classes
-- Open/Closed Principle: open for extension, closed for modification
+## 포맷
 
-## Unit Tests
-- Fast, Independent, Repeatable, Self-validating, Timely (F.I.R.S.T.)
-- One assert per test (or one concept)
-- Test code quality equals production code quality
-- Readable test names that describe what's being tested
-- Arrange-Act-Assert pattern
+- 파일을 작고 집중된 상태로 유지할 것
+- 수직 포맷: 관련 개념은 가까이, 빈 줄로 개념 분리
+- 수평 포맷: 줄 길이 제한 (80-120자)
+- 일관된 들여쓰기와 팀 스타일을 사용할 것
+- 관련 함수를 함께 그룹화할 것
 
-## Code Quality Principles
-- **DRY (Don't Repeat Yourself)**: No duplication
-- **YAGNI (You Aren't Gonna Need It)**: Don't build for hypothetical futures
-- **KISS (Keep It Simple)**: Avoid unnecessary complexity
-- **Boy Scout Rule**: Leave code cleaner than you found it
+## 객체와 데이터 구조
 
-## Code Smells to Avoid
-- Long functions or classes
-- Duplicate code
-- Dead code (unused variables, functions, parameters)
-- Feature envy (method more interested in other class)
-- Inappropriate intimacy (classes knowing too much about each other)
-- Long parameter lists
-- Primitive obsession (overusing primitives instead of small objects)
-- Switch/case statements (consider polymorphism)
-- Temporary fields (class variables only used sometimes)
+- 객체: 추상화 뒤에 데이터를 숨기고, 메서드를 통해 동작을 노출
+- 데이터 구조: 데이터를 노출하고, 최소한의 동작만 가짐
+- 디미터 법칙: 가까운 친구하고만 대화, `a.getB().getC().doSomething()` 방식 금지
+- getter/setter로 내부 구조를 맹목적으로 노출하지 말 것
 
-## Concurrency
-- Keep concurrent code separate from other code
-- Limit scope of synchronized/locked data
-- Use thread-safe collections
-- Keep synchronized sections small
-- Know your execution models and primitives
+## 오류 처리
 
-## System Design
-- Separate construction from use (dependency injection)
-- Use factories, builders for complex object creation
-- Program to interfaces, not implementations
-- Favor composition over inheritance
-- Apply design patterns when they simplify, not to show off
+- 반환 코드나 오류 플래그 대신 예외를 사용할 것
+- 코드가 실패할 수 있을 때는 먼저 `try-catch-finally`를 작성할 것
+- 예외 메시지에 문맥 정보를 제공할 것
+- `null`을 반환하지 말 것 — 빈 컬렉션이나 Optional/Maybe를 사용
+- `null`을 인수로 전달하지 말 것
 
-## Refactoring
-- Refactor continuously, not in big batches
-- Always have passing tests before and after
-- Small steps: one change at a time
-- Common refactorings: Extract Method, Rename, Move, Inline
+## 클래스
 
-## Documentation
-- Self-documenting code > comments > external docs
-- Public APIs need clear documentation
-- Include examples in documentation
-- Keep docs close to code (ideally in code)
+- 작은 클래스: 줄 수가 아닌 책임으로 측정
+- 단일 책임 원칙: 변경 이유가 하나
+- 높은 응집도: 많은 메서드가 클래스 변수를 사용
+- 낮은 결합도: 클래스 간 의존성 최소화
+- 개방/폐쇄 원칙: 확장에는 열려 있고, 수정에는 닫혀 있음
+
+## 단위 테스트
+
+- 빠름, 독립성, 반복 가능, 자기 검증, 시기적절 (F.I.R.S.T.)
+- 테스트 하나당 하나의 단언 (또는 하나의 개념)
+- 테스트 코드 품질은 프로덕션 코드 품질과 동일하게
+- 테스트 대상을 설명하는 읽기 쉬운 테스트 이름
+- Arrange-Act-Assert 패턴
+
+## 코드 품질 원칙
+
+- **DRY (Don't Repeat Yourself)**: 중복 없음
+- **YAGNI (You Aren't Gonna Need It)**: 가상의 미래를 위해 개발하지 말 것
+- **KISS (Keep It Simple)**: 불필요한 복잡성 회피
+- **보이스카우트 규칙**: 발견했을 때보다 더 깨끗하게 코드를 남길 것
+
+## 피해야 할 코드 냄새
+
+- 긴 함수나 클래스
+- 중복 코드
+- 죽은 코드 (사용되지 않는 변수, 함수, 매개변수)
+- 기능 선망 (다른 클래스에 더 관심을 갖는 메서드)
+- 부적절한 친밀도 (서로에 대해 너무 많이 아는 클래스)
+- 긴 매개변수 목록
+- 기본형 집착 (소형 객체 대신 기본형 남용)
+- Switch/case 문 (다형성 고려)
+- 임시 필드 (가끔만 사용되는 클래스 변수)
+
+## 동시성
+
+- 동시성 코드를 다른 코드와 분리할 것
+- 동기화/잠금된 데이터의 범위를 제한할 것
+- 스레드 안전 컬렉션을 사용할 것
+- 동기화 섹션을 작게 유지할 것
+- 실행 모델과 기본 요소를 숙지할 것
+
+## 시스템 설계
+
+- 생성과 사용을 분리할 것 (의존성 주입)
+- 복잡한 객체 생성에는 팩토리, 빌더를 사용할 것
+- 구현이 아닌 인터페이스에 프로그래밍할 것
+- 상속보다 구성을 선호할 것
+- 단순화될 때만 디자인 패턴을 적용할 것 — 과시용 금지
+
+## 리팩토링
+
+- 큰 배치 작업이 아닌 지속적으로 리팩토링할 것
+- 전후로 항상 통과하는 테스트를 확보할 것
+- 작은 단계: 한 번에 하나의 변경만
+- 일반적인 리팩토링: 메서드 추출, 이름 변경, 이동, 인라인화
+
+## 문서화
+
+- 자기 문서화 코드 > 주석 > 외부 문서
+- 공개 API는 명확한 문서가 필요
+- 문서에 예시를 포함할 것
+- 코드 가까이 문서를 유지할 것 (이상적으로 코드 내)
 
 ---
 
-**Core Philosophy**: Code is read 10x more than written. Optimize for readability and maintainability, not cleverness.
+**핵심 철학**: 코드는 작성되는 것보다 10배 더 많이 읽힌다. 영리함이 아닌 가독성과 유지보수성을 위해 최적화할 것.
