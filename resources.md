@@ -7,7 +7,6 @@
 
 ## 공식 문서
 
-
 | 리소스 | 설명 | 링크 |
 |----------|-------------|------|
 | Claude Code Docs | Claude Code 공식 문서 | [code.claude.com/docs/en/overview](https://code.claude.com/docs/en/overview) |
