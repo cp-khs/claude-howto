@@ -68,14 +68,30 @@ if [[ "$APPLY_MODE" == false ]]; then
   exit 0
 fi
 
-# ─── 5. main 동기화 ──────────────────────────────────────────────────────────
+# ─── 5. uncommitted 변경사항 처리 ────────────────────────────────────────────
+if ! git diff --quiet || ! git diff --cached --quiet; then
+  DIRTY_FILES=$(git diff --name-only; git diff --cached --name-only)
+  echo ""
+  echo "⚠️  커밋되지 않은 변경사항이 있습니다:"
+  echo "$DIRTY_FILES" | while read -r f; do echo "  • $f"; done
+  echo ""
+  echo "▶ 변경사항을 자동으로 커밋합니다..."
+  git add -A
+  git commit -m "docs(ko): 미커밋 번역 파일 정리
+
+Co-Authored-By: Claude Sonnet 4.6 <noreply@anthropic.com>"
+  git push origin korean
+  echo "✅ 미커밋 파일 커밋 완료."
+fi
+
+# ─── 6. main 동기화 ──────────────────────────────────────────────────────────
 echo "▶ main 브랜치를 upstream/main으로 동기화..."
 git checkout main
 git merge upstream/main --no-edit
 git push origin main
 echo "✅ main 동기화 완료."
 
-# ─── 6. korean 브랜치로 전환 및 main 머지 ────────────────────────────────────
+# ─── 7. korean 브랜치로 전환 및 main 머지 ────────────────────────────────────
 git checkout korean
 echo "▶ korean 브랜치에 main 변경사항 머지..."
 git merge main --no-edit || {
@@ -85,20 +101,18 @@ git merge main --no-edit || {
   exit 1
 }
 
-# ─── 7. 변경된 파일 번역 실행 ────────────────────────────────────────────────
+# ─── 8. 변경된 파일 번역 실행 ────────────────────────────────────────────────
 echo ""
 echo "▶ Claude Code로 번역 시작..."
 
-TRANSLATE_PROMPT='다음 파일들을 한국어로 번역하세요 (기술 용어 원어 유지, YAML frontmatter 변경 금지, 코드 블록 내 코드 번역 금지):
-'"$CHANGED_MD"'
+FILE_LIST=$(echo "$CHANGED_MD" | tr '\n' ' ')
 
-번역 완료 후 변경된 파일들을 git add하고 commit 메시지는:
-docs(ko): upstream 변경사항 한국어 번역 반영
+TRANSLATE_PROMPT="다음 파일들을 한국어로 번역하세요.
+번역 규칙: 기술 용어(Claude Code, MCP, Hooks, Skills, Subagents 등) 원어 유지, YAML frontmatter 변경 금지, 코드 블록 내 코드 번역 금지, 마크다운 구조 유지.
+번역 대상 파일: ${FILE_LIST}
+각 파일을 Read로 읽고 Write로 동일 경로에 저장하세요."
 
-Co-Authored-By: Claude Sonnet 4.6 <noreply@anthropic.com>'
-
-echo "$TRANSLATE_PROMPT" | claude -p --allowedTools "Read,Write,Bash" \
-  "$(cat)" 2>/dev/null || {
+claude -p --allowedTools "Read,Write" "$TRANSLATE_PROMPT" || {
   echo ""
   echo "⚠️  Claude Code 자동 번역 실패. 수동으로 번역하세요."
   echo "   변경 파일 목록이 /tmp/changed_md.txt에 저장됐습니다."
@@ -106,13 +120,16 @@ echo "$TRANSLATE_PROMPT" | claude -p --allowedTools "Read,Write,Bash" \
   exit 1
 }
 
-# ─── 8. 커밋 및 push ─────────────────────────────────────────────────────────
-if ! git diff --cached --quiet; then
+# ─── 9. 커밋 및 push ─────────────────────────────────────────────────────────
+if ! git diff --quiet; then
+  git add -A
   git commit -m "docs(ko): upstream 변경사항 한국어 번역 반영
 
 Co-Authored-By: Claude Sonnet 4.6 <noreply@anthropic.com>"
+  git push origin korean
+  echo ""
+  echo "✅ 번역 업데이트 완료. korean 브랜치가 최신 상태입니다."
+else
+  echo ""
+  echo "ℹ  번역 변경사항 없음 (이미 최신 상태)."
 fi
-
-git push origin korean
-echo ""
-echo "✅ 번역 업데이트 완료. korean 브랜치가 최신 상태입니다."
