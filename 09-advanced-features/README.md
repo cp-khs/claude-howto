@@ -3,104 +3,104 @@
   <img alt="Claude How To" src="../resources/logos/claude-howto-logo.svg">
 </picture>
 
-# Advanced Features
+# 고급 기능
 
-Comprehensive guide to Claude Code's advanced capabilities including planning mode, extended thinking, auto mode, background tasks, permission modes, print mode (non-interactive), session management, interactive features, channels, voice dictation, remote control, web sessions, desktop app, task list, prompt suggestions, git worktrees, sandboxing, managed settings, and configuration.
+계획 모드, 확장 사고, Auto Mode, 백그라운드 태스크, 권한 모드, Print Mode (비대화형), 세션 관리, 인터랙티브 기능, 채널, 음성 받아쓰기, 원격 제어, 웹 세션, 데스크탑 앱, 태스크 목록, 프롬프트 제안, Git Worktrees, 샌드박싱, 관리형 설정, 설정 구성을 포함한 Claude Code 고급 기능 종합 가이드입니다.
 
-## Table of Contents
+## 목차
 
-1. [Overview](#overview)
-2. [Planning Mode](#planning-mode)
-3. [Extended Thinking](#extended-thinking)
+1. [개요](#개요)
+2. [계획 모드](#계획-모드)
+3. [확장 사고](#확장-사고)
 4. [Auto Mode](#auto-mode)
-5. [Background Tasks](#background-tasks)
-6. [Scheduled Tasks](#scheduled-tasks)
-7. [Permission Modes](#permission-modes)
-8. [Headless Mode](#headless-mode)
-9. [Session Management](#session-management)
-10. [Interactive Features](#interactive-features)
-11. [Voice Dictation](#voice-dictation)
-12. [Channels](#channels)
-13. [Chrome Integration](#chrome-integration)
-14. [Remote Control](#remote-control)
-15. [Web Sessions](#web-sessions)
-16. [Desktop App](#desktop-app)
-17. [Task List](#task-list)
-18. [Prompt Suggestions](#prompt-suggestions)
+5. [백그라운드 태스크](#백그라운드-태스크)
+6. [예약 태스크](#예약-태스크)
+7. [권한 모드](#권한-모드)
+8. [헤드리스 모드](#헤드리스-모드)
+9. [세션 관리](#세션-관리)
+10. [인터랙티브 기능](#인터랙티브-기능)
+11. [음성 받아쓰기](#음성-받아쓰기)
+12. [채널](#채널)
+13. [Chrome 연동](#chrome-연동)
+14. [원격 제어](#원격-제어)
+15. [웹 세션](#웹-세션)
+16. [데스크탑 앱](#데스크탑-앱)
+17. [태스크 목록](#태스크-목록)
+18. [프롬프트 제안](#프롬프트-제안)
 19. [Git Worktrees](#git-worktrees)
-20. [Sandboxing](#sandboxing)
-21. [Managed Settings (Enterprise)](#managed-settings-enterprise)
-22. [Configuration and Settings](#configuration-and-settings)
-23. [Best Practices](#best-practices)
-24. [Additional Resources](#additional-resources)
+20. [샌드박싱](#샌드박싱)
+21. [관리형 설정 (엔터프라이즈)](#관리형-설정-엔터프라이즈)
+22. [설정 구성](#설정-구성)
+23. [모범 사례](#모범-사례)
+24. [추가 자료](#추가-자료)
 
 ---
 
-## Overview
+## 개요
 
-Advanced features in Claude Code extend the core capabilities with planning, reasoning, automation, and control mechanisms. These features enable sophisticated workflows for complex development tasks, code review, automation, and multi-session management.
+Claude Code의 고급 기능은 계획, 추론, 자동화, 제어 메커니즘으로 핵심 기능을 확장합니다. 이 기능들은 복잡한 개발 작업, 코드 리뷰, 자동화, 다중 세션 관리를 위한 정교한 워크플로우를 가능하게 합니다.
 
-**Key advanced features include:**
-- **Planning Mode**: Create detailed implementation plans before coding
-- **Extended Thinking**: Deep reasoning for complex problems
-- **Auto Mode**: Background safety classifier reviews each action before execution (Research Preview)
-- **Background Tasks**: Run long operations without blocking the conversation
-- **Permission Modes**: Control what Claude can do (`default`, `acceptEdits`, `plan`, `auto`, `dontAsk`, `bypassPermissions`)
-- **Print Mode**: Run Claude Code non-interactively for automation and CI/CD (`claude -p`)
-- **Session Management**: Manage multiple work sessions
-- **Interactive Features**: Keyboard shortcuts, multi-line input, and command history
-- **Voice Dictation**: Push-to-talk voice input with 20-language STT support
-- **Channels**: MCP servers push messages into running sessions (Research Preview)
-- **Remote Control**: Control Claude Code from Claude.ai or the Claude app
-- **Web Sessions**: Run Claude Code in the browser at claude.ai/code
-- **Desktop App**: Standalone app for visual diff review and multiple sessions
-- **Task List**: Persistent task tracking across context compactions
-- **Prompt Suggestions**: Smart command suggestions based on context
-- **Git Worktrees**: Isolated worktree branches for parallel work
-- **Sandboxing**: OS-level filesystem and network isolation
-- **Managed Settings**: Enterprise deployment via plist, Registry, or managed files
-- **Configuration**: Customize behavior with JSON configuration files
+**주요 고급 기능:**
+- **계획 모드**: 코딩 전 상세한 구현 계획 수립
+- **확장 사고**: 복잡한 문제에 대한 심층 추론
+- **Auto Mode**: 백그라운드 안전 분류기가 실행 전 각 행동을 검토 (Research Preview)
+- **백그라운드 태스크**: 대화를 막지 않고 오래 걸리는 작업 실행
+- **권한 모드**: Claude가 할 수 있는 작업 제어 (`default`, `acceptEdits`, `plan`, `auto`, `dontAsk`, `bypassPermissions`)
+- **Print Mode**: 자동화 및 CI/CD를 위한 비대화형 Claude Code 실행 (`claude -p`)
+- **세션 관리**: 여러 작업 세션 관리
+- **인터랙티브 기능**: 키보드 단축키, 다중 줄 입력, 명령어 기록
+- **음성 받아쓰기**: 20개 언어 STT 지원의 Push-to-talk 음성 입력
+- **채널**: MCP 서버가 실행 중인 세션에 메시지 전송 (Research Preview)
+- **원격 제어**: Claude.ai 또는 Claude 앱에서 Claude Code 제어
+- **웹 세션**: claude.ai/code에서 브라우저로 Claude Code 실행
+- **데스크탑 앱**: 시각적 diff 검토와 다중 세션을 위한 독립형 앱
+- **태스크 목록**: 컨텍스트 압축을 넘어 지속되는 태스크 추적
+- **프롬프트 제안**: 컨텍스트 기반의 스마트 명령어 제안
+- **Git Worktrees**: 병렬 작업을 위한 격리된 worktree 브랜치
+- **샌드박싱**: OS 수준의 파일시스템 및 네트워크 격리
+- **관리형 설정**: plist, Registry, 관리형 파일을 통한 엔터프라이즈 배포
+- **설정 구성**: JSON 설정 파일로 동작 커스터마이징
 
 ---
 
-## Planning Mode
+## 계획 모드
 
-Planning mode allows Claude to think through complex tasks before implementing them, creating a detailed plan that you can review and approve.
+계획 모드를 사용하면 Claude가 복잡한 작업을 구현하기 전에 충분히 생각하여 검토하고 승인할 수 있는 상세한 계획을 만들 수 있습니다.
 
-### What is Planning Mode?
+### 계획 모드란?
 
-Planning mode is a two-phase approach:
-1. **Planning Phase**: Claude analyzes the task and creates a detailed implementation plan
-2. **Implementation Phase**: After approval, Claude executes the plan
+계획 모드는 두 단계 접근 방식입니다:
+1. **계획 단계**: Claude가 작업을 분석하고 상세한 구현 계획 수립
+2. **구현 단계**: 승인 후 Claude가 계획을 실행
 
-### When to Use Planning Mode
+### 계획 모드 사용 시기
 
-✅ Use planning mode for:
-- Complex multi-file refactoring
-- New feature implementations
-- Architectural changes
-- Database migrations
-- Major API redesigns
+✅ 계획 모드를 사용할 때:
+- 복잡한 다중 파일 리팩터링
+- 새 기능 구현
+- 아키텍처 변경
+- 데이터베이스 마이그레이션
+- 주요 API 재설계
 
-❌ Don't use planning mode for:
-- Simple bug fixes
-- Formatting changes
-- Single-file edits
-- Quick queries
+❌ 계획 모드를 사용하지 말아야 할 때:
+- 단순 버그 수정
+- 포맷 변경
+- 단일 파일 편집
+- 빠른 쿼리
 
-### Activating Planning Mode
+### 계획 모드 활성화
 
-**Slash command**:
+**Slash Command**:
 ```bash
-/plan Implement user authentication system
+/plan 사용자 인증 시스템 구현
 ```
 
-**CLI flag**:
+**CLI 플래그**:
 ```bash
 claude --permission-mode plan
 ```
 
-**Set as default**:
+**기본값으로 설정**:
 ```json
 {
   "permissions": {
@@ -109,264 +109,264 @@ claude --permission-mode plan
 }
 ```
 
-**Keyboard shortcut**:
-- `Shift + Tab` - Toggle permission modes (including plan)
-- `Alt + M` - Toggle permission modes (Windows/Linux)
+**키보드 단축키**:
+- `Shift + Tab` - 권한 모드 전환 (plan 포함)
+- `Alt + M` - 권한 모드 전환 (Windows/Linux)
 
-### Benefits of Planning Mode
+### 계획 모드의 장점
 
-- **Structured implementation approach**: Detailed breakdown of implementation steps
-- **Review and approval**: Approve or adjust the plan before execution
-- **Risk identification**: Identify potential issues before implementation
-- **Clear phases**: Organized implementation phases and milestones
+- **구조화된 구현 접근**: 구현 단계의 상세한 분류
+- **검토 및 승인**: 실행 전 계획 승인 또는 조정
+- **위험 식별**: 구현 전 잠재적 문제 파악
+- **명확한 단계**: 정돈된 구현 단계와 마일스톤
 
-### Example: Feature Implementation
+### 예시: 기능 구현
 
 ```
-User: /plan Add a real-time notification system
+User: /plan 실시간 알림 시스템 추가
 
-Claude: I'll create a plan for implementing real-time notifications.
+Claude: 실시간 알림 구현 계획을 수립하겠습니다.
 
-## Implementation Plan
+## 구현 계획
 
-### Phase 1: Infrastructure Setup
-1. Install WebSocket libraries (socket.io)
-2. Set up WebSocket server
-3. Configure connection management
+### 1단계: 인프라 설정
+1. WebSocket 라이브러리 설치 (socket.io)
+2. WebSocket 서버 설정
+3. 연결 관리 구성
 
-### Phase 2: Backend Implementation
-4. Create notification service
-5. Implement notification queue
-6. Add database schema for notifications
-7. Create API endpoints
+### 2단계: 백엔드 구현
+4. 알림 서비스 생성
+5. 알림 큐 구현
+6. 알림용 데이터베이스 스키마 추가
+7. API 엔드포인트 생성
 
-### Phase 3: Frontend Integration
-8. Set up WebSocket client
-9. Create notification UI components
-10. Implement notification state management
-11. Add notification permissions
+### 3단계: 프론트엔드 연동
+8. WebSocket 클라이언트 설정
+9. 알림 UI 컴포넌트 생성
+10. 알림 상태 관리 구현
+11. 알림 권한 추가
 
-### Phase 4: Testing & Deployment
-12. Write unit tests
-13. Write integration tests
-14. Update documentation
-15. Deploy to staging
+### 4단계: 테스트 & 배포
+12. 단위 테스트 작성
+13. 통합 테스트 작성
+14. 문서 업데이트
+15. 스테이징 환경에 배포
 
-Estimated time: 3-4 hours
-Files to modify: 12
-New files to create: 8
+예상 소요 시간: 3-4시간
+수정할 파일: 12개
+새로 생성할 파일: 8개
 
-Ready to proceed? (yes/no/modify plan)
+진행하시겠습니까? (yes/no/계획 수정)
 
 User: yes
 
-Claude: [Begins implementation following the plan]
+Claude: [계획에 따라 구현 시작]
 ```
 
-### Plan Modifications
+### 계획 수정
 
 ```
-User: Modify the plan - skip the queue for now, we'll add it later
+User: 계획 수정 - 큐는 지금은 건너뛰고 나중에 추가하겠습니다
 
-Claude: Updated plan:
-[Shows modified plan with queue removed]
+Claude: 수정된 계획:
+[큐가 제거된 수정된 계획 표시]
 
-User: Looks good, proceed
+User: 좋아요, 진행해주세요
 
-Claude: [Implements modified plan]
+Claude: [수정된 계획 구현]
 ```
 
-### Planning Mode Configuration
+### 계획 모드 설정
 
-Planning mode is activated via the CLI flag or slash command:
+계획 모드는 CLI 플래그 또는 Slash Command로 활성화합니다:
 
 ```bash
-# Activate plan mode via CLI
+# CLI로 plan 모드 활성화
 claude --permission-mode plan
 
-# Or use the /plan slash command inside the REPL
-/plan Implement user authentication system
+# 또는 REPL 내에서 /plan Slash Command 사용
+/plan 사용자 인증 시스템 구현
 ```
 
-**Model alias for planning**: Use `opusplan` as a model alias to use Opus for planning and Sonnet for execution:
+**계획을 위한 모델 별칭**: `opusplan`을 모델 별칭으로 사용하면 계획에는 Opus, 실행에는 Sonnet을 사용합니다:
 
 ```bash
-claude --model opusplan "design and implement the new API"
+claude --model opusplan "새 API를 설계하고 구현해주세요"
 ```
 
-**Edit plan externally**: Press `Ctrl+G` to open the current plan in your external editor for detailed modifications.
+**외부에서 계획 편집**: `Ctrl+G`를 눌러 현재 계획을 외부 편집기에서 열어 상세하게 수정할 수 있습니다.
 
 ---
 
-## Extended Thinking
+## 확장 사고
 
-Extended thinking allows Claude to spend more time reasoning about complex problems before providing a solution.
+확장 사고를 사용하면 Claude가 해결책을 제공하기 전에 복잡한 문제를 더 오래 생각할 수 있습니다.
 
-### What is Extended Thinking?
+### 확장 사고란?
 
-Extended thinking is a deliberate, step-by-step reasoning process where Claude:
-- Breaks down complex problems
-- Considers multiple approaches
-- Evaluates trade-offs
-- Reasons through edge cases
+확장 사고는 Claude가 다음을 수행하는 의도적이고 단계적인 추론 과정입니다:
+- 복잡한 문제 분해
+- 여러 접근 방식 고려
+- 장단점 평가
+- 엣지 케이스 추론
 
-### Activating Extended Thinking
+### 확장 사고 활성화
 
-**Keyboard shortcut**:
-- `Option + T` (macOS) / `Alt + T` (Windows/Linux) - Toggle extended thinking
+**키보드 단축키**:
+- `Option + T` (macOS) / `Alt + T` (Windows/Linux) - 확장 사고 토글
 
-**Automatic activation**:
-- Enabled by default for all models (Opus 4.6, Sonnet 4.6, Haiku 4.5)
-- Opus 4.6: Adaptive reasoning with effort levels: `low` (○), `medium` (◐), `high` (●), `max` (Opus 4.6 only)
-- Other models: Fixed budget up to 31,999 tokens
+**자동 활성화**:
+- 모든 모델에 기본 활성화 (Opus 4.6, Sonnet 4.6, Haiku 4.5)
+- Opus 4.6: 노력 수준이 있는 적응형 추론: `low` (○), `medium` (◐), `high` (●), `max` (Opus 4.6 전용)
+- 다른 모델: 최대 31,999 토큰의 고정 예산
 
-**Configuration methods**:
-- Toggle: `Alt+T` / `Option+T`, or via `/config`
-- View reasoning: `Ctrl+O` (verbose mode)
-- Set effort: `/effort` command or `--effort` flag
+**설정 방법**:
+- 토글: `Alt+T` / `Option+T`, 또는 `/config`를 통해
+- 추론 보기: `Ctrl+O` (상세 모드)
+- 노력 수준 설정: `/effort` 명령어 또는 `--effort` 플래그
 
-**Custom budget**:
+**커스텀 예산**:
 ```bash
 export MAX_THINKING_TOKENS=1024
 ```
 
-**Effort level** (Opus 4.6 only):
+**노력 수준** (Opus 4.6 전용):
 ```bash
-export CLAUDE_CODE_EFFORT_LEVEL=high   # low (○), medium (◐), high (●), or max (Opus 4.6 only)
+export CLAUDE_CODE_EFFORT_LEVEL=high   # low (○), medium (◐), high (●), 또는 max (Opus 4.6 전용)
 ```
 
-**CLI flag**:
+**CLI 플래그**:
 ```bash
-claude --effort high "complex architectural review"
+claude --effort high "복잡한 아키텍처 리뷰"
 ```
 
-**Slash command**:
+**Slash Command**:
 ```
 /effort high
 ```
 
-> **Note:** The keyword "ultrathink" in prompts activates deep reasoning mode. Effort levels `low`, `medium`, `high`, and `max` (Opus 4.6 only) control how much reasoning Claude performs.
+> **참고:** 프롬프트에 "ultrathink" 키워드를 사용하면 심층 추론 모드가 활성화됩니다. 노력 수준 `low`, `medium`, `high`, `max` (Opus 4.6 전용)는 Claude가 수행하는 추론의 양을 제어합니다.
 
-### Benefits of Extended Thinking
+### 확장 사고의 장점
 
-- **Deep reasoning**: Spend more time thinking about complex problems
-- **Better architectural decisions**: Make informed choices with comprehensive evaluation
-- **Consideration of edge cases**: Think through potential issues and scenarios
-- **Thorough analysis**: Structured approach to complex problem-solving
+- **심층 추론**: 복잡한 문제에 더 많은 시간을 할애하여 생각
+- **더 나은 아키텍처 결정**: 포괄적인 평가로 정보에 기반한 선택
+- **엣지 케이스 고려**: 잠재적 문제와 시나리오를 미리 생각
+- **철저한 분석**: 복잡한 문제 해결에 대한 구조화된 접근
 
-### Example: Architectural Decision
+### 예시: 아키텍처 결정
 
 ```
-User: /think Should we use microservices or a monolith for our e-commerce platform?
+User: /think 이커머스 플랫폼에 마이크로서비스를 써야 할까요, 모놀리스를 써야 할까요?
 
-Claude: Let me think through this architectural decision carefully...
+Claude: 이 아키텍처 결정을 신중하게 생각해보겠습니다...
 
 <extended_thinking>
-## Context Analysis
-- Team size: 5 developers
-- Expected traffic: 10k daily users initially
-- Need to scale to 100k+ users
-- Limited DevOps resources
-- 6-month timeline to MVP
+## 컨텍스트 분석
+- 팀 규모: 개발자 5명
+- 예상 트래픽: 초기 일일 사용자 10,000명
+- 100,000명 이상으로 확장 필요
+- DevOps 리소스 제한됨
+- MVP까지 6개월 타임라인
 
-## Approach 1: Microservices
-Pros:
-+ Independent scaling
-+ Technology flexibility
-+ Team independence
-+ Fault isolation
+## 접근 방식 1: 마이크로서비스
+장점:
++ 독립적 확장
++ 기술 유연성
++ 팀 독립성
++ 장애 격리
 
-Cons:
-- Operational complexity
-- Network overhead
-- Distributed tracing needed
-- Requires DevOps expertise
-- Slower initial development
+단점:
+- 운영 복잡성
+- 네트워크 오버헤드
+- 분산 추적 필요
+- DevOps 전문성 요구
+- 초기 개발 느림
 
-## Approach 2: Monolith
-Pros:
-+ Simpler deployment
-+ Faster initial development
-+ Easier debugging
-+ Lower operational overhead
-+ Single codebase
+## 접근 방식 2: 모놀리스
+장점:
++ 단순한 배포
++ 빠른 초기 개발
++ 쉬운 디버깅
++ 낮은 운영 오버헤드
++ 단일 코드베이스
 
-Cons:
-- Scaling challenges later
-- All-or-nothing deployments
-- Technology lock-in
-- Potential for tight coupling
+단점:
+- 나중에 확장 어려움
+- 전체 또는 없는 배포
+- 기술 종속
+- 강한 결합 가능성
 
-## Decision Factors
-1. Team size (5 devs) → Favors monolith
-2. DevOps resources (limited) → Favors monolith
-3. Timeline (6 months) → Favors monolith
-4. Future scale (100k users) → Achievable with monolith + caching
-5. Complexity budget → Limited
+## 결정 요소
+1. 팀 규모 (5명) → 모놀리스 유리
+2. DevOps 리소스 (제한적) → 모놀리스 유리
+3. 타임라인 (6개월) → 모놀리스 유리
+4. 미래 규모 (사용자 10만 명) → 모놀리스 + 캐싱으로 달성 가능
+5. 복잡성 예산 → 제한적
 
-## Recommendation
-Start with a **modular monolith**:
-- Single deployment unit
-- Clear module boundaries
-- Clean interfaces between modules
-- Prepare for future extraction to microservices if needed
+## 권고 사항
+**모듈식 모놀리스**로 시작:
+- 단일 배포 단위
+- 명확한 모듈 경계
+- 모듈 간 깔끔한 인터페이스
+- 필요 시 마이크로서비스로 추출 준비
 
-This gives you:
-✓ Fast initial development
-✓ Low operational complexity
-✓ Option to extract services later
-✓ Clear architecture
+이를 통해:
+✓ 빠른 초기 개발
+✓ 낮은 운영 복잡성
+✓ 나중에 서비스 추출 옵션
+✓ 명확한 아키텍처
 
-Migration path: When you reach 50k+ users or specific modules need independent scaling, extract those modules into microservices.
+마이그레이션 경로: 사용자 50,000명 이상 도달하거나 특정 모듈에 독립적 확장이 필요할 때 해당 모듈을 마이크로서비스로 추출합니다.
 </extended_thinking>
 
-**Recommendation**: Implement a modular monolith with clean module boundaries.
+**권고 사항**: 깔끔한 모듈 경계를 갖춘 모듈식 모놀리스 구현.
 
-This approach balances your current constraints (team size, timeline, DevOps resources) with future scalability needs. You can migrate specific modules to microservices later when there's a clear business need.
+이 접근 방식은 현재 제약 조건 (팀 규모, 타임라인, DevOps 리소스)과 미래 확장성 요구를 균형 있게 처리합니다. 명확한 비즈니스 필요성이 생겼을 때 특정 모듈을 마이크로서비스로 마이그레이션할 수 있습니다.
 ```
 
-### Extended Thinking Configuration
+### 확장 사고 설정
 
-Extended thinking is controlled via environment variables, keyboard shortcuts, and CLI flags:
+확장 사고는 환경 변수, 키보드 단축키, CLI 플래그로 제어합니다:
 
 ```bash
-# Set thinking token budget
+# 사고 토큰 예산 설정
 export MAX_THINKING_TOKENS=16000
 
-# Set effort level (Opus 4.6 only): low (○), medium (◐), high (●), or max (Opus 4.6 only)
+# 노력 수준 설정 (Opus 4.6 전용): low (○), medium (◐), high (●), 또는 max (Opus 4.6 전용)
 export CLAUDE_CODE_EFFORT_LEVEL=high
 ```
 
-Toggle during a session with `Alt+T` / `Option+T`, set effort with `/effort`, or configure via `/config`.
+세션 중 `Alt+T` / `Option+T`로 토글하거나, `/effort`로 노력 수준을 설정하거나, `/config`로 설정할 수 있습니다.
 
 ---
 
 ## Auto Mode
 
-Auto Mode is a Research Preview permission mode (March 2026) that uses a background safety classifier to review each action before execution. It allows Claude to work autonomously while blocking dangerous operations.
+Auto Mode는 2026년 3월에 출시된 Research Preview 권한 모드로, 백그라운드 안전 분류기가 실행 전 각 행동을 검토합니다. Claude가 자율적으로 작업하면서 위험한 작업은 차단합니다.
 
-### Requirements
+### 요구 사항
 
-- **Plan**: Team plan (Enterprise and API rolling out)
-- **Model**: Claude Sonnet 4.6 or Opus 4.6
-- **Classifier**: Runs on Claude Sonnet 4.6 (adds extra token cost)
+- **플랜**: Team 플랜 (Enterprise 및 API는 순차적으로 제공)
+- **모델**: Claude Sonnet 4.6 또는 Opus 4.6
+- **분류기**: Claude Sonnet 4.6에서 실행 (추가 토큰 비용 발생)
 
-### Enabling Auto Mode
+### Auto Mode 활성화
 
 ```bash
-# Unlock auto mode with CLI flag
+# CLI 플래그로 auto mode 잠금 해제
 claude --enable-auto-mode
 
-# Then cycle to it with Shift+Tab in the REPL
+# 그런 다음 REPL에서 Shift+Tab으로 전환
 ```
 
-Or set it as the default permission mode:
+또는 기본 권한 모드로 설정:
 
 ```bash
 claude --permission-mode auto
 ```
 
-Setting via config:
+설정으로 지정:
 ```json
 {
   "permissions": {
@@ -375,201 +375,201 @@ Setting via config:
 }
 ```
 
-### How the Classifier Works
+### 분류기 작동 방식
 
-The background classifier evaluates each action using the following decision order:
+백그라운드 분류기는 다음 결정 순서에 따라 각 행동을 평가합니다:
 
-1. **Allow/deny rules** -- Explicit permission rules are checked first
-2. **Read-only/edits auto-approved** -- File reads and edits pass automatically
-3. **Classifier** -- The background classifier reviews the action
-4. **Fallback** -- Falls back to prompting after 3 consecutive or 20 total blocks
+1. **허용/거부 규칙** -- 명시적 권한 규칙을 먼저 확인
+2. **읽기 전용/편집 자동 승인** -- 파일 읽기와 편집은 자동으로 통과
+3. **분류기** -- 백그라운드 분류기가 행동 검토
+4. **폴백** -- 연속 3회 또는 총 20회 차단 후 사용자에게 프롬프트로 폴백
 
-### Default Blocked Actions
+### 기본 차단 행동
 
-Auto mode blocks the following by default:
+Auto Mode는 기본적으로 다음을 차단합니다:
 
-| Blocked Action | Example |
+| 차단 행동 | 예시 |
 |----------------|---------|
-| Pipe-to-shell installs | `curl \| bash` |
-| Sending sensitive data externally | API keys, credentials over network |
-| Production deploys | Deploy commands targeting production |
-| Mass deletion | `rm -rf` on large directories |
-| IAM changes | Permission and role modifications |
-| Force push to main | `git push --force origin main` |
+| Pipe-to-shell 설치 | `curl \| bash` |
+| 민감한 데이터 외부 전송 | 네트워크를 통한 API 키, 자격증명 |
+| 프로덕션 배포 | 프로덕션을 대상으로 하는 배포 명령어 |
+| 대량 삭제 | 대형 디렉토리에 `rm -rf` |
+| IAM 변경 | 권한 및 역할 수정 |
+| main에 강제 푸시 | `git push --force origin main` |
 
-### Default Allowed Actions
+### 기본 허용 행동
 
-| Allowed Action | Example |
+| 허용 행동 | 예시 |
 |----------------|---------|
-| Local file operations | Read, write, edit project files |
-| Declared dependency installs | `npm install`, `pip install` from manifest |
-| Read-only HTTP | `curl` for fetching documentation |
-| Pushing to current branch | `git push origin feature-branch` |
+| 로컬 파일 작업 | 프로젝트 파일 읽기, 쓰기, 편집 |
+| 선언된 의존성 설치 | manifest에서 `npm install`, `pip install` |
+| 읽기 전용 HTTP | 문서 가져오기 위한 `curl` |
+| 현재 브랜치 푸시 | `git push origin feature-branch` |
 
-### Configuring Auto Mode
+### Auto Mode 설정
 
-**Print default rules as JSON**:
+**기본 규칙을 JSON으로 출력**:
 ```bash
 claude auto-mode defaults
 ```
 
-**Configure trusted infrastructure** via the `autoMode.environment` managed setting for enterprise deployments. This allows administrators to define trusted CI/CD environments, deployment targets, and infrastructure patterns.
+**신뢰된 인프라 구성**: 엔터프라이즈 배포를 위한 `autoMode.environment` 관리형 설정을 통해. 관리자가 신뢰된 CI/CD 환경, 배포 대상, 인프라 패턴을 정의할 수 있습니다.
 
-### Fallback Behavior
+### 폴백 동작
 
-When the classifier is uncertain, auto mode falls back to prompting the user:
-- After **3 consecutive** classifier blocks
-- After **20 total** classifier blocks in a session
+분류기가 확신하지 못할 때, auto mode는 사용자에게 프롬프트로 폴백합니다:
+- **연속 3회** 분류기 차단 후
+- 세션에서 **총 20회** 분류기 차단 후
 
-This ensures the user always retains control when the classifier cannot confidently approve an action.
+이를 통해 분류기가 행동을 자신 있게 승인할 수 없을 때 사용자가 항상 제어권을 유지합니다.
 
-### Seeding Auto-Mode-Equivalent Permissions (No Team Plan Required)
+### Auto Mode 동등 권한 시드 (Team 플랜 불필요)
 
-If you don't have a Team plan or want a simpler approach without the background classifier, you can seed your `~/.claude/settings.json` with a conservative baseline of safe permission rules. The script starts with read-only and local-inspection rules, then lets you opt into edits, tests, local git writes, package installs, and GitHub write actions only when you want them.
+Team 플랜이 없거나 백그라운드 분류기 없이 더 간단한 접근 방식을 원한다면, 보수적인 안전 권한 규칙 기준으로 `~/.claude/settings.json`에 시드할 수 있습니다. 스크립트는 읽기 전용과 로컬 검사 규칙으로 시작하고, 편집, 테스트, 로컬 git 쓰기, 패키지 설치, GitHub 쓰기 작업은 원할 때만 선택적으로 추가할 수 있습니다.
 
-**File:** `09-advanced-features/setup-auto-mode-permissions.py`
+**파일:** `09-advanced-features/setup-auto-mode-permissions.py`
 
 ```bash
-# Preview what would be added (no changes written)
+# 추가될 내용 미리보기 (변경 없음)
 python3 09-advanced-features/setup-auto-mode-permissions.py --dry-run
 
-# Apply the conservative baseline
+# 보수적 기준선 적용
 python3 09-advanced-features/setup-auto-mode-permissions.py
 
-# Add more capability only when you need it
+# 필요할 때만 더 많은 기능 추가
 python3 09-advanced-features/setup-auto-mode-permissions.py --include-edits --include-tests
 python3 09-advanced-features/setup-auto-mode-permissions.py --include-git-write --include-packages
 ```
 
-The script adds rules across these categories:
+스크립트는 다음 카테고리의 규칙을 추가합니다:
 
-| Category | Examples |
+| 카테고리 | 예시 |
 |----------|---------|
-| Core read-only tools | `Read(*)`, `Glob(*)`, `Grep(*)`, `Agent(*)`, `WebSearch(*)`, `WebFetch(*)` |
-| Local inspection | `Bash(git status:*)`, `Bash(git log:*)`, `Bash(git diff:*)`, `Bash(cat:*)` |
-| Optional edits | `Edit(*)`, `Write(*)`, `NotebookEdit(*)` |
-| Optional test/build | `Bash(pytest:*)`, `Bash(python3 -m pytest:*)`, `Bash(cargo test:*)` |
-| Optional git writes | `Bash(git add:*)`, `Bash(git commit:*)`, `Bash(git stash:*)` |
-| Git (local write) | `Bash(git add:*)`, `Bash(git commit:*)`, `Bash(git checkout:*)` |
-| Package managers | `Bash(npm install:*)`, `Bash(pip install:*)`, `Bash(cargo build:*)` |
-| Build & test | `Bash(make:*)`, `Bash(pytest:*)`, `Bash(go test:*)` |
-| Common shell | `Bash(ls:*)`, `Bash(cat:*)`, `Bash(find:*)`, `Bash(cp:*)`, `Bash(mv:*)` |
+| 핵심 읽기 전용 도구 | `Read(*)`, `Glob(*)`, `Grep(*)`, `Agent(*)`, `WebSearch(*)`, `WebFetch(*)` |
+| 로컬 검사 | `Bash(git status:*)`, `Bash(git log:*)`, `Bash(git diff:*)`, `Bash(cat:*)` |
+| 선택적 편집 | `Edit(*)`, `Write(*)`, `NotebookEdit(*)` |
+| 선택적 테스트/빌드 | `Bash(pytest:*)`, `Bash(python3 -m pytest:*)`, `Bash(cargo test:*)` |
+| 선택적 git 쓰기 | `Bash(git add:*)`, `Bash(git commit:*)`, `Bash(git stash:*)` |
+| Git (로컬 쓰기) | `Bash(git add:*)`, `Bash(git commit:*)`, `Bash(git checkout:*)` |
+| 패키지 관리자 | `Bash(npm install:*)`, `Bash(pip install:*)`, `Bash(cargo build:*)` |
+| 빌드 & 테스트 | `Bash(make:*)`, `Bash(pytest:*)`, `Bash(go test:*)` |
+| 일반 shell | `Bash(ls:*)`, `Bash(cat:*)`, `Bash(find:*)`, `Bash(cp:*)`, `Bash(mv:*)` |
 | GitHub CLI | `Bash(gh pr view:*)`, `Bash(gh pr create:*)`, `Bash(gh issue list:*)` |
 
-Dangerous operations (`rm -rf`, `sudo`, force push, `DROP TABLE`, `terraform destroy`, etc.) are intentionally excluded. The script is idempotent — running it twice won't duplicate rules.
+위험한 작업 (`rm -rf`, `sudo`, 강제 푸시, `DROP TABLE`, `terraform destroy` 등)은 의도적으로 제외됩니다. 스크립트는 멱등성을 가집니다 — 두 번 실행해도 규칙이 중복되지 않습니다.
 
 ---
 
-## Background Tasks
+## 백그라운드 태스크
 
-Background tasks allow long-running operations to execute without blocking your conversation.
+백그라운드 태스크를 사용하면 오래 걸리는 작업이 대화를 막지 않고 실행될 수 있습니다.
 
-### What Are Background Tasks?
+### 백그라운드 태스크란?
 
-Background tasks run asynchronously while you continue working:
-- Long test suites
-- Build processes
-- Database migrations
-- Deployment scripts
-- Analysis tools
+백그라운드 태스크는 사용자가 계속 작업하는 동안 비동기적으로 실행됩니다:
+- 오래 걸리는 테스트 스위트
+- 빌드 프로세스
+- 데이터베이스 마이그레이션
+- 배포 스크립트
+- 분석 도구
 
-**Basic Usage:**
+**기본 사용법:**
 ```bash
-User: Run tests in background
+User: 백그라운드에서 테스트 실행해줘
 
-Claude: Started task bg-1234
+Claude: 태스크 bg-1234 시작
 
-/task list           # Show all tasks
-/task status bg-1234 # Check progress
-/task show bg-1234   # View output
-/task cancel bg-1234 # Cancel task
+/task list           # 모든 태스크 표시
+/task status bg-1234 # 진행 상황 확인
+/task show bg-1234   # 출력 보기
+/task cancel bg-1234 # 태스크 취소
 ```
 
-### Starting Background Tasks
+### 백그라운드 태스크 시작
 
 ```
-User: Run the full test suite in the background
+User: 전체 테스트 스위트를 백그라운드에서 실행해줘
 
-Claude: Starting tests in background (task-id: bg-1234)
-You can continue working while tests run.
+Claude: 백그라운드에서 테스트 시작 중 (task-id: bg-1234)
+테스트가 실행되는 동안 계속 작업할 수 있습니다.
 
-[You can continue the conversation]
+[대화를 계속할 수 있음]
 
-User: Meanwhile, let's refactor the auth module
+User: 그 사이에 auth 모듈 리팩터링 진행하자
 
-Claude: [Works on auth module while tests run in background]
+Claude: [테스트가 백그라운드에서 실행되는 동안 auth 모듈 작업]
 
-[Later, when tests complete]
+[나중에 테스트 완료 시]
 
-Claude: 📢 Background task bg-1234 completed:
-✅ 245 tests passed
-❌ 3 tests failed
-View results: /task show bg-1234
+Claude: 📢 백그라운드 태스크 bg-1234 완료:
+✅ 245개 테스트 통과
+❌ 3개 테스트 실패
+결과 보기: /task show bg-1234
 ```
 
-### Managing Background Tasks
+### 백그라운드 태스크 관리
 
-**List active tasks**:
+**활성 태스크 목록**:
 ```
 User: /task list
 
-Active background tasks:
-1. [bg-1234] Running tests (50% complete, 2min remaining)
-2. [bg-1235] Building Docker image (25% complete, 8min remaining)
-3. [bg-1236] Deploying to staging (90% complete, 30sec remaining)
+활성 백그라운드 태스크:
+1. [bg-1234] 테스트 실행 중 (50% 완료, 2분 남음)
+2. [bg-1235] Docker 이미지 빌드 중 (25% 완료, 8분 남음)
+3. [bg-1236] 스테이징 배포 중 (90% 완료, 30초 남음)
 ```
 
-**Check task status**:
+**태스크 상태 확인**:
 ```
 User: /task status bg-1234
 
-Task bg-1234: Running tests
-Status: In progress
-Progress: 120/245 tests (49%)
-Started: 2025-11-08 10:30:15
-Estimated completion: 2025-11-08 10:34:22
+태스크 bg-1234: 테스트 실행 중
+상태: 진행 중
+진행: 120/245 테스트 (49%)
+시작: 2025-11-08 10:30:15
+완료 예상: 2025-11-08 10:34:22
 ```
 
-**View task output**:
+**태스크 출력 보기**:
 ```
 User: /task show bg-1234
 
-[Shows live output from the test run]
+[테스트 실행의 실시간 출력 표시]
 ```
 
-**Cancel task**:
+**태스크 취소**:
 ```
 User: /task cancel bg-1234
 
-Cancelled background task bg-1234
+백그라운드 태스크 bg-1234 취소됨
 ```
 
-### Example: Parallel Development
+### 예시: 병렬 개발
 
 ```
-User: Run the build in the background
+User: 백그라운드에서 빌드 실행해줘
 
-Claude: Starting build... (task-id: bg-5001)
+Claude: 빌드 시작 중... (task-id: bg-5001)
 
-User: Also run the linter in background
+User: 린터도 백그라운드에서 실행해줘
 
-Claude: Starting linter... (task-id: bg-5002)
+Claude: 린터 시작 중... (task-id: bg-5002)
 
-User: While those run, let's implement the new API endpoint
+User: 그것들이 실행되는 동안 새 API 엔드포인트 구현하자
 
-Claude: [Implements API endpoint while build and linter run]
+Claude: [빌드와 린터가 실행되는 동안 API 엔드포인트 구현]
 
-[10 minutes later]
+[10분 후]
 
-Claude: 📢 Build completed successfully (bg-5001)
-📢 Linter found 12 issues (bg-5002)
+Claude: 📢 빌드 성공적으로 완료 (bg-5001)
+📢 린터에서 12개 이슈 발견 (bg-5002)
 
-User: Show me the linter issues
+User: 린터 이슈 보여줘
 
-Claude: [Shows linter output from bg-5002]
+Claude: [bg-5002의 린터 출력 표시]
 ```
 
-### Configuration
+### 설정
 
 ```json
 {
@@ -585,118 +585,118 @@ Claude: [Shows linter output from bg-5002]
 
 ---
 
-## Scheduled Tasks
+## 예약 태스크
 
-Scheduled Tasks let you run prompts automatically on a recurring schedule or as one-time reminders. Tasks are session-scoped — they run while Claude Code is active and are cleared when the session ends. Available since v2.1.72+.
+예약 태스크를 사용하면 반복 일정이나 일회성 알림으로 프롬프트를 자동으로 실행할 수 있습니다. 태스크는 세션 범위로 — Claude Code가 활성 상태인 동안 실행되며 세션이 종료될 때 삭제됩니다. v2.1.72+부터 사용 가능합니다.
 
-### The `/loop` command
+### `/loop` 명령어
 
 ```bash
-# Explicit interval
-/loop 5m check if the deployment finished
+# 명시적 간격
+/loop 5m 배포가 완료되었는지 확인해줘
 
-# Natural language
-/loop check build status every 30 minutes
+# 자연어
+/loop 30분마다 빌드 상태 확인해줘
 ```
 
-Standard 5-field cron expressions are also supported for precise scheduling.
+표준 5필드 cron 표현식도 정확한 일정 지정에 지원됩니다.
 
-### One-time reminders
+### 일회성 알림
 
-Set reminders that fire once at a specific time:
+특정 시간에 한 번 발동하는 알림 설정:
 
 ```
-remind me at 3pm to push the release branch
-in 45 minutes, run the integration tests
+오후 3시에 릴리즈 브랜치 푸시하라고 알려줘
+45분 후에 통합 테스트 실행해줘
 ```
 
-### Managing scheduled tasks
+### 예약 태스크 관리
 
-| Tool | Description |
+| 도구 | 설명 |
 |------|-------------|
-| `CronCreate` | Create a new scheduled task |
-| `CronList` | List all active scheduled tasks |
-| `CronDelete` | Remove a scheduled task |
+| `CronCreate` | 새 예약 태스크 생성 |
+| `CronList` | 활성 예약 태스크 목록 |
+| `CronDelete` | 예약 태스크 삭제 |
 
-**Limits and behavior**:
-- Up to **50 scheduled tasks** per session
-- Session-scoped — cleared when the session ends
-- Recurring tasks auto-expire after **3 days**
-- Tasks only fire while Claude Code is running — no catch-up for missed fires
+**제한 및 동작**:
+- 세션당 최대 **50개의 예약 태스크**
+- 세션 범위 — 세션이 종료될 때 삭제
+- 반복 태스크는 **3일** 후 자동 만료
+- Claude Code가 실행 중일 때만 태스크 발동 — 누락된 실행에 대한 보충 없음
 
-### Behavior details
+### 동작 세부 사항
 
-| Aspect | Detail |
+| 측면 | 세부 사항 |
 |--------|--------|
-| **Recurring jitter** | Up to 10% of the interval (max 15 minutes) |
-| **One-shot jitter** | Up to 90 seconds on :00/:30 boundaries |
-| **Missed fires** | No catch-up — skipped if Claude Code was not running |
-| **Persistence** | Not persisted across restarts |
+| **반복 지터** | 간격의 최대 10% (최대 15분) |
+| **일회성 지터** | :00/:30 경계에서 최대 90초 |
+| **누락된 실행** | 보충 없음 — Claude Code가 실행 중이 아닌 경우 건너뜀 |
+| **지속성** | 재시작 간에 지속되지 않음 |
 
-### Cloud Scheduled Tasks
+### 클라우드 예약 태스크
 
-Use `/schedule` to create Cloud scheduled tasks that run on Anthropic infrastructure:
+Anthropic 인프라에서 실행되는 클라우드 예약 태스크를 생성하려면 `/schedule`을 사용합니다:
 
 ```
-/schedule daily at 9am run the test suite and report failures
+/schedule 매일 오전 9시에 테스트 스위트를 실행하고 실패 사항을 보고해줘
 ```
 
-Cloud scheduled tasks persist across restarts and do not require Claude Code to be running locally.
+클라우드 예약 태스크는 재시작 간에 지속되며 Claude Code가 로컬에서 실행 중일 필요가 없습니다.
 
-### Disabling scheduled tasks
+### 예약 태스크 비활성화
 
 ```bash
 export CLAUDE_CODE_DISABLE_CRON=1
 ```
 
-### Example: monitoring a deployment
+### 예시: 배포 모니터링
 
 ```
-/loop 5m check the deployment status of the staging environment.
-        If the deploy succeeded, notify me and stop looping.
-        If it failed, show the error logs.
+/loop 5m 스테이징 환경의 배포 상태를 확인해줘.
+        배포가 성공했으면 알려주고 루프를 멈춰줘.
+        실패했으면 오류 로그를 보여줘.
 ```
 
-> **Tip**: Scheduled tasks are session-scoped. For persistent automation that survives restarts, use CI/CD pipelines, GitHub Actions, or Desktop App scheduled tasks instead.
+> **팁**: 예약 태스크는 세션 범위입니다. 재시작 후에도 지속되는 자동화에는 CI/CD 파이프라인, GitHub Actions, 또는 데스크탑 앱 예약 태스크를 사용하세요.
 
 ---
 
-## Permission Modes
+## 권한 모드
 
-Permission modes control what actions Claude can take without explicit approval.
+권한 모드는 Claude가 명시적 승인 없이 취할 수 있는 행동을 제어합니다.
 
-### Available Permission Modes
+### 사용 가능한 권한 모드
 
-| Mode | Behavior |
+| 모드 | 동작 |
 |---|---|
-| `default` | Read files only; prompts for all other actions |
-| `acceptEdits` | Read and edit files; prompts for commands |
-| `plan` | Read files only (research mode, no edits) |
-| `auto` | All actions with background safety classifier checks (Research Preview) |
-| `bypassPermissions` | All actions, no permission checks (dangerous) |
-| `dontAsk` | Only pre-approved tools execute; all others denied |
+| `default` | 파일만 읽기; 다른 모든 행동에 대해 프롬프트 |
+| `acceptEdits` | 파일 읽기 및 편집; 명령어에 대해 프롬프트 |
+| `plan` | 파일만 읽기 (리서치 모드, 편집 없음) |
+| `auto` | 백그라운드 안전 분류기 검사와 함께 모든 행동 (Research Preview) |
+| `bypassPermissions` | 모든 행동, 권한 검사 없음 (위험) |
+| `dontAsk` | 사전 승인된 도구만 실행; 다른 모든 것은 거부 |
 
-Cycle through modes with `Shift+Tab` in the CLI. Set a default with the `--permission-mode` flag or the `permissions.defaultMode` setting.
+CLI에서 `Shift+Tab`으로 모드를 전환합니다. `--permission-mode` 플래그 또는 `permissions.defaultMode` 설정으로 기본값을 지정합니다.
 
-### Activation Methods
+### 활성화 방법
 
-**Keyboard shortcut**:
+**키보드 단축키**:
 ```bash
-Shift + Tab  # Cycle through all 6 modes
+Shift + Tab  # 6가지 모드 모두 전환
 ```
 
-**Slash command**:
+**Slash Command**:
 ```bash
-/plan                  # Enter plan mode
+/plan                  # plan 모드 진입
 ```
 
-**CLI flag**:
+**CLI 플래그**:
 ```bash
 claude --permission-mode plan
 claude --permission-mode auto
 ```
 
-**Setting**:
+**설정**:
 ```json
 {
   "permissions": {
@@ -705,117 +705,117 @@ claude --permission-mode auto
 }
 ```
 
-### Permission Mode Examples
+### 권한 모드 예시
 
-#### Default Mode
-Claude asks for confirmation on significant actions:
-
-```
-User: Fix the bug in auth.ts
-
-Claude: I need to modify src/auth.ts to fix the bug.
-The change will update the password validation logic.
-
-Approve this change? (yes/no/show)
-```
-
-#### Plan Mode
-Review implementation plan before execution:
+#### 기본 모드
+Claude가 중요한 행동에 대해 확인을 요청합니다:
 
 ```
-User: /plan Implement user authentication system
+User: auth.ts의 버그 수정해줘
 
-Claude: I'll create a plan for implementing authentication.
+Claude: src/auth.ts를 수정하여 버그를 수정해야 합니다.
+변경 사항은 비밀번호 검증 로직을 업데이트합니다.
 
-## Implementation Plan
-[Detailed plan with phases and steps]
-
-Ready to proceed? (yes/no/modify)
+이 변경을 승인하시겠습니까? (yes/no/show)
 ```
 
-#### Accept Edits Mode
-Automatically accept file modifications:
+#### 계획 모드
+실행 전 구현 계획 검토:
+
+```
+User: /plan 사용자 인증 시스템 구현
+
+Claude: 인증 구현 계획을 수립하겠습니다.
+
+## 구현 계획
+[단계와 순서가 있는 상세 계획]
+
+진행하시겠습니까? (yes/no/modify)
+```
+
+#### 편집 수락 모드
+파일 수정을 자동으로 수락:
 
 ```
 User: acceptEdits
-User: Fix the bug in auth.ts
+User: auth.ts의 버그 수정해줘
 
-Claude: [Makes changes without asking]
+Claude: [확인 없이 변경 진행]
 ```
 
-### Use Cases
+### 사용 사례
 
-**Code Review**:
+**코드 리뷰**:
 ```
 User: claude --permission-mode plan
-User: Review this PR and suggest improvements
+User: 이 PR을 검토하고 개선 사항을 제안해줘
 
-Claude: [Reads code, provides feedback, but cannot modify]
+Claude: [코드 읽기, 피드백 제공, 수정 불가]
 ```
 
-**Pair Programming**:
+**페어 프로그래밍**:
 ```
 User: claude --permission-mode default
-User: Let's implement the feature together
+User: 기능을 함께 구현하자
 
-Claude: [Asks for approval before each change]
+Claude: [각 변경 전 승인 요청]
 ```
 
-**Automated Tasks**:
+**자동화된 태스크**:
 ```
 User: claude --permission-mode acceptEdits
-User: Fix all linting issues in the codebase
+User: 코드베이스의 모든 lint 이슈 수정해줘
 
-Claude: [Auto-accepts file edits without asking]
+Claude: [확인 없이 파일 편집 자동 수락]
 ```
 
 ---
 
-## Headless Mode
+## 헤드리스 모드
 
-Print mode (`claude -p`) allows Claude Code to run without interactive input, perfect for automation and CI/CD. This is the non-interactive mode, replacing the older `--headless` flag.
+Print Mode (`claude -p`)를 사용하면 Claude Code가 인터랙티브 입력 없이 실행되어 자동화와 CI/CD에 적합합니다. 이것은 이전의 `--headless` 플래그를 대체하는 비대화형 모드입니다.
 
-### What is Print Mode?
+### Print Mode란?
 
-Print mode enables:
-- Automated script execution
-- CI/CD integration
-- Batch processing
-- Scheduled tasks
+Print Mode는 다음을 가능하게 합니다:
+- 자동화된 스크립트 실행
+- CI/CD 연동
+- 일괄 처리
+- 예약 태스크
 
-### Running in Print Mode (Non-Interactive)
-
-```bash
-# Run specific task
-claude -p "Run all tests"
-
-# Process piped content
-cat error.log | claude -p "Analyze these errors"
-
-# CI/CD integration (GitHub Actions)
-- name: AI Code Review
-  run: claude -p "Review PR"
-```
-
-### Additional Print Mode Usage Examples
+### Print Mode (비대화형) 실행
 
 ```bash
-# Run a specific task with output capture
-claude -p "Run all tests and generate coverage report"
+# 특정 태스크 실행
+claude -p "모든 테스트 실행"
 
-# With structured output
-claude -p --output-format json "Analyze code quality"
+# 파이프된 내용 처리
+cat error.log | claude -p "이 오류들을 분석해줘"
 
-# With input from stdin
-echo "Analyze code quality" | claude -p "explain this"
+# CI/CD 연동 (GitHub Actions)
+- name: AI 코드 리뷰
+  run: claude -p "PR 검토"
 ```
 
-### Example: CI/CD Integration
+### 추가 Print Mode 사용 예시
+
+```bash
+# 출력 캡처로 특정 태스크 실행
+claude -p "모든 테스트를 실행하고 커버리지 리포트 생성"
+
+# 구조화된 출력 사용
+claude -p --output-format json "코드 품질 분석"
+
+# stdin에서 입력 받기
+echo "코드 품질 분석" | claude -p "설명해줘"
+```
+
+### 예시: CI/CD 연동
 
 **GitHub Actions**:
 ```yaml
 # .github/workflows/code-review.yml
-name: AI Code Review
+name: AI 코드 리뷰
 
 on: [pull_request]
 
@@ -825,23 +825,23 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Install Claude Code
+      - name: Claude Code 설치
         run: npm install -g @anthropic-ai/claude-code
 
-      - name: Run Claude Code Review
+      - name: Claude Code 리뷰 실행
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
         run: |
           claude -p --output-format json \
             --max-turns 3 \
-            "Review this PR for:
-            - Code quality issues
-            - Security vulnerabilities
-            - Performance concerns
-            - Test coverage
-            Output results as JSON" > review.json
+            "이 PR을 다음 항목에 대해 검토해줘:
+            - 코드 품질 이슈
+            - 보안 취약점
+            - 성능 문제
+            - 테스트 커버리지
+            결과를 JSON으로 출력" > review.json
 
-      - name: Post Review Comment
+      - name: 리뷰 코멘트 게시
         uses: actions/github-script@v7
         with:
           script: |
@@ -855,127 +855,127 @@ jobs:
             });
 ```
 
-### Print Mode Configuration
+### Print Mode 설정
 
-Print mode (`claude -p`) supports several flags for automation:
+Print Mode (`claude -p`)는 자동화를 위한 여러 플래그를 지원합니다:
 
 ```bash
-# Limit autonomous turns
-claude -p --max-turns 5 "refactor this module"
+# 자율 턴 수 제한
+claude -p --max-turns 5 "이 모듈 리팩터링"
 
-# Structured JSON output
-claude -p --output-format json "analyze this codebase"
+# 구조화된 JSON 출력
+claude -p --output-format json "이 코드베이스 분석"
 
-# With schema validation
+# 스키마 검증과 함께
 claude -p --json-schema '{"type":"object","properties":{"issues":{"type":"array"}}}' \
-  "find bugs in this code"
+  "이 코드에서 버그 찾기"
 
-# Disable session persistence
-claude -p --no-session-persistence "one-off analysis"
+# 세션 지속성 비활성화
+claude -p --no-session-persistence "일회성 분석"
 ```
 
 ---
 
-## Session Management
+## 세션 관리
 
-Manage multiple Claude Code sessions effectively.
+여러 Claude Code 세션을 효과적으로 관리합니다.
 
-### Session Management Commands
+### 세션 관리 명령어
 
-| Command | Description |
+| 명령어 | 설명 |
 |---------|-------------|
-| `/resume` | Resume a conversation by ID or name |
-| `/rename` | Name the current session |
-| `/fork` | Fork current session into a new branch |
-| `claude -c` | Continue most recent conversation |
-| `claude -r "session"` | Resume session by name or ID |
+| `/resume` | ID 또는 이름으로 대화 재개 |
+| `/rename` | 현재 세션 이름 지정 |
+| `/fork` | 현재 세션을 새 브랜치로 포크 |
+| `claude -c` | 가장 최근 대화 계속하기 |
+| `claude -r "session"` | 이름 또는 ID로 세션 재개 |
 
-### Resuming Sessions
+### 세션 재개
 
-**Continue last conversation**:
+**마지막 대화 계속하기**:
 ```bash
 claude -c
 ```
 
-**Resume a named session**:
+**이름이 지정된 세션 재개**:
 ```bash
-claude -r "auth-refactor" "finish this PR"
+claude -r "auth-refactor" "이 PR 마무리"
 ```
 
-**Rename the current session** (inside the REPL):
+**현재 세션 이름 지정** (REPL 내에서):
 ```
 /rename auth-refactor
 ```
 
-### Forking Sessions
+### 세션 포크
 
-Fork a session to try an alternative approach without losing the original:
+원본을 잃지 않고 대안적 접근 방식을 시도하기 위해 세션 포크:
 
 ```
 /fork
 ```
 
-Or from the CLI:
+또는 CLI에서:
 ```bash
-claude --resume auth-refactor --fork-session "try OAuth instead"
+claude --resume auth-refactor --fork-session "OAuth 대신 시도"
 ```
 
-### Session Persistence
+### 세션 지속성
 
-Sessions are automatically saved and can be resumed:
+세션은 자동으로 저장되고 재개할 수 있습니다:
 
 ```bash
-# Continue last conversation
+# 마지막 대화 계속하기
 claude -c
 
-# Resume specific session by name or ID
+# 이름 또는 ID로 특정 세션 재개
 claude -r "auth-refactor"
 
-# Resume and fork for experimentation
-claude --resume auth-refactor --fork-session "alternative approach"
+# 실험을 위한 재개 및 포크
+claude --resume auth-refactor --fork-session "대안적 접근"
 ```
 
 ---
 
-## Interactive Features
+## 인터랙티브 기능
 
-### Keyboard Shortcuts
+### 키보드 단축키
 
-Claude Code supports keyboard shortcuts for efficiency. Here's the complete reference from official docs:
+Claude Code는 효율성을 위한 키보드 단축키를 지원합니다. 공식 문서의 전체 참조:
 
-| Shortcut | Description |
+| 단축키 | 설명 |
 |----------|-------------|
-| `Ctrl+C` | Cancel current input/generation |
-| `Ctrl+D` | Exit Claude Code |
-| `Ctrl+G` | Edit plan in external editor |
-| `Ctrl+L` | Clear terminal screen |
-| `Ctrl+O` | Toggle verbose output (view reasoning) |
-| `Ctrl+R` | Reverse search history |
-| `Ctrl+T` | Toggle task list view |
-| `Ctrl+B` | Background running tasks |
-| `Esc+Esc` | Rewind code/conversation |
-| `Shift+Tab` / `Alt+M` | Toggle permission modes |
-| `Option+P` / `Alt+P` | Switch model |
-| `Option+T` / `Alt+T` | Toggle extended thinking |
+| `Ctrl+C` | 현재 입력/생성 취소 |
+| `Ctrl+D` | Claude Code 종료 |
+| `Ctrl+G` | 외부 편집기에서 계획 편집 |
+| `Ctrl+L` | 터미널 화면 지우기 |
+| `Ctrl+O` | 상세 출력 토글 (추론 보기) |
+| `Ctrl+R` | 기록 역방향 검색 |
+| `Ctrl+T` | 태스크 목록 보기 토글 |
+| `Ctrl+B` | 실행 중인 태스크 백그라운드 전환 |
+| `Esc+Esc` | 코드/대화 되돌리기 |
+| `Shift+Tab` / `Alt+M` | 권한 모드 전환 |
+| `Option+P` / `Alt+P` | 모델 전환 |
+| `Option+T` / `Alt+T` | 확장 사고 토글 |
 
-**Line Editing (standard readline shortcuts):**
+**줄 편집 (표준 readline 단축키):**
 
-| Shortcut | Action |
+| 단축키 | 동작 |
 |----------|--------|
-| `Ctrl + A` | Move to line start |
-| `Ctrl + E` | Move to line end |
-| `Ctrl + K` | Cut to end of line |
-| `Ctrl + U` | Cut to start of line |
-| `Ctrl + W` | Delete word backward |
-| `Ctrl + Y` | Paste (yank) |
-| `Tab` | Autocomplete |
-| `↑ / ↓` | Command history |
+| `Ctrl + A` | 줄 시작으로 이동 |
+| `Ctrl + E` | 줄 끝으로 이동 |
+| `Ctrl + K` | 줄 끝까지 잘라내기 |
+| `Ctrl + U` | 줄 시작까지 잘라내기 |
+| `Ctrl + W` | 이전 단어 삭제 |
+| `Ctrl + Y` | 붙여넣기 (yank) |
+| `Tab` | 자동 완성 |
+| `↑ / ↓` | 명령어 기록 |
 
-### Customizing keybindings
+### 키바인딩 커스터마이징
 
-Create custom keyboard shortcuts by running `/keybindings`, which opens `~/.claude/keybindings.json` for editing (v2.1.18+).
+`/keybindings`를 실행하면 편집을 위해 `~/.claude/keybindings.json`이 열립니다 (v2.1.18+).
 
-**Configuration format**:
+**설정 형식**:
 
 ```json
 {
@@ -999,54 +999,54 @@ Create custom keyboard shortcuts by running `/keybindings`, which opens `~/.clau
 }
 ```
 
-Set a binding to `null` to unbind a default shortcut.
+바인딩을 `null`로 설정하면 기본 단축키가 해제됩니다.
 
-### Available contexts
+### 사용 가능한 컨텍스트
 
-Keybindings are scoped to specific UI contexts:
+키바인딩은 특정 UI 컨텍스트로 범위가 지정됩니다:
 
-| Context | Key Actions |
+| 컨텍스트 | 키 동작 |
 |---------|-------------|
 | **Chat** | `submit`, `cancel`, `cycleMode`, `modelPicker`, `thinkingToggle`, `undo`, `externalEditor`, `stash`, `imagePaste` |
 | **Confirmation** | `yes`, `no`, `previous`, `next`, `nextField`, `cycleMode`, `toggleExplanation` |
 | **Global** | `interrupt`, `exit`, `toggleTodos`, `toggleTranscript` |
 | **Autocomplete** | `accept`, `dismiss`, `next`, `previous` |
 | **HistorySearch** | `search`, `previous`, `next` |
-| **Settings** | Context-specific settings navigation |
-| **Tabs** | Tab switching and management |
-| **Help** | Help panel navigation |
+| **Settings** | 컨텍스트별 설정 탐색 |
+| **Tabs** | 탭 전환 및 관리 |
+| **Help** | 도움말 패널 탐색 |
 
-There are 18 contexts total including `Transcript`, `Task`, `ThemePicker`, `Attachments`, `Footer`, `MessageSelector`, `DiffDialog`, `ModelPicker`, and `Select`.
+`Transcript`, `Task`, `ThemePicker`, `Attachments`, `Footer`, `MessageSelector`, `DiffDialog`, `ModelPicker`, `Select`를 포함하여 총 18개의 컨텍스트가 있습니다.
 
-### Chord support
+### 코드 지원
 
-Keybindings support chord sequences (multi-key combinations):
+키바인딩은 코드 시퀀스 (다중 키 조합)를 지원합니다:
 
 ```
-"ctrl+k ctrl+s"   → Two-key sequence: press ctrl+k, then ctrl+s
-"ctrl+shift+p"    → Simultaneous modifier keys
+"ctrl+k ctrl+s"   → 두 키 시퀀스: ctrl+k를 누른 후 ctrl+s
+"ctrl+shift+p"    → 동시 수정자 키
 ```
 
-**Keystroke syntax**:
-- **Modifiers**: `ctrl`, `alt` (or `opt`), `shift`, `meta` (or `cmd`)
-- **Uppercase implies Shift**: `K` is equivalent to `shift+k`
-- **Special keys**: `escape`, `enter`, `return`, `tab`, `space`, `backspace`, `delete`, arrow keys
+**키스트로크 구문**:
+- **수정자**: `ctrl`, `alt` (또는 `opt`), `shift`, `meta` (또는 `cmd`)
+- **대문자는 Shift를 의미**: `K`는 `shift+k`와 동일
+- **특수 키**: `escape`, `enter`, `return`, `tab`, `space`, `backspace`, `delete`, 방향키
 
-### Reserved and conflicting keys
+### 예약 및 충돌하는 키
 
-| Key | Status | Notes |
+| 키 | 상태 | 비고 |
 |-----|--------|-------|
-| `Ctrl+C` | Reserved | Cannot be rebound (interrupt) |
-| `Ctrl+D` | Reserved | Cannot be rebound (exit) |
-| `Ctrl+B` | Terminal conflict | tmux prefix key |
-| `Ctrl+A` | Terminal conflict | GNU Screen prefix key |
-| `Ctrl+Z` | Terminal conflict | Process suspend |
+| `Ctrl+C` | 예약됨 | 재바인딩 불가 (인터럽트) |
+| `Ctrl+D` | 예약됨 | 재바인딩 불가 (종료) |
+| `Ctrl+B` | 터미널 충돌 | tmux 프리픽스 키 |
+| `Ctrl+A` | 터미널 충돌 | GNU Screen 프리픽스 키 |
+| `Ctrl+Z` | 터미널 충돌 | 프로세스 일시정지 |
 
-> **Tip**: If a shortcut does not work, check for conflicts with your terminal emulator or multiplexer.
+> **팁**: 단축키가 작동하지 않으면 터미널 에뮬레이터 또는 멀티플렉서와의 충돌을 확인하세요.
 
-### Tab Completion
+### 탭 완성
 
-Claude Code provides intelligent tab completion:
+Claude Code는 지능적인 탭 완성을 제공합니다:
 
 ```
 User: /rew<TAB>
@@ -1061,77 +1061,77 @@ User: /plugin <TAB>
 → /plugin disable
 ```
 
-### Command History
+### 명령어 기록
 
-Access previous commands:
+이전 명령어에 접근:
 
 ```
-User: <↑>  # Previous command
-User: <↓>  # Next command
-User: Ctrl+R  # Search history
+User: <↑>  # 이전 명령어
+User: <↓>  # 다음 명령어
+User: Ctrl+R  # 기록 검색
 
-(reverse-i-search)`test': run all tests
+(역방향 검색)`test': 모든 테스트 실행
 ```
 
-### Multi-line Input
+### 다중 줄 입력
 
-For complex queries, use multi-line mode:
+복잡한 쿼리는 다중 줄 모드를 사용합니다:
 
 ```bash
 User: \
-> Long complex prompt
-> spanning multiple lines
+> 긴 복잡한 프롬프트
+> 여러 줄에 걸쳐
 > \end
 ```
 
-**Example:**
+**예시:**
 
 ```
 User: \
-> Implement a user authentication system
-> with the following requirements:
-> - JWT tokens
-> - Email verification
-> - Password reset
-> - 2FA support
+> 다음 요구사항을 갖춘
+> 사용자 인증 시스템을 구현해줘:
+> - JWT 토큰
+> - 이메일 인증
+> - 비밀번호 재설정
+> - 2FA 지원
 > \end
 
-Claude: [Processes the multi-line request]
+Claude: [다중 줄 요청 처리]
 ```
 
-### Inline Editing
+### 인라인 편집
 
-Edit commands before sending:
+전송 전 명령어 편집:
 
 ```
-User: Deploy to prodcution<Backspace><Backspace>uction
+User: 프로덕션에 배포<Backspace><Backspace>...
 
-[Edit in-place before sending]
+[전송 전 직접 편집]
 ```
 
-### Vim Mode
+### Vim 모드
 
-Enable Vi/Vim keybindings for text editing:
+텍스트 편집을 위한 Vi/Vim 키바인딩 활성화:
 
-**Activation**:
-- Use `/vim` command or `/config` to enable
-- Mode switching with `Esc` for NORMAL, `i/a/o` for INSERT
+**활성화**:
+- `/vim` 명령어 또는 `/config`로 활성화
+- `Esc`로 NORMAL 모드, `i/a/o`로 INSERT 모드 전환
 
-**Navigation keys**:
-- `h` / `l` - Move left/right
-- `j` / `k` - Move down/up
-- `w` / `b` / `e` - Move by word
-- `0` / `$` - Move to line start/end
-- `gg` / `G` - Jump to start/end of text
+**탐색 키**:
+- `h` / `l` - 좌우 이동
+- `j` / `k` - 상하 이동
+- `w` / `b` / `e` - 단어 단위 이동
+- `0` / `$` - 줄 시작/끝으로 이동
+- `gg` / `G` - 텍스트 시작/끝으로 점프
 
-**Text objects**:
-- `iw` / `aw` - Inner/around word
-- `i"` / `a"` - Inner/around quoted string
-- `i(` / `a(` - Inner/around parentheses
+**텍스트 오브젝트**:
+- `iw` / `aw` - 단어 안쪽/바깥쪽
+- `i"` / `a"` - 따옴표 문자열 안쪽/바깥쪽
+- `i(` / `a(` - 괄호 안쪽/바깥쪽
 
-### Bash Mode
+### Bash 모드
 
-Execute shell commands directly with `!` prefix:
+`!` 접두사로 shell 명령어를 직접 실행:
 
 ```bash
 ! npm test
@@ -1139,56 +1139,56 @@ Execute shell commands directly with `!` prefix:
 ! cat src/index.js
 ```
 
-Use this for quick command execution without switching contexts.
+컨텍스트를 전환하지 않고 빠른 명령어 실행에 사용합니다.
 
 ---
 
-## Voice Dictation
+## 음성 받아쓰기
 
-Voice Dictation provides push-to-talk voice input for Claude Code, allowing you to speak your prompts instead of typing them.
+음성 받아쓰기는 Claude Code에 push-to-talk 음성 입력을 제공하여 입력하는 대신 말로 프롬프트를 할 수 있게 합니다.
 
-### Activating Voice Dictation
+### 음성 받아쓰기 활성화
 
 ```
 /voice
 ```
 
-### Features
+### 기능
 
-| Feature | Description |
+| 기능 | 설명 |
 |---------|-------------|
-| **Push-to-talk** | Hold a key to record, release to send |
-| **20 languages** | Speech-to-text supports 20 languages |
-| **Custom keybinding** | Configure the push-to-talk key via `/keybindings` |
-| **Account requirement** | Requires a Claude.ai account for STT processing |
+| **Push-to-talk** | 키를 눌러 녹음, 놓으면 전송 |
+| **20개 언어** | Speech-to-text가 20개 언어 지원 |
+| **커스텀 키바인딩** | `/keybindings`로 push-to-talk 키 설정 |
+| **계정 요구** | STT 처리를 위해 Claude.ai 계정 필요 |
 
-### Configuration
+### 설정
 
-Customize the push-to-talk keybinding in your keybindings file (`/keybindings`). Voice dictation uses your Claude.ai account for speech-to-text processing.
+키바인딩 파일 (`/keybindings`)에서 push-to-talk 키바인딩을 커스터마이징합니다. 음성 받아쓰기는 speech-to-text 처리에 Claude.ai 계정을 사용합니다.
 
 ---
 
-## Channels
+## 채널
 
-Channels (Research Preview) allow MCP servers to push messages into running Claude Code sessions, enabling real-time integrations with external services.
+채널 (Research Preview)은 MCP 서버가 실행 중인 Claude Code 세션에 메시지를 전송하여 외부 서비스와의 실시간 연동을 가능하게 합니다.
 
-### Subscribing to Channels
+### 채널 구독
 
 ```bash
-# Subscribe to channel plugins at startup
+# 시작 시 채널 플러그인 구독
 claude --channels discord,telegram
 ```
 
-### Supported Integrations
+### 지원되는 연동
 
-| Integration | Description |
+| 연동 | 설명 |
 |-------------|-------------|
-| **Discord** | Receive and respond to Discord messages in your session |
-| **Telegram** | Receive and respond to Telegram messages in your session |
+| **Discord** | 세션에서 Discord 메시지 수신 및 응답 |
+| **Telegram** | 세션에서 Telegram 메시지 수신 및 응답 |
 
-### Configuration
+### 설정
 
-**Managed setting** for enterprise deployments:
+엔터프라이즈 배포를 위한 **관리형 설정**:
 
 ```json
 {
@@ -1196,206 +1196,206 @@ claude --channels discord,telegram
 }
 ```
 
-The `allowedChannelPlugins` managed setting controls which channel plugins are permitted across the organization.
+`allowedChannelPlugins` 관리형 설정은 조직 전체에서 허용되는 채널 플러그인을 제어합니다.
 
-### How It Works
+### 작동 방식
 
-1. MCP servers act as channel plugins that connect to external services
-2. Incoming messages are pushed into the active Claude Code session
-3. Claude can read and respond to messages within the session context
-4. Channel plugins must be approved via the `allowedChannelPlugins` managed setting
+1. MCP 서버가 외부 서비스에 연결하는 채널 플러그인으로 작동
+2. 들어오는 메시지가 활성 Claude Code 세션으로 전송됨
+3. Claude는 세션 컨텍스트 내에서 메시지를 읽고 응답 가능
+4. 채널 플러그인은 `allowedChannelPlugins` 관리형 설정을 통해 승인되어야 함
 
 ---
 
-## Chrome Integration
+## Chrome 연동
 
-Chrome Integration connects Claude Code to your Chrome or Microsoft Edge browser for live web automation and debugging. This is a beta feature available since v2.0.73+ (Edge support added in v1.0.36+).
+Chrome 연동은 Claude Code를 Chrome 또는 Microsoft Edge 브라우저에 연결하여 실시간 웹 자동화 및 디버깅을 가능하게 합니다. v2.0.73+부터 사용 가능한 베타 기능입니다 (Edge 지원은 v1.0.36+에 추가).
 
-### Enabling Chrome Integration
+### Chrome 연동 활성화
 
-**At startup**:
+**시작 시**:
 
 ```bash
-claude --chrome      # Enable Chrome connection
-claude --no-chrome   # Disable Chrome connection
+claude --chrome      # Chrome 연결 활성화
+claude --no-chrome   # Chrome 연결 비활성화
 ```
 
-**Within a session**:
+**세션 내에서**:
 
 ```
 /chrome
 ```
 
-Select "Enabled by default" to activate Chrome Integration for all future sessions. Claude Code shares your browser's login state, so it can interact with authenticated web apps.
+"기본으로 활성화"를 선택하면 모든 미래 세션에 Chrome 연동이 활성화됩니다. Claude Code는 브라우저의 로그인 상태를 공유하므로 인증된 웹 앱과 상호작용할 수 있습니다.
 
-### Capabilities
+### 기능
 
-| Capability | Description |
+| 기능 | 설명 |
 |------------|-------------|
-| **Live debugging** | Read console logs, inspect DOM elements, debug JavaScript in real time |
-| **Design verification** | Compare rendered pages against design mockups |
-| **Form validation** | Test form submissions, input validation, and error handling |
-| **Web app testing** | Interact with authenticated apps (Gmail, Google Docs, Notion, etc.) |
-| **Data extraction** | Scrape and process content from web pages |
-| **Session recording** | Record browser interactions as GIF files |
+| **실시간 디버깅** | 콘솔 로그 읽기, DOM 요소 검사, JavaScript 실시간 디버깅 |
+| **디자인 검증** | 렌더링된 페이지를 디자인 목업과 비교 |
+| **폼 검증** | 폼 제출, 입력 검증, 오류 처리 테스트 |
+| **웹 앱 테스트** | 인증된 앱과 상호작용 (Gmail, Google Docs, Notion 등) |
+| **데이터 추출** | 웹 페이지에서 콘텐츠 스크래핑 및 처리 |
+| **세션 녹화** | 브라우저 상호작용을 GIF 파일로 녹화 |
 
-### Site-level permissions
+### 사이트 수준 권한
 
-The Chrome extension manages per-site access. Grant or revoke access for specific sites at any time through the extension popup. Claude Code only interacts with sites you have explicitly allowed.
+Chrome 확장 프로그램이 사이트별 접근을 관리합니다. 확장 프로그램 팝업을 통해 언제든지 특정 사이트에 대한 접근을 허용하거나 취소할 수 있습니다. Claude Code는 명시적으로 허용한 사이트와만 상호작용합니다.
 
-### How it works
+### 작동 방식
 
-Claude Code controls the browser in a visible window — you can watch actions happen in real time. When the browser encounters a login page or CAPTCHA, Claude pauses and waits for you to handle it manually before continuing.
+Claude Code는 보이는 창에서 브라우저를 제어합니다 — 실시간으로 행동을 볼 수 있습니다. 브라우저가 로그인 페이지나 CAPTCHA를 만나면 Claude가 멈추고 사용자가 수동으로 처리할 때까지 기다린 후 계속합니다.
 
-### Known limitations
+### 알려진 제한 사항
 
-- **Browser support**: Chrome and Edge only — Brave, Arc, and other Chromium browsers are not supported
-- **WSL**: Not available in Windows Subsystem for Linux
-- **Third-party providers**: Not supported with Bedrock, Vertex, or Foundry API providers
-- **Service worker idle**: The Chrome extension service worker may go idle during extended sessions
+- **브라우저 지원**: Chrome과 Edge만 — Brave, Arc 및 다른 Chromium 브라우저는 지원되지 않음
+- **WSL**: Windows Subsystem for Linux에서 사용 불가
+- **서드파티 프로바이더**: Bedrock, Vertex, Foundry API 프로바이더와는 지원되지 않음
+- **서비스 워커 유휴**: 확장된 세션 중 Chrome 확장 서비스 워커가 유휴 상태가 될 수 있음
 
-> **Tip**: Chrome Integration is a beta feature. Browser support may expand in future releases.
+> **팁**: Chrome 연동은 베타 기능입니다. 브라우저 지원은 향후 릴리즈에서 확장될 수 있습니다.
 
 ---
 
-## Remote Control
+## 원격 제어
 
-Remote Control lets you continue a locally running Claude Code session from your phone, tablet, or any browser. Your local session keeps running on your machine — nothing moves to the cloud. Available on Pro, Max, Team, and Enterprise plans (v2.1.51+).
+원격 제어를 사용하면 로컬에서 실행 중인 Claude Code 세션을 전화기, 태블릿, 또는 모든 브라우저에서 계속할 수 있습니다. 로컬 세션은 사용자 기기에서 계속 실행됩니다 — 클라우드로 이동하는 것은 없습니다. Pro, Max, Team, Enterprise 플랜에서 사용 가능합니다 (v2.1.51+).
 
-### Starting Remote Control
+### 원격 제어 시작
 
-**From the CLI**:
+**CLI에서**:
 
 ```bash
-# Start with default session name
+# 기본 세션 이름으로 시작
 claude remote-control
 
-# Start with a custom name
+# 커스텀 이름으로 시작
 claude remote-control --name "Auth Refactor"
 ```
 
-**From within a session**:
+**세션 내에서**:
 
 ```
 /remote-control
 /remote-control "Auth Refactor"
 ```
 
-**Available flags**:
+**사용 가능한 플래그**:
 
-| Flag | Description |
+| 플래그 | 설명 |
 |------|-------------|
-| `--name "title"` | Custom session title for easy identification |
-| `--verbose` | Show detailed connection logs |
-| `--sandbox` | Enable filesystem and network isolation |
-| `--no-sandbox` | Disable sandboxing (default) |
+| `--name "title"` | 쉽게 식별하기 위한 커스텀 세션 제목 |
+| `--verbose` | 상세 연결 로그 표시 |
+| `--sandbox` | 파일시스템 및 네트워크 격리 활성화 |
+| `--no-sandbox` | 샌드박싱 비활성화 (기본값) |
 
-### Connecting to a session
+### 세션 연결
 
-Three ways to connect from another device:
+다른 기기에서 연결하는 세 가지 방법:
 
-1. **Session URL** — Printed to the terminal when the session starts; open in any browser
-2. **QR code** — Press `spacebar` after starting to display a scannable QR code
-3. **Find by name** — Browse your sessions at claude.ai/code or in the Claude mobile app (iOS/Android)
+1. **세션 URL** — 세션이 시작될 때 터미널에 출력됩니다; 모든 브라우저에서 열기
+2. **QR 코드** — 시작 후 `spacebar`를 눌러 스캔 가능한 QR 코드 표시
+3. **이름으로 찾기** — claude.ai/code 또는 Claude 모바일 앱 (iOS/Android)에서 세션 탐색
 
-### Security
+### 보안
 
-- **No inbound ports** opened on your machine
-- **Outbound HTTPS only** over TLS
-- **Scoped credentials** — multiple short-lived, narrowly scoped tokens
-- **Session isolation** — each remote session is independent
+- 기기에 **인바운드 포트 없음**
+- TLS를 통한 **아웃바운드 HTTPS만**
+- **범위 지정 자격증명** — 여러 개의 단기 범위 지정 토큰
+- **세션 격리** — 각 원격 세션은 독립적
 
-### Remote Control vs Claude Code on the web
+### 원격 제어 vs 웹에서 Claude Code
 
-| Aspect | Remote Control | Claude Code on Web |
+| 측면 | 원격 제어 | 웹에서 Claude Code |
 |--------|---------------|-------------------|
-| **Execution** | Runs on your machine | Runs on Anthropic cloud |
-| **Local tools** | Full access to local MCP servers, files, and CLI | No local dependencies |
-| **Use case** | Continue local work from another device | Start fresh from any browser |
+| **실행** | 사용자 기기에서 실행 | Anthropic 클라우드에서 실행 |
+| **로컬 도구** | 로컬 MCP 서버, 파일, CLI에 완전한 접근 | 로컬 의존성 없음 |
+| **사용 사례** | 다른 기기에서 로컬 작업 계속 | 모든 브라우저에서 새로 시작 |
 
-### Limitations
+### 제한 사항
 
-- One remote session per Claude Code instance
-- Terminal must stay open on the host machine
-- Session times out after ~10 minutes if the network is unreachable
+- Claude Code 인스턴스당 하나의 원격 세션
+- 호스트 기기에서 터미널이 열려 있어야 함
+- 네트워크에 연결할 수 없는 경우 약 10분 후 세션 시간 초과
 
-### Use cases
+### 사용 사례
 
-- Control Claude Code from a mobile device or tablet while away from your desk
-- Use the richer claude.ai UI while maintaining local tool execution
-- Quick code reviews on the go with your full local development environment
+- 책상에서 떨어져 있는 동안 모바일 기기나 태블릿에서 Claude Code 제어
+- 로컬 도구 실행을 유지하면서 더 풍부한 claude.ai UI 사용
+- 전체 로컬 개발 환경으로 이동 중 빠른 코드 리뷰
 
 ---
 
-## Web Sessions
+## 웹 세션
 
-Web Sessions allow you to run Claude Code directly in the browser at claude.ai/code, or create web sessions from the CLI.
+웹 세션을 사용하면 claude.ai/code에서 브라우저로 직접 Claude Code를 실행하거나 CLI에서 웹 세션을 생성할 수 있습니다.
 
-### Creating a Web Session
+### 웹 세션 생성
 
 ```bash
-# Create a new web session from the CLI
-claude --remote "implement the new API endpoints"
+# CLI에서 새 웹 세션 생성
+claude --remote "새 API 엔드포인트 구현"
 ```
 
-This starts a Claude Code session on claude.ai that you can access from any browser.
+모든 브라우저에서 접근할 수 있는 claude.ai에서 Claude Code 세션이 시작됩니다.
 
-### Resuming Web Sessions Locally
+### 웹 세션을 로컬에서 재개
 
-If you started a session on the web and want to continue it locally:
+웹에서 세션을 시작했고 로컬에서 계속하고 싶다면:
 
 ```bash
-# Resume a web session in the local terminal
+# 로컬 터미널에서 웹 세션 재개
 claude --teleport
 ```
 
-Or from within an interactive REPL:
+또는 인터랙티브 REPL 내에서:
 ```
 /teleport
 ```
 
-### Use Cases
+### 사용 사례
 
-- Start work on one machine and continue on another
-- Share a session URL with team members
-- Use the web UI for visual diff review, then switch to terminal for execution
+- 한 기기에서 시작하고 다른 기기에서 계속하기
+- 팀원들과 세션 URL 공유
+- 시각적 diff 검토를 위해 웹 UI를 사용한 후 실행을 위해 터미널로 전환
 
 ---
 
-## Desktop App
+## 데스크탑 앱
 
-The Claude Code Desktop App provides a standalone application with visual diff review, parallel sessions, and integrated connectors. Available for macOS and Windows (Pro, Max, Team, and Enterprise plans).
+Claude Code 데스크탑 앱은 시각적 diff 검토, 병렬 세션, 통합 커넥터를 갖춘 독립형 애플리케이션을 제공합니다. macOS 및 Windows에서 사용 가능합니다 (Pro, Max, Team, Enterprise 플랜).
 
-### Installation
+### 설치
 
-Download from [claude.ai](https://claude.ai) for your platform:
-- **macOS**: Universal build (Apple Silicon and Intel)
-- **Windows**: x64 and ARM64 installers available
+[claude.ai](https://claude.ai)에서 플랫폼에 맞게 다운로드:
+- **macOS**: 유니버설 빌드 (Apple Silicon 및 Intel)
+- **Windows**: x64 및 ARM64 설치 프로그램 사용 가능
 
-See the [Desktop Quickstart](https://code.claude.com/docs/en/desktop-quickstart) for setup instructions.
+설치 안내는 [데스크탑 빠른 시작](https://code.claude.com/docs/en/desktop-quickstart)을 참조하세요.
 
-### Handing off from CLI
+### CLI에서 핸드오프
 
-Transfer your current CLI session to the Desktop App:
+현재 CLI 세션을 데스크탑 앱으로 전환:
 
 ```
 /desktop
 ```
 
-### Core features
+### 핵심 기능
 
-| Feature | Description |
+| 기능 | 설명 |
 |---------|-------------|
-| **Diff view** | File-by-file visual review with inline comments; Claude reads comments and revises |
-| **App preview** | Auto-starts dev servers with an embedded browser for live verification |
-| **PR monitoring** | GitHub CLI integration with auto-fix CI failures and auto-merge when checks pass |
-| **Parallel sessions** | Multiple sessions in the sidebar with automatic Git worktree isolation |
-| **Scheduled tasks** | Recurring tasks (hourly, daily, weekdays, weekly) that run while the app is open |
-| **Rich rendering** | Code, markdown, and diagram rendering with syntax highlighting |
+| **Diff 보기** | 인라인 코멘트를 통한 파일별 시각적 검토; Claude가 코멘트를 읽고 수정 |
+| **앱 미리보기** | 실시간 검증을 위한 내장 브라우저로 개발 서버 자동 시작 |
+| **PR 모니터링** | GitHub CLI 연동으로 CI 실패 자동 수정 및 확인 통과 시 자동 머지 |
+| **병렬 세션** | Git worktree 격리를 통한 사이드바의 여러 세션 |
+| **예약 태스크** | 앱이 열려 있는 동안 실행되는 반복 태스크 (시간별, 일별, 평일별, 주별) |
+| **풍부한 렌더링** | 구문 강조를 통한 코드, 마크다운, 다이어그램 렌더링 |
 
-### App preview configuration
+### 앱 미리보기 설정
 
-Configure dev server behavior in `.claude/launch.json`:
+`.claude/launch.json`에서 개발 서버 동작 구성:
 
 ```json
 {
@@ -1406,82 +1406,82 @@ Configure dev server behavior in `.claude/launch.json`:
 }
 ```
 
-### Connectors
+### 커넥터
 
-Connect external services for richer context:
+더 풍부한 컨텍스트를 위해 외부 서비스 연결:
 
-| Connector | Capability |
+| 커넥터 | 기능 |
 |-----------|------------|
-| **GitHub** | PR monitoring, issue tracking, code review |
-| **Slack** | Notifications, channel context |
-| **Linear** | Issue tracking, sprint management |
-| **Notion** | Documentation, knowledge base access |
-| **Asana** | Task management, project tracking |
-| **Calendar** | Schedule awareness, meeting context |
+| **GitHub** | PR 모니터링, 이슈 추적, 코드 리뷰 |
+| **Slack** | 알림, 채널 컨텍스트 |
+| **Linear** | 이슈 추적, 스프린트 관리 |
+| **Notion** | 문서화, 지식베이스 접근 |
+| **Asana** | 태스크 관리, 프로젝트 추적 |
+| **Calendar** | 일정 인식, 미팅 컨텍스트 |
 
-> **Note**: Connectors are not available for remote (cloud) sessions.
+> **참고**: 커넥터는 원격 (클라우드) 세션에서 사용할 수 없습니다.
 
-### Remote and SSH sessions
+### 원격 및 SSH 세션
 
-- **Remote sessions**: Run on Anthropic cloud infrastructure; continue even when the app is closed. Accessible from claude.ai/code or the Claude mobile app
-- **SSH sessions**: Connect to remote machines over SSH with full access to the remote filesystem and tools. Claude Code must be installed on the remote machine
+- **원격 세션**: Anthropic 클라우드 인프라에서 실행; 앱이 닫혀 있어도 계속됩니다. claude.ai/code 또는 Claude 모바일 앱에서 접근 가능
+- **SSH 세션**: SSH를 통해 원격 기기에 연결하여 원격 파일시스템 및 도구에 완전한 접근. 원격 기기에 Claude Code가 설치되어 있어야 함
 
-### Permission modes in Desktop
+### 데스크탑에서 권한 모드
 
-The Desktop App supports the same 4 permission modes as the CLI:
+데스크탑 앱은 CLI와 동일한 4가지 권한 모드를 지원합니다:
 
-| Mode | Behavior |
+| 모드 | 동작 |
 |------|----------|
-| **Ask permissions** (default) | Review and approve every edit and command |
-| **Auto accept edits** | File edits auto-approved; commands require manual approval |
-| **Plan mode** | Review approach before any changes are made |
-| **Bypass permissions** | Automatic execution (sandbox-only, admin-controlled) |
+| **권한 묻기** (기본값) | 모든 편집 및 명령어 검토 및 승인 |
+| **편집 자동 수락** | 파일 편집은 자동 승인; 명령어는 수동 승인 필요 |
+| **계획 모드** | 변경 전 접근 방식 검토 |
+| **권한 우회** | 자동 실행 (샌드박스 전용, 관리자 제어) |
 
-### Enterprise features
+### 엔터프라이즈 기능
 
-- **Admin console**: Control Code tab access and permission settings for the organization
-- **MDM deployment**: Deploy via MDM on macOS or MSIX on Windows
-- **SSO integration**: Require single sign-on for organization members
-- **Managed settings**: Centrally manage team configuration and model availability
+- **관리 콘솔**: 조직의 Code 탭 접근 및 권한 설정 제어
+- **MDM 배포**: macOS에서 MDM 또는 Windows에서 MSIX를 통해 배포
+- **SSO 연동**: 조직 구성원에게 단일 로그인 요구
+- **관리형 설정**: 팀 설정 및 모델 가용성 중앙 관리
 
 ---
 
-## Task List
+## 태스크 목록
 
-The Task List feature provides persistent task tracking that survives context compactions (when the conversation history is trimmed to fit the context window).
+태스크 목록 기능은 컨텍스트 압축 (대화 기록이 컨텍스트 창에 맞게 잘릴 때)을 넘어 지속되는 태스크 추적을 제공합니다.
 
-### Toggling the Task List
+### 태스크 목록 토글
 
-Press `Ctrl+T` to toggle the task list view on or off during a session.
+세션 중 `Ctrl+T`를 눌러 태스크 목록 보기를 켜거나 끕니다.
 
-### Persistent Tasks
+### 지속 태스크
 
-Tasks persist across context compactions, ensuring that long-running work items are not lost when the conversation context is trimmed. This is particularly useful for complex, multi-step implementations.
+태스크는 컨텍스트 압축을 넘어 지속되어, 대화 컨텍스트가 잘릴 때 오래 진행 중인 작업 항목이 손실되지 않도록 합니다. 이는 복잡한 다단계 구현에 특히 유용합니다.
 
-### Named Task Directories
+### 이름이 지정된 태스크 디렉토리
 
-Use the `CLAUDE_CODE_TASK_LIST_ID` environment variable to create named task directories shared across sessions:
+`CLAUDE_CODE_TASK_LIST_ID` 환경 변수를 사용하여 세션 간에 공유되는 이름이 지정된 태스크 디렉토리를 생성합니다:
 
 ```bash
 export CLAUDE_CODE_TASK_LIST_ID=my-project-sprint-3
 ```
 
-This allows multiple sessions to share the same task list, making it useful for team workflows or multi-session projects.
+이를 통해 여러 세션이 동일한 태스크 목록을 공유할 수 있어 팀 워크플로우나 다중 세션 프로젝트에 유용합니다.
 
 ---
 
-## Prompt Suggestions
+## 프롬프트 제안
 
-Prompt Suggestions display grayed-out example commands based on your git history and current conversation context.
+프롬프트 제안은 Git 기록과 현재 대화 컨텍스트를 기반으로 흐릿하게 표시되는 예제 명령어를 보여줍니다.
 
-### How It Works
+### 작동 방식
 
-- Suggestions appear as grayed-out text below your input prompt
-- Press `Tab` to accept the suggestion
-- Press `Enter` to accept and immediately submit
-- Suggestions are context-aware, drawing from git history and conversation state
+- 제안이 입력 프롬프트 아래에 흐릿한 텍스트로 나타남
+- `Tab`을 눌러 제안 수락
+- `Enter`를 눌러 수락하고 즉시 제출
+- 제안은 Git 기록과 대화 상태를 기반으로 컨텍스트를 인식
 
-### Disabling Prompt Suggestions
+### 프롬프트 제안 비활성화
 
 ```bash
 export CLAUDE_CODE_ENABLE_PROMPT_SUGGESTION=false
@@ -1491,27 +1491,27 @@ export CLAUDE_CODE_ENABLE_PROMPT_SUGGESTION=false
 
 ## Git Worktrees
 
-Git Worktrees allow you to start Claude Code in an isolated worktree, enabling parallel work on different branches without stashing or switching.
+Git Worktrees를 사용하면 Claude Code를 격리된 worktree에서 시작하여 stash나 전환 없이 다른 브랜치에서 병렬 작업을 할 수 있습니다.
 
-### Starting in a Worktree
+### Worktree에서 시작
 
 ```bash
-# Start Claude Code in an isolated worktree
+# 격리된 worktree에서 Claude Code 시작
 claude --worktree
-# or
+# 또는
 claude -w
 ```
 
-### Worktree Location
+### Worktree 위치
 
-Worktrees are created at:
+Worktree는 다음 위치에 생성됩니다:
 ```
 <repo>/.claude/worktrees/<name>
 ```
 
-### Sparse Checkout for Monorepos
+### 모노레포를 위한 Sparse Checkout
 
-Use the `worktree.sparsePaths` setting to perform sparse-checkout in monorepos, reducing disk usage and clone time:
+`worktree.sparsePaths` 설정을 사용하여 모노레포에서 sparse-checkout을 수행하여 디스크 사용량과 클론 시간을 줄입니다:
 
 ```json
 {
@@ -1521,56 +1521,56 @@ Use the `worktree.sparsePaths` setting to perform sparse-checkout in monorepos, 
 }
 ```
 
-### Worktree Tools and Hooks
+### Worktree 도구 및 Hooks
 
-| Item | Description |
+| 항목 | 설명 |
 |------|-------------|
-| `ExitWorktree` | Tool to exit and clean up the current worktree |
-| `WorktreeCreate` | Hook event fired when a worktree is created |
-| `WorktreeRemove` | Hook event fired when a worktree is removed |
+| `ExitWorktree` | 현재 worktree를 종료하고 정리하는 도구 |
+| `WorktreeCreate` | worktree가 생성될 때 발동하는 Hook 이벤트 |
+| `WorktreeRemove` | worktree가 제거될 때 발동하는 Hook 이벤트 |
 
-### Auto-Cleanup
+### 자동 정리
 
-If no changes are made in the worktree, it is automatically cleaned up when the session ends.
+Worktree에서 변경 사항이 없으면 세션이 종료될 때 자동으로 정리됩니다.
 
-### Use Cases
+### 사용 사례
 
-- Work on a feature branch while keeping main branch untouched
-- Run tests in isolation without affecting the working directory
-- Try experimental changes in a disposable environment
-- Sparse-checkout specific packages in monorepos for faster startup
+- main 브랜치에 영향을 주지 않고 기능 브랜치에서 작업
+- 작업 디렉토리에 영향을 주지 않고 격리된 환경에서 테스트 실행
+- 일회용 환경에서 실험적 변경 시도
+- 더 빠른 시작을 위해 모노레포에서 특정 패키지 sparse-checkout
 
 ---
 
-## Sandboxing
+## 샌드박싱
 
-Sandboxing provides OS-level filesystem and network isolation for Bash commands executed by Claude Code. This is complementary to permission rules and provides an additional security layer.
+샌드박싱은 Claude Code가 실행하는 Bash 명령어에 OS 수준의 파일시스템 및 네트워크 격리를 제공합니다. 이는 권한 규칙을 보완하며 추가적인 보안 계층을 제공합니다.
 
-### Enabling Sandboxing
+### 샌드박싱 활성화
 
-**Slash command**:
+**Slash Command**:
 ```
 /sandbox
 ```
 
-**CLI flags**:
+**CLI 플래그**:
 ```bash
-claude --sandbox       # Enable sandboxing
-claude --no-sandbox    # Disable sandboxing
+claude --sandbox       # 샌드박싱 활성화
+claude --no-sandbox    # 샌드박싱 비활성화
 ```
 
-### Configuration Settings
+### 설정 항목
 
-| Setting | Description |
+| 설정 | 설명 |
 |---------|-------------|
-| `sandbox.enabled` | Enable or disable sandboxing |
-| `sandbox.failIfUnavailable` | Fail if sandboxing cannot be activated |
-| `sandbox.filesystem.allowWrite` | Paths allowed for write access |
-| `sandbox.filesystem.allowRead` | Paths allowed for read access |
-| `sandbox.filesystem.denyRead` | Paths denied for read access |
-| `sandbox.enableWeakerNetworkIsolation` | Enable weaker network isolation on macOS |
+| `sandbox.enabled` | 샌드박싱 활성화 또는 비활성화 |
+| `sandbox.failIfUnavailable` | 샌드박싱을 활성화할 수 없으면 실패 |
+| `sandbox.filesystem.allowWrite` | 쓰기 접근이 허용된 경로 |
+| `sandbox.filesystem.allowRead` | 읽기 접근이 허용된 경로 |
+| `sandbox.filesystem.denyRead` | 읽기 접근이 거부된 경로 |
+| `sandbox.enableWeakerNetworkIsolation` | macOS에서 약한 네트워크 격리 활성화 |
 
-### Example Configuration
+### 예시 설정
 
 ```json
 {
@@ -1587,37 +1587,37 @@ claude --no-sandbox    # Disable sandboxing
 }
 ```
 
-### How It Works
+### 작동 방식
 
-- Bash commands run in a sandboxed environment with restricted filesystem access
-- Network access can be isolated to prevent unintended external connections
-- Works alongside permission rules for defense in depth
-- On macOS, use `sandbox.enableWeakerNetworkIsolation` for network restrictions (full network isolation is not available on macOS)
+- Bash 명령어는 제한된 파일시스템 접근으로 샌드박스 환경에서 실행
+- 의도하지 않은 외부 연결을 방지하기 위해 네트워크 접근 격리 가능
+- 심층 방어를 위해 권한 규칙과 함께 작동
+- macOS에서는 네트워크 제한을 위해 `sandbox.enableWeakerNetworkIsolation`을 사용 (macOS에서는 완전한 네트워크 격리 불가)
 
-### Use Cases
+### 사용 사례
 
-- Running untrusted or generated code safely
-- Preventing accidental modifications to files outside the project
-- Restricting network access during automated tasks
+- 신뢰할 수 없거나 생성된 코드를 안전하게 실행
+- 프로젝트 외부 파일의 우발적 수정 방지
+- 자동화된 태스크 중 네트워크 접근 제한
 
 ---
 
-## Managed Settings (Enterprise)
+## 관리형 설정 (엔터프라이즈)
 
-Managed Settings enable enterprise administrators to deploy Claude Code configuration across an organization using platform-native management tools.
+관리형 설정을 사용하면 엔터프라이즈 관리자가 플랫폼 기본 관리 도구를 사용하여 조직 전체에 Claude Code 설정을 배포할 수 있습니다.
 
-### Deployment Methods
+### 배포 방법
 
-| Platform | Method | Since |
+| 플랫폼 | 방법 | 버전 |
 |----------|--------|-------|
-| macOS | Managed plist files (MDM) | v2.1.51+ |
-| Windows | Windows Registry | v2.1.51+ |
-| Cross-platform | Managed configuration files | v2.1.51+ |
-| Cross-platform | Managed drop-ins (`managed-settings.d/` directory) | v2.1.83+ |
+| macOS | 관리형 plist 파일 (MDM) | v2.1.51+ |
+| Windows | Windows 레지스트리 | v2.1.51+ |
+| 크로스 플랫폼 | 관리형 설정 파일 | v2.1.51+ |
+| 크로스 플랫폼 | 관리형 드롭인 (`managed-settings.d/` 디렉토리) | v2.1.83+ |
 
-### Managed Drop-ins
+### 관리형 드롭인
 
-Since v2.1.83, administrators can deploy multiple managed settings files into a `managed-settings.d/` directory. Files are merged in alphabetical order, allowing modular configuration across teams:
+v2.1.83부터 관리자는 `managed-settings.d/` 디렉토리에 여러 관리형 설정 파일을 배포할 수 있습니다. 파일은 알파벳 순서로 병합되어 팀 간 모듈식 설정을 허용합니다:
 
 ```
 ~/.claude/managed-settings.d/
@@ -1626,17 +1626,17 @@ Since v2.1.83, administrators can deploy multiple managed settings files into a 
   20-project-overrides.json
 ```
 
-### Available Managed Settings
+### 사용 가능한 관리형 설정
 
-| Setting | Description |
+| 설정 | 설명 |
 |---------|-------------|
-| `disableBypassPermissionsMode` | Prevent users from enabling bypass permissions |
-| `availableModels` | Restrict which models users can select |
-| `allowedChannelPlugins` | Control which channel plugins are permitted |
-| `autoMode.environment` | Configure trusted infrastructure for auto mode |
-| Custom policies | Organization-specific permission and tool policies |
+| `disableBypassPermissionsMode` | 사용자가 권한 우회 활성화를 못하게 함 |
+| `availableModels` | 사용자가 선택할 수 있는 모델 제한 |
+| `allowedChannelPlugins` | 허용되는 채널 플러그인 제어 |
+| `autoMode.environment` | auto mode를 위한 신뢰된 인프라 구성 |
+| 커스텀 정책 | 조직별 권한 및 도구 정책 |
 
-### Example: macOS Plist
+### 예시: macOS Plist
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -1657,17 +1657,17 @@ Since v2.1.83, administrators can deploy multiple managed settings files into a 
 
 ---
 
-## Configuration and Settings
+## 설정 구성
 
-### Configuration File Locations
+### 설정 파일 위치
 
-1. **Global config**: `~/.claude/config.json`
-2. **Project config**: `./.claude/config.json`
-3. **User config**: `~/.config/claude-code/settings.json`
+1. **전역 설정**: `~/.claude/config.json`
+2. **프로젝트 설정**: `./.claude/config.json`
+3. **사용자 설정**: `~/.config/claude-code/settings.json`
 
-### Complete Configuration Example
+### 전체 설정 예시
 
-**Core advanced features configuration:**
+**핵심 고급 기능 설정:**
 
 ```json
 {
@@ -1690,7 +1690,7 @@ Since v2.1.83, administrators can deploy multiple managed settings files into a 
 }
 ```
 
-**Extended configuration example:**
+**확장 설정 예시:**
 
 ```json
 {
@@ -1721,25 +1721,25 @@ Since v2.1.83, administrators can deploy multiple managed settings files into a 
 }
 ```
 
-### Environment Variables
+### 환경 변수
 
-Override config with environment variables:
+환경 변수로 설정 재정의:
 
 ```bash
-# Model selection
+# 모델 선택
 export ANTHROPIC_MODEL=claude-opus-4-6
 export ANTHROPIC_DEFAULT_OPUS_MODEL=claude-opus-4-6
 export ANTHROPIC_DEFAULT_SONNET_MODEL=claude-sonnet-4-6
 export ANTHROPIC_DEFAULT_HAIKU_MODEL=claude-haiku-4-5
 
-# API configuration
+# API 설정
 export ANTHROPIC_API_KEY=sk-ant-...
 
-# Thinking configuration
+# 사고 설정
 export MAX_THINKING_TOKENS=16000
 export CLAUDE_CODE_EFFORT_LEVEL=high
 
-# Feature toggles
+# 기능 토글
 export CLAUDE_CODE_DISABLE_AUTO_MEMORY=true
 export CLAUDE_CODE_DISABLE_BACKGROUND_TASKS=true
 export CLAUDE_CODE_DISABLE_CRON=1
@@ -1749,24 +1749,24 @@ export CLAUDE_CODE_DISABLE_1M_CONTEXT=true
 export CLAUDE_CODE_DISABLE_NONSTREAMING_FALLBACK=true
 export CLAUDE_CODE_ENABLE_PROMPT_SUGGESTION=false
 export CLAUDE_CODE_ENABLE_TASKS=true
-export CLAUDE_CODE_SIMPLE=true              # Set by --bare flag
+export CLAUDE_CODE_SIMPLE=true              # --bare 플래그로 설정됨
 
-# MCP configuration
+# MCP 설정
 export MAX_MCP_OUTPUT_TOKENS=50000
 export ENABLE_TOOL_SEARCH=true
 
-# Task management
+# 태스크 관리
 export CLAUDE_CODE_TASK_LIST_ID=my-project-tasks
 
-# Agent teams (experimental)
+# 에이전트 팀 (실험적)
 export CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=true
 
-# Subagent and plugin configuration
+# Subagent 및 플러그인 설정
 export CLAUDE_CODE_SUBAGENT_MODEL=sonnet
 export CLAUDE_CODE_PLUGIN_SEED_DIR=./my-plugins
 export CLAUDE_CODE_NEW_INIT=true
 
-# Subprocess and streaming
+# 서브프로세스 및 스트리밍
 export CLAUDE_CODE_SUBPROCESS_ENV_SCRUB="SECRET_KEY,DB_PASSWORD"
 export CLAUDE_AUTOCOMPACT_PCT_OVERRIDE=80
 export CLAUDE_STREAM_IDLE_TIMEOUT_MS=30000
@@ -1774,22 +1774,22 @@ export ANTHROPIC_CUSTOM_MODEL_OPTION=my-custom-model
 export SLASH_COMMAND_TOOL_CHAR_BUDGET=50000
 ```
 
-### Configuration Management Commands
+### 설정 관리 명령어
 
 ```
 User: /config
-[Opens interactive configuration menu]
+[인터랙티브 설정 메뉴 열기]
 ```
 
-The `/config` command provides an interactive menu to toggle settings such as:
-- Extended thinking on/off
-- Verbose output
-- Permission mode
-- Model selection
+`/config` 명령어는 다음과 같은 설정을 토글하기 위한 인터랙티브 메뉴를 제공합니다:
+- 확장 사고 켜기/끄기
+- 상세 출력
+- 권한 모드
+- 모델 선택
 
-### Per-Project Configuration
+### 프로젝트별 설정
 
-Create `.claude/config.json` in your project:
+프로젝트에 `.claude/config.json` 생성:
 
 ```json
 {
@@ -1814,58 +1814,58 @@ Create `.claude/config.json` in your project:
 
 ---
 
-## Best Practices
+## 모범 사례
 
-### Planning Mode
-- ✅ Use for complex multi-step tasks
-- ✅ Review plans before approving
-- ✅ Modify plans when needed
-- ❌ Don't use for simple tasks
+### 계획 모드
+- ✅ 복잡한 다단계 태스크에 사용
+- ✅ 승인 전 계획 검토
+- ✅ 필요 시 계획 수정
+- ❌ 단순 태스크에는 사용하지 않기
 
-### Extended Thinking
-- ✅ Use for architectural decisions
-- ✅ Use for complex problem-solving
-- ✅ Review the thinking process
-- ❌ Don't use for simple queries
+### 확장 사고
+- ✅ 아키텍처 결정에 사용
+- ✅ 복잡한 문제 해결에 사용
+- ✅ 사고 과정 검토
+- ❌ 단순 쿼리에는 사용하지 않기
 
-### Background Tasks
-- ✅ Use for long-running operations
-- ✅ Monitor task progress
-- ✅ Handle task failures gracefully
-- ❌ Don't start too many concurrent tasks
+### 백그라운드 태스크
+- ✅ 오래 걸리는 작업에 사용
+- ✅ 태스크 진행 상황 모니터링
+- ✅ 태스크 실패를 우아하게 처리
+- ❌ 너무 많은 동시 태스크 시작하지 않기
 
-### Permissions
-- ✅ Use `plan` for code review (read-only)
-- ✅ Use `default` for interactive development
-- ✅ Use `acceptEdits` for automation workflows
-- ✅ Use `auto` for autonomous work with safety guardrails
-- ❌ Don't use `bypassPermissions` unless absolutely necessary
+### 권한
+- ✅ 코드 리뷰에 `plan` 사용 (읽기 전용)
+- ✅ 인터랙티브 개발에 `default` 사용
+- ✅ 자동화 워크플로우에 `acceptEdits` 사용
+- ✅ 안전 가드레일이 있는 자율 작업에 `auto` 사용
+- ❌ 꼭 필요한 경우가 아니면 `bypassPermissions` 사용하지 않기
 
-### Sessions
-- ✅ Use separate sessions for different tasks
-- ✅ Save important session states
-- ✅ Clean up old sessions
-- ❌ Don't mix unrelated work in one session
+### 세션
+- ✅ 다른 태스크에는 별도 세션 사용
+- ✅ 중요한 세션 상태 저장
+- ✅ 오래된 세션 정리
+- ❌ 관련 없는 작업을 하나의 세션에 섞지 않기
 
 ---
 
-## Additional Resources
+## 추가 자료
 
-For more information about Claude Code and related features:
+Claude Code 및 관련 기능에 대한 자세한 정보:
 
-- [Official Interactive Mode Documentation](https://code.claude.com/docs/en/interactive-mode)
-- [Official Headless Mode Documentation](https://code.claude.com/docs/en/headless)
-- [CLI Reference](https://code.claude.com/docs/en/cli-reference)
-- [Checkpoints Guide](../08-checkpoints/) - Session management and rewinding
-- [Slash Commands](../01-slash-commands/) - Command reference
-- [Memory Guide](../02-memory/) - Persistent context
-- [Skills Guide](../03-skills/) - Autonomous capabilities
-- [Subagents Guide](../04-subagents/) - Delegated task execution
-- [MCP Guide](../05-mcp/) - External data access
-- [Hooks Guide](../06-hooks/) - Event-driven automation
-- [Plugins Guide](../07-plugins/) - Bundled extensions
-- [Official Scheduled Tasks Documentation](https://code.claude.com/docs/en/scheduled-tasks)
-- [Official Chrome Integration Documentation](https://code.claude.com/docs/en/chrome)
-- [Official Remote Control Documentation](https://code.claude.com/docs/en/remote-control)
-- [Official Keybindings Documentation](https://code.claude.com/docs/en/keybindings)
-- [Official Desktop App Documentation](https://code.claude.com/docs/en/desktop)
+- [공식 인터랙티브 모드 문서](https://code.claude.com/docs/en/interactive-mode)
+- [공식 헤드리스 모드 문서](https://code.claude.com/docs/en/headless)
+- [CLI 참조](https://code.claude.com/docs/en/cli-reference)
+- [Checkpoints 가이드](../08-checkpoints/) - 세션 관리 및 되돌리기
+- [Slash Commands](../01-slash-commands/) - 명령어 참조
+- [Memory 가이드](../02-memory/) - 지속적 컨텍스트
+- [Skills 가이드](../03-skills/) - 자율 기능
+- [Subagents 가이드](../04-subagents/) - 위임된 태스크 실행
+- [MCP 가이드](../05-mcp/) - 외부 데이터 접근
+- [Hooks 가이드](../06-hooks/) - 이벤트 기반 자동화
+- [Plugins 가이드](../07-plugins/) - 번들 확장
+- [공식 예약 태스크 문서](https://code.claude.com/docs/en/scheduled-tasks)
+- [공식 Chrome 연동 문서](https://code.claude.com/docs/en/chrome)
+- [공식 원격 제어 문서](https://code.claude.com/docs/en/remote-control)
+- [공식 키바인딩 문서](https://code.claude.com/docs/en/keybindings)
+- [공식 데스크탑 앱 문서](https://code.claude.com/docs/en/desktop)
