@@ -1,113 +1,112 @@
-# 코드 리뷰 발견 사항 템플릿
+# Code Review Finding Template
 
-코드 리뷰 중 발견된 각 이슈를 문서화할 때 이 템플릿을 사용하세요.
+Use this template when documenting each issue found during code review.
 
 ---
 
-## 이슈: [제목]
+## Issue: [TITLE]
 
-### 심각도
-- [ ] 심각 (배포 차단)
-- [ ] 높음 (병합 전 수정 필요)
-- [ ] 중간 (곧 수정 필요)
-- [ ] 낮음 (있으면 좋음)
+### Severity
+- [ ] Critical (blocks deployment)
+- [ ] High (should fix before merge)
+- [ ] Medium (should fix soon)
+- [ ] Low (nice to have)
 
-### 카테고리
-- [ ] 보안
-- [ ] 성능
-- [ ] 코드 품질
-- [ ] 유지보수성
-- [ ] 테스트
-- [ ] 디자인 패턴
-- [ ] 문서화
+### Category
+- [ ] Security
+- [ ] Performance
+- [ ] Code Quality
+- [ ] Maintainability
+- [ ] Testing
+- [ ] Design Pattern
+- [ ] Documentation
 
-### 위치
-**파일:** `src/components/UserCard.tsx`
+### Location
+**File:** `src/components/UserCard.tsx`
 
-**라인:** 45-52
+**Lines:** 45-52
 
-**함수/메서드:** `renderUserDetails()`
+**Function/Method:** `renderUserDetails()`
 
-### 이슈 설명
+### Issue Description
 
-**문제:** 이슈가 무엇인지 설명하세요.
+**What:** Describe what the issue is.
 
-**중요한 이유:** 영향 및 수정이 필요한 이유를 설명하세요.
+**Why it matters:** Explain the impact and why this needs to be fixed.
 
-**현재 동작:** 문제가 있는 코드 또는 동작을 보여주세요.
+**Current behavior:** Show the problematic code or behavior.
 
-**예상 동작:** 대신 무슨 일이 일어나야 하는지 설명하세요.
+**Expected behavior:** Describe what should happen instead.
 
-### 코드 예시
+### Code Example
 
-#### 현재 (문제 있음)
+#### Current (Problematic)
 
 ```typescript
-// N+1 쿼리 문제를 보여줌
+// Shows the N+1 query problem
 const users = fetchUsers();
 users.forEach(user => {
-  const posts = fetchUserPosts(user.id); // 사용자마다 쿼리 발생!
+  const posts = fetchUserPosts(user.id); // Query per user!
   renderUserPosts(posts);
 });
 ```
 
-#### 제안된 수정
+#### Suggested Fix
 
 ```typescript
-// JOIN 쿼리로 최적화
+// Optimized with JOIN query
 const usersWithPosts = fetchUsersWithPosts();
 usersWithPosts.forEach(({ user, posts }) => {
   renderUserPosts(posts);
 });
 ```
 
-### 영향 분석
+### Impact Analysis
 
-| 측면 | 영향 | 심각도 |
+| Aspect | Impact | Severity |
 |--------|--------|----------|
-| 성능 | 사용자 20명에 대해 100개 이상의 쿼리 | 높음 |
-| 사용자 경험 | 느린 페이지 로드 | 높음 |
-| 확장성 | 규모에서 실패 | 심각 |
-| 유지보수성 | 디버그하기 어려움 | 중간 |
+| Performance | 100+ queries for 20 users | High |
+| User Experience | Slow page load | High |
+| Scalability | Breaks at scale | Critical |
+| Maintainability | Hard to debug | Medium |
 
-### 관련 이슈
+### Related Issues
 
-- `AdminUserList.tsx` 120번 라인에 유사한 이슈
-- 관련 PR: #456
-- 관련 이슈: #789
+- Similar issue in `AdminUserList.tsx` line 120
+- Related PR: #456
+- Related issue: #789
 
-### 추가 리소스
+### Additional Resources
 
-- [N+1 쿼리 문제](https://en.wikipedia.org/wiki/N%2B1_problem)
-- [데이터베이스 Join 문서](https://docs.example.com/joins)
-- [성능 최적화 가이드](./docs/performance.md)
+- [N+1 Query Problem](https://en.wikipedia.org/wiki/N%2B1_problem)
+- [Database Join Documentation](https://docs.example.com/joins)
 
-### 검토자 메모
+### Reviewer Notes
 
-- 이것은 이 코드베이스의 일반적인 패턴입니다
-- 코드 스타일 가이드에 추가하는 것을 고려해보세요
-- 헬퍼 함수를 만들 가치가 있을 수 있습니다
+- This is a common pattern in this codebase
+- Consider adding this to the code style guide
+- Might be worth creating a helper function
 
-### 작성자 응답 (피드백용)
+### Author Response (for feedback)
 
-*코드 작성자가 작성:*
+*To be filled by the code author:*
 
-- [ ] 커밋에서 수정 구현: `abc123`
-- [ ] 수정 상태: 완료 / 진행 중 / 논의 필요
-- [ ] 질문이나 우려 사항: (설명)
+- [ ] Fix implemented in commit: `abc123`
+- [ ] Fix status: Complete / In Progress / Needs Discussion
+- [ ] Questions or concerns: (describe)
 
 ---
 
-## 발견 통계 (검토자용)
+## Finding Statistics (for Reviewer)
 
-여러 발견 사항을 검토할 때 추적:
+When reviewing multiple findings, track:
 
-- **발견된 총 이슈 수:** X
-- **심각:** X
-- **높음:** X
-- **중간:** X
-- **낮음:** X
+- **Total Issues Found:** X
+- **Critical:** X
+- **High:** X
+- **Medium:** X
+- **Low:** X
 
-**권장 사항:** ✅ 승인 / ⚠️ 변경 요청 / 🔄 논의 필요
+**Recommendation:** ✅ Approve / ⚠️ Request Changes / 🔄 Needs Discussion
 
-**전반적인 코드 품질:** 1-5점
+**Overall Code Quality:** 1-5 stars
